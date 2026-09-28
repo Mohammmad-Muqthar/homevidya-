@@ -1,0 +1,833 @@
+/* =========================================================
+   ACADEMIC PROGRAMMES
+========================================================= */
+
+.academic-programs {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #f5f3e9;
+
+  padding:
+    clamp(
+      90px,
+      9vw,
+      145px
+    )
+    0
+    clamp(
+      100px,
+      10vw,
+      160px
+    );
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.academic-programs-container {
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--page-padding)
+          * 2
+        )
+      ),
+      var(--container)
+    );
+
+  margin-inline: auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.academic-programs-header {
+  margin-bottom:
+    clamp(
+      45px,
+      5vw,
+      70px
+    );
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.academic-programs-title {
+  margin: 0;
+
+  color:
+    var(--green-deep);
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(
+      42px,
+      4.4vw,
+      72px
+    );
+
+  font-weight: 550;
+
+  line-height: 0.98;
+
+  letter-spacing:
+    -0.055em;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+.academic-programs-title span {
+  margin-left: 14px;
+
+  color:
+    var(--green);
+}
+
+
+/* =========================================================
+   AREA
+========================================================= */
+
+.academic-cards-area {
+  position: relative;
+}
+
+
+/* =========================================================
+   DESKTOP CARDS
+========================================================= */
+
+.academic-cards {
+  display: flex;
+
+  align-items: stretch;
+
+  gap:
+    clamp(
+      14px,
+      1.5vw,
+      22px
+    );
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.academic-card {
+  position: relative;
+
+  flex:
+    1 1 0;
+
+  min-width: 0;
+
+  height:
+    clamp(
+      390px,
+      34vw,
+      500px
+    );
+
+  overflow: hidden;
+
+  /* NO CURVED EDGES */
+  border-radius: 0;
+
+  background:
+    var(--green-deep);
+
+  cursor: pointer;
+
+  isolation: isolate;
+
+  outline: none;
+
+  transition:
+    flex
+      0.6s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    transform
+      0.5s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    opacity
+      0.45s
+      ease,
+
+    box-shadow
+      0.5s
+      ease;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =========================================================
+   ACTIVE
+========================================================= */
+
+.academic-card.is-active {
+  flex:
+    1.25 1 0;
+
+  transform:
+    translateY(-6px);
+
+  box-shadow:
+    0 24px 55px
+    rgba(
+      4,
+      61,
+      40,
+      0.15
+    );
+}
+
+
+.academic-cards:has(
+  .academic-card.is-active
+)
+.academic-card:not(
+  .is-active
+) {
+  flex:
+    0.93 1 0;
+
+  opacity: 0.9;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.academic-card-image {
+  position: absolute;
+
+  top: -6%;
+  left: 0;
+
+  z-index: 0;
+
+  width: 100%;
+  height: 112%;
+
+  max-width: none;
+
+  object-fit: cover;
+
+  object-position:
+    center center;
+
+  transition:
+    transform
+      0.7s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.academic-card-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+
+      rgba(
+        2,
+        44,
+        29,
+        0.02
+      )
+      15%,
+
+      rgba(
+        3,
+        50,
+        34,
+        0.08
+      )
+      45%,
+
+      rgba(
+        3,
+        52,
+        35,
+        0.84
+      )
+      100%
+    );
+}
+
+
+/* =========================================================
+   AGE
+========================================================= */
+
+.academic-card-top {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 20px;
+
+  left: 20px;
+}
+
+
+.academic-card-age {
+  display: inline-flex;
+
+  align-items: center;
+
+  min-height: 32px;
+
+  padding:
+    0
+    13px;
+
+  border-radius: 100px;
+
+  background:
+    rgba(
+      245,
+      200,
+      66,
+      0.94
+    );
+
+  color:
+    var(--green-deep);
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.academic-card-content {
+  position: absolute;
+
+  z-index: 5;
+
+  left:
+    clamp(
+      20px,
+      2vw,
+      30px
+    );
+
+  right:
+    clamp(
+      20px,
+      2vw,
+      30px
+    );
+
+  bottom:
+    clamp(
+      20px,
+      2vw,
+      30px
+    );
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content:
+    space-between;
+
+  gap: 15px;
+}
+
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.academic-card-content h3 {
+  margin: 0;
+
+  max-width: 210px;
+
+  color: #ffffff;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(
+      25px,
+      2.25vw,
+      37px
+    );
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing:
+    -0.04em;
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.academic-card-arrow {
+  display: grid;
+
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 44px;
+
+  height: 44px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.94
+    );
+
+  color:
+    var(--green-deep);
+
+  transition:
+    transform
+      0.4s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+
+.academic-card.is-active
+.academic-card-arrow {
+  transform:
+    rotate(45deg);
+}
+
+
+/* =========================================================
+   BORDER
+========================================================= */
+
+.academic-card::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 6;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+
+  border-radius: inherit;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   MOBILE SWIPER
+========================================================= */
+
+.academic-mobile-swiper {
+  width:
+    calc(
+      100% +
+      var(--page-padding)
+    );
+
+  overflow: visible;
+
+  padding-bottom: 45px;
+}
+
+
+/* Swiper slides need full card height */
+
+.academic-mobile-swiper
+.swiper-slide {
+  height: auto;
+
+  transition:
+    transform
+      0.55s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    opacity
+      0.45s
+      ease;
+}
+
+
+/* Non-active cards slightly fade */
+
+.academic-mobile-swiper
+.swiper-slide:not(
+  .swiper-slide-active
+) {
+  opacity: 0.72;
+
+  transform:
+    scale(0.96);
+}
+
+
+/* Active card */
+
+.academic-mobile-swiper
+.swiper-slide-active {
+  opacity: 1;
+
+  transform:
+    scale(1);
+}
+
+
+/* =========================================================
+   SWIPER DOTS
+========================================================= */
+
+.academic-mobile-swiper
+.swiper-pagination {
+  bottom: 2px;
+}
+
+
+.academic-mobile-swiper
+.swiper-pagination-bullet {
+  width: 7px;
+
+  height: 7px;
+
+  margin:
+    0
+    5px !important;
+
+  background:
+    rgba(
+      3,
+      57,
+      37,
+      0.24
+    );
+
+  opacity: 1;
+
+  transition:
+    width
+      0.35s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    border-radius
+      0.35s
+      ease,
+
+    background
+      0.35s
+      ease;
+}
+
+
+.academic-mobile-swiper
+.swiper-pagination-bullet-active {
+  width: 26px;
+
+  border-radius: 20px;
+
+  background:
+    var(--green);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (
+  min-width: 769px
+)
+and
+(
+  max-width: 1050px
+) {
+
+  .academic-cards {
+    display: grid;
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+
+    gap: 18px;
+  }
+
+
+  .academic-card,
+  .academic-card.is-active {
+    height: 440px;
+
+    transform: none;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .academic-programs {
+    padding:
+      85px
+      0
+      90px;
+  }
+
+
+  .academic-programs-container {
+    /*
+      Keep left alignment with site,
+      but allow slider to overflow right.
+    */
+
+    width:
+      calc(
+        100% -
+        var(--page-padding)
+      );
+
+    margin-left:
+      var(--page-padding);
+
+    margin-right: 0;
+  }
+
+
+  .academic-programs-header {
+    margin-bottom: 38px;
+
+    padding-right:
+      var(--page-padding);
+  }
+
+
+  .academic-programs-title {
+    font-size:
+      clamp(
+        39px,
+        10vw,
+        54px
+      );
+
+    line-height: 1;
+  }
+
+
+  .academic-programs-title span {
+    display: block;
+
+    margin:
+      5px
+      0
+      0;
+  }
+
+
+  /* -----------------------------------------------
+     MOBILE CARD
+  ------------------------------------------------ */
+
+  .academic-card,
+  .academic-card.is-active {
+    width: 100%;
+
+    height: 400px;
+
+    transform: none;
+
+    box-shadow: none;
+  }
+
+
+  /*
+    NO CURVED CARD EDGES ON MOBILE
+  */
+
+  .academic-card {
+    border-radius: 0;
+  }
+
+
+  /*
+    Swiper controls scale,
+    so disable desktop flex behaviour.
+  */
+
+  .academic-card.is-active {
+    flex: none;
+  }
+
+
+  /* Active image gets a tiny zoom */
+
+  .swiper-slide-active
+  .academic-card-image {
+    transform:
+      scale(1.025);
+  }
+
+
+  .academic-card-content h3 {
+    font-size:
+      clamp(
+        27px,
+        7vw,
+        36px
+      );
+  }
+
+
+  .academic-card-arrow {
+    width: 42px;
+
+    height: 42px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  .academic-card,
+  .academic-card.is-active {
+    height: 365px;
+  }
+
+
+  .academic-card-top {
+    top: 17px;
+
+    left: 17px;
+  }
+
+
+  .academic-card-content {
+    left: 18px;
+
+    right: 18px;
+
+    bottom: 18px;
+  }
+
+
+  .academic-card-arrow {
+    width: 40px;
+
+    height: 40px;
+  }
+
+}

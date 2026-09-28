@@ -1,0 +1,2182 @@
+/* =========================================================
+   PAGE LOCK WHEN MODAL IS OPEN
+========================================================= */
+
+html.admission-modal-open,
+body.admission-modal-open {
+  overflow:
+    hidden !important;
+
+  overscroll-behavior:
+    none !important;
+}
+
+
+/* =========================================================
+   FAQ SECTION
+========================================================= */
+
+.faq-section {
+  position:
+    relative;
+
+  width:
+    100%;
+
+  /*
+    IMPORTANT:
+    sticky cannot have an overflow parent.
+  */
+
+  overflow:
+    visible;
+
+  background:
+    #f3f0e6;
+
+  padding:
+    clamp(
+      85px,
+      7vw,
+      120px
+    )
+    0
+    clamp(
+      90px,
+      7vw,
+      115px
+    );
+}
+
+
+/* =========================================================
+   FAQ GRID
+========================================================= */
+
+.faq-layout {
+  position:
+    relative;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      300px,
+      0.78fr
+    )
+    minmax(
+      520px,
+      1.22fr
+    );
+
+  /*
+    THIS IS IMPORTANT.
+
+    Left column stretches to exactly
+    the same height as FAQ list.
+
+    This makes sticky stop exactly
+    with the final FAQ.
+  */
+
+  align-items:
+    stretch;
+
+  gap:
+    clamp(
+      70px,
+      9vw,
+      150px
+    );
+
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--page-padding)
+          * 2
+        )
+      ),
+      var(--container)
+    );
+
+  margin:
+    0
+    auto;
+
+  overflow:
+    visible;
+}
+
+
+/* =========================================================
+   LEFT COLUMN
+
+   Its height automatically becomes the
+   height of the right FAQ list.
+========================================================= */
+
+.faq-left-column {
+  position:
+    relative;
+
+  align-self:
+    stretch;
+
+  width:
+    100%;
+
+  min-width:
+    0;
+
+  /*
+    CRITICAL:
+    do not use overflow hidden/auto here.
+  */
+
+  overflow:
+    visible;
+}
+
+
+/* =========================================================
+   STICKY LEFT CONTENT
+
+   This stays while questions move.
+
+   At the final FAQ it naturally stops
+   because the parent column ends.
+========================================================= */
+
+.faq-sticky {
+  position:
+    -webkit-sticky;
+
+  position:
+    sticky;
+
+  /*
+    Not too low.
+
+    Keeps it near navbar area.
+  */
+
+  top:
+    clamp(
+      88px,
+      9vh,
+      105px
+    );
+
+  width:
+    100%;
+
+  max-width:
+    520px;
+
+  z-index:
+    5;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.faq-title {
+  margin:
+    0;
+
+  color:
+    var(--green-deep);
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(
+      48px,
+      4.5vw,
+      73px
+    );
+
+  font-weight:
+    520;
+
+  line-height:
+    0.97;
+
+  letter-spacing:
+    -0.06em;
+}
+
+
+.faq-title span {
+  display:
+    block;
+
+  color:
+    var(--green);
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.faq-intro-copy {
+  max-width:
+    380px;
+
+  margin:
+    22px
+    0
+    0;
+
+  color:
+    rgba(
+      9,
+      41,
+      30,
+      0.58
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(
+      15px,
+      1vw,
+      17px
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.55;
+}
+
+
+/* =========================================================
+   ADMISSION BUTTON
+========================================================= */
+
+.faq-admission-button {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    25px;
+
+  min-width:
+    248px;
+
+  height:
+    54px;
+
+  margin-top:
+    30px;
+
+  padding:
+    0
+    9px
+    0
+    20px;
+
+  border:
+    1px solid
+    rgba(
+      7,
+      71,
+      47,
+      0.22
+    );
+
+  border-radius:
+    0;
+
+  background:
+    transparent;
+
+  color:
+    var(--green-deep);
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    13px;
+
+  font-weight:
+    650;
+
+  cursor:
+    pointer;
+
+  transition:
+    background
+      0.35s
+      ease,
+
+    color
+      0.35s
+      ease,
+
+    border-color
+      0.35s
+      ease;
+}
+
+
+.faq-admission-arrow {
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  flex-shrink:
+    0;
+
+  width:
+    36px;
+
+  height:
+    36px;
+
+  background:
+    var(--green);
+
+  color:
+    #ffffff;
+
+  font-size:
+    16px;
+
+  transition:
+    transform
+      0.35s
+      var(--ease-main);
+}
+
+
+@media (hover: hover) {
+
+  .faq-admission-button:hover {
+    background:
+      var(--green-deep);
+
+    border-color:
+      var(--green-deep);
+
+    color:
+      #ffffff;
+  }
+
+
+  .faq-admission-button:hover
+  .faq-admission-arrow {
+    transform:
+      translate(
+        2px,
+        -2px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   FAQ LIST
+========================================================= */
+
+.faq-list {
+  position:
+    relative;
+
+  width:
+    100%;
+
+  min-width:
+    0;
+
+  border-top:
+    1px solid
+    rgba(
+      8,
+      70,
+      47,
+      0.16
+    );
+}
+
+
+/* =========================================================
+   ITEM
+========================================================= */
+
+.faq-item {
+  border-bottom:
+    1px solid
+    rgba(
+      8,
+      70,
+      47,
+      0.16
+    );
+}
+
+
+/* =========================================================
+   QUESTION
+========================================================= */
+
+.faq-question {
+  display:
+    grid;
+
+  grid-template-columns:
+    38px
+    minmax(
+      0,
+      1fr
+    )
+    40px;
+
+  align-items:
+    center;
+
+  gap:
+    18px;
+
+  width:
+    100%;
+
+  padding:
+    clamp(
+      27px,
+      2.5vw,
+      38px
+    )
+    0;
+
+  border:
+    0;
+
+  background:
+    transparent;
+
+  text-align:
+    left;
+
+  cursor:
+    pointer;
+}
+
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+.faq-number {
+  color:
+    rgba(
+      11,
+      86,
+      59,
+      0.38
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.08em;
+}
+
+
+/* =========================================================
+   QUESTION COPY
+========================================================= */
+
+.faq-question-copy {
+  color:
+    var(--green-deep);
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(
+      21px,
+      1.7vw,
+      28px
+    );
+
+  font-weight:
+    550;
+
+  line-height:
+    1.16;
+
+  letter-spacing:
+    -0.035em;
+}
+
+
+/* =========================================================
+   PLUS
+========================================================= */
+
+.faq-plus {
+  position:
+    relative;
+
+  width:
+    38px;
+
+  height:
+    38px;
+
+  border:
+    1px solid
+    rgba(
+      11,
+      86,
+      59,
+      0.18
+    );
+
+  border-radius:
+    50%;
+}
+
+
+.faq-plus span {
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  top:
+    50%;
+
+  width:
+    13px;
+
+  height:
+    1px;
+
+  background:
+    var(--green);
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  transition:
+    transform
+      0.4s
+      var(--ease-main);
+}
+
+
+.faq-plus span:last-child {
+  transform:
+    translate(
+      -50%,
+      -50%
+    )
+    rotate(
+      90deg
+    );
+}
+
+
+.faq-item.is-open
+.faq-plus span:last-child {
+  transform:
+    translate(
+      -50%,
+      -50%
+    )
+    rotate(
+      0deg
+    );
+}
+
+
+/* =========================================================
+   ANSWER
+========================================================= */
+
+.faq-answer {
+  display:
+    grid;
+
+  grid-template-rows:
+    0fr;
+
+  opacity:
+    0;
+
+  transition:
+    grid-template-rows
+      0.48s
+      var(--ease-main),
+
+    opacity
+      0.35s
+      ease;
+}
+
+
+.faq-item.is-open
+.faq-answer {
+  grid-template-rows:
+    1fr;
+
+  opacity:
+    1;
+}
+
+
+.faq-answer > div {
+  min-height:
+    0;
+
+  overflow:
+    hidden;
+}
+
+
+.faq-answer p {
+  max-width:
+    590px;
+
+  margin:
+    -6px
+    0
+    32px
+    56px;
+
+  color:
+    rgba(
+      9,
+      41,
+      30,
+      0.59
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    15px;
+
+  font-weight:
+    400;
+
+  line-height:
+    1.65;
+}
+
+
+/* =========================================================
+   MODAL OVERLAY
+========================================================= */
+
+.admission-overlay {
+  position:
+    fixed;
+
+  z-index:
+    999999;
+
+  inset:
+    0;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  padding:
+    clamp(
+      20px,
+      4vw,
+      55px
+    );
+
+  overflow:
+    hidden;
+
+  background:
+    rgba(
+      2,
+      24,
+      17,
+      0.64
+    );
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+  opacity:
+    0;
+
+  overscroll-behavior:
+    none;
+}
+
+
+/* =========================================================
+   FORM PANEL
+========================================================= */
+
+.admission-panel {
+  position:
+    relative;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      300px,
+      0.78fr
+    )
+    minmax(
+      480px,
+      1.22fr
+    );
+
+  width:
+    min(
+      1120px,
+      92vw
+    );
+
+  max-height:
+    min(
+      760px,
+      86dvh
+    );
+
+  overflow:
+    hidden;
+
+  border-radius:
+    12px;
+
+  background:
+    #f6f3e9;
+
+  box-shadow:
+    0
+    45px
+    100px
+    rgba(
+      0,
+      0,
+      0,
+      0.28
+    );
+
+  opacity:
+    0;
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+.admission-close {
+  position:
+    absolute;
+
+  z-index:
+    100;
+
+  top:
+    20px;
+
+  right:
+    20px;
+
+  width:
+    42px;
+
+  height:
+    42px;
+
+  border:
+    1px solid
+    rgba(
+      7,
+      71,
+      47,
+      0.15
+    );
+
+  border-radius:
+    50%;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.92
+    );
+
+  cursor:
+    pointer;
+
+  transition:
+    transform
+      0.35s
+      var(--ease-main);
+}
+
+
+.admission-close span {
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  top:
+    50%;
+
+  width:
+    17px;
+
+  height:
+    1px;
+
+  background:
+    var(--green-deep);
+}
+
+
+.admission-close span:first-child {
+  transform:
+    translate(
+      -50%,
+      -50%
+    )
+    rotate(
+      45deg
+    );
+}
+
+
+.admission-close span:last-child {
+  transform:
+    translate(
+      -50%,
+      -50%
+    )
+    rotate(
+      -45deg
+    );
+}
+
+
+@media (hover: hover) {
+
+  .admission-close:hover {
+    transform:
+      rotate(
+        90deg
+      );
+  }
+
+}
+
+
+/* =========================================================
+   FORM LEFT
+========================================================= */
+
+.admission-panel-left {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+
+  padding:
+    clamp(
+      42px,
+      5vw,
+      68px
+    );
+
+  background:
+    #0b563b;
+
+  color:
+    #ffffff;
+}
+
+
+.admission-panel-label {
+  display:
+    block;
+
+  margin-bottom:
+    17px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.5
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.16em;
+}
+
+
+.admission-panel-left h2 {
+  max-width:
+    430px;
+
+  margin:
+    0;
+
+  color:
+    #ffffff;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(
+      42px,
+      4vw,
+      64px
+    );
+
+  font-weight:
+    510;
+
+  line-height:
+    0.94;
+
+  letter-spacing:
+    -0.06em;
+}
+
+
+.admission-panel-left h2 span {
+  display:
+    block;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.57
+    );
+}
+
+
+.admission-panel-left > p {
+  max-width:
+    350px;
+
+  margin:
+    24px
+    0
+    37px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.66
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    15px;
+
+  line-height:
+    1.55;
+}
+
+
+/* =========================================================
+   FORM STEPS
+========================================================= */
+
+.admission-step-list {
+  max-width:
+    330px;
+}
+
+
+.admission-step {
+  display:
+    grid;
+
+  grid-template-columns:
+    32px
+    1fr;
+
+  align-items:
+    center;
+
+  gap:
+    12px;
+
+  padding:
+    12px
+    0;
+
+  border-top:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+}
+
+
+.admission-step:last-child {
+  border-bottom:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+}
+
+
+.admission-step span {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.36
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+}
+
+
+.admission-step p {
+  margin:
+    0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.82
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    13px;
+}
+
+
+/* =========================================================
+   FORM RIGHT
+========================================================= */
+
+.admission-panel-right {
+  overflow-y:
+    auto;
+
+  overflow-x:
+    hidden;
+
+  padding:
+    clamp(
+      55px,
+      5vw,
+      75px
+    )
+    clamp(
+      40px,
+      5vw,
+      70px
+    );
+
+  scrollbar-width:
+    thin;
+
+  overscroll-behavior:
+    contain;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.admission-form {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    30px
+    28px;
+}
+
+
+.admission-field-full {
+  grid-column:
+    1 / -1;
+}
+
+
+/* =========================================================
+   FIELD LABEL
+========================================================= */
+
+.admission-field label {
+  display:
+    block;
+
+  margin-bottom:
+    8px;
+
+  color:
+    rgba(
+      8,
+      52,
+      37,
+      0.54
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   FIELDS
+========================================================= */
+
+.admission-field input,
+.admission-field select,
+.admission-field textarea {
+  width:
+    100%;
+
+  padding:
+    7px
+    0
+    13px;
+
+  border:
+    0;
+
+  border-bottom:
+    1px solid
+    rgba(
+      8,
+      64,
+      43,
+      0.2
+    );
+
+  border-radius:
+    0;
+
+  outline:
+    none;
+
+  background:
+    transparent;
+
+  color:
+    var(--green-deep);
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    16px;
+}
+
+
+.admission-field input:focus,
+.admission-field select:focus,
+.admission-field textarea:focus {
+  border-color:
+    var(--green);
+}
+
+
+.admission-field input::placeholder,
+.admission-field textarea::placeholder {
+  color:
+    rgba(
+      8,
+      52,
+      37,
+      0.33
+    );
+}
+
+
+.admission-field select {
+  appearance:
+    none;
+
+  -webkit-appearance:
+    none;
+}
+
+
+.admission-field textarea {
+  min-height:
+    75px;
+
+  resize:
+    none;
+}
+
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+.admission-submit {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  width:
+    100%;
+
+  height:
+    58px;
+
+  padding:
+    0
+    20px;
+
+  border:
+    0;
+
+  border-radius:
+    0;
+
+  background:
+    #0b563b;
+
+  color:
+    #ffffff;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    14px;
+
+  font-weight:
+    650;
+
+  cursor:
+    pointer;
+}
+
+
+/* =========================================================
+   TABLET
+
+   LEFT STILL STAYS.
+========================================================= */
+
+@media (
+  max-width: 1100px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .faq-layout {
+    grid-template-columns:
+      minmax(
+        245px,
+        0.72fr
+      )
+      minmax(
+        420px,
+        1.28fr
+      );
+
+    gap:
+      clamp(
+        44px,
+        6vw,
+        70px
+      );
+  }
+
+
+  .faq-sticky {
+    top:
+      88px;
+  }
+
+
+  .faq-title {
+    font-size:
+      clamp(
+        41px,
+        5vw,
+        57px
+      );
+  }
+
+
+  .faq-intro-copy {
+    font-size:
+      14px;
+  }
+
+
+  .faq-admission-button {
+    min-width:
+      220px;
+  }
+
+
+  .faq-question-copy {
+    font-size:
+      clamp(
+        19px,
+        2.1vw,
+        24px
+      );
+  }
+
+
+  .admission-panel {
+    grid-template-columns:
+      0.83fr
+      1.17fr;
+
+    width:
+      min(
+        96vw,
+        980px
+      );
+  }
+
+
+  .admission-panel-left {
+    padding:
+      42px
+      34px;
+  }
+
+
+  .admission-panel-right {
+    padding:
+      52px
+      36px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE FAQ
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .faq-section {
+    padding:
+      68px
+      0
+      76px;
+  }
+
+
+  .faq-layout {
+    display:
+      block;
+
+    width:
+      calc(
+        100% - 40px
+      );
+
+    margin:
+      0
+      auto;
+  }
+
+
+  /* =====================================================
+     MOBILE LEFT CONTENT
+
+     Normal layout on mobile.
+  ===================================================== */
+
+  .faq-left-column {
+    height:
+      auto;
+  }
+
+
+  .faq-sticky {
+    position:
+      relative;
+
+    top:
+      auto;
+
+    width:
+      100%;
+
+    max-width:
+      none;
+
+    margin-bottom:
+      40px;
+  }
+
+
+  .faq-title {
+    max-width:
+      520px;
+
+    font-size:
+      clamp(
+        39px,
+        10vw,
+        51px
+      );
+  }
+
+
+  .faq-intro-copy {
+    max-width:
+      420px;
+
+    margin-top:
+      18px;
+
+    font-size:
+      14px;
+  }
+
+
+  .faq-admission-button {
+    min-width:
+      0;
+
+    height:
+      51px;
+
+    margin-top:
+      24px;
+
+    padding:
+      0
+      8px
+      0
+      17px;
+
+    font-size:
+      12px;
+  }
+
+
+  /* =====================================================
+     MOBILE FAQ ITEMS
+  ===================================================== */
+
+  .faq-question {
+    grid-template-columns:
+      27px
+      minmax(
+        0,
+        1fr
+      )
+      34px;
+
+    gap:
+      10px;
+
+    padding:
+      22px
+      0;
+  }
+
+
+  .faq-question-copy {
+    font-size:
+      18px;
+  }
+
+
+  .faq-plus {
+    width:
+      32px;
+
+    height:
+      32px;
+  }
+
+
+  .faq-answer p {
+    margin:
+      -3px
+      8px
+      24px
+      37px;
+
+    font-size:
+      14px;
+
+    line-height:
+      1.6;
+  }
+
+
+  /* =====================================================
+     MOBILE OVERLAY
+
+     BACKGROUND CANNOT SCROLL.
+  ===================================================== */
+
+  .admission-overlay {
+    display:
+      flex;
+
+    align-items:
+      center;
+
+    justify-content:
+      center;
+
+    width:
+      100%;
+
+    height:
+      100dvh;
+
+    padding:
+      7px;
+
+    overflow:
+      hidden;
+
+    overscroll-behavior:
+      none;
+
+    touch-action:
+      none;
+  }
+
+
+  /* =====================================================
+     MOBILE PANEL
+
+     THIS IS THE ONLY SCROLL CONTAINER.
+  ===================================================== */
+
+  .admission-panel {
+    display:
+      block;
+
+    width:
+      100%;
+
+    max-width:
+      520px;
+
+    /*
+      Fixed height is essential.
+      Without this there is nothing
+      for overflow-y to scroll.
+    */
+
+    height:
+      calc(
+        100dvh - 14px
+      );
+
+    max-height:
+      calc(
+        100dvh - 14px
+      );
+
+    min-height:
+      0;
+
+    margin:
+      0
+      auto;
+
+    overflow-x:
+      hidden;
+
+    overflow-y:
+      scroll !important;
+
+    overscroll-behavior-y:
+      contain;
+
+    -webkit-overflow-scrolling:
+      touch;
+
+    /*
+      Finger vertical movement is
+      explicitly allowed here.
+    */
+
+    touch-action:
+      pan-y !important;
+
+    scrollbar-width:
+      none;
+
+    border-radius:
+      8px;
+  }
+
+
+  .admission-panel::-webkit-scrollbar {
+    display:
+      none;
+  }
+
+
+  /* =====================================================
+     CLOSE BUTTON STAYS VISIBLE
+  ===================================================== */
+
+  .admission-close {
+    position:
+      sticky;
+
+    z-index:
+      200;
+
+    top:
+      10px;
+
+    float:
+      right;
+
+    width:
+      39px;
+
+    height:
+      39px;
+
+    margin:
+      10px
+      10px
+      -49px
+      0;
+
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.96
+      );
+
+    backdrop-filter:
+      blur(8px);
+
+    -webkit-backdrop-filter:
+      blur(8px);
+  }
+
+
+  /* =====================================================
+     MOBILE INTRO
+  ===================================================== */
+
+  .admission-panel-left {
+    display:
+      block;
+
+    min-height:
+      0;
+
+    padding:
+      50px
+      24px
+      27px;
+  }
+
+
+  .admission-panel-label {
+    margin-bottom:
+      12px;
+
+    font-size:
+      8px;
+  }
+
+
+  .admission-panel-left h2 {
+    max-width:
+      410px;
+
+    padding-right:
+      40px;
+
+    font-size:
+      clamp(
+        37px,
+        10vw,
+        49px
+      );
+
+    line-height:
+      0.96;
+  }
+
+
+  .admission-panel-left > p {
+    max-width:
+      340px;
+
+    margin:
+      18px
+      0
+      0;
+
+    font-size:
+      13px;
+
+    line-height:
+      1.5;
+  }
+
+
+  /*
+    Steps removed on mobile.
+  */
+
+  .admission-step-list {
+    display:
+      none;
+  }
+
+
+  /* =====================================================
+     MOBILE FORM
+
+     Not another scroll area.
+     Whole panel scrolls together.
+  ===================================================== */
+
+  .admission-panel-right {
+    overflow:
+      visible;
+
+    padding:
+      29px
+      24px
+      38px;
+
+    touch-action:
+      pan-y;
+  }
+
+
+  .admission-form {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      22px;
+  }
+
+
+  .admission-field-full {
+    grid-column:
+      auto;
+  }
+
+
+  .admission-field input,
+  .admission-field select,
+  .admission-field textarea {
+    font-size:
+      15px;
+  }
+
+
+  .admission-field textarea {
+    min-height:
+      86px;
+  }
+
+
+  .admission-submit {
+    height:
+      55px;
+
+    margin-bottom:
+      8px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  .faq-section {
+    padding:
+      58px
+      0
+      66px;
+  }
+
+
+  .faq-layout {
+    width:
+      calc(
+        100% - 36px
+      );
+  }
+
+
+  .faq-sticky {
+    margin-bottom:
+      35px;
+  }
+
+
+  .faq-title {
+    font-size:
+      clamp(
+        36px,
+        9.7vw,
+        46px
+      );
+  }
+
+
+  .faq-intro-copy {
+    font-size:
+      13px;
+  }
+
+
+  .faq-admission-button {
+    height:
+      49px;
+
+    margin-top:
+      21px;
+  }
+
+
+  .faq-question {
+    grid-template-columns:
+      24px
+      minmax(
+        0,
+        1fr
+      )
+      31px;
+
+    gap:
+      8px;
+
+    padding:
+      19px
+      0;
+  }
+
+
+  .faq-question-copy {
+    font-size:
+      17px;
+  }
+
+
+  .faq-plus {
+    width:
+      30px;
+
+    height:
+      30px;
+  }
+
+
+  .faq-answer p {
+    margin:
+      -2px
+      5px
+      21px
+      32px;
+
+    font-size:
+      13px;
+  }
+
+
+  /* =====================================================
+     MOBILE FORM
+  ===================================================== */
+
+  .admission-overlay {
+    padding:
+      5px;
+  }
+
+
+  .admission-panel {
+    height:
+      calc(
+        100dvh - 10px
+      );
+
+    max-height:
+      calc(
+        100dvh - 10px
+      );
+
+    border-radius:
+      7px;
+  }
+
+
+  .admission-panel-left {
+    padding:
+      48px
+      20px
+      25px;
+  }
+
+
+  .admission-panel-left h2 {
+    font-size:
+      clamp(
+        34px,
+        9.6vw,
+        44px
+      );
+  }
+
+
+  .admission-panel-right {
+    padding:
+      25px
+      20px
+      35px;
+  }
+
+
+  .admission-form {
+    gap:
+      20px;
+  }
+
+
+  .admission-field label {
+    font-size:
+      8px;
+  }
+
+
+  .admission-field input,
+  .admission-field select,
+  .admission-field textarea {
+    font-size:
+      14px;
+  }
+
+
+  .admission-submit {
+    height:
+      52px;
+
+    font-size:
+      13px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 360px
+) {
+
+  .faq-layout {
+    width:
+      calc(
+        100% - 30px
+      );
+  }
+
+
+  .faq-title {
+    font-size:
+      34px;
+  }
+
+
+  .faq-question-copy {
+    font-size:
+      16px;
+  }
+
+
+  .admission-panel-left,
+  .admission-panel-right {
+    padding-left:
+      18px;
+
+    padding-right:
+      18px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+
+  .faq-sticky,
+  .faq-list,
+  .admission-panel,
+  .admission-field {
+    transition:
+      none !important;
+  }
+
+}

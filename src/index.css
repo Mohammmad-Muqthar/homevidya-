@@ -1,0 +1,322 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
+
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
+
+:root {
+  font-family: "Manrope", sans-serif;
+
+  --green: #0e6b45;
+  --green-dark: #07472f;
+  --green-deep: #033925;
+
+  --yellow: #f5c842;
+
+  --white: #ffffff;
+
+  --text: #153d2f;
+
+  --container: 1440px;
+
+  --page-padding:
+    clamp(24px, 4vw, 72px);
+
+  --ease-main:
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+html,
+body,
+#root {
+  width: 100%;
+
+  min-height: 100%;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+
+/* =========================================================
+   HTML
+========================================================= */
+
+html {
+  scroll-behavior: auto;
+
+  /*
+    Hide scrollbar in Firefox
+  */
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+}
+
+
+/* Chrome / Edge / Safari */
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+  min-width: 320px;
+
+  min-height: 100vh;
+
+  margin: 0;
+
+  overflow-x: hidden;
+
+  background: #ffffff;
+
+  color: var(--text);
+
+  /*
+    ONE FONT FOR THE WHOLE WEBSITE
+  */
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-weight: 400;
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  -moz-osx-font-smoothing:
+    grayscale;
+}
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+#root {
+  width: 100%;
+
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   ALL TEXT ELEMENTS
+
+   SAME FONT EVERYWHERE
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+button,
+input,
+textarea,
+select,
+label {
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   HEADINGS / PARAGRAPHS
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+a {
+  color: inherit;
+
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   FORMS / BUTTONS
+========================================================= */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+
+button {
+  border: 0;
+
+  padding: 0;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   MEDIA
+========================================================= */
+
+img,
+video {
+  display: block;
+
+  max-width: 100%;
+}
+
+
+/* =========================================================
+   LISTS
+========================================================= */
+
+ul,
+ol {
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+
+/* =========================================================
+   LENIS
+========================================================= */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+
+.lenis.lenis-smooth {
+  scroll-behavior:
+    auto !important;
+}
+
+
+.lenis.lenis-smooth
+[data-lenis-prevent] {
+  overscroll-behavior:
+    contain;
+}
+
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   GLOBAL CONTAINER
+========================================================= */
+
+.container {
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--page-padding)
+          * 2
+        )
+      ),
+      var(--container)
+    );
+
+  margin-inline:
+    auto;
+}
+
+
+/* =========================================================
+   TEXT SELECTION
+========================================================= */
+
+::selection {
+  background:
+    var(--yellow);
+
+  color:
+    var(--green-deep);
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  :root {
+    --page-padding:
+      20px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  :root {
+    --page-padding:
+      18px;
+  }
+
+}

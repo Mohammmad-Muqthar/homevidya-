@@ -1,0 +1,71 @@
+/* =========================================================
+   HIDE WEBSITE SCROLLBAR
+   Scrolling still works
+========================================================= */
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* IE / older Edge */
+  -ms-overflow-style: none;
+}
+
+
+/* Chrome / Safari / Edge */
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+
+  overflow-x: clip;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  background: #ffffff;
+
+  overflow-x: clip;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.site-main {
+  position: relative;
+
+  width: 100%;
+
+  overflow-x: clip;
+}

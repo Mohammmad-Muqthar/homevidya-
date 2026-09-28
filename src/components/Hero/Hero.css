@@ -1,0 +1,1065 @@
+/* =========================================================
+   HERO
+========================================================= */
+
+.raya-hero {
+  position: relative;
+
+  width: 100%;
+
+  height: 100svh;
+
+  min-height: 720px;
+
+  overflow: hidden;
+
+  background: #111;
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   VIDEO WRAPPER
+========================================================= */
+
+.raya-hero-media {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+.raya-hero-video {
+  position: absolute;
+
+  top: -6%;
+  left: -3%;
+
+  width: 106%;
+  height: 112%;
+
+  max-width: none;
+
+  object-fit: cover;
+
+  object-position:
+    center center;
+
+  pointer-events: none;
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.raya-hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+
+      rgba(
+        0,
+        20,
+        13,
+        0.58
+      )
+      0%,
+
+      rgba(
+        0,
+        18,
+        12,
+        0.34
+      )
+      40%,
+
+      rgba(
+        0,
+        0,
+        0,
+        0.07
+      )
+      73%
+    );
+}
+
+
+/* =========================================================
+   BOTTOM DEPTH
+========================================================= */
+
+.raya-hero-overlay::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+
+      rgba(
+        0,
+        17,
+        11,
+        0.28
+      )
+      0%,
+
+      transparent
+      48%
+    );
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.raya-hero-container {
+  position: relative;
+
+  z-index: 5;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  width:
+    min(
+      calc(
+        100% -
+        (
+          clamp(
+            24px,
+            4vw,
+            72px
+          )
+          * 2
+        )
+      ),
+      1440px
+    );
+
+  height: 100%;
+
+  margin-inline:
+    auto;
+
+  padding:
+    150px
+    0
+    clamp(
+      90px,
+      9vh,
+      120px
+    );
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.raya-hero-content {
+  position: relative;
+
+  width:
+    min(
+      100%,
+      1040px
+    );
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.raya-hero-title {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  max-width:
+    1100px;
+
+  margin: 0;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(
+      66px,
+      7.7vw,
+      132px
+    );
+
+  font-weight:
+    600;
+
+  line-height:
+    0.9;
+
+  letter-spacing:
+    -0.065em;
+}
+
+
+/* =========================================================
+   FIRST LINE
+
+   Warm ivory instead of pure white.
+========================================================= */
+
+.raya-title-main {
+  display: block;
+
+  color:
+    #f6f1e8;
+}
+
+
+/* =========================================================
+   SECOND LINE
+
+   Soft sage green gives it more Vidya identity.
+========================================================= */
+
+.raya-title-accent {
+  display: block;
+
+  margin-top:
+    0.03em;
+
+  color:
+    #cfe3d6;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.raya-hero-description {
+  max-width:
+    500px;
+
+  margin:
+    clamp(
+      25px,
+      2.7vw,
+      36px
+    )
+    0
+    0;
+
+  color:
+    rgba(
+      246,
+      241,
+      232,
+      0.82
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(
+      17px,
+      1.2vw,
+      20px
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.55;
+
+  letter-spacing:
+    -0.015em;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.raya-hero-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    13px;
+
+  margin-top:
+    29px;
+}
+
+
+/* =========================================================
+   COMMON BUTTON
+========================================================= */
+
+.raya-hero-button {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-height:
+    56px;
+
+  padding:
+    0
+    24px;
+
+  border:
+    0;
+
+  border-radius:
+    0;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    15px;
+
+  font-weight:
+    700;
+
+  cursor:
+    pointer;
+
+  transition:
+    transform
+      0.4s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    background
+      0.35s
+      ease,
+
+    color
+      0.35s
+      ease;
+}
+
+
+/* =========================================================
+   PRIMARY
+========================================================= */
+
+.raya-hero-button-primary {
+  background:
+    #f5c842;
+
+  color:
+    #033925;
+}
+
+
+.raya-hero-button-primary:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    #ffd75a;
+}
+
+
+/* =========================================================
+   VIDEO BUTTON
+========================================================= */
+
+.raya-hero-button-video {
+  gap:
+    11px;
+
+  color:
+    #f6f1e8;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.25
+    );
+
+  backdrop-filter:
+    blur(10px);
+
+  -webkit-backdrop-filter:
+    blur(10px);
+}
+
+
+.raya-hero-button-video:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.18
+    );
+}
+
+
+/* =========================================================
+   PLAY CIRCLE
+========================================================= */
+
+.raya-hero-play {
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    28px;
+
+  height:
+    28px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.42
+    );
+
+  border-radius:
+    50%;
+}
+
+
+/* =========================================================
+   BOTTOM CUE
+========================================================= */
+
+.raya-hero-bottom {
+  position: absolute;
+
+  z-index: 5;
+
+  right:
+    clamp(
+      24px,
+      4vw,
+      72px
+    );
+
+  bottom:
+    32px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    9px;
+
+  color:
+    rgba(
+      246,
+      241,
+      232,
+      0.62
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    13px;
+
+  font-weight:
+    600;
+}
+
+
+/* =========================================================
+   VIDEO MODAL
+========================================================= */
+
+.raya-video-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index:
+    2000;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  padding:
+    50px;
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      0.94
+    );
+}
+
+
+/* =========================================================
+   VIDEO MODAL INNER
+========================================================= */
+
+.raya-video-modal-inner {
+  width:
+    min(
+      90vw,
+      1450px
+    );
+
+  aspect-ratio:
+    16 / 9;
+
+  background:
+    #000;
+
+  overflow:
+    hidden;
+}
+
+
+/* =========================================================
+   MODAL VIDEO
+========================================================= */
+
+.raya-video-modal-video {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  object-fit:
+    contain;
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+.raya-video-close {
+  position:
+    absolute;
+
+  top:
+    30px;
+
+  right:
+    30px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    52px;
+
+  height:
+    52px;
+
+  padding: 0;
+
+  color:
+    #ffffff;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.2
+    );
+
+  cursor:
+    pointer;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (
+  max-width: 1000px
+) {
+
+  .raya-hero-title {
+    font-size:
+      clamp(
+        55px,
+        9vw,
+        88px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .raya-hero {
+    min-height:
+      640px;
+  }
+
+
+  /* =====================================================
+     VIDEO
+  ===================================================== */
+
+  .raya-hero-video {
+    top:
+      -4%;
+
+    left:
+      -6%;
+
+    width:
+      112%;
+
+    height:
+      108%;
+
+    object-position:
+      center center;
+  }
+
+
+  /* =====================================================
+     MOBILE OVERLAY
+  ===================================================== */
+
+  .raya-hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+
+        rgba(
+          0,
+          15,
+          10,
+          0.08
+        )
+        0%,
+
+        rgba(
+          0,
+          17,
+          11,
+          0.2
+        )
+        38%,
+
+        rgba(
+          0,
+          18,
+          12,
+          0.72
+        )
+        100%
+      );
+  }
+
+
+  /* =====================================================
+     CONTAINER
+
+     Content remains at bottom,
+     but becomes more compact.
+  ===================================================== */
+
+  .raya-hero-container {
+    width:
+      calc(
+        100% - 40px
+      );
+
+    align-items:
+      flex-end;
+
+    padding:
+      100px
+      0
+      58px;
+  }
+
+
+  .raya-hero-content {
+    width:
+      100%;
+
+    max-width:
+      520px;
+  }
+
+
+  /* =====================================================
+     MOBILE TITLE
+
+     Reduced from old 51–77px.
+  ===================================================== */
+
+  .raya-hero-title {
+    max-width:
+      560px;
+
+    font-size:
+      clamp(
+        42px,
+        11vw,
+        58px
+      );
+
+    line-height:
+      0.94;
+
+    letter-spacing:
+      -0.055em;
+  }
+
+
+  .raya-title-accent {
+    margin-top:
+      3px;
+  }
+
+
+  /* =====================================================
+     MOBILE DESCRIPTION
+  ===================================================== */
+
+  .raya-hero-description {
+    max-width:
+      335px;
+
+    margin-top:
+      18px;
+
+    font-size:
+      15px;
+
+    line-height:
+      1.52;
+  }
+
+
+  /* =====================================================
+     ACTIONS
+  ===================================================== */
+
+  .raya-hero-actions {
+    flex-wrap:
+      wrap;
+
+    gap:
+      10px;
+
+    margin-top:
+      22px;
+  }
+
+
+  .raya-hero-button {
+    min-height:
+      49px;
+
+    padding:
+      0
+      17px;
+
+    font-size:
+      13px;
+  }
+
+
+  .raya-hero-play {
+    width:
+      25px;
+
+    height:
+      25px;
+  }
+
+
+  /* =====================================================
+     HIDE BOTTOM CUE
+  ===================================================== */
+
+  .raya-hero-bottom {
+    display:
+      none;
+  }
+
+
+  /* =====================================================
+     MODAL
+  ===================================================== */
+
+  .raya-video-modal {
+    padding:
+      20px;
+  }
+
+
+  .raya-video-close {
+    top:
+      20px;
+
+    right:
+      20px;
+
+    width:
+      45px;
+
+    height:
+      45px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  .raya-hero {
+    min-height:
+      610px;
+  }
+
+
+  .raya-hero-container {
+    width:
+      calc(
+        100% - 36px
+      );
+
+    padding-bottom:
+      48px;
+  }
+
+
+  /* =====================================================
+     SMALLER, CLEANER HEADING
+  ===================================================== */
+
+  .raya-hero-title {
+    font-size:
+      clamp(
+        38px,
+        10.5vw,
+        48px
+      );
+
+    line-height:
+      0.96;
+
+    letter-spacing:
+      -0.05em;
+  }
+
+
+  .raya-hero-description {
+    max-width:
+      290px;
+
+    margin-top:
+      16px;
+
+    font-size:
+      14px;
+
+    line-height:
+      1.5;
+  }
+
+
+  .raya-hero-actions {
+    align-items:
+      center;
+
+    gap:
+      8px;
+
+    margin-top:
+      20px;
+  }
+
+
+  .raya-hero-button {
+    min-height:
+      46px;
+
+    padding:
+      0
+      14px;
+
+    font-size:
+      12px;
+  }
+
+
+  .raya-hero-button-video {
+    gap:
+      8px;
+  }
+
+
+  .raya-hero-play {
+    width:
+      23px;
+
+    height:
+      23px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 360px
+) {
+
+  .raya-hero-title {
+    font-size:
+      36px;
+  }
+
+
+  .raya-hero-description {
+    font-size:
+      13px;
+  }
+
+
+  .raya-hero-actions {
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+  }
+
+
+  .raya-hero-button {
+    min-height:
+      45px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .raya-hero-video,
+  .raya-hero-content {
+    transform:
+      none !important;
+  }
+
+}

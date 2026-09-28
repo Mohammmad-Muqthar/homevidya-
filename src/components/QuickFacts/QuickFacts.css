@@ -1,0 +1,1295 @@
+/* =========================================================
+   QUICK FACTS
+========================================================= */
+
+.quick-facts {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background:
+    #0b563b;
+
+  padding:
+    clamp(
+      48px,
+      4.5vw,
+      68px
+    )
+    0
+    clamp(
+      78px,
+      7vw,
+      105px
+    );
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.quick-facts-header {
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--page-padding)
+          * 2
+        )
+      ),
+      var(--container)
+    );
+
+  margin:
+    0
+    auto
+    clamp(
+      28px,
+      3vw,
+      42px
+    );
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.quick-facts-heading {
+  margin: 0;
+
+  color:
+    #ffffff;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(
+      47px,
+      4.5vw,
+      72px
+    );
+
+  font-weight:
+    520;
+
+  line-height:
+    0.98;
+
+  letter-spacing:
+    -0.058em;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =========================================================
+   WALL
+========================================================= */
+
+.quick-marquee-wall {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100%;
+
+  gap:
+    clamp(
+      34px,
+      3.1vw,
+      48px
+    );
+
+  padding:
+    5px
+    0
+    15px;
+}
+
+
+/* =========================================================
+   ROW
+========================================================= */
+
+.quick-marquee-row {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =========================================================
+   DESKTOP EDGE FADE
+========================================================= */
+
+.quick-marquee-row::before,
+.quick-marquee-row::after {
+  content: "";
+
+  position: absolute;
+
+  z-index: 20;
+
+  top: 0;
+  bottom: 0;
+
+  width:
+    clamp(
+      18px,
+      3vw,
+      52px
+    );
+
+  pointer-events:
+    none;
+}
+
+
+.quick-marquee-row::before {
+  left: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+
+      #0b563b
+      0%,
+
+      rgba(
+        11,
+        86,
+        59,
+        0
+      )
+      100%
+    );
+}
+
+
+.quick-marquee-row::after {
+  right: 0;
+
+  background:
+    linear-gradient(
+      270deg,
+
+      #0b563b
+      0%,
+
+      rgba(
+        11,
+        86,
+        59,
+        0
+      )
+      100%
+    );
+}
+
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.quick-marquee-track {
+  display: flex;
+
+  align-items: center;
+
+  width:
+    max-content;
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   GROUP
+========================================================= */
+
+.quick-marquee-group {
+  display: flex;
+
+  align-items: center;
+
+  flex-shrink: 0;
+
+  gap:
+    clamp(
+      14px,
+      1.2vw,
+      20px
+    );
+
+  padding-right:
+    clamp(
+      14px,
+      1.2vw,
+      20px
+    );
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.quick-marquee-card {
+  position: relative;
+
+  flex:
+    0 0
+    clamp(
+      355px,
+      29vw,
+      455px
+    );
+
+  width:
+    clamp(
+      355px,
+      29vw,
+      455px
+    );
+
+  height:
+    clamp(
+      245px,
+      20vw,
+      310px
+    );
+
+  overflow: hidden;
+
+  border-radius:
+    0;
+
+  background:
+    #063f2d;
+
+  isolation:
+    isolate;
+
+  transform:
+    translateZ(0);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.quick-marquee-image {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  max-width:
+    none;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+
+  pointer-events:
+    none;
+
+  transform:
+    translateZ(0)
+    scale(1.001);
+
+  backface-visibility:
+    hidden;
+
+  -webkit-backface-visibility:
+    hidden;
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.quick-marquee-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+
+      rgba(
+        3,
+        31,
+        23,
+        0.02
+      )
+      8%,
+
+      rgba(
+        3,
+        36,
+        26,
+        0.07
+      )
+      38%,
+
+      rgba(
+        3,
+        43,
+        29,
+        0.28
+      )
+      61%,
+
+      rgba(
+        2,
+        36,
+        25,
+        0.93
+      )
+      100%
+    );
+
+  transition:
+    background
+      0.4s
+      ease;
+}
+
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+.quick-marquee-number {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 19px;
+  right: 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width:
+    39px;
+
+  height:
+    32px;
+
+  padding:
+    0
+    9px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.27
+    );
+
+  border-radius:
+    0;
+
+  background:
+    rgba(
+      3,
+      35,
+      25,
+      0.2
+    );
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.9
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.08em;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.quick-marquee-content {
+  position: absolute;
+
+  z-index: 5;
+
+  left:
+    clamp(
+      22px,
+      1.8vw,
+      30px
+    );
+
+  right:
+    clamp(
+      22px,
+      1.8vw,
+      30px
+    );
+
+  bottom:
+    clamp(
+      22px,
+      1.8vw,
+      30px
+    );
+
+  color:
+    #ffffff;
+}
+
+
+/* =========================================================
+   VALUE
+========================================================= */
+
+.quick-marquee-value {
+  display: block;
+
+  margin:
+    0
+    0
+    8px;
+
+  color:
+    #ffffff;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(
+      40px,
+      3.35vw,
+      55px
+    );
+
+  font-weight:
+    520;
+
+  line-height:
+    0.9;
+
+  letter-spacing:
+    -0.065em;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.quick-marquee-content h3 {
+  max-width:
+    330px;
+
+  margin: 0;
+
+  color:
+    #ffffff;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    clamp(
+      21px,
+      1.7vw,
+      28px
+    );
+
+  font-weight:
+    560;
+
+  line-height:
+    1.02;
+
+  letter-spacing:
+    -0.045em;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.quick-marquee-description-wrap {
+  display: grid;
+
+  grid-template-rows:
+    0fr;
+
+  margin-top:
+    0;
+
+  opacity:
+    0;
+
+  transition:
+    grid-template-rows
+      0.4s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    margin
+      0.4s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+
+    opacity
+      0.3s
+      ease;
+}
+
+
+.quick-marquee-description-wrap p {
+  min-height:
+    0;
+
+  max-width:
+    320px;
+
+  overflow:
+    hidden;
+
+  margin:
+    0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+  font-size:
+    13px;
+
+  line-height:
+    1.45;
+}
+
+
+/* =========================================================
+   DESKTOP HOVER
+========================================================= */
+
+@media (hover: hover) {
+
+  .quick-marquee-card:hover
+  .quick-marquee-overlay {
+    background:
+      linear-gradient(
+        180deg,
+
+        rgba(
+          4,
+          39,
+          28,
+          0.08
+        )
+        0%,
+
+        rgba(
+          4,
+          47,
+          33,
+          0.24
+        )
+        48%,
+
+        rgba(
+          2,
+          35,
+          24,
+          0.96
+        )
+        100%
+      );
+  }
+
+
+  .quick-marquee-card:hover
+  .quick-marquee-description-wrap {
+    grid-template-rows:
+      1fr;
+
+    margin-top:
+      10px;
+
+    opacity:
+      1;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (
+  max-width: 1050px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .quick-facts {
+    padding-top:
+      52px;
+  }
+
+
+  .quick-marquee-wall {
+    gap:
+      36px;
+  }
+
+
+  .quick-marquee-card {
+    flex-basis:
+      355px;
+
+    width:
+      355px;
+
+    height:
+      240px;
+  }
+
+
+  .quick-marquee-value {
+    font-size:
+      43px;
+  }
+
+
+  .quick-marquee-content h3 {
+    font-size:
+      23px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   FULL CARD + MANUAL + AUTO SLIDE
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .quick-facts {
+    padding:
+      44px
+      0
+      70px;
+  }
+
+
+  /* HEADER */
+
+  .quick-facts-header {
+    width:
+      calc(
+        100% - 40px
+      );
+
+    margin-bottom:
+      26px;
+  }
+
+
+  .quick-facts-heading {
+    max-width:
+      520px;
+
+    font-size:
+      clamp(
+        38px,
+        10vw,
+        50px
+      );
+
+    line-height:
+      0.98;
+  }
+
+
+  /* WALL */
+
+  .quick-marquee-wall {
+    gap:
+      20px;
+
+    padding:
+      2px
+      0
+      8px;
+  }
+
+
+  /* =====================================================
+     NO SIDE BLUR / FADE
+  ===================================================== */
+
+  .quick-marquee-row::before,
+  .quick-marquee-row::after {
+    display:
+      none;
+  }
+
+
+  /* =====================================================
+     SLIDER ROW
+  ===================================================== */
+
+  .quick-marquee-row {
+    width:
+      100%;
+
+    overflow-x:
+      auto;
+
+    overflow-y:
+      hidden;
+
+    scroll-snap-type:
+      x mandatory;
+
+    scroll-padding-left:
+      20px;
+
+    scroll-behavior:
+      smooth;
+
+    overscroll-behavior-x:
+      contain;
+
+    -webkit-overflow-scrolling:
+      touch;
+
+    touch-action:
+      pan-x;
+
+    scrollbar-width:
+      none;
+
+    mask-image:
+      none;
+
+    -webkit-mask-image:
+      none;
+  }
+
+
+  .quick-marquee-row::-webkit-scrollbar {
+    display:
+      none;
+  }
+
+
+  /* =====================================================
+     TRACK
+  ===================================================== */
+
+  .quick-marquee-track {
+    display:
+      flex;
+
+    align-items:
+      stretch;
+
+    width:
+      max-content;
+
+    padding:
+      0
+      20px;
+
+    transform:
+      none !important;
+
+    will-change:
+      auto;
+  }
+
+
+  /* =====================================================
+     GROUP
+  ===================================================== */
+
+  .quick-marquee-group {
+    display:
+      flex;
+
+    align-items:
+      stretch;
+
+    gap:
+      12px;
+
+    padding-right:
+      0;
+  }
+
+
+  /* =====================================================
+     HIDE DESKTOP DUPLICATE GROUP
+  ===================================================== */
+
+  .quick-marquee-group[
+    aria-hidden="true"
+  ] {
+    display:
+      none;
+  }
+
+
+  /* =====================================================
+     FULLY VISIBLE MOBILE CARD
+  ===================================================== */
+
+  .quick-marquee-card {
+    flex:
+      0 0
+      calc(
+        100vw - 40px
+      );
+
+    width:
+      calc(
+        100vw - 40px
+      );
+
+    max-width:
+      none;
+
+    height:
+      clamp(
+        220px,
+        62vw,
+        280px
+      );
+
+    border-radius:
+      0;
+
+    scroll-snap-align:
+      start;
+
+    scroll-snap-stop:
+      always;
+
+    transform:
+      translateZ(0);
+  }
+
+
+  /* IMAGE */
+
+  .quick-marquee-image {
+    width:
+      100%;
+
+    height:
+      100%;
+
+    object-fit:
+      cover;
+
+    transform:
+      translateZ(0);
+
+    backface-visibility:
+      hidden;
+
+    -webkit-backface-visibility:
+      hidden;
+  }
+
+
+  /* NUMBER */
+
+  .quick-marquee-number {
+    top:
+      16px;
+
+    right:
+      16px;
+
+    min-width:
+      35px;
+
+    height:
+      29px;
+
+    padding:
+      0
+      8px;
+
+    font-size:
+      8px;
+  }
+
+
+  /* CONTENT */
+
+  .quick-marquee-content {
+    left:
+      20px;
+
+    right:
+      20px;
+
+    bottom:
+      20px;
+  }
+
+
+  .quick-marquee-value {
+    margin-bottom:
+      6px;
+
+    font-size:
+      clamp(
+        38px,
+        10vw,
+        46px
+      );
+  }
+
+
+  .quick-marquee-content h3 {
+    max-width:
+      300px;
+
+    font-size:
+      clamp(
+        21px,
+        5.6vw,
+        27px
+      );
+
+    line-height:
+      1.02;
+  }
+
+
+  .quick-marquee-description-wrap {
+    display:
+      none;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  .quick-facts {
+    padding:
+      40px
+      0
+      62px;
+  }
+
+
+  .quick-facts-header {
+    width:
+      calc(
+        100% - 36px
+      );
+
+    margin-bottom:
+      23px;
+  }
+
+
+  .quick-facts-heading {
+    font-size:
+      clamp(
+        35px,
+        9.6vw,
+        44px
+      );
+  }
+
+
+  .quick-marquee-wall {
+    gap:
+      18px;
+  }
+
+
+  .quick-marquee-row {
+    scroll-padding-left:
+      18px;
+  }
+
+
+  .quick-marquee-track {
+    padding-left:
+      18px;
+
+    padding-right:
+      18px;
+  }
+
+
+  .quick-marquee-group {
+    gap:
+      10px;
+  }
+
+
+  .quick-marquee-card {
+    flex-basis:
+      calc(
+        100vw - 36px
+      );
+
+    width:
+      calc(
+        100vw - 36px
+      );
+
+    max-width:
+      none;
+
+    height:
+      clamp(
+        205px,
+        61vw,
+        250px
+      );
+
+    border-radius:
+      0;
+  }
+
+
+  .quick-marquee-content {
+    left:
+      17px;
+
+    right:
+      17px;
+
+    bottom:
+      17px;
+  }
+
+
+  .quick-marquee-value {
+    font-size:
+      36px;
+  }
+
+
+  .quick-marquee-content h3 {
+    max-width:
+      260px;
+
+    font-size:
+      21px;
+  }
+
+
+  .quick-marquee-number {
+    top:
+      13px;
+
+    right:
+      13px;
+
+    min-width:
+      32px;
+
+    height:
+      27px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 360px
+) {
+
+  .quick-facts {
+    padding-top:
+      36px;
+  }
+
+
+  .quick-facts-header {
+    width:
+      calc(
+        100% - 30px
+      );
+  }
+
+
+  .quick-marquee-row {
+    scroll-padding-left:
+      15px;
+  }
+
+
+  .quick-marquee-track {
+    padding-left:
+      15px;
+
+    padding-right:
+      15px;
+  }
+
+
+  .quick-marquee-group {
+    gap:
+      9px;
+  }
+
+
+  .quick-marquee-card {
+    flex-basis:
+      calc(
+        100vw - 30px
+      );
+
+    width:
+      calc(
+        100vw - 30px
+      );
+
+    height:
+      205px;
+  }
+
+
+  .quick-marquee-value {
+    font-size:
+      33px;
+  }
+
+
+  .quick-marquee-content h3 {
+    font-size:
+      19px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .quick-facts-heading,
+  .quick-marquee-row,
+  .quick-marquee-card {
+    transform:
+      none !important;
+
+    opacity:
+      1 !important;
+  }
+
+
+  .quick-marquee-track {
+    transform:
+      none !important;
+
+    animation:
+      none !important;
+  }
+
+}
