@@ -107,7 +107,7 @@ const About = () => {
 
 
             /* =================================================
-               CONTENT ENTERS FIRST
+               TEXT ENTER
             ================================================= */
 
             const introTimeline =
@@ -135,19 +135,13 @@ const About = () => {
               introItems,
 
               {
-                y:
-                  38,
-
-                opacity:
-                  0,
+                y: 38,
+                opacity: 0,
               },
 
               {
-                y:
-                  0,
-
-                opacity:
-                  1,
+                y: 0,
+                opacity: 1,
 
                 stagger:
                   0.055,
@@ -159,7 +153,7 @@ const About = () => {
 
 
             /* =================================================
-               LESS EMPTY SPACE BELOW TEXT
+               GREEN START
             ================================================= */
 
             gsap.set(
@@ -171,6 +165,10 @@ const About = () => {
               }
             );
 
+
+            /* =================================================
+               GALLERY START
+            ================================================= */
 
             gsap.set(
               story,
@@ -219,8 +217,6 @@ const About = () => {
               });
 
 
-            /* SMALL HOLD */
-
             timeline.to(
               {},
               {
@@ -229,8 +225,6 @@ const About = () => {
               }
             );
 
-
-            /* GREEN */
 
             timeline.to(
               green,
@@ -251,14 +245,11 @@ const About = () => {
             );
 
 
-            /* GALLERY */
-
             timeline.to(
               story,
 
               {
-                y:
-                  0,
+                y: 0,
 
                 duration:
                   0.76,
@@ -281,7 +272,6 @@ const About = () => {
 
         /* =====================================================
            LAPTOP
-           KEEP CURRENT BEHAVIOUR
         ===================================================== */
 
         mm.add(
@@ -324,19 +314,13 @@ const About = () => {
               introItems,
 
               {
-                y:
-                  38,
-
-                opacity:
-                  0,
+                y: 38,
+                opacity: 0,
               },
 
               {
-                y:
-                  0,
-
-                opacity:
-                  1,
+                y: 0,
+                opacity: 1,
 
                 stagger:
                   0.055,
@@ -432,8 +416,7 @@ const About = () => {
               story,
 
               {
-                y:
-                  0,
+                y: 0,
 
                 duration:
                   0.76,
@@ -456,6 +439,10 @@ const About = () => {
 
         /* =====================================================
            MOBILE
+
+           NO ANIMATION
+           NO PIN
+           NO SCROLL TRANSITION
         ===================================================== */
 
         mm.add(
@@ -465,9 +452,8 @@ const About = () => {
             gsap.set(
               green,
               {
-                y: () =>
-                  stage.offsetHeight *
-                  0.86,
+                clearProps:
+                  "all",
               }
             );
 
@@ -475,86 +461,12 @@ const About = () => {
             gsap.set(
               story,
               {
-                y: () =>
-                  stage.offsetHeight *
-                  0.87,
+                clearProps:
+                  "all",
               }
             );
 
-
-            const timeline =
-              gsap.timeline({
-                scrollTrigger: {
-                  trigger:
-                    section,
-
-                  start:
-                    "top top",
-
-                  end: () =>
-                    `+=${
-                      stage.offsetHeight *
-                      0.52
-                    }`,
-
-                  scrub:
-                    0.58,
-
-                  pin:
-                    stage,
-
-                  pinSpacing:
-                    true,
-
-                  anticipatePin:
-                    1,
-
-                  invalidateOnRefresh:
-                    true,
-                },
-              });
-
-
-            timeline.to(
-              green,
-
-              {
-                y: () =>
-                  -stage.offsetHeight *
-                  0.16,
-
-                duration:
-                  0.70,
-
-                ease:
-                  "none",
-              },
-
-              0
-            );
-
-
-            timeline.to(
-              story,
-
-              {
-                y:
-                  0,
-
-                duration:
-                  0.66,
-
-                ease:
-                  "none",
-              },
-
-              0.055
-            );
-
-
-            return () => {
-              timeline.kill();
-            };
+            return () => {};
           }
         );
 
@@ -607,6 +519,7 @@ const About = () => {
 
 
       mm.revert();
+
       ctx.revert();
     };
   }, []);
@@ -631,6 +544,7 @@ const About = () => {
         <div className="vidya-about-intro">
 
           <div className="vidya-about-intro-inner">
+
 
             <h2 className="vidya-about-intro-title">
 
@@ -715,7 +629,7 @@ const About = () => {
 
 
         {/* =================================================
-            GREEN
+            DESKTOP GREEN TRANSITION
         ================================================= */}
 
         <div
