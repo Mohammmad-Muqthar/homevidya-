@@ -1,0 +1,540 @@
+/* =========================================================
+   ROOT
+========================================================= */
+
+.vidya-intro {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 2147483647;
+
+  width: 100vw;
+
+  height: 100vh;
+  height: 100dvh;
+
+  margin: 0;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  background:
+    transparent;
+
+  pointer-events:
+    all;
+
+  opacity:
+    1;
+
+  transform:
+    translateZ(0);
+
+  backface-visibility:
+    hidden;
+
+  -webkit-backface-visibility:
+    hidden;
+
+  contain:
+    layout
+    paint
+    style;
+}
+
+
+/* =========================================================
+   PAGE LOCK
+========================================================= */
+
+body.vidya-page-intro-active {
+  overflow:
+    hidden !important;
+}
+
+
+/* =========================================================
+   HERO FALLBACK
+========================================================= */
+
+body.vidya-page-intro-active
+.vidya-hero,
+
+body.vidya-page-intro-active
+.vidya-hero-video-box {
+  background:
+    #000000 !important;
+}
+
+
+/* =========================================================
+   HIDE NAVIGATION
+========================================================= */
+
+body.vidya-page-intro-active
+.navbar,
+
+body.vidya-page-intro-active
+.Navbar,
+
+body.vidya-page-intro-active
+.vidya-navbar,
+
+body.vidya-page-intro-active
+.main-navbar,
+
+body.vidya-page-intro-active
+.site-navbar,
+
+body.vidya-page-intro-active
+.nav-wrapper,
+
+body.vidya-page-intro-active
+.bottom-blur,
+
+body.vidya-page-intro-active
+.BottomBlur {
+  opacity:
+    0 !important;
+
+  visibility:
+    hidden !important;
+
+  pointer-events:
+    none !important;
+}
+
+
+/* =========================================================
+   HIDE HERO COPY
+
+   IMPORTANT:
+   VIDEO MUST REMAIN VISIBLE.
+========================================================= */
+
+body.vidya-page-intro-active
+.vidya-hero-bottom {
+  opacity:
+    0 !important;
+
+  visibility:
+    hidden !important;
+
+  pointer-events:
+    none !important;
+}
+
+
+body.vidya-page-intro-active
+.vidya-hero-overlay {
+  opacity:
+    0 !important;
+}
+
+
+body.vidya-page-intro-active
+.vidya-hero-video-box::after {
+  opacity:
+    0 !important;
+}
+
+
+/* =========================================================
+   SVG
+
+   NEVER SCALE THIS.
+
+   NEVER ANIMATE THIS.
+========================================================= */
+
+.vidya-intro-svg {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  display:
+    block;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  margin:
+    0;
+
+  padding:
+    0;
+
+  overflow:
+    hidden;
+
+  background:
+    transparent;
+
+  pointer-events:
+    none;
+
+  transform:
+    translateZ(0);
+
+  backface-visibility:
+    hidden;
+
+  -webkit-backface-visibility:
+    hidden;
+}
+
+
+/* =========================================================
+   WHITE COVER
+========================================================= */
+
+.vidya-white-cover {
+  opacity:
+    1;
+
+  will-change:
+    opacity;
+}
+
+
+/* =========================================================
+   VIDYA OPENING
+
+   THIS IS THE ONLY THING THAT ZOOMS.
+
+   47.3% is intentionally very close to centre
+   but slightly inside the D's video-filled area.
+
+   This is the same method used by your
+   WE BELIEVE reference.
+========================================================= */
+
+.vidya-video-opening {
+  transform-box:
+    view-box;
+
+  transform-origin:
+    47.3% 50%;
+
+  transform:
+    scale(1);
+
+  will-change:
+    transform;
+
+  backface-visibility:
+    hidden;
+
+  -webkit-backface-visibility:
+    hidden;
+}
+
+
+/* =========================================================
+   FONT
+========================================================= */
+
+.vidya-intro-text {
+  font-family:
+    "Manrope",
+    Arial,
+    "Helvetica Neue",
+    Helvetica,
+    sans-serif;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    -0.06em;
+
+  font-kerning:
+    none;
+
+  font-feature-settings:
+    "kern" 0;
+
+  text-rendering:
+    optimizeSpeed;
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  user-select:
+    none;
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   REFERENCE STYLE TIMING
+
+   The recording has:
+
+   initial hold
+       ↓
+   smooth acceleration
+       ↓
+   big continuous zoom
+       ↓
+   Hero takes over
+
+   No separate animation at the end.
+========================================================= */
+
+.vidya-intro--started
+.vidya-video-opening {
+  animation:
+    vidyaVideoOpeningZoom
+    1.32s
+    cubic-bezier(
+      0.52,
+      0,
+      0.08,
+      1
+    )
+    0.30s
+    forwards;
+}
+
+
+/* =========================================================
+   SINGLE CONTINUOUS SCALE
+
+   IMPORTANT:
+
+   There are only TWO states.
+
+   Browser interpolates everything itself.
+
+   This is smoother than manually adding
+   multiple zoom stages.
+========================================================= */
+
+@keyframes vidyaVideoOpeningZoom {
+
+  from {
+    transform:
+      scale(1);
+  }
+
+
+  to {
+    transform:
+      scale(38);
+  }
+
+}
+
+
+/* =========================================================
+   FINAL WHITE REMOVAL
+
+   Starts only when VIDYA is already enormous.
+
+   It simply cleans the remaining edges.
+
+   No visible second reveal.
+========================================================= */
+
+.vidya-intro--started
+.vidya-white-cover {
+  animation:
+    vidyaRemoveRemainingWhite
+    0.24s
+    cubic-bezier(
+      0.4,
+      0,
+      0.2,
+      1
+    )
+    1.32s
+    forwards;
+}
+
+
+@keyframes vidyaRemoveRemainingWhite {
+
+  0% {
+    opacity:
+      1;
+  }
+
+
+  35% {
+    opacity:
+      0.94;
+  }
+
+
+  70% {
+    opacity:
+      0.38;
+  }
+
+
+  100% {
+    opacity:
+      0;
+  }
+
+}
+
+
+/* =========================================================
+   PERFORMANCE
+
+   No visual effects during SVG zoom.
+========================================================= */
+
+.vidya-intro,
+.vidya-intro-svg,
+.vidya-video-opening,
+.vidya-white-cover {
+  filter:
+    none !important;
+
+  backdrop-filter:
+    none !important;
+
+  -webkit-backdrop-filter:
+    none !important;
+
+  box-shadow:
+    none !important;
+
+  text-shadow:
+    none !important;
+}
+
+
+/* =========================================================
+   HERO RETURN
+========================================================= */
+
+.vidya-hero-bottom {
+  transition:
+    opacity
+    0.26s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+.vidya-hero-overlay,
+.vidya-hero-video-box::after {
+  transition:
+    opacity
+    0.24s
+    ease;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .vidya-intro {
+    height:
+      100dvh;
+  }
+
+
+  .vidya-intro-text {
+    letter-spacing:
+      -0.055em;
+  }
+
+
+  /*
+    Keep the same D-relative zoom point.
+  */
+
+  .vidya-video-opening {
+    transform-origin:
+      47% 50%;
+  }
+
+
+  .vidya-intro--started
+  .vidya-video-opening {
+    animation:
+      vidyaVideoOpeningZoomMobile
+      1.16s
+      cubic-bezier(
+        0.52,
+        0,
+        0.08,
+        1
+      )
+      0.26s
+      forwards;
+  }
+
+
+  @keyframes vidyaVideoOpeningZoomMobile {
+
+    from {
+      transform:
+        scale(1);
+    }
+
+
+    to {
+      transform:
+        scale(32);
+    }
+
+  }
+
+
+  .vidya-intro--started
+  .vidya-white-cover {
+    animation:
+      vidyaRemoveRemainingWhite
+      0.22s
+      cubic-bezier(
+        0.4,
+        0,
+        0.2,
+        1
+      )
+      1.15s
+      forwards;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+
+  .vidya-intro {
+    display:
+      none;
+  }
+
+}
