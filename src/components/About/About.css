@@ -3,20 +3,12 @@
 ========================================================= */
 
 .vidya-about {
-  position:
-    relative;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 
-  width:
-    100%;
-
-  margin:
-    0;
-
-  padding:
-    0;
-
-  background:
-    #0b563b;
+  background: #0b563b;
 
   font-family:
     "Manrope",
@@ -43,29 +35,20 @@
 ========================================================= */
 
 .vidya-about-stage {
-  position:
-    relative;
+  position: relative;
 
-  width:
-    100%;
+  width: 100%;
 
-  height:
-    100vh;
+  height: 100vh;
+  height: 100svh;
 
-  height:
-    100svh;
+  min-height: 650px;
 
-  min-height:
-    650px;
+  overflow: hidden;
 
-  overflow:
-    hidden;
+  background: #f5f3e9;
 
-  background:
-    #f5f3e9;
-
-  isolation:
-    isolate;
+  isolation: isolate;
 }
 
 
@@ -74,32 +57,22 @@
 ========================================================= */
 
 .vidya-about-intro {
-  position:
-    absolute;
+  position: absolute;
 
-  z-index:
-    1;
+  z-index: 1;
 
-  inset:
-    0;
+  inset: 0;
 
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 
-  justify-content:
-    center;
+  justify-content: center;
 
-  width:
-    100%;
+  width: 100%;
+  height: 100%;
 
-  height:
-    100%;
-
-  background:
-    #f5f3e9;
+  background: #f5f3e9;
 }
 
 
@@ -120,33 +93,22 @@
       1370px
     );
 
-  margin-inline:
-    auto;
+  margin-inline: auto;
 }
 
 
 /* =========================================================
    HEADING
-
-   SAME STYLE AS ACADEMIC PROGRAMMES REFERENCE
 ========================================================= */
 
 .vidya-about-intro-title {
-  width:
-    100%;
+  width: 100%;
 
-  max-width:
-    none;
+  max-width: none;
 
-  margin:
-    0;
+  margin: 0;
 
-  color:
-    #073e2c;
-
-  font-family:
-    "Manrope",
-    sans-serif;
+  color: #073e2c;
 
   font-size:
     clamp(
@@ -155,27 +117,18 @@
       108px
     );
 
-  font-weight:
-    500;
+  font-weight: 500;
 
-  line-height:
-    0.96;
+  line-height: 0.96;
 
-  letter-spacing:
-    -0.07em;
+  letter-spacing: -0.07em;
 }
 
 
-/* =========================================================
-   SECOND COLOUR
-========================================================= */
-
 .vidya-about-intro-title span {
-  display:
-    inline;
+  display: inline;
 
-  color:
-    #0e6b45;
+  color: #0e6b45;
 }
 
 
@@ -184,11 +137,9 @@
 ========================================================= */
 
 .vidya-about-intro-divider {
-  width:
-    100%;
+  width: 100%;
 
-  height:
-    1px;
+  height: 1px;
 
   margin:
     clamp(
@@ -237,8 +188,7 @@
 ========================================================= */
 
 .vidya-about-intro-copy {
-  display:
-    grid;
+  display: grid;
 
   grid-template-columns:
     repeat(
@@ -256,8 +206,7 @@
       110px
     );
 
-  width:
-    100%;
+  width: 100%;
 }
 
 
@@ -266,14 +215,11 @@
 ========================================================= */
 
 .vidya-about-intro-copy p {
-  width:
-    100%;
+  width: 100%;
 
-  max-width:
-    610px;
+  max-width: 610px;
 
-  margin:
-    0;
+  margin: 0;
 
   color:
     rgba(
@@ -283,10 +229,6 @@
       0.73
     );
 
-  font-family:
-    "Manrope",
-    sans-serif;
-
   font-size:
     clamp(
       19px,
@@ -294,14 +236,11 @@
       22px
     );
 
-  font-weight:
-    400;
+  font-weight: 400;
 
-  line-height:
-    1.6;
+  line-height: 1.6;
 
-  letter-spacing:
-    -0.018em;
+  letter-spacing: -0.018em;
 }
 
 
@@ -310,14 +249,11 @@
 ========================================================= */
 
 .vidya-about-intro-values {
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 
-  gap:
-    16px;
+  gap: 16px;
 
   margin-top:
     clamp(
@@ -326,45 +262,31 @@
       38px
     );
 
-  color:
-    #0e6b45;
+  color: #0e6b45;
 }
 
 
 .vidya-about-intro-values span {
-  font-family:
-    "Manrope",
-    sans-serif;
+  font-size: 13px;
 
-  font-size:
-    13px;
+  font-weight: 700;
 
-  font-weight:
-    700;
-
-  letter-spacing:
-    0.16em;
+  letter-spacing: 0.16em;
 }
 
 
 .vidya-about-intro-values i {
-  display:
-    block;
+  display: block;
 
-  flex-shrink:
-    0;
+  flex-shrink: 0;
 
-  width:
-    5px;
+  width: 5px;
 
-  height:
-    5px;
+  height: 5px;
 
-  border-radius:
-    50%;
+  border-radius: 50%;
 
-  background:
-    #f5c842;
+  background: #f5c842;
 }
 
 
@@ -373,26 +295,19 @@
 ========================================================= */
 
 .vidya-about-green {
-  position:
-    absolute;
+  position: absolute;
 
-  z-index:
-    5;
+  z-index: 5;
 
-  top:
-    0;
+  top: 0;
 
-  left:
-    -35%;
+  left: -35%;
 
-  width:
-    170%;
+  width: 170%;
 
-  height:
-    145%;
+  height: 145%;
 
-  background:
-    #0b563b;
+  background: #0b563b;
 
   border-radius:
     50%
@@ -405,54 +320,51 @@
     0
     0;
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
-  will-change:
-    transform;
+  will-change: transform;
 }
 
 
 /* =========================================================
    GALLERY SCREEN
+
+   DESKTOP TOP SPACE REDUCED
 ========================================================= */
 
 .vidya-about-story {
-  position:
-    absolute;
+  position: absolute;
 
-  z-index:
-    10;
+  z-index: 10;
 
-  inset:
-    0;
+  inset: 0;
 
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    flex-start;
+  align-items: flex-start;
 
-  justify-content:
-    center;
+  justify-content: center;
 
-  width:
-    100%;
+  width: 100%;
+  height: 100%;
 
-  height:
-    100%;
+  /*
+    Previously:
+    clamp(18px, 2.2vh, 28px)
+
+    Reduced so images sit higher.
+  */
 
   padding:
     clamp(
-      18px,
-      2.2vh,
-      28px
+      8px,
+      1.1vh,
+      14px
     )
     0
-    18px;
+    16px;
 
-  will-change:
-    transform;
+  will-change: transform;
 }
 
 
@@ -461,8 +373,7 @@
 ========================================================= */
 
 .vidya-about-gallery {
-  display:
-    grid;
+  display: grid;
 
   grid-template-columns:
     repeat(
@@ -473,8 +384,7 @@
       )
     );
 
-  align-items:
-    start;
+  align-items: start;
 
   gap:
     clamp(
@@ -495,8 +405,7 @@
       1480px
     );
 
-  margin-inline:
-    auto;
+  margin-inline: auto;
 }
 
 
@@ -505,11 +414,9 @@
 ========================================================= */
 
 .vidya-about-gallery-card {
-  position:
-    relative;
+  position: relative;
 
-  width:
-    100%;
+  width: 100%;
 
   height:
     min(
@@ -517,20 +424,15 @@
       660px
     );
 
-  min-height:
-    440px;
+  min-height: 440px;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  border-radius:
-    0;
+  border-radius: 0;
 
-  background:
-    #164b39;
+  background: #164b39;
 
-  isolation:
-    isolate;
+  isolation: isolate;
 }
 
 
@@ -540,25 +442,19 @@
 
 .vidya-about-gallery-card--1 {
   transform:
-    translateY(
-      0
-    );
+    translateY(0);
 }
 
 
 .vidya-about-gallery-card--2 {
   transform:
-    translateY(
-      20px
-    );
+    translateY(20px);
 }
 
 
 .vidya-about-gallery-card--3 {
   transform:
-    translateY(
-      6px
-    );
+    translateY(6px);
 }
 
 
@@ -567,41 +463,31 @@
 ========================================================= */
 
 .vidya-about-gallery-card img {
-  position:
-    absolute;
+  position: absolute;
 
-  inset:
-    0;
+  inset: 0;
 
-  display:
-    block;
+  display: block;
 
-  width:
-    100%;
+  width: 100%;
+  height: 100%;
 
-  height:
-    100%;
+  object-fit: cover;
 
-  object-fit:
-    cover;
-
-  object-position:
-    center;
+  object-position: center;
 
   transform:
-    scale(
-      1.01
-    );
+    scale(1.01);
 
   transition:
     transform
-      0.7s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      );
+    0.7s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
 }
 
 
@@ -610,14 +496,11 @@
 ========================================================= */
 
 .vidya-about-gallery-overlay {
-  position:
-    absolute;
+  position: absolute;
 
-  z-index:
-    1;
+  z-index: 1;
 
-  inset:
-    0;
+  inset: 0;
 
   background:
     linear-gradient(
@@ -640,8 +523,7 @@
       100%
     );
 
-  pointer-events:
-    none;
+  pointer-events: none;
 }
 
 
@@ -650,17 +532,13 @@
 ========================================================= */
 
 .vidya-about-gallery-number {
-  position:
-    absolute;
+  position: absolute;
 
-  z-index:
-    3;
+  z-index: 3;
 
-  top:
-    20px;
+  top: 20px;
 
-  right:
-    20px;
+  right: 20px;
 
   color:
     rgba(
@@ -670,14 +548,11 @@
       0.8
     );
 
-  font-size:
-    10px;
+  font-size: 10px;
 
-  font-weight:
-    700;
+  font-weight: 700;
 
-  letter-spacing:
-    0.14em;
+  letter-spacing: 0.14em;
 }
 
 
@@ -689,9 +564,7 @@
 
   .vidya-about-gallery-card:hover img {
     transform:
-      scale(
-        1.045
-      );
+      scale(1.045);
   }
 
 }
@@ -704,8 +577,7 @@
 @media (min-width: 1500px) {
 
   .vidya-about-intro-inner {
-    max-width:
-      1440px;
+    max-width: 1440px;
   }
 
 
@@ -720,23 +592,19 @@
 
 
   .vidya-about-intro-copy p {
-    max-width:
-      640px;
+    max-width: 640px;
 
-    font-size:
-      22px;
+    font-size: 22px;
   }
 
 
   .vidya-about-intro-values span {
-    font-size:
-      13px;
+    font-size: 13px;
   }
 
 
   .vidya-about-gallery {
-    max-width:
-      1540px;
+    max-width: 1540px;
   }
 
 
@@ -761,8 +629,7 @@ and
 (min-width: 769px) {
 
   .vidya-about-stage {
-    min-height:
-      620px;
+    min-height: 620px;
   }
 
 
@@ -793,8 +660,7 @@ and
 
 
   .vidya-about-intro-copy {
-    gap:
-      42px;
+    gap: 42px;
   }
 
 
@@ -806,35 +672,33 @@ and
         19px
       );
 
-    line-height:
-      1.55;
+    line-height: 1.55;
   }
 
 
   .vidya-about-intro-values {
-    margin-top:
-      22px;
+    margin-top: 22px;
   }
 
 
   .vidya-about-intro-values span {
-    font-size:
-      10px;
+    font-size: 10px;
   }
 
 
+  /*
+    Reduced desktop/laptop top margin too.
+  */
+
   .vidya-about-story {
-    padding-top:
-      14px;
+    padding-top: 7px;
   }
 
 
   .vidya-about-gallery-card {
-    height:
-      68vh;
+    height: 68vh;
 
-    min-height:
-      410px;
+    min-height: 410px;
   }
 
 }
@@ -842,8 +706,6 @@ and
 
 /* =========================================================
    MOBILE
-
-   KEEP CURRENT MOBILE LAYOUT / TRANSITION
 ========================================================= */
 
 @media (max-width: 768px) {
@@ -853,11 +715,9 @@ and
   ===================================================== */
 
   .vidya-about-stage {
-    height:
-      100svh;
+    height: 100svh;
 
-    min-height:
-      620px;
+    min-height: 640px;
   }
 
 
@@ -866,34 +726,30 @@ and
   ===================================================== */
 
   .vidya-about-intro {
-    align-items:
-      flex-start;
+    align-items: flex-start;
 
-    justify-content:
-      center;
+    justify-content: center;
 
     padding:
       clamp(
-        22px,
+        24px,
         4vh,
-        34px
+        38px
       )
       0
-      14px;
+      18px;
   }
 
 
   .vidya-about-intro-inner {
     width:
       calc(
-        100% - 32px
+        100% - 30px
       );
 
-    max-width:
-      560px;
+    max-width: 560px;
 
-    margin-inline:
-      auto;
+    margin-inline: auto;
   }
 
 
@@ -902,35 +758,27 @@ and
   ===================================================== */
 
   .vidya-about-intro-title {
-    max-width:
-      530px;
+    width: 100%;
+
+    max-width: 540px;
 
     font-size:
       clamp(
-        44px,
-        11.5vw,
-        58px
+        48px,
+        12.5vw,
+        64px
       );
 
-    font-weight:
-      500;
+    font-weight: 500;
 
-    line-height:
-      0.9;
+    line-height: 0.9;
 
-    letter-spacing:
-      -0.062em;
+    letter-spacing: -0.065em;
   }
 
 
-  /*
-    On mobile allow Philosophy
-    to move to next line naturally.
-  */
-
   .vidya-about-intro-title span {
-    display:
-      block;
+    display: block;
   }
 
 
@@ -940,49 +788,45 @@ and
 
   .vidya-about-intro-divider {
     margin:
-      17px
+      18px
       0
-      16px;
+      17px;
   }
 
 
   /* =====================================================
-     MOBILE BODY
+     MOBILE COPY
   ===================================================== */
 
   .vidya-about-intro-copy {
-    display:
-      block;
+    display: block;
 
-    width:
-      100%;
+    width: 100%;
   }
 
 
   .vidya-about-intro-copy p {
-    max-width:
-      100%;
+    width: 100%;
+
+    max-width: none;
 
     font-size:
       clamp(
-        15px,
-        3.8vw,
-        17px
+        16.5px,
+        4.2vw,
+        19px
       );
 
-    line-height:
-      1.48;
+    font-weight: 400;
 
-    letter-spacing:
-      -0.012em;
+    line-height: 1.5;
+
+    letter-spacing: -0.014em;
   }
 
 
-  .vidya-about-intro-copy p
-  +
-  p {
-    margin-top:
-      12px;
+  .vidya-about-intro-copy p + p {
+    margin-top: 14px;
   }
 
 
@@ -991,29 +835,25 @@ and
   ===================================================== */
 
   .vidya-about-intro-values {
-    gap:
-      11px;
+    gap: 11px;
 
-    margin-top:
-      15px;
+    margin-top: 17px;
   }
 
 
   .vidya-about-intro-values span {
-    font-size:
-      9px;
+    font-size: 10px;
 
-    letter-spacing:
-      0.14em;
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
   }
 
 
   .vidya-about-intro-values i {
-    width:
-      4px;
+    width: 4px;
 
-    height:
-      4px;
+    height: 4px;
   }
 
 
@@ -1022,14 +862,11 @@ and
   ===================================================== */
 
   .vidya-about-green {
-    left:
-      -50%;
+    left: -50%;
 
-    width:
-      200%;
+    width: 200%;
 
-    height:
-      145%;
+    height: 145%;
 
     border-radius:
       50%
@@ -1045,20 +882,18 @@ and
 
 
   /* =====================================================
-     STORY
+     MOBILE STORY
   ===================================================== */
 
   .vidya-about-story {
-    align-items:
-      flex-start;
+    align-items: flex-start;
 
-    justify-content:
-      center;
+    justify-content: center;
 
     padding:
+      3px
       0
-      0
-      6px;
+      18px;
   }
 
 
@@ -1067,75 +902,94 @@ and
   ===================================================== */
 
   .vidya-about-gallery {
-    display:
-      block;
+    display: block;
 
     width:
       calc(
-        100% - 16px
+        100% - 18px
       );
 
-    max-width:
-      550px;
+    max-width: 550px;
 
     margin:
       0
       auto;
 
     transform:
-      translateY(
-        -6px
-      );
+      translateY(-4px);
   }
 
 
   /* =====================================================
-     MOBILE = ONLY ONE IMAGE
+     ONLY ONE IMAGE
   ===================================================== */
 
   .vidya-about-gallery-card--2,
   .vidya-about-gallery-card--3 {
-    display:
-      none;
+    display: none;
   }
 
 
   /* =====================================================
      MOBILE IMAGE
+     HEIGHT INCREASED A LITTLE
   ===================================================== */
 
   .vidya-about-gallery-card--1 {
-    width:
-      100%;
+    width: 100%;
+
+    /*
+      Previous:
+      300px / 48svh / 430px
+
+      New:
+      340px / 54svh / 480px
+    */
 
     height:
-      calc(
-        100svh - 4px
+      clamp(
+        340px,
+        54svh,
+        480px
       );
 
-    min-height:
-      520px;
+    min-height: 0;
 
-    max-height:
-      none;
+    max-height: 480px;
 
-    margin:
-      0;
+    margin: 0;
 
-    transform:
-      none;
+    transform: none;
+
+    border-radius: 0;
   }
 
 
+  /* =====================================================
+     IMAGE CROP
+  ===================================================== */
+
+  .vidya-about-gallery-card img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+  }
+
+
+  /* =====================================================
+     NUMBER
+  ===================================================== */
+
   .vidya-about-gallery-number {
-    top:
-      15px;
+    top: 14px;
 
-    right:
-      15px;
+    right: 14px;
 
-    font-size:
-      9px;
+    font-size: 9px;
   }
 
 }
@@ -1148,90 +1002,116 @@ and
 @media (max-width: 480px) {
 
   .vidya-about-stage {
-    min-height:
-      600px;
+    min-height: 620px;
   }
 
 
   .vidya-about-intro {
-    padding-top:
-      18px;
+    padding-top: 20px;
   }
 
 
   .vidya-about-intro-inner {
     width:
       calc(
-        100% - 28px
+        100% - 26px
       );
   }
 
+
+  /* =====================================================
+     TITLE
+  ===================================================== */
 
   .vidya-about-intro-title {
     font-size:
       clamp(
-        40px,
-        10.8vw,
-        50px
+        43px,
+        11.8vw,
+        54px
       );
+
+    line-height: 0.91;
   }
 
+
+  /* =====================================================
+     DIVIDER
+  ===================================================== */
 
   .vidya-about-intro-divider {
     margin:
-      14px
-      0;
+      15px
+      0
+      14px;
   }
 
+
+  /* =====================================================
+     BODY
+  ===================================================== */
 
   .vidya-about-intro-copy p {
     font-size:
       clamp(
-        14px,
-        3.75vw,
-        16px
+        15.5px,
+        4vw,
+        17.5px
       );
 
-    line-height:
-      1.44;
+    line-height: 1.46;
   }
 
 
-  .vidya-about-intro-copy p
-  +
-  p {
-    margin-top:
-      10px;
+  .vidya-about-intro-copy p + p {
+    margin-top: 11px;
   }
 
+
+  /* =====================================================
+     VALUES
+  ===================================================== */
 
   .vidya-about-intro-values {
-    margin-top:
-      12px;
+    margin-top: 14px;
   }
 
+
+  .vidya-about-intro-values span {
+    font-size: 9px;
+  }
+
+
+  /* =====================================================
+     IMAGE
+  ===================================================== */
 
   .vidya-about-gallery {
     width:
       calc(
-        100% - 10px
+        100% - 14px
       );
 
     transform:
-      translateY(
-        -8px
-      );
+      translateY(-5px);
   }
 
 
   .vidya-about-gallery-card--1 {
+    /*
+      A little taller than previous.
+    */
+
     height:
-      calc(
-        100svh + 2px
+      clamp(
+        320px,
+        51svh,
+        430px
       );
 
-    min-height:
-      520px;
+    min-height: 0;
+
+    max-height: 430px;
   }
 
 }
@@ -1247,26 +1127,34 @@ and
 (max-height: 700px) {
 
   .vidya-about-stage {
-    min-height:
-      560px;
+    min-height: 570px;
   }
 
 
   .vidya-about-intro {
-    padding-top:
-      14px;
+    padding-top: 14px;
   }
 
+
+  /* =====================================================
+     TITLE
+  ===================================================== */
 
   .vidya-about-intro-title {
     font-size:
       clamp(
-        35px,
-        9.5vw,
-        43px
+        38px,
+        10vw,
+        46px
       );
+
+    line-height: 0.92;
   }
 
+
+  /* =====================================================
+     DIVIDER
+  ===================================================== */
 
   .vidya-about-intro-divider {
     margin:
@@ -1275,51 +1163,62 @@ and
   }
 
 
+  /* =====================================================
+     BODY
+  ===================================================== */
+
   .vidya-about-intro-copy p {
     font-size:
-      12px;
+      clamp(
+        13px,
+        3.5vw,
+        15px
+      );
 
-    line-height:
-      1.36;
+    line-height: 1.38;
   }
 
 
-  .vidya-about-intro-copy p
-  +
-  p {
-    margin-top:
-      6px;
+  .vidya-about-intro-copy p + p {
+    margin-top: 7px;
   }
 
+
+  /* =====================================================
+     VALUES
+  ===================================================== */
 
   .vidya-about-intro-values {
-    margin-top:
-      8px;
+    margin-top: 8px;
   }
 
 
   .vidya-about-intro-values span {
-    font-size:
-      7px;
+    font-size: 7.5px;
   }
 
 
+  /* =====================================================
+     IMAGE
+  ===================================================== */
+
   .vidya-about-gallery {
     transform:
-      translateY(
-        -8px
-      );
+      translateY(-5px);
   }
 
 
   .vidya-about-gallery-card--1 {
     height:
-      calc(
-        100svh + 4px
+      clamp(
+        280px,
+        48svh,
+        350px
       );
 
-    min-height:
-      560px;
+    min-height: 0;
+
+    max-height: 350px;
   }
 
 }
@@ -1334,28 +1233,42 @@ and
   .vidya-about-intro-inner {
     width:
       calc(
-        100% - 24px
+        100% - 22px
       );
   }
 
 
   .vidya-about-intro-title {
-    font-size:
-      37px;
+    font-size: 40px;
   }
 
 
   .vidya-about-intro-copy p {
-    font-size:
-      12px;
+    font-size: 14px;
+
+    line-height: 1.4;
+  }
+
+
+  .vidya-about-intro-values span {
+    font-size: 7.5px;
   }
 
 
   .vidya-about-gallery {
     width:
       calc(
-        100% - 8px
+        100% - 12px
       );
+  }
+
+
+  .vidya-about-gallery-card--1 {
+    height: 320px;
+
+    min-height: 0;
+
+    max-height: 320px;
   }
 
 }
@@ -1371,26 +1284,20 @@ and
 ) {
 
   .vidya-about-stage {
-    height:
-      auto;
+    height: auto;
 
-    min-height:
-      0;
+    min-height: 0;
 
-    overflow:
-      visible;
+    overflow: visible;
   }
 
 
   .vidya-about-intro {
-    position:
-      relative;
+    position: relative;
 
-    height:
-      auto;
+    height: auto;
 
-    min-height:
-      auto;
+    min-height: auto;
 
     padding:
       70px
@@ -1399,32 +1306,28 @@ and
 
 
   .vidya-about-green {
-    display:
-      none;
+    display: none;
   }
 
 
   .vidya-about-story {
-    position:
-      relative;
+    position: relative;
 
-    height:
-      auto;
+    height: auto;
 
     padding:
+      20px
       0;
 
     transform:
       none !important;
 
-    background:
-      #0b563b;
+    background: #0b563b;
   }
 
 
   .vidya-about-gallery {
-    transform:
-      none;
+    transform: none;
   }
 
 }
