@@ -11,6 +11,37 @@ import "./About.css";
 gsap.registerPlugin(ScrollTrigger);
 
 
+/* =========================================================
+   GALLERY DATA
+========================================================= */
+
+const galleryImages = [
+  {
+    id: "01",
+    image:
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=90",
+    alt:
+      "Students learning at Vidya Academy",
+  },
+
+  {
+    id: "02",
+    image:
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=90",
+    alt:
+      "Students learning together",
+  },
+
+  {
+    id: "03",
+    image:
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1800&q=90",
+    alt:
+      "Students experiencing school life",
+  },
+];
+
+
 const About = () => {
   const sectionRef =
     useRef(null);
@@ -49,12 +80,12 @@ const About = () => {
     }
 
 
+    const mm =
+      gsap.matchMedia();
+
+
     const ctx =
       gsap.context(() => {
-
-        const mm =
-          gsap.matchMedia();
-
 
         /* =====================================================
            DESKTOP
@@ -65,23 +96,95 @@ const About = () => {
 
           () => {
 
-            /*
-              Green starts higher than before.
-              This removes the large white empty area.
-            */
+            /* =================================================
+               TEXT ENTRANCE
+
+               This happens BEFORE the About section
+               reaches the top/pinned position.
+
+               So:
+               1. section enters viewport
+               2. text fully settles
+               3. section pins
+               4. small hold
+               5. green transition begins
+            ================================================= */
+
+            const introItems =
+              gsap.utils.toArray([
+                ".vidya-about-intro-title",
+                ".vidya-about-intro-divider",
+                ".vidya-about-intro-copy",
+                ".vidya-about-intro-values",
+              ]);
+
+
+            const introTimeline =
+              gsap.timeline({
+                scrollTrigger: {
+                  trigger:
+                    section,
+
+                  start:
+                    "top 88%",
+
+                  end:
+                    "top 18%",
+
+                  scrub:
+                    0.55,
+
+                  invalidateOnRefresh:
+                    true,
+                },
+              });
+
+
+            introTimeline.fromTo(
+              introItems,
+
+              {
+                y:
+                  48,
+
+                opacity:
+                  0,
+              },
+
+              {
+                y:
+                  0,
+
+                opacity:
+                  1,
+
+                stagger:
+                  0.08,
+
+                ease:
+                  "none",
+              }
+            );
+
+
+            /* =================================================
+               INITIAL TRANSITION POSITIONS
+            ================================================= */
 
             gsap.set(
               green,
               {
                 y: () =>
                   stage.offsetHeight *
-                  0.46,
+                  0.90,
               }
             );
 
 
             /*
-              Story sits very close behind green.
+              Gallery stays very close behind green.
+
+              This prevents large empty green space.
             */
 
             gsap.set(
@@ -89,10 +192,14 @@ const About = () => {
               {
                 y: () =>
                   stage.offsetHeight *
-                  0.49,
+                  0.92,
               }
             );
 
+
+            /* =================================================
+               MAIN PINNED TRANSITION
+            ================================================= */
 
             const timeline =
               gsap.timeline({
@@ -103,18 +210,14 @@ const About = () => {
                   start:
                     "top top",
 
-                  /*
-                    Shorter overall slide.
-                  */
-
                   end: () =>
                     `+=${
                       stage.offsetHeight *
-                      0.46
+                      0.82
                     }`,
 
                   scrub:
-                    0.62,
+                    0.82,
 
                   pin:
                     stage,
@@ -131,46 +234,71 @@ const About = () => {
               });
 
 
-            /* GREEN */
+            /* =================================================
+               SMALL HOLD
+
+               User sees complete text section
+               before anything covers it.
+            ================================================= */
+
+            timeline.to(
+              {},
+              {
+                duration:
+                  0.18,
+              }
+            );
+
+
+            /* =================================================
+               GREEN CURVE
+            ================================================= */
 
             timeline.to(
               green,
+
               {
                 y: () =>
                   -stage.offsetHeight *
-                  0.15,
+                  0.18,
 
                 duration:
-                  0.68,
+                  0.82,
 
                 ease:
                   "none",
               },
 
-              0
+              0.18
             );
 
 
-            /* STORY */
+            /* =================================================
+               IMAGES
+
+               Follow closely behind green.
+            ================================================= */
 
             timeline.to(
               story,
+
               {
                 y:
                   0,
 
                 duration:
-                  0.60,
+                  0.74,
 
                 ease:
                   "none",
               },
 
-              0.045
+              0.225
             );
 
 
             return () => {
+              introTimeline.kill();
               timeline.kill();
             };
           }
@@ -179,6 +307,8 @@ const About = () => {
 
         /* =====================================================
            MOBILE
+
+           KEEP CURRENT MOBILE BEHAVIOUR
         ===================================================== */
 
         mm.add(
@@ -186,19 +316,12 @@ const About = () => {
 
           () => {
 
-            /*
-              Much less empty space.
-
-              Green starts around 41%,
-              story starts just behind it.
-            */
-
             gsap.set(
               green,
               {
                 y: () =>
                   stage.offsetHeight *
-                  0.41,
+                  0.86,
               }
             );
 
@@ -208,7 +331,7 @@ const About = () => {
               {
                 y: () =>
                   stage.offsetHeight *
-                  0.44,
+                  0.87,
               }
             );
 
@@ -222,18 +345,14 @@ const About = () => {
                   start:
                     "top top",
 
-                  /*
-                    Shorter mobile slide.
-                  */
-
                   end: () =>
                     `+=${
                       stage.offsetHeight *
-                      0.36
+                      0.50
                     }`,
 
                   scrub:
-                    0.56,
+                    0.58,
 
                   pin:
                     stage,
@@ -250,17 +369,16 @@ const About = () => {
               });
 
 
-            /* GREEN */
-
             timeline.to(
               green,
+
               {
                 y: () =>
                   -stage.offsetHeight *
-                  0.13,
+                  0.16,
 
                 duration:
-                  0.66,
+                  0.69,
 
                 ease:
                   "none",
@@ -270,22 +388,21 @@ const About = () => {
             );
 
 
-            /* STORY */
-
             timeline.to(
               story,
+
               {
                 y:
                   0,
 
                 duration:
-                  0.59,
+                  0.64,
 
                 ease:
                   "none",
               },
 
-              0.035
+              0.055
             );
 
 
@@ -343,6 +460,7 @@ const About = () => {
       );
 
 
+      mm.revert();
       ctx.revert();
     };
   }, []);
@@ -361,132 +479,43 @@ const About = () => {
       >
 
         {/* =================================================
-            INTRO
+            PHILOSOPHY
         ================================================= */}
 
         <div className="vidya-about-intro">
 
           <div className="vidya-about-intro-inner">
 
+
+            {/* =============================================
+                HEADING
+            ============================================= */}
+
             <h2 className="vidya-about-intro-title">
 
-              Learning should prepare
-              <br />
-
-              children for more than
+              Our Learning{" "}
 
               <span>
-                the next exam.
+                Philosophy.
               </span>
 
             </h2>
 
 
-            <p className="vidya-about-intro-text">
+            {/* =============================================
+                DIVIDER
+            ============================================= */}
 
-              It should give them the confidence
-              to question, discover and shape
-              what comes next.
-
-            </p>
-
-          </div>
-
-        </div>
+            <div className="vidya-about-intro-divider" />
 
 
-        {/* =================================================
-            GREEN
-        ================================================= */}
+            {/* =============================================
+                BODY
+            ============================================= */}
 
-        <div
-          ref={greenRef}
-          className="vidya-about-green"
-          aria-hidden="true"
-        />
+            <div className="vidya-about-intro-copy">
 
-
-        {/* =================================================
-            STORY
-        ================================================= */}
-
-        <div
-          ref={storyRef}
-          className="vidya-about-story"
-        >
-
-          <div className="vidya-about-story-inner">
-
-
-            {/* ===========================================
-                IMAGE
-            ============================================ */}
-
-            <div className="vidya-about-visual">
-
-              <div className="vidya-about-photo">
-
-                <img
-                  src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=90"
-                  alt="Students learning at Vidya Academy"
-                />
-
-
-                <div
-                  className="vidya-about-photo-overlay"
-                />
-
-
-                <div className="vidya-about-photo-top">
-
-                  <span />
-
-                  <p>
-                    THE VIDYA EXPERIENCE
-                  </p>
-
-                </div>
-
-
-                <div className="vidya-about-photo-content">
-
-                  <p className="vidya-about-photo-label">
-                    DISCOVER OUR WORLD
-                  </p>
-
-
-                  <h3>
-
-                    A place to learn.
-
-                    <span>
-                      A place to belong.
-                    </span>
-
-                  </h3>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            {/* ===========================================
-                COPY
-            ============================================ */}
-
-            <div className="vidya-about-story-copy">
-
-              <h2>
-                Our Learning Philosophy
-              </h2>
-
-
-              <div className="vidya-about-divider" />
-
-
-              <p className="vidya-about-story-text">
+              <p>
 
                 At Vidya Academy, we believe that
                 education is more than the lessons
@@ -500,7 +529,7 @@ const About = () => {
               </p>
 
 
-              <p className="vidya-about-story-text">
+              <p>
 
                 Learning at Vidya Academy is designed
                 to be engaging, purposeful and
@@ -513,28 +542,97 @@ const About = () => {
 
               </p>
 
+            </div>
 
-              <div className="vidya-about-values">
 
-                <span>
-                  LEARN
-                </span>
+            {/* =============================================
+                VALUES
+            ============================================= */}
 
-                <i />
+            <div className="vidya-about-intro-values">
 
-                <span>
-                  EXPLORE
-                </span>
+              <span>
+                LEARN
+              </span>
 
-                <i />
+              <i />
 
-                <span>
-                  GROW
-                </span>
+              <span>
+                EXPLORE
+              </span>
 
-              </div>
+              <i />
+
+              <span>
+                GROW
+              </span>
 
             </div>
+
+          </div>
+
+        </div>
+
+
+        {/* =================================================
+            GREEN TRANSITION
+        ================================================= */}
+
+        <div
+          ref={greenRef}
+          className="vidya-about-green"
+          aria-hidden="true"
+        />
+
+
+        {/* =================================================
+            GALLERY
+        ================================================= */}
+
+        <div
+          ref={storyRef}
+          className="vidya-about-story"
+        >
+
+          <div className="vidya-about-gallery">
+
+            {galleryImages.map(
+              (
+                item,
+                index
+              ) => (
+
+                <article
+                  key={item.id}
+
+                  className={`
+                    vidya-about-gallery-card
+                    vidya-about-gallery-card--${
+                      index + 1
+                    }
+                  `}
+                >
+
+                  <img
+                    src={item.image}
+                    alt={item.alt}
+                    loading="eager"
+                  />
+
+
+                  <div
+                    className="vidya-about-gallery-overlay"
+                  />
+
+
+                  <span className="vidya-about-gallery-number">
+                    {item.id}
+                  </span>
+
+                </article>
+
+              )
+            )}
 
           </div>
 
