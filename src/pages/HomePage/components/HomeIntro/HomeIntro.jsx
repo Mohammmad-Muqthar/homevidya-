@@ -16,9 +16,9 @@ function IntroReveal({
   onComplete,
 }) {
 
-  const [started, setStarted] =
-    useState(false);
-
+  /* =========================================================
+     MOBILE
+  ========================================================= */
 
   const [isMobile] =
     useState(() => {
@@ -30,11 +30,39 @@ function IntroReveal({
         return false;
       }
 
+
       return window.matchMedia(
         "(max-width: 768px)"
       ).matches;
 
     });
+
+
+  /* =========================================================
+     INTRO STATE
+  ========================================================= */
+
+  const [started, setStarted] =
+    useState(false);
+
+
+  /*
+    Exact zoom origin inside the left solid stroke
+    of the D.
+
+    Null until SVG text is measured.
+  */
+
+  const [zoomOrigin, setZoomOrigin] =
+    useState(null);
+
+
+  /* =========================================================
+     REFS
+  ========================================================= */
+
+  const wordRef =
+    useRef(null);
 
 
   const completedRef =
@@ -46,7 +74,7 @@ function IntroReveal({
 
 
   /* =========================================================
-     UNIQUE MASK ID
+     UNIQUE MASK
   ========================================================= */
 
   const reactId =
@@ -62,6 +90,42 @@ function IntroReveal({
 
   const maskId =
     `vidya-video-mask-${cleanId}`;
+
+
+  /* =========================================================
+     SVG DIMENSIONS
+  ========================================================= */
+
+  const viewWidth =
+    isMobile
+      ? 1000
+      : 1920;
+
+
+  const viewHeight =
+    isMobile
+      ? 1600
+      : 1080;
+
+
+  const centerX =
+    viewWidth / 2;
+
+
+  const centerY =
+    viewHeight / 2;
+
+
+  const textWidth =
+    isMobile
+      ? 790
+      : 1040;
+
+
+  const fontSize =
+    isMobile
+      ? 205
+      : 270;
 
 
   /* =========================================================
@@ -99,37 +163,43 @@ function IntroReveal({
 
 
   /* =========================================================
-     START
+     PREPARE + MEASURE D
 
-     Wait for Hero video + font.
+     Important:
 
-     Then give browser two frames before animation.
+     Character indexes:
 
-     This is important for smooth first motion.
+     V = 0
+     I = 1
+     D = 2
+     Y = 3
+     A = 4
+
+     We measure the actual rendered D.
+
+     Then choose a point only 9% inside its width.
+
+     That puts the transform origin inside the
+     thick LEFT vertical stroke of D.
+
+     NOT in D's white hollow centre.
   ========================================================= */
 
   useEffect(() => {
-
-    if (started) {
-      return;
-    }
-
 
     let cancelled =
       false;
 
 
-    let fallbackTimer;
-
     let frame1;
     let frame2;
 
 
-    const startIntro =
+    const prepare =
       async () => {
 
         /* ---------------------------------------------
-           FONT
+           WAIT FOR MANROPE
         --------------------------------------------- */
 
         if (
@@ -158,7 +228,7 @@ function IntroReveal({
             ]);
 
           } catch {
-            // continue
+            // continue with fallback
           }
 
         }
@@ -170,8 +240,167 @@ function IntroReveal({
 
 
         /* ---------------------------------------------
-           ALLOW VIDEO + MASK TO PAINT
+           ALLOW SVG TEXT TO LAYOUT
         --------------------------------------------- */
+
+        frame1 =
+          requestAnimationFrame(() => {
+
+            frame2 =
+              requestAnimationFrame(() => {
+
+                if (cancelled) {
+                  return;
+                }
+
+
+                const text =
+                  wordRef.current;
+
+
+                if (!text) {
+                  return;
+                }
+
+
+                try {
+
+                  /*
+                    Real rendered bounding box of D.
+                  */
+
+                  const dBox =
+                    text.getExtentOfChar(
+                      2
+                    );
+
+
+                  /*
+                    LEFT STEM OF D.
+
+                    9% into D width:
+                    safely inside black glyph stroke.
+
+                    50% vertically:
+                    middle of D's strong left stroke.
+                  */
+
+                  const originX =
+                    dBox.x +
+                    dBox.width * 0.09;
+
+
+                  const originY =
+                    dBox.y +
+                    dBox.height * 0.50;
+
+
+                  setZoomOrigin({
+                    x: originX,
+                    y: originY,
+                  });
+
+                } catch {
+
+                  /*
+                    Fallback tuned for VIDYA.
+
+                    Still positioned LEFT of D's
+                    hollow centre.
+                  */
+
+                  setZoomOrigin({
+
+                    x:
+                      isMobile
+                        ? 456
+                        : 878,
+
+                    y:
+                      centerY,
+
+                  });
+
+                }
+
+              });
+
+          });
+
+      };
+
+
+    prepare();
+
+
+    return () => {
+
+      cancelled =
+        true;
+
+
+      if (frame1) {
+
+        cancelAnimationFrame(
+          frame1
+        );
+
+      }
+
+
+      if (frame2) {
+
+        cancelAnimationFrame(
+          frame2
+        );
+
+      }
+
+    };
+
+  }, [
+    centerY,
+    isMobile,
+  ]);
+
+
+  /* =========================================================
+     START
+
+     Start only after:
+     - D origin exists
+     - Hero is ready
+
+     There is still a small fallback if Hero takes too long.
+  ========================================================= */
+
+  useEffect(() => {
+
+    if (
+      started ||
+      !zoomOrigin
+    ) {
+      return;
+    }
+
+
+    let cancelled =
+      false;
+
+
+    let fallbackTimer;
+
+    let frame1;
+    let frame2;
+
+
+    const start =
+      () => {
+
+        if (cancelled) {
+          return;
+        }
+
 
         frame1 =
           requestAnimationFrame(() => {
@@ -194,24 +423,16 @@ function IntroReveal({
       };
 
 
-    /* =======================================================
-       NORMAL
-    ======================================================= */
-
     if (ready) {
 
-      startIntro();
+      start();
 
     } else {
 
-      /*
-        Safety only.
-      */
-
       fallbackTimer =
         window.setTimeout(
-          startIntro,
-          450
+          start,
+          400
         );
 
     }
@@ -223,9 +444,7 @@ function IntroReveal({
         true;
 
 
-      if (
-        fallbackTimer
-      ) {
+      if (fallbackTimer) {
 
         window.clearTimeout(
           fallbackTimer
@@ -256,6 +475,7 @@ function IntroReveal({
   }, [
     ready,
     started,
+    zoomOrigin,
   ]);
 
 
@@ -307,7 +527,7 @@ function IntroReveal({
     const timer =
       window.setTimeout(
         completeIntro,
-        2600
+        2200
       );
 
 
@@ -326,7 +546,7 @@ function IntroReveal({
 
 
   /* =========================================================
-     ZOOM END
+     ZOOM FINISHED
   ========================================================= */
 
   const handleZoomEnd =
@@ -351,50 +571,10 @@ function IntroReveal({
     typeof document ===
     "undefined"
   ) {
+
     return null;
+
   }
-
-
-  /* =========================================================
-     SVG DIMENSIONS
-  ========================================================= */
-
-  const viewWidth =
-    isMobile
-      ? 1000
-      : 1920;
-
-
-  const viewHeight =
-    isMobile
-      ? 1600
-      : 1080;
-
-
-  const centerX =
-    viewWidth / 2;
-
-
-  const centerY =
-    viewHeight / 2;
-
-
-  /* =========================================================
-     VIDYA SIZE
-
-     Fixed textLength keeps the word completely stable.
-  ========================================================= */
-
-  const textWidth =
-    isMobile
-      ? 790
-      : 1040;
-
-
-  const fontSize =
-    isMobile
-      ? 205
-      : 270;
 
 
   /* =========================================================
@@ -450,7 +630,7 @@ function IntroReveal({
           >
 
             {/* =================================================
-                WHITE SCREEN
+                WHITE BACKGROUND
             ================================================= */}
 
             <rect
@@ -467,20 +647,28 @@ function IntroReveal({
 
 
             {/* =================================================
-                EXACTLY ONE TRANSPARENT OPENING
+                ONE SINGLE VIDYA OPENING
 
-                NO SECOND D
-                NO RECTANGLE
-                NO CIRCLE
-                NO EXTRA MASK
+                No box.
+                No circle.
+                No extra D.
+                No second mask.
 
-                THIS IS THE SAME PRINCIPLE AS
-                YOUR REFERENCE VIDEO.
+                Only the real VIDYA text zooms.
             ================================================= */}
 
             <g
 
               className="vidya-video-opening"
+
+              style={{
+
+                transformOrigin:
+                  zoomOrigin
+                    ? `${zoomOrigin.x}px ${zoomOrigin.y}px`
+                    : "50% 50%",
+
+              }}
 
               onAnimationEnd={
                 handleZoomEnd
@@ -489,6 +677,8 @@ function IntroReveal({
             >
 
               <text
+
+                ref={wordRef}
 
                 className="vidya-intro-text"
 
@@ -521,7 +711,7 @@ function IntroReveal({
         {/* =================================================
             WHITE COVER
 
-            Hero video already exists underneath.
+            Real Hero video sits underneath.
         ================================================= */}
 
         <rect

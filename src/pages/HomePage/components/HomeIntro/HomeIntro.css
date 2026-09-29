@@ -1,24 +1,34 @@
 /* =========================================================
-   ROOT
+   INTRO ROOT
 ========================================================= */
 
 .vidya-intro {
-  position: fixed;
+  position:
+    fixed;
 
-  inset: 0;
+  inset:
+    0;
 
-  z-index: 2147483647;
+  z-index:
+    2147483647;
 
-  width: 100vw;
+  width:
+    100vw;
 
-  height: 100vh;
-  height: 100dvh;
+  height:
+    100vh;
 
-  margin: 0;
+  height:
+    100dvh;
 
-  padding: 0;
+  margin:
+    0;
 
-  overflow: hidden;
+  padding:
+    0;
+
+  overflow:
+    hidden;
 
   background:
     transparent;
@@ -30,7 +40,11 @@
     1;
 
   transform:
-    translateZ(0);
+    translate3d(
+      0,
+      0,
+      0
+    );
 
   backface-visibility:
     hidden;
@@ -70,7 +84,7 @@ body.vidya-page-intro-active
 
 
 /* =========================================================
-   HIDE NAVIGATION
+   HIDE NAVBAR
 ========================================================= */
 
 body.vidya-page-intro-active
@@ -110,8 +124,7 @@ body.vidya-page-intro-active
 /* =========================================================
    HIDE HERO COPY
 
-   IMPORTANT:
-   VIDEO MUST REMAIN VISIBLE.
+   KEEP VIDEO PLAYING.
 ========================================================= */
 
 body.vidya-page-intro-active
@@ -142,11 +155,7 @@ body.vidya-page-intro-active
 
 
 /* =========================================================
-   SVG
-
-   NEVER SCALE THIS.
-
-   NEVER ANIMATE THIS.
+   STATIC SVG
 ========================================================= */
 
 .vidya-intro-svg {
@@ -181,7 +190,11 @@ body.vidya-page-intro-active
     none;
 
   transform:
-    translateZ(0);
+    translate3d(
+      0,
+      0,
+      0
+    );
 
   backface-visibility:
     hidden;
@@ -192,39 +205,24 @@ body.vidya-page-intro-active
 
 
 /* =========================================================
-   WHITE COVER
-========================================================= */
-
-.vidya-white-cover {
-  opacity:
-    1;
-
-  will-change:
-    opacity;
-}
-
-
-/* =========================================================
    VIDYA OPENING
 
-   THIS IS THE ONLY THING THAT ZOOMS.
+   transform-origin is supplied by JSX.
 
-   47.3% is intentionally very close to centre
-   but slightly inside the D's video-filled area.
-
-   This is the same method used by your
-   WE BELIEVE reference.
+   That origin is measured from the REAL D
+   and placed inside its thick transparent stroke.
 ========================================================= */
 
 .vidya-video-opening {
   transform-box:
     view-box;
 
-  transform-origin:
-    47.3% 50%;
-
   transform:
-    scale(1);
+    scale3d(
+      1,
+      1,
+      1
+    );
 
   will-change:
     transform;
@@ -267,97 +265,109 @@ body.vidya-page-intro-active
   -webkit-font-smoothing:
     antialiased;
 
-  user-select:
+  pointer-events:
     none;
 
-  pointer-events:
+  user-select:
     none;
 }
 
 
 /* =========================================================
-   REFERENCE STYLE TIMING
+   MAIN ZOOM
 
-   The recording has:
+   One continuous animation.
 
-   initial hold
-       ↓
-   smooth acceleration
-       ↓
-   big continuous zoom
-       ↓
-   Hero takes over
+   Slightly slower than the fast version,
+   but still responsive.
 
-   No separate animation at the end.
+   No second zoom.
 ========================================================= */
 
 .vidya-intro--started
 .vidya-video-opening {
   animation:
     vidyaVideoOpeningZoom
-    1.32s
+    1.18s
     cubic-bezier(
       0.52,
       0,
       0.08,
       1
     )
-    0.30s
+    0.24s
     forwards;
 }
 
 
 /* =========================================================
-   SINGLE CONTINUOUS SCALE
+   SINGLE CONTINUOUS ZOOM
 
-   IMPORTANT:
+   The crucial difference is NOT this scale.
 
-   There are only TWO states.
+   The crucial difference is that the origin is
+   now physically INSIDE D's left video-filled stroke.
 
-   Browser interpolates everything itself.
-
-   This is smoother than manually adding
-   multiple zoom stages.
+   So at the end the transparent portion expands,
+   NOT D's white hole.
 ========================================================= */
 
 @keyframes vidyaVideoOpeningZoom {
 
   from {
     transform:
-      scale(1);
+      scale3d(
+        1,
+        1,
+        1
+      );
   }
 
 
   to {
     transform:
-      scale(38);
+      scale3d(
+        28,
+        28,
+        1
+      );
   }
 
 }
 
 
 /* =========================================================
-   FINAL WHITE REMOVAL
+   WHITE COVER
 
-   Starts only when VIDYA is already enormous.
+   Only fades when D's transparent stroke has
+   already become very large.
+========================================================= */
 
-   It simply cleans the remaining edges.
+.vidya-white-cover {
+  opacity:
+    1;
 
-   No visible second reveal.
+  will-change:
+    opacity;
+}
+
+
+/* =========================================================
+   FINAL CLEANUP
+
+   The remaining white disappears before we ever
+   see the outer boundary of the enlarged D stroke.
+
+   This is NOT another zoom.
 ========================================================= */
 
 .vidya-intro--started
 .vidya-white-cover {
   animation:
     vidyaRemoveRemainingWhite
-    0.24s
-    cubic-bezier(
-      0.4,
-      0,
-      0.2,
-      1
-    )
-    1.32s
+    0.18s
+    linear
+    1.17s
     forwards;
 }
 
@@ -370,15 +380,15 @@ body.vidya-page-intro-active
   }
 
 
-  35% {
+  25% {
     opacity:
-      0.94;
+      0.96;
   }
 
 
-  70% {
+  65% {
     opacity:
-      0.38;
+      0.40;
   }
 
 
@@ -393,7 +403,7 @@ body.vidya-page-intro-active
 /* =========================================================
    PERFORMANCE
 
-   No visual effects during SVG zoom.
+   Nothing expensive besides transform + final opacity.
 ========================================================= */
 
 .vidya-intro,
@@ -424,7 +434,7 @@ body.vidya-page-intro-active
 .vidya-hero-bottom {
   transition:
     opacity
-    0.26s
+    0.25s
     cubic-bezier(
       0.22,
       1,
@@ -438,7 +448,7 @@ body.vidya-page-intro-active
 .vidya-hero-video-box::after {
   transition:
     opacity
-    0.24s
+    0.23s
     ease;
 }
 
@@ -463,28 +473,18 @@ body.vidya-page-intro-active
   }
 
 
-  /*
-    Keep the same D-relative zoom point.
-  */
-
-  .vidya-video-opening {
-    transform-origin:
-      47% 50%;
-  }
-
-
   .vidya-intro--started
   .vidya-video-opening {
     animation:
       vidyaVideoOpeningZoomMobile
-      1.16s
+      1.04s
       cubic-bezier(
         0.52,
         0,
         0.08,
         1
       )
-      0.26s
+      0.20s
       forwards;
   }
 
@@ -493,13 +493,21 @@ body.vidya-page-intro-active
 
     from {
       transform:
-        scale(1);
+        scale3d(
+          1,
+          1,
+          1
+        );
     }
 
 
     to {
       transform:
-        scale(32);
+        scale3d(
+          24,
+          24,
+          1
+        );
     }
 
   }
@@ -509,14 +517,9 @@ body.vidya-page-intro-active
   .vidya-white-cover {
     animation:
       vidyaRemoveRemainingWhite
-      0.22s
-      cubic-bezier(
-        0.4,
-        0,
-        0.2,
-        1
-      )
-      1.15s
+      0.16s
+      linear
+      1.02s
       forwards;
   }
 
