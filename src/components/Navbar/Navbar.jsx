@@ -12,6 +12,7 @@ import {
 import {
   Menu,
   X,
+  ArrowUpRight,
 } from "lucide-react";
 
 import "./Navbar.css";
@@ -19,9 +20,6 @@ import "./Navbar.css";
 
 /* =========================================================
    NAVBAR DATA
-
-   FAKE DATA FOR NOW.
-   Replace paths/text later.
 ========================================================= */
 
 const navbarData = {
@@ -78,11 +76,15 @@ const Navbar = () => {
   const [insideHero, setInsideHero] =
     useState(true);
 
+  const [heroScrolled, setHeroScrolled] =
+    useState(false);
+
   const [visible, setVisible] =
     useState(true);
 
   const [menuOpen, setMenuOpen] =
     useState(false);
+
 
   const lastScrollY =
     useRef(0);
@@ -92,7 +94,7 @@ const Navbar = () => {
 
 
   /* =========================================================
-     NAVBAR SCROLL BEHAVIOUR
+     SCROLL LOGIC
   ========================================================= */
 
   useEffect(() => {
@@ -107,13 +109,13 @@ const Navbar = () => {
         );
 
 
-      /* =====================================================
-         HERO DETECTION
-      ===================================================== */
-
       let isInsideHero =
-        true;
+        false;
 
+
+      /* =====================================================
+         DETECT HERO
+      ===================================================== */
 
       if (hero) {
         const heroRect =
@@ -121,7 +123,7 @@ const Navbar = () => {
 
 
         isInsideHero =
-          heroRect.bottom > 90;
+          heroRect.bottom > 80;
       }
 
 
@@ -133,11 +135,30 @@ const Navbar = () => {
       /* =====================================================
          HERO
 
-         Always visible.
-         Transparent.
+         AT HERO TOP:
+         navbar visible
+
+         AFTER USER STARTS SCROLLING:
+         WHOLE NAVBAR disappears
       ===================================================== */
 
       if (isInsideHero) {
+        const hasScrolledHero =
+          currentY > 38;
+
+
+        setHeroScrolled(
+          hasScrolledHero
+        );
+
+
+        /*
+          Keep visible state true.
+
+          heroScrolled CSS is responsible
+          for hiding the complete navbar.
+        */
+
         setVisible(true);
 
 
@@ -154,13 +175,20 @@ const Navbar = () => {
 
 
       /* =====================================================
-         IGNORE MICRO SCROLL
+         LEFT HERO
       ===================================================== */
+
+      setHeroScrolled(false);
+
 
       const delta =
         currentY -
         lastScrollY.current;
 
+
+      /* =====================================================
+         IGNORE MICRO SCROLL
+      ===================================================== */
 
       if (
         Math.abs(delta) < 6
@@ -173,24 +201,22 @@ const Navbar = () => {
 
 
       /* =====================================================
-         SCROLL DOWN
+         PAGE SCROLL DOWN
       ===================================================== */
 
       if (
-        currentY >
-        lastScrollY.current
+        delta > 0
       ) {
         setVisible(false);
       }
 
 
       /* =====================================================
-         SCROLL UP
+         PAGE SCROLL UP
       ===================================================== */
 
       if (
-        currentY <
-        lastScrollY.current
+        delta < 0
       ) {
         setVisible(true);
       }
@@ -259,7 +285,7 @@ const Navbar = () => {
 
 
   /* =========================================================
-     MOBILE MENU LOCK
+     LOCK BODY WHEN MOBILE MENU OPEN
   ========================================================= */
 
   useEffect(() => {
@@ -280,6 +306,66 @@ const Navbar = () => {
 
 
   /* =========================================================
+     ESCAPE KEY
+  ========================================================= */
+
+  useEffect(() => {
+    const handleKeyDown = (
+      event
+    ) => {
+      if (
+        event.key === "Escape"
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+
+    window.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
+
+
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    };
+  }, []);
+
+
+  /* =========================================================
+     CLOSE MOBILE MENU WHEN RETURNING DESKTOP
+  ========================================================= */
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (
+        window.innerWidth > 1080
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+
+    window.addEventListener(
+      "resize",
+      handleResize
+    );
+
+
+    return () => {
+      window.removeEventListener(
+        "resize",
+        handleResize
+      );
+    };
+  }, []);
+
+
+  /* =========================================================
      CLOSE MENU
   ========================================================= */
 
@@ -289,7 +375,7 @@ const Navbar = () => {
 
 
   /* =========================================================
-     JSX
+     RENDER
   ========================================================= */
 
   return (
@@ -302,6 +388,12 @@ const Navbar = () => {
             insideHero
               ? "is-hero"
               : "is-page"
+          }
+
+          ${
+            heroScrolled
+              ? "is-hero-scrolled"
+              : ""
           }
 
           ${
@@ -320,6 +412,7 @@ const Navbar = () => {
 
         <div className="vidya-nav-inner">
 
+
           {/* =================================================
               LOGO
           ================================================= */}
@@ -331,7 +424,9 @@ const Navbar = () => {
 
             className="vidya-nav-brand"
 
-            onClick={closeMenu}
+            onClick={
+              closeMenu
+            }
 
             aria-label="Vidya Academy home"
           >
@@ -357,6 +452,7 @@ const Navbar = () => {
 
           <nav
             className="vidya-nav-links"
+
             aria-label="Main navigation"
           >
 
@@ -364,9 +460,13 @@ const Navbar = () => {
               (link) => (
 
                 <a
-                  key={link.label}
+                  key={
+                    link.label
+                  }
 
-                  href={link.href}
+                  href={
+                    link.href
+                  }
 
                   className="vidya-nav-link"
                 >
@@ -384,10 +484,15 @@ const Navbar = () => {
 
 
           {/* =================================================
-              RIGHT
+              ACTIONS
           ================================================= */}
 
           <div className="vidya-nav-actions">
+
+
+            {/* ===============================================
+                DESKTOP ENQUIRE
+            =============================================== */}
 
             <a
               href={
@@ -405,7 +510,7 @@ const Navbar = () => {
 
 
             {/* ===============================================
-                MOBILE BUTTON
+                MOBILE MENU BUTTON
             =============================================== */}
 
             <button
@@ -418,6 +523,10 @@ const Navbar = () => {
                   (value) =>
                     !value
                 )
+              }
+
+              aria-expanded={
+                menuOpen
               }
 
               aria-label={
@@ -439,35 +548,28 @@ const Navbar = () => {
 
                     initial={{
                       opacity: 0,
-                      rotate: -90,
-                      scale: 0.8,
+                      rotate: -20,
                     }}
 
                     animate={{
                       opacity: 1,
                       rotate: 0,
-                      scale: 1,
                     }}
 
                     exit={{
                       opacity: 0,
-                      rotate: 90,
-                      scale: 0.8,
+                      rotate: 20,
                     }}
 
                     transition={{
-                      duration: 0.28,
-
-                      ease: [
-                        0.22,
-                        1,
-                        0.36,
-                        1,
-                      ],
+                      duration: 0.18,
                     }}
                   >
 
-                    <X size={23} />
+                    <X
+                      size={20}
+                      strokeWidth={1.8}
+                    />
 
                   </motion.span>
 
@@ -478,35 +580,25 @@ const Navbar = () => {
 
                     initial={{
                       opacity: 0,
-                      rotate: 90,
-                      scale: 0.8,
                     }}
 
                     animate={{
                       opacity: 1,
-                      rotate: 0,
-                      scale: 1,
                     }}
 
                     exit={{
                       opacity: 0,
-                      rotate: -90,
-                      scale: 0.8,
                     }}
 
                     transition={{
-                      duration: 0.28,
-
-                      ease: [
-                        0.22,
-                        1,
-                        0.36,
-                        1,
-                      ],
+                      duration: 0.18,
                     }}
                   >
 
-                    <Menu size={23} />
+                    <Menu
+                      size={21}
+                      strokeWidth={1.8}
+                    />
 
                   </motion.span>
 
@@ -535,39 +627,35 @@ const Navbar = () => {
             className="vidya-mobile-menu"
 
             initial={{
-              clipPath:
-                "inset(0 0 100% 0)",
+              opacity: 0,
             }}
 
             animate={{
-              clipPath:
-                "inset(0 0 0% 0)",
+              opacity: 1,
             }}
 
             exit={{
-              clipPath:
-                "inset(0 0 100% 0)",
+              opacity: 0,
             }}
 
             transition={{
-              duration: 0.78,
-
-              ease: [
-                0.76,
-                0,
-                0.24,
-                1,
-              ],
+              duration: 0.25,
+              ease: "easeOut",
             }}
           >
 
             <div className="vidya-mobile-menu-inner">
 
+
               {/* ===============================================
-                  MOBILE LINKS
+                  MOBILE NAVIGATION
               =============================================== */}
 
-              <nav className="vidya-mobile-menu-links">
+              <nav
+                className="vidya-mobile-menu-links"
+
+                aria-label="Mobile navigation"
+              >
 
                 {navbarData.links.map(
                   (
@@ -576,9 +664,13 @@ const Navbar = () => {
                   ) => (
 
                     <motion.a
-                      key={link.label}
+                      key={
+                        link.label
+                      }
 
-                      href={link.href}
+                      href={
+                        link.href
+                      }
 
                       onClick={
                         closeMenu
@@ -586,7 +678,7 @@ const Navbar = () => {
 
                       initial={{
                         opacity: 0,
-                        y: 55,
+                        y: 10,
                       }}
 
                       animate={{
@@ -594,19 +686,13 @@ const Navbar = () => {
                         y: 0,
                       }}
 
-                      exit={{
-                        opacity: 0,
-                        y: 20,
-                      }}
-
                       transition={{
                         duration:
-                          0.65,
+                          0.3,
 
                         delay:
-                          0.12 +
                           index *
-                            0.055,
+                          0.025,
 
                         ease: [
                           0.22,
@@ -617,7 +703,15 @@ const Navbar = () => {
                       }}
                     >
 
-                      {link.label}
+                      <span>
+                        {link.label}
+                      </span>
+
+
+                      <ArrowUpRight
+                        size={16}
+                        strokeWidth={1.6}
+                      />
 
                     </motion.a>
 
@@ -628,7 +722,7 @@ const Navbar = () => {
 
 
               {/* ===============================================
-                  MOBILE BOTTOM
+                  MOBILE FOOTER
               =============================================== */}
 
               <motion.div
@@ -636,7 +730,7 @@ const Navbar = () => {
 
                 initial={{
                   opacity: 0,
-                  y: 20,
+                  y: 8,
                 }}
 
                 animate={{
@@ -645,14 +739,15 @@ const Navbar = () => {
                 }}
 
                 transition={{
-                  delay: 0.46,
-                  duration: 0.65,
+                  duration: 0.3,
+                  delay: 0.12,
                 }}
               >
 
-                <span>
-                  Vidya Academy
-                </span>
+                <p>
+                  Discover more about
+                  Vidya Academy.
+                </p>
 
 
                 <a
@@ -663,11 +758,19 @@ const Navbar = () => {
                   onClick={
                     closeMenu
                   }
+
+                  className="vidya-mobile-menu-cta"
                 >
 
-                  {
-                    navbarData.cta.label
-                  }
+                  <span>
+                    Enquire
+                  </span>
+
+
+                  <ArrowUpRight
+                    size={16}
+                    strokeWidth={1.7}
+                  />
 
                 </a>
 
@@ -680,7 +783,6 @@ const Navbar = () => {
         )}
 
       </AnimatePresence>
-
     </>
   );
 };

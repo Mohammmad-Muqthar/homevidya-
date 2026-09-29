@@ -75,100 +75,182 @@ const wayItems = [
 
 
 export default function TheWay() {
-  const sectionRef = useRef(null);
-  const headingRef = useRef(null);
-  const cardsRef = useRef([]);
+  const sectionRef =
+    useRef(null);
+
+  const headingRef =
+    useRef(null);
+
+  const cardsRef =
+    useRef([]);
 
 
   useLayoutEffect(() => {
     const section =
       sectionRef.current;
 
-    if (!section) return;
+
+    if (!section) {
+      return;
+    }
 
 
-    const ctx = gsap.context(() => {
-
-      /* =====================================================
-         HEADING
-      ===================================================== */
-
-      gsap.fromTo(
-        headingRef.current,
-
-        {
-          opacity: 0,
-          y: 40,
-        },
-
-        {
-          opacity: 1,
-          y: 0,
-
-          duration: 0.85,
-
-          ease: "power4.out",
-
-          scrollTrigger: {
-            trigger:
-              headingRef.current,
-
-            start:
-              "top 88%",
-
-            once: true,
-          },
-        }
-      );
+    const mm =
+      gsap.matchMedia();
 
 
-      /* =====================================================
-         CARDS
-      ===================================================== */
+    const ctx =
+      gsap.context(() => {
 
-      const cards =
-        cardsRef.current.filter(
-          Boolean
-        );
+        /* =====================================================
+           HEADING
+        ===================================================== */
 
-
-      if (cards.length) {
         gsap.fromTo(
-          cards,
+          headingRef.current,
 
           {
-            opacity: 0,
-            y: 55,
+            opacity:
+              0,
+
+            y:
+              40,
           },
 
           {
-            opacity: 1,
-            y: 0,
+            opacity:
+              1,
 
-            duration: 0.9,
+            y:
+              0,
 
-            stagger: 0.09,
+            duration:
+              0.85,
 
             ease:
               "power4.out",
 
             scrollTrigger: {
               trigger:
-                cards[0],
+                headingRef.current,
 
               start:
-                "top 90%",
+                "top 88%",
 
-              once: true,
+              once:
+                true,
             },
           }
         );
-      }
 
-    }, section);
+
+        /* =====================================================
+           DESKTOP CARD ANIMATION
+
+           Keep transform animation only on desktop.
+        ===================================================== */
+
+        mm.add(
+          "(min-width: 769px)",
+
+          () => {
+            const cards =
+              cardsRef.current.filter(
+                Boolean
+              );
+
+
+            if (!cards.length) {
+              return;
+            }
+
+
+            const animation =
+              gsap.fromTo(
+                cards,
+
+                {
+                  opacity:
+                    0,
+
+                  y:
+                    55,
+                },
+
+                {
+                  opacity:
+                    1,
+
+                  y:
+                    0,
+
+                  duration:
+                    0.9,
+
+                  stagger:
+                    0.09,
+
+                  ease:
+                    "power4.out",
+
+                  scrollTrigger: {
+                    trigger:
+                      cards[0],
+
+                    start:
+                      "top 90%",
+
+                    once:
+                      true,
+                  },
+                }
+              );
+
+
+            return () => {
+              animation.kill();
+            };
+          }
+        );
+
+
+        /* =====================================================
+           MOBILE
+
+           Remove GSAP transforms from cards.
+
+           This keeps native touch scrolling clean.
+        ===================================================== */
+
+        mm.add(
+          "(max-width: 768px)",
+
+          () => {
+            const cards =
+              cardsRef.current.filter(
+                Boolean
+              );
+
+
+            gsap.set(
+              cards,
+
+              {
+                opacity:
+                  1,
+
+                clearProps:
+                  "transform",
+              }
+            );
+          }
+        );
+
+      }, section);
 
 
     return () => {
+      mm.revert();
       ctx.revert();
     };
   }, []);
@@ -191,18 +273,20 @@ export default function TheWay() {
           ref={headingRef}
           className="vidya-way-heading"
         >
+
           The way we help
 
           <span>
             every child grow.
           </span>
+
         </h2>
 
       </div>
 
 
       {/* =====================================================
-          FOUR CARDS
+          CARDS
       ====================================================== */}
 
       <div className="vidya-way-cards">
@@ -232,18 +316,26 @@ export default function TheWay() {
               `}
             >
 
-              {/* IMAGE */}
+              {/* =================================================
+                  IMAGE
+              ================================================= */}
 
               <div className="vidya-way-card-image-wrap">
 
                 <img
-                  src={item.image}
+                  src={
+                    item.image
+                  }
 
-                  alt={item.title}
+                  alt={
+                    item.title
+                  }
 
                   className="vidya-way-card-image"
 
                   loading="lazy"
+
+                  draggable="false"
                 />
 
 
@@ -254,7 +346,9 @@ export default function TheWay() {
               </div>
 
 
-              {/* CONTENT */}
+              {/* =================================================
+                  CONTENT
+              ================================================= */}
 
               <div className="vidya-way-card-content">
 

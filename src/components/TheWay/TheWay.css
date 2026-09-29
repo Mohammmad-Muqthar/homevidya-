@@ -63,7 +63,8 @@
   max-width:
     940px;
 
-  margin: 0;
+  margin:
+    0;
 
   color:
     var(--green-deep);
@@ -95,7 +96,8 @@
 
 
 .vidya-way-heading span {
-  display: block;
+  display:
+    block;
 
   color:
     var(--green);
@@ -107,7 +109,8 @@
 ========================================================= */
 
 .vidya-way-cards {
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     repeat(
@@ -147,23 +150,24 @@
 
 /* =========================================================
    CARD
-
-   PERFECT SQUARE EDGES
 ========================================================= */
 
 .vidya-way-card {
-  position: relative;
+  position:
+    relative;
 
-  display: flex;
+  display:
+    flex;
 
   flex-direction:
     column;
 
-  min-width: 0;
+  min-width:
+    0;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  /* NO CURVED CARD EDGES */
   border-radius:
     0;
 
@@ -216,16 +220,18 @@
 ========================================================= */
 
 .vidya-way-card-image-wrap {
-  position: relative;
+  position:
+    relative;
 
-  width: 100%;
+  width:
+    100%;
 
   aspect-ratio:
     4 / 4.35;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  /* KEEP EDGES PERFECTLY SQUARE */
   border-radius:
     0;
 
@@ -239,10 +245,14 @@
 ========================================================= */
 
 .vidya-way-card-image {
-  display: block;
+  display:
+    block;
 
-  width: 100%;
-  height: 100%;
+  width:
+    100%;
+
+  height:
+    100%;
 
   object-fit:
     cover;
@@ -273,24 +283,29 @@
 ========================================================= */
 
 .vidya-way-number {
-  position: absolute;
+  position:
+    absolute;
 
-  top: 20px;
-  right: 20px;
+  top:
+    20px;
 
-  display: flex;
+  right:
+    20px;
 
-  align-items: center;
+  display:
+    flex;
 
-  justify-content: center;
+  align-items:
+    center;
 
-  width: 40px;
-  height: 40px;
+  justify-content:
+    center;
 
-  /*
-    Number badge remains circular.
-    Card itself stays square.
-  */
+  width:
+    40px;
+
+  height:
+    40px;
 
   border-radius:
     50%;
@@ -332,9 +347,11 @@
 ========================================================= */
 
 .vidya-way-card-content {
-  position: relative;
+  position:
+    relative;
 
-  display: flex;
+  display:
+    flex;
 
   flex-direction:
     column;
@@ -352,7 +369,6 @@
       36px
     );
 
-  /* PERFECT SQUARE EDGES */
   border-radius:
     0;
 
@@ -415,7 +431,8 @@
   max-width:
     285px;
 
-  margin: 0;
+  margin:
+    0;
 
   color:
     rgba(
@@ -426,7 +443,7 @@
     );
 
   font-family:
-    "DM Sans",
+    "Manrope",
     sans-serif;
 
   font-size:
@@ -449,7 +466,8 @@
 ========================================================= */
 
 .vidya-way-card-link {
-  position: relative;
+  position:
+    relative;
 
   display:
     inline-flex;
@@ -491,7 +509,8 @@
 ========================================================= */
 
 .vidya-way-card-link::after {
-  content: "";
+  content:
+    "";
 
   width:
     30px;
@@ -587,9 +606,7 @@
    LARGE DESKTOP
 ========================================================= */
 
-@media (
-  min-width: 1600px
-) {
+@media (min-width: 1600px) {
 
   .vidya-way-header,
   .vidya-way-cards {
@@ -623,13 +640,9 @@
 
 /* =========================================================
    TABLET / SMALL DESKTOP
-
-   Horizontal slider starts here.
 ========================================================= */
 
-@media (
-  max-width: 1150px
-) {
+@media (max-width: 1150px) {
 
   .vidya-way-cards {
     display:
@@ -653,14 +666,13 @@
     overflow-y:
       hidden;
 
+    box-sizing:
+      border-box;
+
     padding:
       8px
       var(--page-padding)
       20px;
-
-    /*
-      Horizontal slider behaviour
-    */
 
     scroll-snap-type:
       x proximity;
@@ -668,14 +680,19 @@
     scroll-padding-left:
       var(--page-padding);
 
-    overscroll-behavior-inline:
+    overscroll-behavior-x:
       contain;
 
     -webkit-overflow-scrolling:
       touch;
 
+    /*
+      IMPORTANT:
+      BOTH DIRECTIONS ARE ALLOWED.
+    */
+
     touch-action:
-      pan-x;
+      pan-x pan-y;
 
     scrollbar-width:
       none;
@@ -690,7 +707,8 @@
 
   .vidya-way-card {
     flex:
-      0 0
+      0
+      0
       360px;
 
     border-radius:
@@ -723,9 +741,11 @@
    MOBILE
 ========================================================= */
 
-@media (
-  max-width: 768px
-) {
+@media (max-width: 768px) {
+
+  /* =====================================================
+     SECTION
+  ===================================================== */
 
   .vidya-way {
     padding:
@@ -745,7 +765,9 @@
         100% - 40px
       );
 
-    margin-bottom:
+    margin:
+      0
+      auto
       38px;
   }
 
@@ -764,7 +786,7 @@
 
 
   /* =====================================================
-     MOBILE HORIZONTAL SLIDER
+     MOBILE HORIZONTAL SCROLLER
   ===================================================== */
 
   .vidya-way-cards {
@@ -786,16 +808,18 @@
     margin:
       0;
 
+    /*
+      Native horizontal scrolling.
+    */
+
     overflow-x:
       auto;
 
     overflow-y:
       hidden;
 
-    /*
-      Important:
-      left/right breathing room while sliding.
-    */
+    box-sizing:
+      border-box;
 
     padding:
       4px
@@ -805,10 +829,8 @@
     scroll-padding-left:
       20px;
 
-    /*
-      Each swipe locks nicely
-      to a card.
-    */
+    scroll-padding-right:
+      20px;
 
     scroll-snap-type:
       x mandatory;
@@ -819,14 +841,24 @@
     -webkit-overflow-scrolling:
       touch;
 
+    /*
+      CRITICAL FIX.
+
+      User can:
+      - swipe left/right
+      - scroll page up/down
+
+      even when finger starts on card.
+    */
+
     touch-action:
-      pan-x;
+      pan-x pan-y;
 
     scrollbar-width:
       none;
 
     cursor:
-      grab;
+      auto;
   }
 
 
@@ -836,26 +868,14 @@
   }
 
 
-  .vidya-way-cards:active {
-    cursor:
-      grabbing;
-  }
-
-
   /* =====================================================
-     MOBILE CARD
+     MOBILE CARDS
   ===================================================== */
 
   .vidya-way-card {
-    /*
-      Shows most of current card
-      plus a small piece of the next card.
-
-      This tells users that it slides.
-    */
-
     flex:
-      0 0
+      0
+      0
       calc(
         100vw - 64px
       );
@@ -871,9 +891,8 @@
     min-width:
       0;
 
-    /*
-      PERFECT STRAIGHT EDGES
-    */
+    margin-top:
+      0 !important;
 
     border-radius:
       0;
@@ -884,17 +903,28 @@
     scroll-snap-stop:
       always;
 
+    /*
+      Remove any desktop GSAP / hover transform.
+    */
+
     transform:
-      none;
+      none !important;
+
+    opacity:
+      1;
+
+    /*
+      Don't trap touch gestures.
+    */
+
+    touch-action:
+      pan-x pan-y;
   }
 
 
-  /*
-    Remove desktop stagger on mobile.
-
-    This makes the mobile slider
-    perfectly aligned.
-  */
+  /* =====================================================
+     REMOVE DESKTOP STAGGER
+  ===================================================== */
 
   .vidya-way-card:nth-child(2),
   .vidya-way-card:nth-child(4) {
@@ -913,12 +943,28 @@
 
     border-radius:
       0;
+
+    /*
+      Allow gesture to pass through image.
+    */
+
+    touch-action:
+      pan-x pan-y;
   }
 
 
   .vidya-way-card-image {
     border-radius:
       0;
+
+    user-select:
+      none;
+
+    -webkit-user-drag:
+      none;
+
+    pointer-events:
+      none;
   }
 
 
@@ -935,6 +981,9 @@
 
     border-radius:
       0;
+
+    touch-action:
+      pan-x pan-y;
   }
 
 
@@ -982,9 +1031,7 @@
    SMALL MOBILE
 ========================================================= */
 
-@media (
-  max-width: 480px
-) {
+@media (max-width: 480px) {
 
   .vidya-way {
     padding:
@@ -1016,7 +1063,7 @@
 
 
   /* =====================================================
-     SMALL MOBILE SLIDER
+     SLIDER
   ===================================================== */
 
   .vidya-way-cards {
@@ -1035,18 +1082,22 @@
     scroll-padding-left:
       18px;
 
-    scroll-snap-type:
-      x mandatory;
+    scroll-padding-right:
+      18px;
+
+    touch-action:
+      pan-x pan-y;
   }
 
 
   /* =====================================================
-     SMALL MOBILE CARD
+     CARD
   ===================================================== */
 
   .vidya-way-card {
     flex:
-      0 0
+      0
+      0
       calc(
         100vw - 55px
       );
@@ -1059,10 +1110,6 @@
     max-width:
       350px;
 
-    /*
-      ABSOLUTELY NO CURVED EDGES
-    */
-
     border-radius:
       0;
 
@@ -1071,11 +1118,13 @@
 
     scroll-snap-stop:
       always;
+
+    touch-action:
+      pan-x pan-y;
   }
 
 
   .vidya-way-card-image-wrap,
-  .vidya-way-card-image,
   .vidya-way-card-content {
     border-radius:
       0;
@@ -1109,9 +1158,7 @@
    EXTRA SMALL MOBILE
 ========================================================= */
 
-@media (
-  max-width: 380px
-) {
+@media (max-width: 380px) {
 
   .vidya-way-cards {
     gap:
@@ -1124,6 +1171,9 @@
       16px;
 
     scroll-padding-left:
+      16px;
+
+    scroll-padding-right:
       16px;
   }
 
@@ -1184,7 +1234,8 @@
 ========================================================= */
 
 @media (
-  prefers-reduced-motion: reduce
+  prefers-reduced-motion:
+    reduce
 ) {
 
   .vidya-way-heading,
