@@ -1,0 +1,1177 @@
+/* =========================================================
+   ROOT
+========================================================= */
+
+.campus-grounds {
+  position: relative;
+
+  width: 100%;
+
+  background:
+    #f3f0e6;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+.campus-grounds *,
+.campus-grounds *::before,
+.campus-grounds *::after {
+  box-sizing:
+    border-box;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.campus-intro {
+  position: relative;
+
+  width: 100%;
+
+  background:
+    #b9a39b;
+
+  color:
+    #201c1a;
+
+  overflow: hidden;
+
+  padding:
+    clamp(
+      64px,
+      6vw,
+      98px
+    )
+    0
+    clamp(
+      58px,
+      5.5vw,
+      84px
+    );
+}
+
+
+/* =========================================================
+   INTRO INNER
+========================================================= */
+
+.campus-intro-inner {
+  position: relative;
+
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--page-padding) *
+          2
+        )
+      ),
+      1540px
+    );
+
+  margin: 0 auto;
+
+  padding: 0;
+}
+
+
+/* =========================================================
+   INTRO TEXT
+========================================================= */
+
+.campus-intro-text {
+  width:
+    min(
+      1380px,
+      94vw
+    );
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      44px,
+      4.15vw,
+      72px
+    );
+
+  font-weight: 500;
+
+  line-height:
+    0.99;
+
+  letter-spacing:
+    -0.052em;
+
+  text-wrap:
+    pretty;
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   WORDS
+========================================================= */
+
+.campus-intro-word {
+  color:
+    rgba(
+      37,
+      32,
+      30,
+      0.18
+    );
+}
+
+
+/* =========================================================
+   GROUNDS MAIN
+========================================================= */
+
+.campus-grounds-main {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background:
+    #f4f1ed;
+
+  padding:
+    0
+    0
+    clamp(
+      80px,
+      8vw,
+      125px
+    );
+}
+
+
+/* =========================================================
+   MARQUEE SECTION
+========================================================= */
+
+.campus-grounds-marquee-section {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+
+  height:
+    clamp(
+      340px,
+      20vw,
+      390px
+    );
+
+  min-height:
+    340px;
+
+  overflow: hidden;
+
+  background:
+    #f4f1ed;
+}
+
+
+/* =========================================================
+   MARQUEE SHELL
+========================================================= */
+
+.campus-grounds-marquee-shell {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.campus-grounds-marquee-track {
+  display: flex;
+
+  align-items: center;
+
+  width: max-content;
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   GROUP
+========================================================= */
+
+.campus-grounds-marquee-group {
+  display: flex;
+
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   ITEM
+========================================================= */
+
+.campus-grounds-marquee-item {
+  display: flex;
+
+  align-items: center;
+
+  flex-shrink: 0;
+
+  gap:
+    clamp(
+      35px,
+      2.3vw,
+      48px
+    );
+
+  margin-right:
+    clamp(
+      42px,
+      3vw,
+      62px
+    );
+}
+
+
+/* =========================================================
+   THE GROUNDS
+========================================================= */
+
+.campus-grounds-marquee-item > span {
+  white-space: nowrap;
+
+  color:
+    #151515;
+
+  font-size:
+    clamp(
+      62px,
+      4vw,
+      82px
+    );
+
+  font-weight: 600;
+
+  line-height:
+    0.94;
+
+  letter-spacing:
+    -0.06em;
+}
+
+
+/* =========================================================
+   MARQUEE IMAGE
+========================================================= */
+
+.campus-marquee-thumb {
+  position: relative;
+
+  flex:
+    0 0 auto;
+
+  width:
+    clamp(
+      165px,
+      10vw,
+      195px
+    );
+
+  height:
+    clamp(
+      105px,
+      6.6vw,
+      128px
+    );
+
+  overflow: hidden;
+
+  background:
+    #d8d2ca;
+}
+
+
+.campus-marquee-thumb img {
+  position: absolute;
+
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  -webkit-user-drag:
+    none;
+}
+
+
+/* =========================================================
+   GROUNDS DESCRIPTION
+
+   THIS IS THE MAIN CHANGE.
+
+   Previously this was around 9-11px.
+   Now it is proper readable editorial copy.
+========================================================= */
+
+.campus-grounds-caption {
+  width:
+    min(
+      720px,
+      calc(
+        100% - 80px
+      )
+    );
+
+  margin:
+    0
+    auto
+    clamp(
+      55px,
+      5vw,
+      85px
+    );
+
+  text-align:
+    center;
+}
+
+
+.campus-grounds-caption p {
+  margin: 0;
+
+  color:
+    #262723;
+
+  font-size:
+    clamp(
+      22px,
+      1.8vw,
+      31px
+    );
+
+  font-weight: 500;
+
+  line-height:
+    1.28;
+
+  letter-spacing:
+    -0.035em;
+
+  text-wrap:
+    balance;
+}
+
+
+/* =========================================================
+   PHOTO GRID
+========================================================= */
+
+.campus-photo-grid {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      12,
+      minmax(0, 1fr)
+    );
+
+  grid-auto-flow:
+    dense;
+
+  grid-auto-rows:
+    clamp(
+      46px,
+      4.4vw,
+      72px
+    );
+
+  gap:
+    clamp(
+      8px,
+      0.8vw,
+      14px
+    );
+
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--page-padding) *
+          2
+        )
+      ),
+      1540px
+    );
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.campus-photo {
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  min-width: 0;
+
+  min-height: 0;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  background:
+    #dad5cc;
+
+  border-radius: 0;
+
+  will-change:
+    opacity,
+    transform;
+}
+
+
+/* =========================================================
+   PHOTO IMAGE
+========================================================= */
+
+.campus-photo img {
+  position: absolute;
+
+  inset:
+    -4% 0;
+
+  display: block;
+
+  width: 100%;
+
+  height: 108%;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+
+  transform:
+    scale(1.07);
+
+  pointer-events: none;
+
+  user-select: none;
+
+  -webkit-user-drag:
+    none;
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   7 IMAGE COLLAGE
+========================================================= */
+
+.campus-photo--01 {
+  grid-column:
+    1 / span 4;
+
+  grid-row:
+    1 / span 5;
+}
+
+
+.campus-photo--02 {
+  grid-column:
+    5 / span 4;
+
+  grid-row:
+    1 / span 3;
+}
+
+
+.campus-photo--03 {
+  grid-column:
+    9 / span 4;
+
+  grid-row:
+    1 / span 4;
+}
+
+
+.campus-photo--04 {
+  grid-column:
+    5 / span 4;
+
+  grid-row:
+    4 / span 3;
+}
+
+
+.campus-photo--05 {
+  grid-column:
+    1 / span 4;
+
+  grid-row:
+    6 / span 4;
+}
+
+
+.campus-photo--06 {
+  grid-column:
+    9 / span 4;
+
+  grid-row:
+    5 / span 4;
+}
+
+
+.campus-photo--07 {
+  grid-column:
+    5 / span 4;
+
+  grid-row:
+    7 / span 4;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1500px) {
+
+  .campus-intro-text {
+    width:
+      min(
+        1400px,
+        88vw
+      );
+
+    font-size:
+      clamp(
+        52px,
+        4vw,
+        74px
+      );
+  }
+
+
+  .campus-grounds-marquee-item > span {
+    font-size:
+      clamp(
+        68px,
+        4vw,
+        84px
+      );
+  }
+
+
+  .campus-marquee-thumb {
+    width:
+      195px;
+
+    height:
+      128px;
+  }
+
+
+  /* BIGGER DESCRIPTION */
+
+  .campus-grounds-caption {
+    width:
+      min(
+        760px,
+        calc(
+          100% - 100px
+        )
+      );
+  }
+
+
+  .campus-grounds-caption p {
+    font-size:
+      31px;
+  }
+
+
+  .campus-photo-grid {
+    grid-auto-rows:
+      70px;
+  }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media
+(max-width: 1200px)
+and
+(min-width: 769px) {
+
+  .campus-intro {
+    padding:
+      62px
+      0
+      58px;
+  }
+
+
+  .campus-intro-text {
+    width:
+      94%;
+
+    font-size:
+      clamp(
+        40px,
+        4.8vw,
+        58px
+      );
+  }
+
+
+  .campus-grounds-marquee-section {
+    height:
+      330px;
+
+    min-height:
+      330px;
+  }
+
+
+  .campus-grounds-marquee-item > span {
+    font-size:
+      clamp(
+        54px,
+        5.7vw,
+        70px
+      );
+  }
+
+
+  .campus-marquee-thumb {
+    width:
+      165px;
+
+    height:
+      108px;
+  }
+
+
+  .campus-grounds-marquee-item {
+    gap:
+      30px;
+
+    margin-right:
+      44px;
+  }
+
+
+  /* DESCRIPTION */
+
+  .campus-grounds-caption {
+    width:
+      min(
+        650px,
+        calc(
+          100% - 60px
+        )
+      );
+
+    margin-bottom:
+      60px;
+  }
+
+
+  .campus-grounds-caption p {
+    font-size:
+      clamp(
+        20px,
+        2.2vw,
+        27px
+      );
+  }
+
+
+  .campus-photo-grid {
+    grid-auto-rows:
+      clamp(
+        42px,
+        4.5vw,
+        58px
+      );
+
+    gap:
+      9px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  /* =====================================================
+     INTRO
+  ===================================================== */
+
+  .campus-intro {
+    padding:
+      58px
+      0
+      54px;
+  }
+
+
+  .campus-intro-inner {
+    width:
+      calc(
+        100% - 40px
+      );
+  }
+
+
+  .campus-intro-text {
+    width:
+      100%;
+
+    font-size:
+      clamp(
+        33px,
+        9.2vw,
+        48px
+      );
+
+    line-height:
+      1;
+
+    letter-spacing:
+      -0.052em;
+  }
+
+
+  /* =====================================================
+     MARQUEE
+  ===================================================== */
+
+  .campus-grounds-marquee-section {
+    height:
+      245px;
+
+    min-height:
+      245px;
+  }
+
+
+  .campus-grounds-marquee-item {
+    gap:
+      18px;
+
+    margin-right:
+      28px;
+  }
+
+
+  .campus-grounds-marquee-item > span {
+    font-size:
+      clamp(
+        38px,
+        10.5vw,
+        52px
+      );
+
+    letter-spacing:
+      -0.058em;
+  }
+
+
+  .campus-marquee-thumb {
+    width:
+      clamp(
+        100px,
+        28vw,
+        128px
+      );
+
+    height:
+      clamp(
+        66px,
+        18vw,
+        84px
+      );
+  }
+
+
+  /* =====================================================
+     DESCRIPTION
+
+     MUCH LARGER ON MOBILE TOO
+  ===================================================== */
+
+  .campus-grounds-caption {
+    width:
+      calc(
+        100% - 44px
+      );
+
+    max-width:
+      520px;
+
+    margin:
+      0
+      auto
+      48px;
+
+    text-align:
+      left;
+  }
+
+
+  .campus-grounds-caption p {
+    font-size:
+      clamp(
+        18px,
+        5vw,
+        23px
+      );
+
+    line-height:
+      1.3;
+
+    letter-spacing:
+      -0.032em;
+  }
+
+
+  /* =====================================================
+     PHOTO GRID
+  ===================================================== */
+
+  .campus-photo-grid {
+    width:
+      calc(
+        100% - 24px
+      );
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    grid-auto-rows:
+      59px;
+
+    gap:
+      7px;
+
+    touch-action:
+      pan-y;
+  }
+
+
+  .campus-photo {
+    touch-action:
+      pan-y;
+  }
+
+
+  .campus-photo--01 {
+    grid-column:
+      1 !important;
+
+    grid-row:
+      1 / span 4 !important;
+  }
+
+
+  .campus-photo--02 {
+    grid-column:
+      2 !important;
+
+    grid-row:
+      1 / span 3 !important;
+  }
+
+
+  .campus-photo--03 {
+    grid-column:
+      2 !important;
+
+    grid-row:
+      4 / span 4 !important;
+  }
+
+
+  .campus-photo--04 {
+    grid-column:
+      1 !important;
+
+    grid-row:
+      5 / span 3 !important;
+  }
+
+
+  .campus-photo--05 {
+    grid-column:
+      1 !important;
+
+    grid-row:
+      8 / span 4 !important;
+  }
+
+
+  .campus-photo--06 {
+    grid-column:
+      2 !important;
+
+    grid-row:
+      8 / span 3 !important;
+  }
+
+
+  .campus-photo--07 {
+    grid-column:
+      1 / -1 !important;
+
+    grid-row:
+      12 / span 4 !important;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .campus-intro {
+    padding:
+      48px
+      0
+      46px;
+  }
+
+
+  .campus-intro-inner {
+    width:
+      calc(
+        100% - 34px
+      );
+  }
+
+
+  .campus-intro-text {
+    font-size:
+      clamp(
+        30px,
+        8.8vw,
+        40px
+      );
+  }
+
+
+  .campus-grounds-marquee-section {
+    height:
+      220px;
+
+    min-height:
+      220px;
+  }
+
+
+  .campus-grounds-marquee-item {
+    gap:
+      15px;
+
+    margin-right:
+      24px;
+  }
+
+
+  .campus-grounds-marquee-item > span {
+    font-size:
+      clamp(
+        35px,
+        9.5vw,
+        44px
+      );
+  }
+
+
+  .campus-marquee-thumb {
+    width:
+      96px;
+
+    height:
+      64px;
+  }
+
+
+  /* DESCRIPTION */
+
+  .campus-grounds-caption {
+    width:
+      calc(
+        100% - 34px
+      );
+
+    margin-bottom:
+      42px;
+  }
+
+
+  .campus-grounds-caption p {
+    font-size:
+      clamp(
+        17px,
+        4.8vw,
+        21px
+      );
+
+    line-height:
+      1.32;
+  }
+
+
+  .campus-photo-grid {
+    width:
+      calc(
+        100% - 18px
+      );
+
+    grid-auto-rows:
+      53px;
+
+    gap:
+      6px;
+  }
+
+}
+
+
+/* =========================================================
+   SHORT MOBILE
+========================================================= */
+
+@media
+(max-width: 768px)
+and
+(max-height: 700px) {
+
+  .campus-intro-text {
+    font-size:
+      clamp(
+        29px,
+        8vw,
+        38px
+      );
+  }
+
+
+  .campus-grounds-caption p {
+    font-size:
+      17px;
+  }
+
+
+  .campus-photo-grid {
+    grid-auto-rows:
+      50px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media
+(prefers-reduced-motion: reduce) {
+
+  .campus-intro-text {
+    transform:
+      none !important;
+  }
+
+
+  .campus-intro-word {
+    color:
+      #201c1a !important;
+  }
+
+
+  .campus-grounds-marquee-track {
+    transform:
+      none !important;
+  }
+
+
+  .campus-photo,
+  .campus-photo img {
+    opacity:
+      1 !important;
+
+    transform:
+      none !important;
+  }
+
+}

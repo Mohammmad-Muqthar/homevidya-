@@ -35,7 +35,7 @@ const galleryImages = [
   {
     id: "03",
     image:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1800&q=90",
+      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2000&q=90",
     alt:
       "Students experiencing school life",
   },

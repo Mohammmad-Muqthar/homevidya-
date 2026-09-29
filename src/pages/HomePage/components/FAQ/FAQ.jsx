@@ -73,14 +73,18 @@ const faqItems = [
 ========================================================= */
 
 export default function FAQ() {
+
   /*
-    First question open from the beginning.
+    IMPORTANT:
+    -1 = all questions closed initially.
   */
+
   const [activeIndex, setActiveIndex] =
-    useState(0);
+    useState(-1);
 
   const [formOpen, setFormOpen] =
     useState(false);
+
 
   const sectionRef =
     useRef(null);
@@ -105,16 +109,13 @@ export default function FAQ() {
 
 
   /* =========================================================
-     FAQ ENTRANCE
-
-     No Y movement on the FAQ list.
-     This means the first question stays aligned with
-     the left column from the first frame.
+     ENTRANCE
   ========================================================= */
 
   useLayoutEffect(() => {
     const section =
       sectionRef.current;
+
 
     if (!section) {
       return;
@@ -124,7 +125,12 @@ export default function FAQ() {
     const ctx =
       gsap.context(() => {
 
-        /* LEFT */
+        /*
+          Left content.
+
+          Only opacity.
+          No transform because sticky must remain stable.
+        */
 
         gsap.fromTo(
           headingRef.current,
@@ -138,7 +144,8 @@ export default function FAQ() {
 
             duration: 0.75,
 
-            ease: "power3.out",
+            ease:
+              "power3.out",
 
             scrollTrigger: {
               trigger:
@@ -154,7 +161,12 @@ export default function FAQ() {
         );
 
 
-        /* RIGHT */
+        /*
+          Questions.
+
+          No Y / X transform.
+          Keeps first question exactly in position.
+        */
 
         gsap.fromTo(
           listRef.current,
@@ -187,6 +199,11 @@ export default function FAQ() {
       }, section);
 
 
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
+
     return () => {
       ctx.revert();
     };
@@ -194,28 +211,24 @@ export default function FAQ() {
 
 
   /* =========================================================
-     REFRESH WHEN FAQ HEIGHT CHANGES
+     FAQ SIZE REFRESH
   ========================================================= */
 
   useEffect(() => {
-    const call =
-      gsap.delayedCall(
-        0.52,
-
-        () => {
-          ScrollTrigger.refresh();
-        }
-      );
+    const timer =
+      window.setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 520);
 
 
     return () => {
-      call.kill();
+      clearTimeout(timer);
     };
   }, [activeIndex]);
 
 
   /* =========================================================
-     MODAL BACKGROUND LOCK
+     MODAL PAGE LOCK
   ========================================================= */
 
   useEffect(() => {
@@ -285,6 +298,7 @@ export default function FAQ() {
     html.style.overflow =
       "hidden";
 
+
     body.style.position =
       "fixed";
 
@@ -313,7 +327,7 @@ export default function FAQ() {
 
 
     /* =====================================================
-       OPEN ANIMATION
+       OPEN MODAL
     ===================================================== */
 
     requestAnimationFrame(() => {
@@ -478,7 +492,7 @@ export default function FAQ() {
 
 
   /* =========================================================
-     OPEN FORM
+     FORM OPEN
   ========================================================= */
 
   const openForm = () => {
@@ -487,7 +501,7 @@ export default function FAQ() {
 
 
   /* =========================================================
-     CLOSE FORM
+     FORM CLOSE
   ========================================================= */
 
   const closeForm = () => {
@@ -550,7 +564,7 @@ export default function FAQ() {
 
 
   /* =========================================================
-     ESCAPE
+     ESC
   ========================================================= */
 
   useEffect(() => {
@@ -591,6 +605,10 @@ export default function FAQ() {
     };
 
 
+  /* =========================================================
+     JSX
+  ========================================================= */
+
   return (
     <>
 
@@ -608,10 +626,13 @@ export default function FAQ() {
 
 
           {/* =================================================
-              LEFT
+              LEFT SIDE
+
+              IMPORTANT:
+              faq-left-column itself is sticky.
           ================================================= */}
 
-          <div className="faq-left-column">
+          <aside className="faq-left-column">
 
             <div
               ref={headingRef}
@@ -619,18 +640,22 @@ export default function FAQ() {
             >
 
               <h2 className="faq-title">
+
                 Questions parents
 
                 <span>
                   often ask.
                 </span>
+
               </h2>
 
 
               <p className="faq-intro-copy">
+
                 Everything you may want to
                 know before beginning your
                 journey with Vidya.
+
               </p>
 
 
@@ -657,7 +682,7 @@ export default function FAQ() {
 
             </div>
 
-          </div>
+          </aside>
 
 
           {/* =================================================
@@ -681,6 +706,7 @@ export default function FAQ() {
 
 
                 return (
+
                   <article
                     key={
                       item.question
@@ -727,9 +753,7 @@ export default function FAQ() {
 
 
                       <span className="faq-question-copy">
-                        {
-                          item.question
-                        }
+                        {item.question}
                       </span>
 
 
@@ -737,8 +761,11 @@ export default function FAQ() {
                         className="faq-plus"
                         aria-hidden="true"
                       >
+
                         <span />
+
                         <span />
+
                       </span>
 
                     </button>
@@ -749,9 +776,7 @@ export default function FAQ() {
                       <div>
 
                         <p>
-                          {
-                            item.answer
-                          }
+                          {item.answer}
                         </p>
 
                       </div>
@@ -759,6 +784,7 @@ export default function FAQ() {
                     </div>
 
                   </article>
+
                 );
               }
             )}
@@ -781,9 +807,7 @@ export default function FAQ() {
 
           className="admission-overlay"
 
-          onPointerDown={(
-            event
-          ) => {
+          onPointerDown={(event) => {
             if (
               event.target ===
               event.currentTarget
@@ -804,9 +828,7 @@ export default function FAQ() {
 
             aria-labelledby="admission-title"
 
-            onPointerDown={(
-              event
-            ) =>
+            onPointerDown={(event) =>
               event.stopPropagation()
             }
           >
@@ -832,7 +854,7 @@ export default function FAQ() {
 
 
             {/* =================================================
-                FORM INTRO
+                LEFT MODAL CONTENT
             ================================================= */}
 
             <div className="admission-panel-left">
@@ -843,24 +865,29 @@ export default function FAQ() {
 
 
               <h2 id="admission-title">
+
                 Begin your
 
                 <span>
                   Vidya journey.
                 </span>
+
               </h2>
 
 
               <p>
+
                 Share a few details and
                 our admissions team will
                 help you with the next step.
+
               </p>
 
 
               <div className="admission-step-list">
 
                 <div className="admission-step">
+
                   <span>
                     01
                   </span>
@@ -868,10 +895,12 @@ export default function FAQ() {
                   <p>
                     Send your enquiry
                   </p>
+
                 </div>
 
 
                 <div className="admission-step">
+
                   <span>
                     02
                   </span>
@@ -879,10 +908,12 @@ export default function FAQ() {
                   <p>
                     Connect with our team
                   </p>
+
                 </div>
 
 
                 <div className="admission-step">
+
                   <span>
                     03
                   </span>
@@ -890,6 +921,7 @@ export default function FAQ() {
                   <p>
                     Plan your campus visit
                   </p>
+
                 </div>
 
               </div>
@@ -898,7 +930,7 @@ export default function FAQ() {
 
 
             {/* =================================================
-                FORM
+                RIGHT MODAL FORM
             ================================================= */}
 
             <div className="admission-panel-right">
@@ -911,6 +943,8 @@ export default function FAQ() {
                 }
               >
 
+                {/* CHILD */}
+
                 <div className="admission-field">
 
                   <label htmlFor="childName">
@@ -919,13 +953,18 @@ export default function FAQ() {
 
                   <input
                     id="childName"
+
                     type="text"
+
                     placeholder="Enter child's name"
+
                     required
                   />
 
                 </div>
 
+
+                {/* PARENT */}
 
                 <div className="admission-field">
 
@@ -935,13 +974,18 @@ export default function FAQ() {
 
                   <input
                     id="parentName"
+
                     type="text"
+
                     placeholder="Enter your name"
+
                     required
                   />
 
                 </div>
 
+
+                {/* MOBILE */}
 
                 <div className="admission-field">
 
@@ -951,14 +995,20 @@ export default function FAQ() {
 
                   <input
                     id="mobile"
+
                     type="tel"
+
                     inputMode="tel"
+
                     placeholder="+91"
+
                     required
                   />
 
                 </div>
 
+
+                {/* EMAIL */}
 
                 <div className="admission-field">
 
@@ -968,14 +1018,20 @@ export default function FAQ() {
 
                   <input
                     id="email"
+
                     type="email"
+
                     inputMode="email"
+
                     placeholder="you@example.com"
+
                     required
                   />
 
                 </div>
 
+
+                {/* GRADE */}
 
                 <div className="admission-field">
 
@@ -985,7 +1041,9 @@ export default function FAQ() {
 
                   <select
                     id="grade"
+
                     defaultValue=""
+
                     required
                   >
 
@@ -1053,6 +1111,8 @@ export default function FAQ() {
                 </div>
 
 
+                {/* YEAR */}
+
                 <div className="admission-field">
 
                   <label htmlFor="academicYear">
@@ -1061,7 +1121,9 @@ export default function FAQ() {
 
                   <select
                     id="academicYear"
+
                     defaultValue=""
+
                     required
                   >
 
@@ -1085,6 +1147,8 @@ export default function FAQ() {
                 </div>
 
 
+                {/* MESSAGE */}
+
                 <div className="admission-field admission-field-full">
 
                   <label htmlFor="message">
@@ -1093,12 +1157,16 @@ export default function FAQ() {
 
                   <textarea
                     id="message"
+
                     rows="3"
+
                     placeholder="Anything you'd like us to know?"
                   />
 
                 </div>
 
+
+                {/* SUBMIT */}
 
                 <div className="admission-field admission-field-full">
 
@@ -1107,6 +1175,7 @@ export default function FAQ() {
 
                     className="admission-submit"
                   >
+
                     <span>
                       Submit enquiry
                     </span>
@@ -1114,6 +1183,7 @@ export default function FAQ() {
                     <span>
                       ↗
                     </span>
+
                   </button>
 
                 </div>

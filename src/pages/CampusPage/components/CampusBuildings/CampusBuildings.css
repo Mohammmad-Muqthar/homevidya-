@@ -1,0 +1,918 @@
+/* =========================================================
+   ROOT
+
+   Starts directly after Grounds.
+   No manifesto / large introduction.
+========================================================= */
+
+.campus-buildings {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background:
+    #ece9e3;
+
+  color:
+    #151515;
+
+  padding-bottom:
+    clamp(
+      85px,
+      8vw,
+      130px
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+.campus-buildings *,
+.campus-buildings *::before,
+.campus-buildings *::after {
+  box-sizing:
+    border-box;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   BUILDINGS MARQUEE SECTION
+
+   SAME PROPORTIONS AS GROUNDS
+========================================================= */
+
+.campus-buildings-marquee-section {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+
+  height:
+    clamp(
+      340px,
+      20vw,
+      390px
+    );
+
+  min-height:
+    340px;
+
+  overflow: hidden;
+
+  background:
+    #ece9e3;
+}
+
+
+/* =========================================================
+   SHELL
+========================================================= */
+
+.campus-buildings-marquee-shell {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.campus-buildings-marquee-track {
+  display: flex;
+
+  align-items: center;
+
+  width:
+    max-content;
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   GROUP
+========================================================= */
+
+.campus-buildings-marquee-group {
+  display: flex;
+
+  flex-shrink: 0;
+
+  align-items: center;
+}
+
+
+/* =========================================================
+   ITEM
+========================================================= */
+
+.campus-buildings-marquee-item {
+  display: flex;
+
+  flex-shrink: 0;
+
+  align-items: center;
+
+  gap:
+    clamp(
+      35px,
+      2.3vw,
+      48px
+    );
+
+  margin-right:
+    clamp(
+      42px,
+      3vw,
+      62px
+    );
+}
+
+
+/* =========================================================
+   THE BUILDINGS TEXT
+========================================================= */
+
+.campus-buildings-marquee-item > span {
+  white-space: nowrap;
+
+  color:
+    #151515;
+
+  font-size:
+    clamp(
+      62px,
+      4vw,
+      82px
+    );
+
+  font-weight:
+    600;
+
+  line-height:
+    0.94;
+
+  letter-spacing:
+    -0.06em;
+}
+
+
+/* =========================================================
+   SMALL MOVING IMAGE
+========================================================= */
+
+.campus-buildings-thumb {
+  position: relative;
+
+  flex:
+    0 0 auto;
+
+  width:
+    clamp(
+      165px,
+      10vw,
+      195px
+    );
+
+  height:
+    clamp(
+      105px,
+      6.6vw,
+      128px
+    );
+
+  overflow: hidden;
+
+  background:
+    #d3cfc8;
+}
+
+
+.campus-buildings-thumb img {
+  position: absolute;
+
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+
+  pointer-events:
+    none;
+
+  user-select:
+    none;
+
+  -webkit-user-drag:
+    none;
+}
+
+
+/* =========================================================
+   BUILDING DESCRIPTION
+========================================================= */
+
+.campus-buildings-caption {
+  width:
+    min(
+      720px,
+      calc(
+        100% - 80px
+      )
+    );
+
+  margin:
+    0
+    auto
+    clamp(
+      55px,
+      5vw,
+      85px
+    );
+
+  text-align:
+    center;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+.campus-buildings-caption p {
+  margin: 0;
+
+  color:
+    #262723;
+
+  font-size:
+    clamp(
+      22px,
+      1.8vw,
+      31px
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.28;
+
+  letter-spacing:
+    -0.035em;
+
+  text-wrap:
+    balance;
+}
+
+
+/* =========================================================
+   BUILDINGS GRID
+========================================================= */
+
+.campus-buildings-grid {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      12,
+      minmax(0, 1fr)
+    );
+
+  grid-auto-flow:
+    dense;
+
+  grid-auto-rows:
+    clamp(
+      46px,
+      4.4vw,
+      72px
+    );
+
+  gap:
+    clamp(
+      8px,
+      0.8vw,
+      14px
+    );
+
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--page-padding) *
+          2
+        )
+      ),
+      1540px
+    );
+
+  margin:
+    0 auto;
+}
+
+
+/* =========================================================
+   PHOTO BASE
+========================================================= */
+
+.campus-building-photo {
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  min-width: 0;
+
+  min-height: 0;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  background:
+    #d6d2cb;
+
+  border-radius: 0;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.campus-building-photo img {
+  position: absolute;
+
+  inset:
+    -4% 0;
+
+  display: block;
+
+  width: 100%;
+
+  height: 108%;
+
+  object-fit: cover;
+
+  object-position:
+    center;
+
+  transform:
+    scale(1.07);
+
+  pointer-events: none;
+
+  user-select: none;
+
+  -webkit-user-drag:
+    none;
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   BUILDING COLLAGE
+
+   Same editorial rhythm,
+   slightly different arrangement from Grounds.
+========================================================= */
+
+.building-photo--01 {
+  grid-column:
+    1 / span 5;
+
+  grid-row:
+    1 / span 4;
+}
+
+
+.building-photo--02 {
+  grid-column:
+    6 / span 3;
+
+  grid-row:
+    1 / span 5;
+}
+
+
+.building-photo--03 {
+  grid-column:
+    9 / span 4;
+
+  grid-row:
+    1 / span 3;
+}
+
+
+.building-photo--04 {
+  grid-column:
+    1 / span 4;
+
+  grid-row:
+    5 / span 4;
+}
+
+
+.building-photo--05 {
+  grid-column:
+    9 / span 4;
+
+  grid-row:
+    4 / span 5;
+}
+
+
+.building-photo--06 {
+  grid-column:
+    5 / span 4;
+
+  grid-row:
+    6 / span 4;
+}
+
+
+.building-photo--07 {
+  grid-column:
+    1 / span 4;
+
+  grid-row:
+    9 / span 4;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1500px) {
+
+  .campus-buildings-marquee-item > span {
+    font-size:
+      84px;
+  }
+
+
+  .campus-buildings-thumb {
+    width:
+      195px;
+
+    height:
+      128px;
+  }
+
+
+  .campus-buildings-caption {
+    width:
+      min(
+        760px,
+        calc(
+          100% - 100px
+        )
+      );
+  }
+
+
+  .campus-buildings-caption p {
+    font-size:
+      31px;
+  }
+
+
+  .campus-buildings-grid {
+    grid-auto-rows:
+      70px;
+  }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media
+(max-width: 1200px)
+and
+(min-width: 769px) {
+
+  .campus-buildings-marquee-section {
+    height:
+      330px;
+
+    min-height:
+      330px;
+  }
+
+
+  .campus-buildings-marquee-item > span {
+    font-size:
+      clamp(
+        54px,
+        5.7vw,
+        70px
+      );
+  }
+
+
+  .campus-buildings-thumb {
+    width:
+      165px;
+
+    height:
+      108px;
+  }
+
+
+  .campus-buildings-marquee-item {
+    gap:
+      30px;
+
+    margin-right:
+      44px;
+  }
+
+
+  .campus-buildings-caption {
+    width:
+      min(
+        650px,
+        calc(
+          100% - 60px
+        )
+      );
+
+    margin-bottom:
+      60px;
+  }
+
+
+  .campus-buildings-caption p {
+    font-size:
+      clamp(
+        20px,
+        2.2vw,
+        27px
+      );
+  }
+
+
+  .campus-buildings-grid {
+    grid-auto-rows:
+      clamp(
+        42px,
+        4.5vw,
+        58px
+      );
+
+    gap: 9px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .campus-buildings {
+    padding-bottom:
+      75px;
+  }
+
+
+  /* =====================================================
+     MARQUEE
+  ===================================================== */
+
+  .campus-buildings-marquee-section {
+    height:
+      245px;
+
+    min-height:
+      245px;
+  }
+
+
+  .campus-buildings-marquee-item {
+    gap:
+      18px;
+
+    margin-right:
+      28px;
+  }
+
+
+  .campus-buildings-marquee-item > span {
+    font-size:
+      clamp(
+        38px,
+        10.5vw,
+        52px
+      );
+
+    letter-spacing:
+      -0.058em;
+  }
+
+
+  .campus-buildings-thumb {
+    width:
+      clamp(
+        100px,
+        28vw,
+        128px
+      );
+
+    height:
+      clamp(
+        66px,
+        18vw,
+        84px
+      );
+  }
+
+
+  /* =====================================================
+     CAPTION
+  ===================================================== */
+
+  .campus-buildings-caption {
+    width:
+      calc(
+        100% - 44px
+      );
+
+    max-width:
+      520px;
+
+    margin:
+      0
+      auto
+      48px;
+
+    text-align:
+      left;
+  }
+
+
+  .campus-buildings-caption p {
+    font-size:
+      clamp(
+        18px,
+        5vw,
+        23px
+      );
+
+    line-height:
+      1.3;
+
+    letter-spacing:
+      -0.032em;
+  }
+
+
+  /* =====================================================
+     MOBILE BUILDING COLLAGE
+  ===================================================== */
+
+  .campus-buildings-grid {
+    width:
+      calc(
+        100% - 24px
+      );
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    grid-auto-rows:
+      59px;
+
+    gap:
+      7px;
+
+    touch-action:
+      pan-y;
+  }
+
+
+  .campus-building-photo {
+    touch-action:
+      pan-y;
+  }
+
+
+  .building-photo--01 {
+    grid-column:
+      1 !important;
+
+    grid-row:
+      1 / span 4 !important;
+  }
+
+
+  .building-photo--02 {
+    grid-column:
+      2 !important;
+
+    grid-row:
+      1 / span 3 !important;
+  }
+
+
+  .building-photo--03 {
+    grid-column:
+      2 !important;
+
+    grid-row:
+      4 / span 4 !important;
+  }
+
+
+  .building-photo--04 {
+    grid-column:
+      1 !important;
+
+    grid-row:
+      5 / span 3 !important;
+  }
+
+
+  .building-photo--05 {
+    grid-column:
+      1 !important;
+
+    grid-row:
+      8 / span 4 !important;
+  }
+
+
+  .building-photo--06 {
+    grid-column:
+      2 !important;
+
+    grid-row:
+      8 / span 3 !important;
+  }
+
+
+  .building-photo--07 {
+    grid-column:
+      1 / -1 !important;
+
+    grid-row:
+      12 / span 4 !important;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .campus-buildings-marquee-section {
+    height:
+      220px;
+
+    min-height:
+      220px;
+  }
+
+
+  .campus-buildings-marquee-item {
+    gap:
+      15px;
+
+    margin-right:
+      24px;
+  }
+
+
+  .campus-buildings-marquee-item > span {
+    font-size:
+      clamp(
+        35px,
+        9.5vw,
+        44px
+      );
+  }
+
+
+  .campus-buildings-thumb {
+    width:
+      96px;
+
+    height:
+      64px;
+  }
+
+
+  .campus-buildings-caption {
+    width:
+      calc(
+        100% - 34px
+      );
+
+    margin-bottom:
+      42px;
+  }
+
+
+  .campus-buildings-caption p {
+    font-size:
+      clamp(
+        17px,
+        4.8vw,
+        21px
+      );
+
+    line-height:
+      1.32;
+  }
+
+
+  .campus-buildings-grid {
+    width:
+      calc(
+        100% - 18px
+      );
+
+    grid-auto-rows:
+      53px;
+
+    gap:
+      6px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media
+(prefers-reduced-motion: reduce) {
+
+  .campus-buildings-marquee-track {
+    transform:
+      none !important;
+  }
+
+
+  .campus-buildings-caption,
+  .campus-building-photo,
+  .campus-building-photo img {
+    opacity:
+      1 !important;
+
+    transform:
+      none !important;
+  }
+
+}

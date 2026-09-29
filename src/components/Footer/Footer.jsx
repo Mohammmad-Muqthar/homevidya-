@@ -1,7 +1,5 @@
 import { useLayoutEffect, useRef } from "react";
-
 import gsap from "gsap";
-
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./Footer.css";
@@ -15,11 +13,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SCHOOL = {
   location: "Kundapura, Karnataka, India",
-
   phone: "+91 00000 00000",
-
   email: "admissions@vidyaacademy.edu",
-
   whatsapp: "",
 };
 
@@ -37,34 +32,28 @@ const footerColumns = [
         label: "About us",
         href: "#about",
       },
-
       {
         label: "Campus",
         href: "#about",
       },
-
       {
         label: "Experience",
         href: "#life-at-school",
       },
-
       {
         label: "Programmes",
         href: "#academic-programs",
       },
-
       {
         label: "The Vidya Way",
         href: "#the-way",
       },
-
       {
         label: "Quick facts",
         href: "#quick-facts",
       },
     ],
   },
-
 
   {
     title: "Admissions",
@@ -74,24 +63,20 @@ const footerColumns = [
         label: "Admission enquiry",
         href: "#faq",
       },
-
       {
         label: "Contact admissions",
         href: "#faq",
       },
-
       {
         label: "FAQs",
         href: "#faq",
       },
-
       {
         label: "Fees & finance",
         href: "#faq",
       },
     ],
   },
-
 
   {
     title: "Connect",
@@ -101,22 +86,18 @@ const footerColumns = [
         label: "Instagram",
         href: "#footer",
       },
-
       {
         label: "LinkedIn",
         href: "#footer",
       },
-
       {
         label: "YouTube",
         href: "#footer",
       },
-
       {
         label: "Parent login",
         href: "#footer",
       },
-
       {
         label: "Careers",
         href: "#footer",
@@ -127,7 +108,7 @@ const footerColumns = [
 
 
 /* =========================================================
-   WHATSAPP ICON
+   WHATSAPP
 ========================================================= */
 
 function WhatsAppIcon() {
@@ -155,7 +136,7 @@ function WhatsAppIcon() {
 
 
 /* =========================================================
-   LOCATION ICON
+   LOCATION
 ========================================================= */
 
 function LocationIcon() {
@@ -183,7 +164,7 @@ function LocationIcon() {
 
 
 /* =========================================================
-   PHONE ICON
+   PHONE
 ========================================================= */
 
 function PhoneIcon() {
@@ -206,7 +187,7 @@ function PhoneIcon() {
 
 
 /* =========================================================
-   EMAIL ICON
+   EMAIL
 ========================================================= */
 
 function EmailIcon() {
@@ -245,11 +226,6 @@ function EmailIcon() {
 export default function Footer() {
   const footerRef = useRef(null);
 
-
-  /* =========================================================
-     FOOTER ANIMATION
-  ========================================================= */
-
   useLayoutEffect(() => {
     const footer = footerRef.current;
 
@@ -257,11 +233,9 @@ export default function Footer() {
       return undefined;
     }
 
-
-    const reducedMotion =
-      window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
 
     const ctx = gsap.context(() => {
@@ -276,11 +250,9 @@ export default function Footer() {
 
       gsap.fromTo(
         footer,
-
         {
           yPercent: 2,
         },
-
         {
           yPercent: 0,
 
@@ -307,12 +279,10 @@ export default function Footer() {
 
       gsap.fromTo(
         ".vidya-footer-info",
-
         {
           y: 18,
           opacity: 0.65,
         },
-
         {
           y: 0,
           opacity: 1,
@@ -338,12 +308,10 @@ export default function Footer() {
 
       gsap.fromTo(
         ".vidya-footer-column",
-
         {
           y: 14,
           opacity: 0.55,
         },
-
         {
           y: 0,
           opacity: 1,
@@ -365,12 +333,41 @@ export default function Footer() {
       );
 
 
-      /*
-        MASCOT ANIMATION REMOVED.
+      /* =====================================================
+         MASCOT ENTRANCE ONLY
+         
+         IMPORTANT:
+         The floating animation is on the wrapper,
+         so this animation never fights with floating.
+      ===================================================== */
 
-        Everything else remains exactly
-        the same as your pasted footer.
-      */
+      gsap.fromTo(
+        ".vidya-footer-mascot",
+        {
+          y: 25,
+          opacity: 0,
+          scale: 0.97,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+
+          duration: 1.2,
+
+          ease: "power3.out",
+
+          scrollTrigger: {
+            trigger:
+              ".vidya-footer-mascot-wrap",
+
+            start: "top 92%",
+
+            toggleActions:
+              "play none none reverse",
+          },
+        }
+      );
 
 
       /* =====================================================
@@ -379,12 +376,10 @@ export default function Footer() {
 
       gsap.fromTo(
         ".vidya-footer-large-name",
-
         {
           y: 25,
           opacity: 0.55,
         },
-
         {
           y: 0,
           opacity: 1,
@@ -395,11 +390,9 @@ export default function Footer() {
             trigger:
               ".vidya-footer-brand",
 
-            start:
-              "top 94%",
+            start: "top 94%",
 
-            end:
-              "top 76%",
+            end: "top 76%",
 
             scrub: 1.5,
           },
@@ -413,12 +406,10 @@ export default function Footer() {
 
       gsap.fromTo(
         ".vidya-footer-bottom",
-
         {
           y: 10,
           opacity: 0.55,
         },
-
         {
           y: 0,
           opacity: 1,
@@ -429,11 +420,9 @@ export default function Footer() {
             trigger:
               ".vidya-footer-bottom",
 
-            start:
-              "top 98%",
+            start: "top 98%",
 
-            end:
-              "top 86%",
+            end: "top 86%",
 
             scrub: 1.4,
           },
@@ -442,10 +431,6 @@ export default function Footer() {
 
     }, footer);
 
-
-    /* =======================================================
-       RESIZE
-    ======================================================= */
 
     const handleResize = () => {
       ScrollTrigger.refresh();
@@ -474,9 +459,9 @@ export default function Footer() {
   }, []);
 
 
-  /* =========================================================
+  /* =======================================================
      WHATSAPP
-  ========================================================= */
+  ======================================================= */
 
   const whatsappNumber =
     SCHOOL.whatsapp.replace(
@@ -497,10 +482,6 @@ export default function Footer() {
     );
 
 
-  /* =========================================================
-     JSX
-  ========================================================= */
-
   return (
     <footer
       ref={footerRef}
@@ -510,11 +491,13 @@ export default function Footer() {
 
       <div className="vidya-footer-container">
 
+
         {/* =================================================
             MAIN
         ================================================= */}
 
         <div className="vidya-footer-main">
+
 
           {/* =================================================
               LEFT INFORMATION
@@ -522,9 +505,9 @@ export default function Footer() {
 
           <div className="vidya-footer-info">
 
-            <h2 className="vidya-footer-title">
+            {/* <h2 className="vidya-footer-title">
               Vidya Academy
-            </h2>
+            </h2> */}
 
 
             <p className="vidya-footer-description">
@@ -546,7 +529,6 @@ export default function Footer() {
                   <LocationIcon />
                 </span>
 
-
                 <span>
                   {SCHOOL.location}
                 </span>
@@ -560,7 +542,6 @@ export default function Footer() {
                   <PhoneIcon />
                 </span>
 
-
                 <span>
                   {SCHOOL.phone}
                 </span>
@@ -573,7 +554,6 @@ export default function Footer() {
                 <span className="detail-icon">
                   <EmailIcon />
                 </span>
-
 
                 <span>
                   {SCHOOL.email}
@@ -592,15 +572,12 @@ export default function Footer() {
 
               <a
                 className="vidya-footer-whatsapp"
-
                 href={whatsappHref}
-
                 target={
                   hasWhatsapp
                     ? "_blank"
                     : undefined
                 }
-
                 rel={
                   hasWhatsapp
                     ? "noopener noreferrer"
@@ -609,7 +586,6 @@ export default function Footer() {
               >
 
                 <WhatsAppIcon />
-
 
                 <span>
                   Chat on WhatsApp
@@ -633,7 +609,6 @@ export default function Footer() {
 
             {footerColumns.map(
               (column) => (
-
                 <div
                   className="vidya-footer-column"
                   key={column.title}
@@ -648,26 +623,27 @@ export default function Footer() {
 
                     {column.links.map(
                       (link) => (
-
                         <li
-                          key={`${column.title}-${link.label}`}
+                          key={
+                            `${column.title}-${link.label}`
+                          }
                         >
 
                           <a
-                            href={link.href}
+                            href={
+                              link.href
+                            }
                           >
                             {link.label}
                           </a>
 
                         </li>
-
                       )
                     )}
 
                   </ul>
 
                 </div>
-
               )
             )}
 
@@ -675,33 +651,18 @@ export default function Footer() {
 
 
           {/* =================================================
-              VISUAL AREA
-
-              IMPORTANT:
-              We KEEP this wrapper so your existing grid,
-              spacing and footer UI remain exactly the same.
-
-              Only the mascot image itself is removed.
+              MASCOT
           ================================================= */}
 
-          <div
-            className="vidya-footer-visual"
-            aria-hidden="true"
-          >
+          <div className="vidya-footer-visual">
 
             <div className="vidya-footer-mascot-wrap">
 
-              {/*
-                Mascot image removed.
-
-                Previous code was:
-
-                <img
-                  src="/images/vidya-mascot-3d.png"
-                  alt="Vidya Academy mascot studying"
-                  className="vidya-footer-mascot"
-                />
-              */}
+              <img
+                src="/images/vidu-footer-mascot.png"
+                alt="Vidya Academy mascot studying"
+                className="vidya-footer-mascot"
+              />
 
             </div>
 
@@ -743,17 +704,13 @@ export default function Footer() {
               Privacy policy
             </a>
 
-
             <span>|</span>
-
 
             <a href="#footer">
               Terms of use
             </a>
 
-
             <span>|</span>
-
 
             <a href="#footer">
               Sitemap
