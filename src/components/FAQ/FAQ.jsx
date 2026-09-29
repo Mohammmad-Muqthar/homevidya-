@@ -73,12 +73,14 @@ const faqItems = [
 ========================================================= */
 
 export default function FAQ() {
+  /*
+    First question open from the beginning.
+  */
   const [activeIndex, setActiveIndex] =
     useState(0);
 
   const [formOpen, setFormOpen] =
     useState(false);
-
 
   const sectionRef =
     useRef(null);
@@ -103,18 +105,16 @@ export default function FAQ() {
 
 
   /* =========================================================
-     ENTRANCE ANIMATIONS
+     FAQ ENTRANCE
 
-     IMPORTANT:
-     NO GSAP PINNING HERE.
-
-     Native CSS sticky handles left side.
+     No Y movement on the FAQ list.
+     This means the first question stays aligned with
+     the left column from the first frame.
   ========================================================= */
 
   useLayoutEffect(() => {
     const section =
       sectionRef.current;
-
 
     if (!section) {
       return;
@@ -124,12 +124,7 @@ export default function FAQ() {
     const ctx =
       gsap.context(() => {
 
-        /*
-          LEFT
-
-          Opacity only.
-          No transform on sticky element.
-        */
+        /* LEFT */
 
         gsap.fromTo(
           headingRef.current,
@@ -141,17 +136,16 @@ export default function FAQ() {
           {
             opacity: 1,
 
-            duration: 0.8,
+            duration: 0.75,
 
-            ease:
-              "power3.out",
+            ease: "power3.out",
 
             scrollTrigger: {
               trigger:
                 headingRef.current,
 
               start:
-                "top 88%",
+                "top 90%",
 
               once:
                 true,
@@ -160,28 +154,22 @@ export default function FAQ() {
         );
 
 
-        /*
-          RIGHT
-        */
+        /* RIGHT */
 
         gsap.fromTo(
           listRef.current,
 
           {
             opacity: 0,
-
-            y: 35,
           },
 
           {
             opacity: 1,
 
-            y: 0,
-
-            duration: 0.9,
+            duration: 0.75,
 
             ease:
-              "power4.out",
+              "power3.out",
 
             scrollTrigger: {
               trigger:
@@ -206,13 +194,13 @@ export default function FAQ() {
 
 
   /* =========================================================
-     REFRESH AFTER FAQ OPENS/CLOSES
+     REFRESH WHEN FAQ HEIGHT CHANGES
   ========================================================= */
 
   useEffect(() => {
     const call =
       gsap.delayedCall(
-        0.55,
+        0.52,
 
         () => {
           ScrollTrigger.refresh();
@@ -227,9 +215,7 @@ export default function FAQ() {
 
 
   /* =========================================================
-     MOBILE / DESKTOP BACKGROUND LOCK
-
-     Page behind modal stays exactly where it was.
+     MODAL BACKGROUND LOCK
   ========================================================= */
 
   useEffect(() => {
@@ -299,7 +285,6 @@ export default function FAQ() {
     html.style.overflow =
       "hidden";
 
-
     body.style.position =
       "fixed";
 
@@ -319,7 +304,9 @@ export default function FAQ() {
       "hidden";
 
 
-    if (scrollbarWidth > 0) {
+    if (
+      scrollbarWidth > 0
+    ) {
       body.style.paddingRight =
         `${scrollbarWidth}px`;
     }
@@ -344,10 +331,6 @@ export default function FAQ() {
         return;
       }
 
-
-      /*
-        Form always starts at top.
-      */
 
       panel.scrollTop =
         0;
@@ -438,12 +421,11 @@ export default function FAQ() {
       timeline.add(() => {
         closeRef.current?.focus();
       });
-
     });
 
 
     /* =====================================================
-       RESTORE PAGE WHEN MODAL CLOSES
+       RESTORE PAGE
     ===================================================== */
 
     return () => {
@@ -574,14 +556,13 @@ export default function FAQ() {
   useEffect(() => {
     const handleKeyDown =
       (event) => {
-
         if (
-          event.key === "Escape" &&
+          event.key ===
+            "Escape" &&
           formOpen
         ) {
           closeForm();
         }
-
       };
 
 
@@ -627,7 +608,7 @@ export default function FAQ() {
 
 
           {/* =================================================
-              LEFT COLUMN
+              LEFT
           ================================================= */}
 
           <div className="faq-left-column">
@@ -638,22 +619,18 @@ export default function FAQ() {
             >
 
               <h2 className="faq-title">
-
                 Questions parents
 
                 <span>
                   often ask.
                 </span>
-
               </h2>
 
 
               <p className="faq-intro-copy">
-
                 Everything you may want to
                 know before beginning your
                 journey with Vidya.
-
               </p>
 
 
@@ -684,7 +661,7 @@ export default function FAQ() {
 
 
           {/* =================================================
-              FAQ LIST
+              QUESTIONS
           ================================================= */}
 
           <div
@@ -750,18 +727,18 @@ export default function FAQ() {
 
 
                       <span className="faq-question-copy">
-
-                        {item.question}
-
+                        {
+                          item.question
+                        }
                       </span>
 
 
-                      <span className="faq-plus">
-
+                      <span
+                        className="faq-plus"
+                        aria-hidden="true"
+                      >
                         <span />
-
                         <span />
-
                       </span>
 
                     </button>
@@ -772,7 +749,9 @@ export default function FAQ() {
                       <div>
 
                         <p>
-                          {item.answer}
+                          {
+                            item.answer
+                          }
                         </p>
 
                       </div>
@@ -802,15 +781,15 @@ export default function FAQ() {
 
           className="admission-overlay"
 
-          onPointerDown={(event) => {
-
+          onPointerDown={(
+            event
+          ) => {
             if (
               event.target ===
               event.currentTarget
             ) {
               closeForm();
             }
-
           }}
         >
 
@@ -825,7 +804,9 @@ export default function FAQ() {
 
             aria-labelledby="admission-title"
 
-            onPointerDown={(event) =>
+            onPointerDown={(
+              event
+            ) =>
               event.stopPropagation()
             }
           >
@@ -845,11 +826,8 @@ export default function FAQ() {
 
               aria-label="Close admission form"
             >
-
               <span />
-
               <span />
-
             </button>
 
 
@@ -865,29 +843,24 @@ export default function FAQ() {
 
 
               <h2 id="admission-title">
-
                 Begin your
 
                 <span>
                   Vidya journey.
                 </span>
-
               </h2>
 
 
               <p>
-
                 Share a few details and
                 our admissions team will
                 help you with the next step.
-
               </p>
 
 
               <div className="admission-step-list">
 
                 <div className="admission-step">
-
                   <span>
                     01
                   </span>
@@ -895,12 +868,10 @@ export default function FAQ() {
                   <p>
                     Send your enquiry
                   </p>
-
                 </div>
 
 
                 <div className="admission-step">
-
                   <span>
                     02
                   </span>
@@ -908,12 +879,10 @@ export default function FAQ() {
                   <p>
                     Connect with our team
                   </p>
-
                 </div>
 
 
                 <div className="admission-step">
-
                   <span>
                     03
                   </span>
@@ -921,7 +890,6 @@ export default function FAQ() {
                   <p>
                     Plan your campus visit
                   </p>
-
                 </div>
 
               </div>
@@ -930,7 +898,7 @@ export default function FAQ() {
 
 
             {/* =================================================
-                FORM FIELDS
+                FORM
             ================================================= */}
 
             <div className="admission-panel-right">
@@ -949,14 +917,10 @@ export default function FAQ() {
                     Child's name
                   </label>
 
-
                   <input
                     id="childName"
-
                     type="text"
-
                     placeholder="Enter child's name"
-
                     required
                   />
 
@@ -969,14 +933,10 @@ export default function FAQ() {
                     Parent / guardian
                   </label>
 
-
                   <input
                     id="parentName"
-
                     type="text"
-
                     placeholder="Enter your name"
-
                     required
                   />
 
@@ -989,16 +949,11 @@ export default function FAQ() {
                     Mobile number
                   </label>
 
-
                   <input
                     id="mobile"
-
                     type="tel"
-
                     inputMode="tel"
-
                     placeholder="+91"
-
                     required
                   />
 
@@ -1011,16 +966,11 @@ export default function FAQ() {
                     Email address
                   </label>
 
-
                   <input
                     id="email"
-
                     type="email"
-
                     inputMode="email"
-
                     placeholder="you@example.com"
-
                     required
                   />
 
@@ -1033,12 +983,9 @@ export default function FAQ() {
                     Grade
                   </label>
 
-
                   <select
                     id="grade"
-
                     defaultValue=""
-
                     required
                   >
 
@@ -1112,12 +1059,9 @@ export default function FAQ() {
                     Academic year
                   </label>
 
-
                   <select
                     id="academicYear"
-
                     defaultValue=""
-
                     required
                   >
 
@@ -1141,51 +1085,35 @@ export default function FAQ() {
                 </div>
 
 
-                <div
-                  className="
-                    admission-field
-                    admission-field-full
-                  "
-                >
+                <div className="admission-field admission-field-full">
 
                   <label htmlFor="message">
                     Message
                   </label>
 
-
                   <textarea
                     id="message"
-
                     rows="3"
-
                     placeholder="Anything you'd like us to know?"
                   />
 
                 </div>
 
 
-                <div
-                  className="
-                    admission-field
-                    admission-field-full
-                  "
-                >
+                <div className="admission-field admission-field-full">
 
                   <button
                     type="submit"
 
                     className="admission-submit"
                   >
-
                     <span>
                       Submit enquiry
                     </span>
 
-
                     <span>
                       ↗
                     </span>
-
                   </button>
 
                 </div>

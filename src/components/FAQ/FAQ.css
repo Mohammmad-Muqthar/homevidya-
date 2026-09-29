@@ -1,14 +1,11 @@
 /* =========================================================
-   PAGE LOCK WHEN MODAL IS OPEN
+   PAGE LOCK
 ========================================================= */
 
 html.admission-modal-open,
 body.admission-modal-open {
-  overflow:
-    hidden !important;
-
-  overscroll-behavior:
-    none !important;
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
 }
 
 
@@ -17,22 +14,13 @@ body.admission-modal-open {
 ========================================================= */
 
 .faq-section {
-  position:
-    relative;
+  position: relative;
 
-  width:
-    100%;
+  width: 100%;
 
-  /*
-    IMPORTANT:
-    sticky cannot have an overflow parent.
-  */
+  overflow: visible;
 
-  overflow:
-    visible;
-
-  background:
-    #f3f0e6;
+  background: #f3f0e6;
 
   padding:
     clamp(
@@ -50,15 +38,13 @@ body.admission-modal-open {
 
 
 /* =========================================================
-   FAQ GRID
+   FAQ LAYOUT
 ========================================================= */
 
 .faq-layout {
-  position:
-    relative;
+  position: relative;
 
-  display:
-    grid;
+  display: grid;
 
   grid-template-columns:
     minmax(
@@ -71,17 +57,14 @@ body.admission-modal-open {
     );
 
   /*
-    THIS IS IMPORTANT.
+    CRITICAL.
 
-    Left column stretches to exactly
-    the same height as FAQ list.
-
-    This makes sticky stop exactly
-    with the final FAQ.
+    Both columns occupy the same grid row.
+    Therefore the left column gets the full height
+    of the complete FAQ list.
   */
 
-  align-items:
-    stretch;
+  align-items: stretch;
 
   gap:
     clamp(
@@ -106,78 +89,59 @@ body.admission-modal-open {
     0
     auto;
 
-  overflow:
-    visible;
+  overflow: visible;
 }
 
 
 /* =========================================================
    LEFT COLUMN
 
-   Its height automatically becomes the
-   height of the right FAQ list.
+   This column grows to the complete height
+   of the question list.
 ========================================================= */
 
 .faq-left-column {
-  position:
-    relative;
+  position: relative;
 
-  align-self:
-    stretch;
+  align-self: stretch;
 
-  width:
-    100%;
+  width: 100%;
 
-  min-width:
-    0;
+  min-width: 0;
 
-  /*
-    CRITICAL:
-    do not use overflow hidden/auto here.
-  */
+  min-height: 100%;
 
-  overflow:
-    visible;
+  overflow: visible;
 }
 
 
 /* =========================================================
-   STICKY LEFT CONTENT
+   STICKY LEFT
 
-   This stays while questions move.
+   TITLE + DESCRIPTION + BUTTON
+   ALL STAY TOGETHER.
 
-   At the final FAQ it naturally stops
-   because the parent column ends.
+   Sticky ends naturally when the FAQ list ends.
 ========================================================= */
 
 .faq-sticky {
-  position:
-    -webkit-sticky;
-
-  position:
-    sticky;
-
-  /*
-    Not too low.
-
-    Keeps it near navbar area.
-  */
+  position: -webkit-sticky;
+  position: sticky;
 
   top:
     clamp(
-      88px,
-      9vh,
-      105px
+      82px,
+      8.5vh,
+      96px
     );
 
-  width:
-    100%;
+  width: 100%;
 
-  max-width:
-    520px;
+  max-width: 520px;
 
-  z-index:
-    5;
+  z-index: 5;
+
+  align-self: start;
 }
 
 
@@ -186,8 +150,7 @@ body.admission-modal-open {
 ========================================================= */
 
 .faq-title {
-  margin:
-    0;
+  margin: 0;
 
   color:
     var(--green-deep);
@@ -203,11 +166,9 @@ body.admission-modal-open {
       73px
     );
 
-  font-weight:
-    520;
+  font-weight: 520;
 
-  line-height:
-    0.97;
+  line-height: 0.97;
 
   letter-spacing:
     -0.06em;
@@ -215,8 +176,7 @@ body.admission-modal-open {
 
 
 .faq-title span {
-  display:
-    block;
+  display: block;
 
   color:
     var(--green);
@@ -228,8 +188,7 @@ body.admission-modal-open {
 ========================================================= */
 
 .faq-intro-copy {
-  max-width:
-    380px;
+  max-width: 380px;
 
   margin:
     22px
@@ -255,11 +214,9 @@ body.admission-modal-open {
       17px
     );
 
-  font-weight:
-    400;
+  font-weight: 400;
 
-  line-height:
-    1.55;
+  line-height: 1.55;
 }
 
 
@@ -268,26 +225,19 @@ body.admission-modal-open {
 ========================================================= */
 
 .faq-admission-button {
-  display:
-    inline-flex;
+  display: inline-flex;
 
-  align-items:
-    center;
+  align-items: center;
 
-  justify-content:
-    space-between;
+  justify-content: space-between;
 
-  gap:
-    25px;
+  gap: 25px;
 
-  min-width:
-    248px;
+  min-width: 248px;
 
-  height:
-    54px;
+  height: 54px;
 
-  margin-top:
-    30px;
+  margin-top: 30px;
 
   padding:
     0
@@ -304,11 +254,9 @@ body.admission-modal-open {
       0.22
     );
 
-  border-radius:
-    0;
+  border-radius: 0;
 
-  background:
-    transparent;
+  background: transparent;
 
   color:
     var(--green-deep);
@@ -317,24 +265,19 @@ body.admission-modal-open {
     "Manrope",
     sans-serif;
 
-  font-size:
-    13px;
+  font-size: 13px;
 
-  font-weight:
-    650;
+  font-weight: 650;
 
-  cursor:
-    pointer;
+  cursor: pointer;
 
   transition:
     background
       0.35s
       ease,
-
     color
       0.35s
       ease,
-
     border-color
       0.35s
       ease;
@@ -342,29 +285,22 @@ body.admission-modal-open {
 
 
 .faq-admission-arrow {
-  display:
-    grid;
+  display: grid;
 
-  place-items:
-    center;
+  place-items: center;
 
-  flex-shrink:
-    0;
+  flex-shrink: 0;
 
-  width:
-    36px;
+  width: 36px;
 
-  height:
-    36px;
+  height: 36px;
 
   background:
     var(--green);
 
-  color:
-    #ffffff;
+  color: #ffffff;
 
-  font-size:
-    16px;
+  font-size: 16px;
 
   transition:
     transform
@@ -382,8 +318,7 @@ body.admission-modal-open {
     border-color:
       var(--green-deep);
 
-    color:
-      #ffffff;
+    color: #ffffff;
   }
 
 
@@ -404,14 +339,11 @@ body.admission-modal-open {
 ========================================================= */
 
 .faq-list {
-  position:
-    relative;
+  position: relative;
 
-  width:
-    100%;
+  width: 100%;
 
-  min-width:
-    0;
+  min-width: 0;
 
   border-top:
     1px solid
@@ -421,6 +353,13 @@ body.admission-modal-open {
       47,
       0.16
     );
+
+  /*
+    Do not move list vertically during entrance.
+    This keeps first question aligned with left heading.
+  */
+
+  transform: none;
 }
 
 
@@ -445,8 +384,7 @@ body.admission-modal-open {
 ========================================================= */
 
 .faq-question {
-  display:
-    grid;
+  display: grid;
 
   grid-template-columns:
     38px
@@ -456,14 +394,11 @@ body.admission-modal-open {
     )
     40px;
 
-  align-items:
-    center;
+  align-items: center;
 
-  gap:
-    18px;
+  gap: 18px;
 
-  width:
-    100%;
+  width: 100%;
 
   padding:
     clamp(
@@ -473,17 +408,26 @@ body.admission-modal-open {
     )
     0;
 
-  border:
-    0;
+  border: 0;
 
-  background:
-    transparent;
+  background: transparent;
 
-  text-align:
-    left;
+  text-align: left;
 
-  cursor:
-    pointer;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   FIRST QUESTION STARTS AT TOP
+
+   No large blank area above question 01.
+   It visually begins with the left heading.
+========================================================= */
+
+.faq-item:first-child
+.faq-question {
+  padding-top: 3px;
 }
 
 
@@ -504,11 +448,9 @@ body.admission-modal-open {
     "Manrope",
     sans-serif;
 
-  font-size:
-    9px;
+  font-size: 9px;
 
-  font-weight:
-    700;
+  font-weight: 700;
 
   letter-spacing:
     0.08em;
@@ -516,7 +458,7 @@ body.admission-modal-open {
 
 
 /* =========================================================
-   QUESTION COPY
+   QUESTION TEXT
 ========================================================= */
 
 .faq-question-copy {
@@ -534,11 +476,9 @@ body.admission-modal-open {
       28px
     );
 
-  font-weight:
-    550;
+  font-weight: 550;
 
-  line-height:
-    1.16;
+  line-height: 1.16;
 
   letter-spacing:
     -0.035em;
@@ -550,14 +490,11 @@ body.admission-modal-open {
 ========================================================= */
 
 .faq-plus {
-  position:
-    relative;
+  position: relative;
 
-  width:
-    38px;
+  width: 38px;
 
-  height:
-    38px;
+  height: 38px;
 
   border:
     1px solid
@@ -568,26 +505,20 @@ body.admission-modal-open {
       0.18
     );
 
-  border-radius:
-    50%;
+  border-radius: 50%;
 }
 
 
 .faq-plus span {
-  position:
-    absolute;
+  position: absolute;
 
-  left:
-    50%;
+  left: 50%;
 
-  top:
-    50%;
+  top: 50%;
 
-  width:
-    13px;
+  width: 13px;
 
-  height:
-    1px;
+  height: 1px;
 
   background:
     var(--green);
@@ -635,20 +566,17 @@ body.admission-modal-open {
 ========================================================= */
 
 .faq-answer {
-  display:
-    grid;
+  display: grid;
 
   grid-template-rows:
     0fr;
 
-  opacity:
-    0;
+  opacity: 0;
 
   transition:
     grid-template-rows
       0.48s
       var(--ease-main),
-
     opacity
       0.35s
       ease;
@@ -660,23 +588,19 @@ body.admission-modal-open {
   grid-template-rows:
     1fr;
 
-  opacity:
-    1;
+  opacity: 1;
 }
 
 
 .faq-answer > div {
-  min-height:
-    0;
+  min-height: 0;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 }
 
 
 .faq-answer p {
-  max-width:
-    590px;
+  max-width: 590px;
 
   margin:
     -6px
@@ -696,39 +620,30 @@ body.admission-modal-open {
     "Manrope",
     sans-serif;
 
-  font-size:
-    15px;
+  font-size: 15px;
 
-  font-weight:
-    400;
+  font-weight: 400;
 
-  line-height:
-    1.65;
+  line-height: 1.65;
 }
 
 
 /* =========================================================
-   MODAL OVERLAY
+   MODAL
 ========================================================= */
 
 .admission-overlay {
-  position:
-    fixed;
+  position: fixed;
 
-  z-index:
-    999999;
+  z-index: 999999;
 
-  inset:
-    0;
+  inset: 0;
 
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 
-  justify-content:
-    center;
+  justify-content: center;
 
   padding:
     clamp(
@@ -737,8 +652,7 @@ body.admission-modal-open {
       55px
     );
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
   background:
     rgba(
@@ -754,24 +668,20 @@ body.admission-modal-open {
   -webkit-backdrop-filter:
     blur(12px);
 
-  opacity:
-    0;
+  opacity: 0;
 
-  overscroll-behavior:
-    none;
+  overscroll-behavior: none;
 }
 
 
 /* =========================================================
-   FORM PANEL
+   PANEL
 ========================================================= */
 
 .admission-panel {
-  position:
-    relative;
+  position: relative;
 
-  display:
-    grid;
+  display: grid;
 
   grid-template-columns:
     minmax(
@@ -795,11 +705,9 @@ body.admission-modal-open {
       86dvh
     );
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  border-radius:
-    12px;
+  border-radius: 12px;
 
   background:
     #f6f3e9;
@@ -815,8 +723,7 @@ body.admission-modal-open {
       0.28
     );
 
-  opacity:
-    0;
+  opacity: 0;
 }
 
 
@@ -825,23 +732,17 @@ body.admission-modal-open {
 ========================================================= */
 
 .admission-close {
-  position:
-    absolute;
+  position: absolute;
 
-  z-index:
-    100;
+  z-index: 100;
 
-  top:
-    20px;
+  top: 20px;
 
-  right:
-    20px;
+  right: 20px;
 
-  width:
-    42px;
+  width: 42px;
 
-  height:
-    42px;
+  height: 42px;
 
   border:
     1px solid
@@ -852,8 +753,7 @@ body.admission-modal-open {
       0.15
     );
 
-  border-radius:
-    50%;
+  border-radius: 50%;
 
   background:
     rgba(
@@ -863,8 +763,7 @@ body.admission-modal-open {
       0.92
     );
 
-  cursor:
-    pointer;
+  cursor: pointer;
 
   transition:
     transform
@@ -874,27 +773,23 @@ body.admission-modal-open {
 
 
 .admission-close span {
-  position:
-    absolute;
+  position: absolute;
 
-  left:
-    50%;
+  left: 50%;
 
-  top:
-    50%;
+  top: 50%;
 
-  width:
-    17px;
+  width: 17px;
 
-  height:
-    1px;
+  height: 1px;
 
   background:
     var(--green-deep);
 }
 
 
-.admission-close span:first-child {
+.admission-close
+span:first-child {
   transform:
     translate(
       -50%,
@@ -906,7 +801,8 @@ body.admission-modal-open {
 }
 
 
-.admission-close span:last-child {
+.admission-close
+span:last-child {
   transform:
     translate(
       -50%,
@@ -931,18 +827,15 @@ body.admission-modal-open {
 
 
 /* =========================================================
-   FORM LEFT
+   MODAL LEFT
 ========================================================= */
 
 .admission-panel-left {
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  justify-content:
-    center;
+  justify-content: center;
 
   padding:
     clamp(
@@ -960,11 +853,9 @@ body.admission-modal-open {
 
 
 .admission-panel-label {
-  display:
-    block;
+  display: block;
 
-  margin-bottom:
-    17px;
+  margin-bottom: 17px;
 
   color:
     rgba(
@@ -978,11 +869,9 @@ body.admission-modal-open {
     "Manrope",
     sans-serif;
 
-  font-size:
-    9px;
+  font-size: 9px;
 
-  font-weight:
-    700;
+  font-weight: 700;
 
   letter-spacing:
     0.16em;
@@ -990,14 +879,11 @@ body.admission-modal-open {
 
 
 .admission-panel-left h2 {
-  max-width:
-    430px;
+  max-width: 430px;
 
-  margin:
-    0;
+  margin: 0;
 
-  color:
-    #ffffff;
+  color: #ffffff;
 
   font-family:
     "Manrope",
@@ -1010,11 +896,9 @@ body.admission-modal-open {
       64px
     );
 
-  font-weight:
-    510;
+  font-weight: 510;
 
-  line-height:
-    0.94;
+  line-height: 0.94;
 
   letter-spacing:
     -0.06em;
@@ -1022,8 +906,7 @@ body.admission-modal-open {
 
 
 .admission-panel-left h2 span {
-  display:
-    block;
+  display: block;
 
   color:
     rgba(
@@ -1036,8 +919,7 @@ body.admission-modal-open {
 
 
 .admission-panel-left > p {
-  max-width:
-    350px;
+  max-width: 350px;
 
   margin:
     24px
@@ -1056,37 +938,31 @@ body.admission-modal-open {
     "Manrope",
     sans-serif;
 
-  font-size:
-    15px;
+  font-size: 15px;
 
-  line-height:
-    1.55;
+  line-height: 1.55;
 }
 
 
 /* =========================================================
-   FORM STEPS
+   STEPS
 ========================================================= */
 
 .admission-step-list {
-  max-width:
-    330px;
+  max-width: 330px;
 }
 
 
 .admission-step {
-  display:
-    grid;
+  display: grid;
 
   grid-template-columns:
     32px
     1fr;
 
-  align-items:
-    center;
+  align-items: center;
 
-  gap:
-    12px;
+  gap: 12px;
 
   padding:
     12px
@@ -1124,21 +1000,14 @@ body.admission-modal-open {
       0.36
     );
 
-  font-family:
-    "Manrope",
-    sans-serif;
+  font-size: 9px;
 
-  font-size:
-    9px;
-
-  font-weight:
-    700;
+  font-weight: 700;
 }
 
 
 .admission-step p {
-  margin:
-    0;
+  margin: 0;
 
   color:
     rgba(
@@ -1148,25 +1017,18 @@ body.admission-modal-open {
       0.82
     );
 
-  font-family:
-    "Manrope",
-    sans-serif;
-
-  font-size:
-    13px;
+  font-size: 13px;
 }
 
 
 /* =========================================================
-   FORM RIGHT
+   MODAL RIGHT
 ========================================================= */
 
 .admission-panel-right {
-  overflow-y:
-    auto;
+  overflow-y: auto;
 
-  overflow-x:
-    hidden;
+  overflow-x: hidden;
 
   padding:
     clamp(
@@ -1180,8 +1042,7 @@ body.admission-modal-open {
       70px
     );
 
-  scrollbar-width:
-    thin;
+  scrollbar-width: thin;
 
   overscroll-behavior:
     contain;
@@ -1189,12 +1050,11 @@ body.admission-modal-open {
 
 
 /* =========================================================
-   FORM GRID
+   FORM
 ========================================================= */
 
 .admission-form {
-  display:
-    grid;
+  display: grid;
 
   grid-template-columns:
     repeat(
@@ -1217,16 +1077,10 @@ body.admission-modal-open {
 }
 
 
-/* =========================================================
-   FIELD LABEL
-========================================================= */
-
 .admission-field label {
-  display:
-    block;
+  display: block;
 
-  margin-bottom:
-    8px;
+  margin-bottom: 8px;
 
   color:
     rgba(
@@ -1236,15 +1090,9 @@ body.admission-modal-open {
       0.54
     );
 
-  font-family:
-    "Manrope",
-    sans-serif;
+  font-size: 9px;
 
-  font-size:
-    9px;
-
-  font-weight:
-    700;
+  font-weight: 700;
 
   letter-spacing:
     0.08em;
@@ -1254,23 +1102,17 @@ body.admission-modal-open {
 }
 
 
-/* =========================================================
-   FIELDS
-========================================================= */
-
 .admission-field input,
 .admission-field select,
 .admission-field textarea {
-  width:
-    100%;
+  width: 100%;
 
   padding:
     7px
     0
     13px;
 
-  border:
-    0;
+  border: 0;
 
   border-bottom:
     1px solid
@@ -1281,11 +1123,9 @@ body.admission-modal-open {
       0.2
     );
 
-  border-radius:
-    0;
+  border-radius: 0;
 
-  outline:
-    none;
+  outline: none;
 
   background:
     transparent;
@@ -1297,8 +1137,7 @@ body.admission-modal-open {
     "Manrope",
     sans-serif;
 
-  font-size:
-    16px;
+  font-size: 16px;
 }
 
 
@@ -1323,8 +1162,7 @@ body.admission-modal-open {
 
 
 .admission-field select {
-  appearance:
-    none;
+  appearance: none;
 
   -webkit-appearance:
     none;
@@ -1332,11 +1170,9 @@ body.admission-modal-open {
 
 
 .admission-field textarea {
-  min-height:
-    75px;
+  min-height: 75px;
 
-  resize:
-    none;
+  resize: none;
 }
 
 
@@ -1345,30 +1181,24 @@ body.admission-modal-open {
 ========================================================= */
 
 .admission-submit {
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 
   justify-content:
     space-between;
 
-  width:
-    100%;
+  width: 100%;
 
-  height:
-    58px;
+  height: 58px;
 
   padding:
     0
     20px;
 
-  border:
-    0;
+  border: 0;
 
-  border-radius:
-    0;
+  border-radius: 0;
 
   background:
     #0b563b;
@@ -1380,30 +1210,22 @@ body.admission-modal-open {
     "Manrope",
     sans-serif;
 
-  font-size:
-    14px;
+  font-size: 14px;
 
-  font-weight:
-    650;
+  font-weight: 650;
 
-  cursor:
-    pointer;
+  cursor: pointer;
 }
 
 
 /* =========================================================
    TABLET
-
-   LEFT STILL STAYS.
 ========================================================= */
 
-@media (
-  max-width: 1100px
-)
+@media
+(max-width: 1100px)
 and
-(
-  min-width: 769px
-) {
+(min-width: 769px) {
 
   .faq-layout {
     grid-template-columns:
@@ -1425,9 +1247,12 @@ and
   }
 
 
+  /*
+    Keep left side sticky on tablet too.
+  */
+
   .faq-sticky {
-    top:
-      88px;
+    top: 78px;
   }
 
 
@@ -1442,14 +1267,12 @@ and
 
 
   .faq-intro-copy {
-    font-size:
-      14px;
+    font-size: 14px;
   }
 
 
   .faq-admission-button {
-    min-width:
-      220px;
+    min-width: 220px;
   }
 
 
@@ -1460,6 +1283,12 @@ and
         2.1vw,
         24px
       );
+  }
+
+
+  .faq-item:first-child
+  .faq-question {
+    padding-top: 3px;
   }
 
 
@@ -1496,9 +1325,7 @@ and
    MOBILE FAQ
 ========================================================= */
 
-@media (
-  max-width: 768px
-) {
+@media (max-width: 768px) {
 
   .faq-section {
     padding:
@@ -1509,8 +1336,7 @@ and
 
 
   .faq-layout {
-    display:
-      block;
+    display: block;
 
     width:
       calc(
@@ -1524,38 +1350,34 @@ and
 
 
   /* =====================================================
-     MOBILE LEFT CONTENT
+     MOBILE LEFT IS NORMAL FLOW
 
-     Normal layout on mobile.
+     Sticky behaviour only makes sense
+     with two columns on desktop/tablet.
   ===================================================== */
 
   .faq-left-column {
-    height:
-      auto;
+    min-height: 0;
+
+    height: auto;
   }
 
 
   .faq-sticky {
-    position:
-      relative;
+    position: relative;
 
-    top:
-      auto;
+    top: auto;
 
-    width:
-      100%;
+    width: 100%;
 
-    max-width:
-      none;
+    max-width: none;
 
-    margin-bottom:
-      40px;
+    margin-bottom: 34px;
   }
 
 
   .faq-title {
-    max-width:
-      520px;
+    max-width: 520px;
 
     font-size:
       clamp(
@@ -1567,26 +1389,20 @@ and
 
 
   .faq-intro-copy {
-    max-width:
-      420px;
+    max-width: 420px;
 
-    margin-top:
-      18px;
+    margin-top: 18px;
 
-    font-size:
-      14px;
+    font-size: 14px;
   }
 
 
   .faq-admission-button {
-    min-width:
-      0;
+    min-width: 0;
 
-    height:
-      51px;
+    height: 51px;
 
-    margin-top:
-      24px;
+    margin-top: 24px;
 
     padding:
       0
@@ -1594,13 +1410,12 @@ and
       0
       17px;
 
-    font-size:
-      12px;
+    font-size: 12px;
   }
 
 
   /* =====================================================
-     MOBILE FAQ ITEMS
+     MOBILE QUESTIONS
   ===================================================== */
 
   .faq-question {
@@ -1612,8 +1427,7 @@ and
       )
       34px;
 
-    gap:
-      10px;
+    gap: 10px;
 
     padding:
       22px
@@ -1621,18 +1435,25 @@ and
   }
 
 
+  /*
+    Question 01 still starts immediately.
+  */
+
+  .faq-item:first-child
+  .faq-question {
+    padding-top: 3px;
+  }
+
+
   .faq-question-copy {
-    font-size:
-      18px;
+    font-size: 18px;
   }
 
 
   .faq-plus {
-    width:
-      32px;
+    width: 32px;
 
-    height:
-      32px;
+    height: 32px;
   }
 
 
@@ -1643,41 +1464,30 @@ and
       24px
       37px;
 
-    font-size:
-      14px;
+    font-size: 14px;
 
-    line-height:
-      1.6;
+    line-height: 1.6;
   }
 
 
   /* =====================================================
-     MOBILE OVERLAY
-
-     BACKGROUND CANNOT SCROLL.
+     MOBILE MODAL OVERLAY
   ===================================================== */
 
   .admission-overlay {
-    display:
-      flex;
+    display: flex;
 
-    align-items:
-      center;
+    align-items: center;
 
-    justify-content:
-      center;
+    justify-content: center;
 
-    width:
-      100%;
+    width: 100%;
 
-    height:
-      100dvh;
+    height: 100dvh;
 
-    padding:
-      7px;
+    padding: 7px;
 
-    overflow:
-      hidden;
+    overflow: hidden;
 
     overscroll-behavior:
       none;
@@ -1689,25 +1499,14 @@ and
 
   /* =====================================================
      MOBILE PANEL
-
-     THIS IS THE ONLY SCROLL CONTAINER.
   ===================================================== */
 
   .admission-panel {
-    display:
-      block;
+    display: block;
 
-    width:
-      100%;
+    width: 100%;
 
-    max-width:
-      520px;
-
-    /*
-      Fixed height is essential.
-      Without this there is nothing
-      for overflow-y to scroll.
-    */
+    max-width: 520px;
 
     height:
       calc(
@@ -1719,15 +1518,13 @@ and
         100dvh - 14px
       );
 
-    min-height:
-      0;
+    min-height: 0;
 
     margin:
       0
       auto;
 
-    overflow-x:
-      hidden;
+    overflow-x: hidden;
 
     overflow-y:
       scroll !important;
@@ -1738,50 +1535,36 @@ and
     -webkit-overflow-scrolling:
       touch;
 
-    /*
-      Finger vertical movement is
-      explicitly allowed here.
-    */
-
     touch-action:
       pan-y !important;
 
-    scrollbar-width:
-      none;
+    scrollbar-width: none;
 
-    border-radius:
-      8px;
+    border-radius: 8px;
   }
 
 
   .admission-panel::-webkit-scrollbar {
-    display:
-      none;
+    display: none;
   }
 
 
   /* =====================================================
-     CLOSE BUTTON STAYS VISIBLE
+     MOBILE CLOSE
   ===================================================== */
 
   .admission-close {
-    position:
-      sticky;
+    position: sticky;
 
-    z-index:
-      200;
+    z-index: 200;
 
-    top:
-      10px;
+    top: 10px;
 
-    float:
-      right;
+    float: right;
 
-    width:
-      39px;
+    width: 39px;
 
-    height:
-      39px;
+    height: 39px;
 
     margin:
       10px
@@ -1810,11 +1593,9 @@ and
   ===================================================== */
 
   .admission-panel-left {
-    display:
-      block;
+    display: block;
 
-    min-height:
-      0;
+    min-height: 0;
 
     padding:
       50px
@@ -1824,20 +1605,16 @@ and
 
 
   .admission-panel-label {
-    margin-bottom:
-      12px;
+    margin-bottom: 12px;
 
-    font-size:
-      8px;
+    font-size: 8px;
   }
 
 
   .admission-panel-left h2 {
-    max-width:
-      410px;
+    max-width: 410px;
 
-    padding-right:
-      40px;
+    padding-right: 40px;
 
     font-size:
       clamp(
@@ -1846,48 +1623,35 @@ and
         49px
       );
 
-    line-height:
-      0.96;
+    line-height: 0.96;
   }
 
 
   .admission-panel-left > p {
-    max-width:
-      340px;
+    max-width: 340px;
 
     margin:
       18px
       0
       0;
 
-    font-size:
-      13px;
+    font-size: 13px;
 
-    line-height:
-      1.5;
+    line-height: 1.5;
   }
 
 
-  /*
-    Steps removed on mobile.
-  */
-
   .admission-step-list {
-    display:
-      none;
+    display: none;
   }
 
 
   /* =====================================================
      MOBILE FORM
-
-     Not another scroll area.
-     Whole panel scrolls together.
   ===================================================== */
 
   .admission-panel-right {
-    overflow:
-      visible;
+    overflow: visible;
 
     padding:
       29px
@@ -1903,37 +1667,31 @@ and
     grid-template-columns:
       1fr;
 
-    gap:
-      22px;
+    gap: 22px;
   }
 
 
   .admission-field-full {
-    grid-column:
-      auto;
+    grid-column: auto;
   }
 
 
   .admission-field input,
   .admission-field select,
   .admission-field textarea {
-    font-size:
-      15px;
+    font-size: 15px;
   }
 
 
   .admission-field textarea {
-    min-height:
-      86px;
+    min-height: 86px;
   }
 
 
   .admission-submit {
-    height:
-      55px;
+    height: 55px;
 
-    margin-bottom:
-      8px;
+    margin-bottom: 8px;
   }
 
 }
@@ -1943,9 +1701,7 @@ and
    SMALL MOBILE
 ========================================================= */
 
-@media (
-  max-width: 480px
-) {
+@media (max-width: 480px) {
 
   .faq-section {
     padding:
@@ -1964,8 +1720,7 @@ and
 
 
   .faq-sticky {
-    margin-bottom:
-      35px;
+    margin-bottom: 31px;
   }
 
 
@@ -1980,17 +1735,14 @@ and
 
 
   .faq-intro-copy {
-    font-size:
-      13px;
+    font-size: 13px;
   }
 
 
   .faq-admission-button {
-    height:
-      49px;
+    height: 49px;
 
-    margin-top:
-      21px;
+    margin-top: 21px;
   }
 
 
@@ -2003,8 +1755,7 @@ and
       )
       31px;
 
-    gap:
-      8px;
+    gap: 8px;
 
     padding:
       19px
@@ -2012,18 +1763,21 @@ and
   }
 
 
+  .faq-item:first-child
+  .faq-question {
+    padding-top: 2px;
+  }
+
+
   .faq-question-copy {
-    font-size:
-      17px;
+    font-size: 17px;
   }
 
 
   .faq-plus {
-    width:
-      30px;
+    width: 30px;
 
-    height:
-      30px;
+    height: 30px;
   }
 
 
@@ -2034,8 +1788,7 @@ and
       21px
       32px;
 
-    font-size:
-      13px;
+    font-size: 13px;
   }
 
 
@@ -2044,8 +1797,7 @@ and
   ===================================================== */
 
   .admission-overlay {
-    padding:
-      5px;
+    padding: 5px;
   }
 
 
@@ -2060,8 +1812,7 @@ and
         100dvh - 10px
       );
 
-    border-radius:
-      7px;
+    border-radius: 7px;
   }
 
 
@@ -2092,31 +1843,26 @@ and
 
 
   .admission-form {
-    gap:
-      20px;
+    gap: 20px;
   }
 
 
   .admission-field label {
-    font-size:
-      8px;
+    font-size: 8px;
   }
 
 
   .admission-field input,
   .admission-field select,
   .admission-field textarea {
-    font-size:
-      14px;
+    font-size: 14px;
   }
 
 
   .admission-submit {
-    height:
-      52px;
+    height: 52px;
 
-    font-size:
-      13px;
+    font-size: 13px;
   }
 
 }
@@ -2126,9 +1872,7 @@ and
    VERY SMALL MOBILE
 ========================================================= */
 
-@media (
-  max-width: 360px
-) {
+@media (max-width: 360px) {
 
   .faq-layout {
     width:
@@ -2139,24 +1883,20 @@ and
 
 
   .faq-title {
-    font-size:
-      34px;
+    font-size: 34px;
   }
 
 
   .faq-question-copy {
-    font-size:
-      16px;
+    font-size: 16px;
   }
 
 
   .admission-panel-left,
   .admission-panel-right {
-    padding-left:
-      18px;
+    padding-left: 18px;
 
-    padding-right:
-      18px;
+    padding-right: 18px;
   }
 
 }

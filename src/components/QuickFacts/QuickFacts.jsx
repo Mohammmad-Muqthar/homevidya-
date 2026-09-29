@@ -26,60 +26,84 @@ const fallbackImage =
 const facts = [
   {
     id: "01",
+
     value: "1,200+",
+
     title: "Students",
+
     description:
       "A vibrant community learning, creating and growing together.",
+
     image:
       "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=90",
   },
 
   {
     id: "02",
+
     value: "60+",
+
     title: "Educators",
+
     description:
       "Teachers who bring care, attention and purpose to every classroom.",
+
     image:
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=90",
   },
 
   {
     id: "03",
+
     value: "15:1",
+
     title: "Student–Teacher Ratio",
+
     description:
       "More interaction, individual attention and meaningful learning.",
+
     image:
       "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1600&q=90",
   },
 
   {
     id: "04",
+
     value: "25+",
+
     title: "Activities",
+
     description:
       "Sports, arts and experiences that take learning beyond the classroom.",
+
     image:
       "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1600&q=90",
   },
 
   {
     id: "05",
+
     value: "30+",
+
     title: "Learning Spaces",
+
     description:
       "Spaces designed for exploration, collaboration and discovery.",
+
     image:
       "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=90",
   },
 
   {
     id: "06",
+
     value: "100%",
+
     title: "Child-Centred",
+
     description:
       "Every experience is shaped around each child's growth and confidence.",
+
     image:
       "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1600&q=90",
   },
@@ -88,6 +112,7 @@ const facts = [
 
 const topFacts =
   facts.slice(0, 3);
+
 
 const bottomFacts =
   facts.slice(3, 6);
@@ -101,12 +126,16 @@ function FactCard({
   fact,
   duplicate = false,
 }) {
-  const handleImageError = (event) => {
+  const handleImageError = (
+    event
+  ) => {
     const image =
       event.currentTarget;
 
+
     image.onerror =
       null;
+
 
     image.src =
       fallbackImage;
@@ -153,6 +182,7 @@ function FactCard({
 
       <div
         className="quick-marquee-overlay"
+
         aria-hidden="true"
       />
 
@@ -212,21 +242,25 @@ function FactGroup({
       }
     >
 
-      {items.map((fact) => (
+      {items.map(
+        (fact) => (
 
-        <FactCard
-          key={`${fact.id}-${
-            duplicate
-              ? "copy"
-              : "original"
-          }`}
+          <FactCard
+            key={`${fact.id}-${
+              duplicate
+                ? "copy"
+                : "original"
+            }`}
 
-          fact={fact}
+            fact={fact}
 
-          duplicate={duplicate}
-        />
+            duplicate={
+              duplicate
+            }
+          />
 
-      ))}
+        )
+      )}
 
     </div>
   );
@@ -239,33 +273,35 @@ function FactGroup({
 
 function createMobileAutoSlider(
   row,
-  delay = 3200
+  delay = 3400
 ) {
   if (!row) {
     return () => {};
   }
 
 
-  const firstGroup =
+  const group =
     row.querySelector(
       ".quick-marquee-group:not([aria-hidden='true'])"
     );
 
 
-  if (!firstGroup) {
+  if (!group) {
     return () => {};
   }
 
 
   const cards =
     Array.from(
-      firstGroup.querySelectorAll(
+      group.querySelectorAll(
         ".quick-marquee-card"
       )
     );
 
 
-  if (cards.length <= 1) {
+  if (
+    cards.length <= 1
+  ) {
     return () => {};
   }
 
@@ -273,23 +309,29 @@ function createMobileAutoSlider(
   let currentIndex =
     0;
 
-  let interval =
+  let intervalId =
     null;
 
-  let resumeTimeout =
+  let resumeTimer =
     null;
 
-  let userInteracting =
+  let scrollFrame =
+    null;
+
+  let interacting =
     false;
 
 
   /* =======================================================
-     SIDE SPACE
+     SCROLL PADDING
   ======================================================= */
 
-  const getSideSpace = () => {
+  const getPadding = () => {
     const styles =
-      window.getComputedStyle(row);
+      window.getComputedStyle(
+        row
+      );
+
 
     return (
       parseFloat(
@@ -300,7 +342,7 @@ function createMobileAutoSlider(
 
 
   /* =======================================================
-     SCROLL TO CARD
+     GO TO CARD
   ======================================================= */
 
   const goToCard = (
@@ -310,6 +352,7 @@ function createMobileAutoSlider(
     const card =
       cards[index];
 
+
     if (!card) {
       return;
     }
@@ -317,6 +360,7 @@ function createMobileAutoSlider(
 
     const rowRect =
       row.getBoundingClientRect();
+
 
     const cardRect =
       card.getBoundingClientRect();
@@ -326,7 +370,7 @@ function createMobileAutoSlider(
       row.scrollLeft +
       cardRect.left -
       rowRect.left -
-      getSideSpace();
+      getPadding();
 
 
     row.scrollTo({
@@ -349,57 +393,60 @@ function createMobileAutoSlider(
 
 
   /* =======================================================
-     FIND CURRENT CARD AFTER MANUAL SWIPE
+     FIND ACTIVE CARD
   ======================================================= */
 
-  const updateCurrentIndex = () => {
-    const rowRect =
-      row.getBoundingClientRect();
-
-    const targetX =
-      rowRect.left +
-      getSideSpace();
+  const updateCurrentIndex =
+    () => {
+      const rowRect =
+        row.getBoundingClientRect();
 
 
-    let closestIndex =
-      0;
-
-    let closestDistance =
-      Infinity;
+      const targetX =
+        rowRect.left +
+        getPadding();
 
 
-    cards.forEach(
-      (card, index) => {
+      let closest =
+        0;
 
-        const rect =
-          card.getBoundingClientRect();
-
-
-        const distance =
-          Math.abs(
-            rect.left -
-            targetX
-          );
+      let closestDistance =
+        Infinity;
 
 
-        if (
-          distance <
-          closestDistance
-        ) {
-          closestDistance =
-            distance;
+      cards.forEach(
+        (
+          card,
+          index
+        ) => {
+          const rect =
+            card.getBoundingClientRect();
 
-          closestIndex =
-            index;
+
+          const distance =
+            Math.abs(
+              rect.left -
+              targetX
+            );
+
+
+          if (
+            distance <
+            closestDistance
+          ) {
+            closestDistance =
+              distance;
+
+            closest =
+              index;
+          }
         }
-
-      }
-    );
+      );
 
 
-    currentIndex =
-      closestIndex;
-  };
+      currentIndex =
+        closest;
+    };
 
 
   /* =======================================================
@@ -408,7 +455,7 @@ function createMobileAutoSlider(
 
   const next = () => {
     if (
-      userInteracting ||
+      interacting ||
       document.hidden
     ) {
       return;
@@ -430,18 +477,18 @@ function createMobileAutoSlider(
 
 
   /* =======================================================
-     START
+     START AUTO
   ======================================================= */
 
   const start = () => {
-    if (interval) {
+    if (intervalId) {
       clearInterval(
-        interval
+        intervalId
       );
     }
 
 
-    interval =
+    intervalId =
       window.setInterval(
         next,
         delay
@@ -450,81 +497,79 @@ function createMobileAutoSlider(
 
 
   /* =======================================================
-     STOP
+     STOP AUTO
   ======================================================= */
 
   const stop = () => {
-    if (interval) {
-      clearInterval(
-        interval
-      );
-
-      interval =
-        null;
+    if (!intervalId) {
+      return;
     }
+
+
+    clearInterval(
+      intervalId
+    );
+
+
+    intervalId =
+      null;
   };
 
 
   /* =======================================================
-     USER STARTS TOUCHING
+     USER TOUCHES CARD
   ======================================================= */
 
-  const handlePointerDown = () => {
-    userInteracting =
-      true;
+  const handlePointerDown =
+    () => {
+      interacting =
+        true;
 
-    stop();
+
+      stop();
 
 
-    if (resumeTimeout) {
-      clearTimeout(
-        resumeTimeout
-      );
-    }
-  };
+      if (resumeTimer) {
+        clearTimeout(
+          resumeTimer
+        );
+      }
+    };
 
 
   /* =======================================================
      USER RELEASES
   ======================================================= */
 
-  const handlePointerUp = () => {
-    updateCurrentIndex();
+  const handlePointerEnd =
+    () => {
+      updateCurrentIndex();
 
 
-    userInteracting =
-      false;
+      interacting =
+        false;
 
 
-    if (resumeTimeout) {
-      clearTimeout(
-        resumeTimeout
-      );
-    }
+      if (resumeTimer) {
+        clearTimeout(
+          resumeTimer
+        );
+      }
 
 
-    /*
-      Give user a moment before
-      auto sliding continues.
-    */
-
-    resumeTimeout =
-      window.setTimeout(
-        () => {
-          start();
-        },
-        2600
-      );
-  };
+      resumeTimer =
+        window.setTimeout(
+          () => {
+            start();
+          },
+          3000
+        );
+    };
 
 
   /* =======================================================
-     MANUAL SCROLL
+     MANUAL HORIZONTAL SCROLL
   ======================================================= */
-
-  let scrollFrame =
-    null;
-
 
   const handleScroll = () => {
     if (scrollFrame) {
@@ -536,9 +581,7 @@ function createMobileAutoSlider(
 
     scrollFrame =
       requestAnimationFrame(
-        () => {
-          updateCurrentIndex();
-        }
+        updateCurrentIndex
       );
   };
 
@@ -547,15 +590,18 @@ function createMobileAutoSlider(
      PAGE VISIBILITY
   ======================================================= */
 
-  const handleVisibility = () => {
-    if (document.hidden) {
-      stop();
-    } else if (
-      !userInteracting
-    ) {
-      start();
-    }
-  };
+  const handleVisibility =
+    () => {
+      if (
+        document.hidden
+      ) {
+        stop();
+      } else if (
+        !interacting
+      ) {
+        start();
+      }
+    };
 
 
   /* =======================================================
@@ -573,7 +619,16 @@ function createMobileAutoSlider(
 
   window.addEventListener(
     "pointerup",
-    handlePointerUp,
+    handlePointerEnd,
+    {
+      passive: true,
+    }
+  );
+
+
+  window.addEventListener(
+    "pointercancel",
+    handlePointerEnd,
     {
       passive: true,
     }
@@ -597,18 +652,37 @@ function createMobileAutoSlider(
 
   /* =======================================================
      INITIAL POSITION
+
+     Wait two frames so mobile layout
+     has its real width before measuring.
   ======================================================= */
 
-  requestAnimationFrame(
-    () => {
-      goToCard(
-        0,
-        false
-      );
+  let frameOne =
+    null;
 
-      start();
-    }
-  );
+  let frameTwo =
+    null;
+
+
+  frameOne =
+    requestAnimationFrame(
+      () => {
+        frameTwo =
+          requestAnimationFrame(
+            () => {
+              row.scrollLeft =
+                0;
+
+
+              currentIndex =
+                0;
+
+
+              start();
+            }
+          );
+      }
+    );
 
 
   /* =======================================================
@@ -619,9 +693,9 @@ function createMobileAutoSlider(
     stop();
 
 
-    if (resumeTimeout) {
+    if (resumeTimer) {
       clearTimeout(
-        resumeTimeout
+        resumeTimer
       );
     }
 
@@ -629,6 +703,20 @@ function createMobileAutoSlider(
     if (scrollFrame) {
       cancelAnimationFrame(
         scrollFrame
+      );
+    }
+
+
+    if (frameOne) {
+      cancelAnimationFrame(
+        frameOne
+      );
+    }
+
+
+    if (frameTwo) {
+      cancelAnimationFrame(
+        frameTwo
       );
     }
 
@@ -641,7 +729,13 @@ function createMobileAutoSlider(
 
     window.removeEventListener(
       "pointerup",
-      handlePointerUp
+      handlePointerEnd
+    );
+
+
+    window.removeEventListener(
+      "pointercancel",
+      handlePointerEnd
     );
 
 
@@ -667,9 +761,6 @@ export default function QuickFacts() {
   const sectionRef =
     useRef(null);
 
-  const headingRef =
-    useRef(null);
-
   const topRowRef =
     useRef(null);
 
@@ -683,16 +774,30 @@ export default function QuickFacts() {
     useRef(null);
 
 
-  /* =========================================================
-     ANIMATION
-  ========================================================= */
-
   useLayoutEffect(() => {
     const section =
       sectionRef.current;
 
+    const topRow =
+      topRowRef.current;
 
-    if (!section) {
+    const bottomRow =
+      bottomRowRef.current;
+
+    const topTrack =
+      topTrackRef.current;
+
+    const bottomTrack =
+      bottomTrackRef.current;
+
+
+    if (
+      !section ||
+      !topRow ||
+      !bottomRow ||
+      !topTrack ||
+      !bottomTrack
+    ) {
       return;
     }
 
@@ -704,264 +809,176 @@ export default function QuickFacts() {
     const ctx =
       gsap.context(() => {
 
-        /* ===================================================
-           HEADING
-        =================================================== */
+        /* =====================================================
+           BASELINE
 
-        gsap.fromTo(
-          headingRef.current,
+           Never start hidden or translated.
 
+           This removes the first-load broken state.
+        ===================================================== */
+
+        gsap.set(
+          [
+            topRow,
+            bottomRow,
+          ],
           {
-            opacity:
-              0,
-
-            y:
-              30,
-          },
-
-          {
-            opacity:
-              1,
-
-            y:
-              0,
-
-            duration:
-              0.8,
-
-            ease:
-              "power4.out",
-
-            scrollTrigger: {
-              trigger:
-                headingRef.current,
-
-              start:
-                "top 90%",
-
-              once:
-                true,
-            },
+            opacity: 1,
+            x: 0,
+            y: 0,
           }
         );
 
 
-        /* ===================================================
-           ROW ENTRANCE
-        =================================================== */
-
-        gsap.fromTo(
-          topRowRef.current,
-
-          {
-            opacity:
-              0,
-
-            x:
-              50,
-          },
-
-          {
-            opacity:
-              1,
-
-            x:
-              0,
-
-            duration:
-              0.85,
-
-            ease:
-              "power4.out",
-
-            scrollTrigger: {
-              trigger:
-                topRowRef.current,
-
-              start:
-                "top 92%",
-
-              once:
-                true,
-            },
-          }
-        );
-
-
-        gsap.fromTo(
-          bottomRowRef.current,
-
-          {
-            opacity:
-              0,
-
-            x:
-              -50,
-          },
-
-          {
-            opacity:
-              1,
-
-            x:
-              0,
-
-            duration:
-              0.85,
-
-            ease:
-              "power4.out",
-
-            scrollTrigger: {
-              trigger:
-                bottomRowRef.current,
-
-              start:
-                "top 94%",
-
-              once:
-                true,
-            },
-          }
-        );
-
-
-        /* ===================================================
-           DESKTOP CONTINUOUS MARQUEE
-        =================================================== */
+        /* =====================================================
+           DESKTOP
+        ===================================================== */
 
         mm.add(
           "(min-width: 769px)",
 
           () => {
 
+            /* ===============================================
+               RESET
+            =============================================== */
+
+            topRow.scrollLeft =
+              0;
+
+            bottomRow.scrollLeft =
+              0;
+
+
+            gsap.set(
+              topTrack,
+              {
+                xPercent: 0,
+              }
+            );
+
+
+            gsap.set(
+              bottomTrack,
+              {
+                xPercent: -50,
+              }
+            );
+
+
+            /* ===============================================
+               CONTINUOUS MARQUEE
+            =============================================== */
+
             const topTween =
-              gsap.fromTo(
-                topTrackRef.current,
-
+              gsap.to(
+                topTrack,
                 {
-                  xPercent:
-                    0,
-                },
+                  xPercent: -50,
 
-                {
-                  xPercent:
-                    -50,
+                  duration: 26,
 
-                  duration:
-                    26,
+                  repeat: -1,
 
-                  repeat:
-                    -1,
-
-                  ease:
-                    "none",
+                  ease: "none",
                 }
               );
 
 
             const bottomTween =
-              gsap.fromTo(
-                bottomTrackRef.current,
-
+              gsap.to(
+                bottomTrack,
                 {
-                  xPercent:
-                    -50,
-                },
+                  xPercent: 0,
 
-                {
-                  xPercent:
-                    0,
+                  duration: 29,
 
-                  duration:
-                    29,
+                  repeat: -1,
 
-                  repeat:
-                    -1,
-
-                  ease:
-                    "none",
+                  ease: "none",
                 }
               );
 
 
             /* ===============================================
-               DESKTOP VERTICAL DEPTH
+               SUBTLE VERTICAL DEPTH
             =============================================== */
 
-            gsap.fromTo(
-              topRowRef.current,
+            const topDepth =
+              gsap.fromTo(
+                topRow,
 
-              {
-                y:
-                  16,
-              },
-
-              {
-                y:
-                  -16,
-
-                ease:
-                  "none",
-
-                scrollTrigger: {
-                  trigger:
-                    section,
-
-                  start:
-                    "top bottom",
-
-                  end:
-                    "bottom top",
-
-                  scrub:
-                    1.2,
+                {
+                  y: 14,
                 },
-              }
-            );
+
+                {
+                  y: -14,
+
+                  ease: "none",
+
+                  scrollTrigger: {
+                    trigger:
+                      section,
+
+                    start:
+                      "top bottom",
+
+                    end:
+                      "bottom top",
+
+                    scrub:
+                      1.15,
+
+                    invalidateOnRefresh:
+                      true,
+                  },
+                }
+              );
 
 
-            gsap.fromTo(
-              bottomRowRef.current,
+            const bottomDepth =
+              gsap.fromTo(
+                bottomRow,
 
-              {
-                y:
-                  -12,
-              },
-
-              {
-                y:
-                  14,
-
-                ease:
-                  "none",
-
-                scrollTrigger: {
-                  trigger:
-                    section,
-
-                  start:
-                    "top bottom",
-
-                  end:
-                    "bottom top",
-
-                  scrub:
-                    1.25,
+                {
+                  y: -10,
                 },
-              }
-            );
+
+                {
+                  y: 12,
+
+                  ease: "none",
+
+                  scrollTrigger: {
+                    trigger:
+                      section,
+
+                    start:
+                      "top bottom",
+
+                    end:
+                      "bottom top",
+
+                    scrub:
+                      1.2,
+
+                    invalidateOnRefresh:
+                      true,
+                  },
+                }
+              );
 
 
             /* ===============================================
-               DESKTOP VELOCITY
+               SCROLL VELOCITY
             =============================================== */
 
             let settleCall =
               null;
 
 
-            const trigger =
+            const velocityTrigger =
               ScrollTrigger.create({
                 trigger:
                   section,
@@ -974,7 +991,6 @@ export default function QuickFacts() {
 
                 onUpdate:
                   (self) => {
-
                     const velocity =
                       Math.abs(
                         self.getVelocity()
@@ -983,11 +999,11 @@ export default function QuickFacts() {
 
                     const speed =
                       Math.min(
-                        1.9,
+                        1.8,
 
                         1 +
-                        velocity /
-                        2800
+                          velocity /
+                            3000
                       );
 
 
@@ -995,22 +1011,24 @@ export default function QuickFacts() {
                       speed
                     );
 
+
                     bottomTween.timeScale(
                       speed
                     );
 
 
-                    if (settleCall) {
+                    if (
+                      settleCall
+                    ) {
                       settleCall.kill();
                     }
 
 
                     settleCall =
                       gsap.delayedCall(
-                        0.15,
+                        0.16,
 
                         () => {
-
                           gsap.to(
                             topTween,
                             {
@@ -1018,7 +1036,7 @@ export default function QuickFacts() {
                                 1,
 
                               duration:
-                                0.75,
+                                0.65,
 
                               ease:
                                 "power3.out",
@@ -1033,47 +1051,82 @@ export default function QuickFacts() {
                                 1,
 
                               duration:
-                                0.75,
+                                0.65,
 
                               ease:
                                 "power3.out",
                             }
                           );
-
                         }
                       );
-
                   },
               });
 
 
             return () => {
-              trigger.kill();
+              topTween.kill();
+
+              bottomTween.kill();
+
+              topDepth.kill();
+
+              bottomDepth.kill();
+
+              velocityTrigger.kill();
 
 
-              if (settleCall) {
+              if (
+                settleCall
+              ) {
                 settleCall.kill();
               }
+
+
+              gsap.set(
+                [
+                  topTrack,
+                  bottomTrack,
+                  topRow,
+                  bottomRow,
+                ],
+                {
+                  clearProps:
+                    "transform",
+                }
+              );
             };
           }
         );
 
 
-        /* ===================================================
-           MOBILE AUTO SLIDER
-        =================================================== */
+        /* =====================================================
+           MOBILE
+
+           NO DESKTOP GSAP TRANSFORMS.
+           NATIVE CARD SCROLLING.
+        ===================================================== */
 
         mm.add(
           "(max-width: 768px)",
 
           () => {
+            gsap.killTweensOf(
+              [
+                topTrack,
+                bottomTrack,
+                topRow,
+                bottomRow,
+              ]
+            );
 
-            /*
-              Completely remove desktop transforms.
-            */
 
             gsap.set(
-              topTrackRef.current,
+              [
+                topTrack,
+                bottomTrack,
+                topRow,
+                bottomRow,
+              ],
               {
                 clearProps:
                   "transform",
@@ -1081,61 +1134,81 @@ export default function QuickFacts() {
             );
 
 
-            gsap.set(
-              bottomTrackRef.current,
-              {
-                clearProps:
-                  "transform",
-              }
-            );
+            topRow.scrollLeft =
+              0;
+
+            bottomRow.scrollLeft =
+              0;
 
 
-            gsap.set(
-              topRowRef.current,
-              {
-                y:
-                  0,
-              }
-            );
+            let destroyTop =
+              () => {};
+
+            let destroyBottom =
+              () => {};
 
 
-            gsap.set(
-              bottomRowRef.current,
-              {
-                y:
-                  0,
-              }
-            );
+            let frameOne =
+              null;
+
+            let frameTwo =
+              null;
 
 
             /*
-              Top slider:
-              changes every 3.2 seconds.
+              Double frame prevents measuring
+              cards before mobile layout settles.
             */
 
-            const destroyTop =
-              createMobileAutoSlider(
-                topRowRef.current,
-                3200
-              );
+            frameOne =
+              requestAnimationFrame(
+                () => {
+                  frameTwo =
+                    requestAnimationFrame(
+                      () => {
+                        destroyTop =
+                          createMobileAutoSlider(
+                            topRow,
+                            3600
+                          );
 
 
-            /*
-              Bottom slightly offset so
-              both rows don't change
-              at exactly the same moment.
-            */
-
-            const destroyBottom =
-              createMobileAutoSlider(
-                bottomRowRef.current,
-                3700
+                        destroyBottom =
+                          createMobileAutoSlider(
+                            bottomRow,
+                            4100
+                          );
+                      }
+                    );
+                }
               );
 
 
             return () => {
+              if (frameOne) {
+                cancelAnimationFrame(
+                  frameOne
+                );
+              }
+
+
+              if (frameTwo) {
+                cancelAnimationFrame(
+                  frameTwo
+                );
+              }
+
+
               destroyTop();
+
               destroyBottom();
+
+
+              topRow.scrollLeft =
+                0;
+
+              bottomRow.scrollLeft =
+                0;
             };
           }
         );
@@ -1143,14 +1216,132 @@ export default function QuickFacts() {
       }, section);
 
 
-    requestAnimationFrame(
+    /* =====================================================
+       KEEP SCROLLTRIGGER CORRECT AFTER
+       FONT / IMAGE / LAYOUT CHANGES
+    ===================================================== */
+
+    let refreshFrame =
+      null;
+
+    let refreshTimeout =
+      null;
+
+
+    const refresh =
       () => {
-        ScrollTrigger.refresh();
-      }
+        if (refreshFrame) {
+          cancelAnimationFrame(
+            refreshFrame
+          );
+        }
+
+
+        refreshFrame =
+          requestAnimationFrame(
+            () => {
+              ScrollTrigger.refresh();
+            }
+          );
+      };
+
+
+    /*
+      Initial refresh after browser has
+      completed first layout.
+    */
+
+    refreshTimeout =
+      window.setTimeout(
+        refresh,
+        120
+      );
+
+
+    /*
+      Fonts can alter measurements after
+      the first React render.
+    */
+
+    if (
+      document.fonts &&
+      document.fonts.ready
+    ) {
+      document.fonts.ready.then(
+        refresh
+      );
+    }
+
+
+    window.addEventListener(
+      "load",
+      refresh
     );
 
 
+    window.addEventListener(
+      "resize",
+      refresh
+    );
+
+
+    /* =====================================================
+       WATCH SECTION SIZE CHANGES
+    ===================================================== */
+
+    let resizeObserver =
+      null;
+
+
+    if (
+      "ResizeObserver" in window
+    ) {
+      resizeObserver =
+        new ResizeObserver(
+          () => {
+            refresh();
+          }
+        );
+
+
+      resizeObserver.observe(
+        section
+      );
+    }
+
+
     return () => {
+      clearTimeout(
+        refreshTimeout
+      );
+
+
+      if (refreshFrame) {
+        cancelAnimationFrame(
+          refreshFrame
+        );
+      }
+
+
+      window.removeEventListener(
+        "load",
+        refresh
+      );
+
+
+      window.removeEventListener(
+        "resize",
+        refresh
+      );
+
+
+      if (
+        resizeObserver
+      ) {
+        resizeObserver.disconnect();
+      }
+
+
       mm.revert();
 
       ctx.revert();
@@ -1161,7 +1352,9 @@ export default function QuickFacts() {
   return (
     <section
       ref={sectionRef}
+
       className="quick-facts"
+
       id="quick-facts"
     >
 
@@ -1171,10 +1364,7 @@ export default function QuickFacts() {
 
       <div className="quick-facts-header">
 
-        <h2
-          ref={headingRef}
-          className="quick-facts-heading"
-        >
+        <h2 className="quick-facts-heading">
           Vidya at a glance.
         </h2>
 
@@ -1201,6 +1391,7 @@ export default function QuickFacts() {
 
           <div
             ref={topTrackRef}
+
             className="quick-marquee-track"
           >
 
@@ -1211,6 +1402,7 @@ export default function QuickFacts() {
 
             <FactGroup
               items={topFacts}
+
               duplicate
             />
 
@@ -1232,6 +1424,7 @@ export default function QuickFacts() {
 
           <div
             ref={bottomTrackRef}
+
             className="quick-marquee-track"
           >
 
@@ -1242,6 +1435,7 @@ export default function QuickFacts() {
 
             <FactGroup
               items={bottomFacts}
+
               duplicate
             />
 
