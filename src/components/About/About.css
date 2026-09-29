@@ -4,9 +4,7 @@
 
 .vidya-about {
   position: relative;
-
   width: 100%;
-
   margin: 0;
   padding: 0;
 
@@ -86,7 +84,7 @@
 
 
 /* =========================================================
-   INNER
+   INTRO INNER
 ========================================================= */
 
 .vidya-about-intro-inner {
@@ -316,6 +314,7 @@
   flex-shrink: 0;
 
   width: 5px;
+
   height: 5px;
 
   border-radius: 50%;
@@ -325,7 +324,7 @@
 
 
 /* =========================================================
-   GREEN
+   GREEN TRANSITION
 ========================================================= */
 
 .vidya-about-green {
@@ -361,7 +360,7 @@
 
 
 /* =========================================================
-   STORY
+   STORY / GALLERY SCREEN
 ========================================================= */
 
 .vidya-about-story {
@@ -378,6 +377,7 @@
   justify-content: center;
 
   width: 100%;
+
   height: 100%;
 
   padding:
@@ -492,6 +492,7 @@
   display: block;
 
   width: 100%;
+
   height: 100%;
 
   object-fit: cover;
@@ -595,7 +596,6 @@
 
 /* =========================================================
    LARGE DESKTOP
-   REDUCED EMPTY SPACE BELOW CONTENT
 ========================================================= */
 
 @media (min-width: 1201px) {
@@ -778,7 +778,7 @@ and
 
 
   /* =====================================================
-     LAPTOP SHOW FIRST TWO PARAGRAPHS
+     LAPTOP = FIRST TWO PARAGRAPHS
   ===================================================== */
 
   .vidya-about-intro-extra--2 {
@@ -850,19 +850,19 @@ and
 
     padding:
       clamp(
-        36px,
-        6svh,
-        54px
+        28px,
+        4.5svh,
+        42px
       )
       0
-      20px;
+      14px;
   }
 
 
   .vidya-about-intro-inner {
     width:
       calc(
-        100% - 32px
+        100% - 30px
       );
 
     max-width: 560px;
@@ -882,9 +882,9 @@ and
 
     font-size:
       clamp(
-        44px,
-        11.5vw,
-        57px
+        42px,
+        10.8vw,
+        55px
       );
 
     font-weight: 500;
@@ -892,7 +892,7 @@ and
     line-height: 0.91;
 
     letter-spacing:
-      -0.062em;
+      -0.061em;
   }
 
 
@@ -907,50 +907,86 @@ and
 
   .vidya-about-intro-divider {
     margin:
-      17px
+      15px
       0
-      16px;
+      14px;
   }
 
 
   /* =====================================================
-     COPY
+     MOBILE COPY
+
+     SHOW ALL TEXT
   ===================================================== */
 
   .vidya-about-intro-copy {
-    display: block;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
 
     width: 100%;
 
-    max-width: 500px;
+    max-width: 520px;
   }
 
 
   .vidya-about-intro-copy p {
+    display: block;
+
     width: 100%;
 
-    max-width: 500px;
+    max-width: 520px;
+
+    margin: 0;
 
     font-size:
       clamp(
-        16px,
-        4.15vw,
-        18px
+        14.5px,
+        3.75vw,
+        16.5px
       );
 
-    line-height: 1.5;
+    font-weight: 400;
+
+    line-height: 1.43;
 
     letter-spacing:
-      -0.014em;
+      -0.012em;
   }
 
 
   /* =====================================================
-     MOBILE ONLY MAIN PARAGRAPH
+     FORCE ALL PARAGRAPHS VISIBLE
   ===================================================== */
 
+  .vidya-about-intro-extra,
+  .vidya-about-intro-extra--1,
+  .vidya-about-intro-extra--2 {
+    display: block !important;
+  }
+
+
+  .vidya-about-copy-lead {
+    color:
+      rgba(
+        7,
+        52,
+        37,
+        0.80
+      ) !important;
+  }
+
+
   .vidya-about-intro-extra {
-    display: none;
+    color:
+      rgba(
+        7,
+        52,
+        37,
+        0.62
+      ) !important;
   }
 
 
@@ -959,14 +995,18 @@ and
   ===================================================== */
 
   .vidya-about-intro-values {
-    gap: 11px;
+    display: flex;
 
-    margin-top: 17px;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 12px;
   }
 
 
   .vidya-about-intro-values span {
-    font-size: 9.5px;
+    font-size: 8.5px;
 
     font-weight: 700;
 
@@ -1016,14 +1056,14 @@ and
     justify-content: center;
 
     padding:
-      16px
+      10px
       0
-      10px;
+      8px;
   }
 
 
   /* =====================================================
-     GALLERY
+     MOBILE GALLERY
   ===================================================== */
 
   .vidya-about-gallery {
@@ -1031,7 +1071,7 @@ and
 
     width:
       calc(
-        100% - 22px
+        100% - 18px
       );
 
     max-width: 560px;
@@ -1044,7 +1084,7 @@ and
 
 
   /* =====================================================
-     ONLY ONE MOBILE IMAGE
+     ONLY ONE IMAGE ON MOBILE
   ===================================================== */
 
   .vidya-about-gallery-card--2,
@@ -1055,21 +1095,21 @@ and
 
   /* =====================================================
      MOBILE IMAGE
+
+     ALMOST FILLS GREEN SCREEN.
   ===================================================== */
 
   .vidya-about-gallery-card--1 {
     width: 100%;
 
     height:
-      clamp(
-        470px,
-        78svh,
-        650px
+      calc(
+        100svh - 26px
       );
 
     min-height: 0;
 
-    max-height: 650px;
+    max-height: none;
 
     margin: 0;
 
@@ -1078,6 +1118,10 @@ and
     border-radius: 0;
   }
 
+
+  /* =====================================================
+     MOBILE IMAGE CROP
+  ===================================================== */
 
   .vidya-about-gallery-card img {
     width: 100%;
@@ -1090,10 +1134,14 @@ and
   }
 
 
-  .vidya-about-gallery-number {
-    top: 15px;
+  /* =====================================================
+     NUMBER
+  ===================================================== */
 
-    right: 15px;
+  .vidya-about-gallery-number {
+    top: 14px;
+
+    right: 14px;
 
     font-size: 9px;
   }
@@ -1107,88 +1155,127 @@ and
 
 @media (max-width: 480px) {
 
+  /* =====================================================
+     INTRO
+  ===================================================== */
+
   .vidya-about-intro {
-    padding-top:
+    padding:
       clamp(
-        34px,
-        5.5svh,
-        48px
-      );
+        24px,
+        4svh,
+        34px
+      )
+      0
+      12px;
   }
 
 
   .vidya-about-intro-inner {
     width:
       calc(
-        100% - 28px
+        100% - 26px
       );
   }
 
 
+  /* =====================================================
+     TITLE
+  ===================================================== */
+
   .vidya-about-intro-title {
     font-size:
       clamp(
-        41px,
-        11vw,
-        49px
+        39px,
+        10.4vw,
+        47px
       );
 
     line-height: 0.92;
   }
 
 
+  /* =====================================================
+     DIVIDER
+  ===================================================== */
+
   .vidya-about-intro-divider {
     margin:
-      15px
+      12px
       0
-      14px;
+      11px;
+  }
+
+
+  /* =====================================================
+     COPY
+  ===================================================== */
+
+  .vidya-about-intro-copy {
+    gap: 7px;
   }
 
 
   .vidya-about-intro-copy p {
     font-size:
       clamp(
-        15px,
-        4vw,
-        17px
+        13.5px,
+        3.6vw,
+        15px
       );
 
-    line-height: 1.46;
+    line-height: 1.38;
   }
 
 
+  /* =====================================================
+     VALUES
+  ===================================================== */
+
   .vidya-about-intro-values {
-    margin-top: 14px;
+    gap: 9px;
+
+    margin-top: 9px;
   }
 
 
   .vidya-about-intro-values span {
-    font-size: 9px;
+    font-size: 8px;
   }
 
 
+  /* =====================================================
+     STORY
+  ===================================================== */
+
   .vidya-about-story {
-    padding-top: 15px;
+    padding:
+      8px
+      0;
   }
 
 
   .vidya-about-gallery {
     width:
       calc(
-        100% - 18px
+        100% - 14px
       );
   }
 
 
+  /* =====================================================
+     IMAGE
+  ===================================================== */
+
   .vidya-about-gallery-card--1 {
     height:
-      clamp(
-        460px,
-        77svh,
-        620px
+      calc(
+        100svh - 20px
       );
 
-    max-height: 620px;
+    min-height: 0;
+
+    max-height: none;
   }
 
 }
@@ -1203,64 +1290,122 @@ and
 and
 (max-height: 700px) {
 
+  /* =====================================================
+     INTRO
+  ===================================================== */
+
   .vidya-about-intro {
-    padding-top: 22px;
+    padding:
+      13px
+      0
+      8px;
   }
 
+
+  .vidya-about-intro-inner {
+    width:
+      calc(
+        100% - 24px
+      );
+  }
+
+
+  /* =====================================================
+     TITLE
+  ===================================================== */
 
   .vidya-about-intro-title {
     font-size:
       clamp(
-        37px,
-        9.8vw,
-        44px
+        32px,
+        8.6vw,
+        39px
       );
 
     line-height: 0.92;
   }
 
 
+  /* =====================================================
+     DIVIDER
+  ===================================================== */
+
   .vidya-about-intro-divider {
     margin:
-      11px
+      8px
       0
-      10px;
+      7px;
+  }
+
+
+  /* =====================================================
+     COPY
+  ===================================================== */
+
+  .vidya-about-intro-copy {
+    gap: 5px;
   }
 
 
   .vidya-about-intro-copy p {
     font-size:
       clamp(
-        14px,
-        3.7vw,
-        15.5px
+        11.5px,
+        3.1vw,
+        13px
       );
 
-    line-height: 1.4;
+    line-height: 1.3;
   }
 
 
+  /* =====================================================
+     VALUES
+  ===================================================== */
+
   .vidya-about-intro-values {
-    margin-top: 10px;
+    gap: 7px;
+
+    margin-top: 6px;
   }
 
 
   .vidya-about-intro-values span {
-    font-size: 8px;
+    font-size: 6.8px;
   }
 
+
+  .vidya-about-intro-values i {
+    width: 3px;
+
+    height: 3px;
+  }
+
+
+  /* =====================================================
+     STORY
+  ===================================================== */
 
   .vidya-about-story {
-    padding-top: 13px;
+    padding:
+      7px
+      0;
   }
 
 
+  /* =====================================================
+     IMAGE
+  ===================================================== */
+
   .vidya-about-gallery-card--1 {
-    height: 79svh;
+    height:
+      calc(
+        100svh - 18px
+      );
 
-    min-height: 440px;
+    min-height: 0;
 
-    max-height: 560px;
+    max-height: none;
   }
 
 }
@@ -1273,49 +1418,69 @@ and
 @media (max-width: 360px) {
 
   .vidya-about-intro {
-    padding-top: 26px;
+    padding-top: 16px;
   }
 
 
   .vidya-about-intro-inner {
     width:
       calc(
-        100% - 24px
+        100% - 22px
       );
   }
 
 
   .vidya-about-intro-title {
-    font-size: 38px;
+    font-size: 34px;
+  }
+
+
+  .vidya-about-intro-divider {
+    margin:
+      8px
+      0;
+  }
+
+
+  .vidya-about-intro-copy {
+    gap: 5px;
   }
 
 
   .vidya-about-intro-copy p {
-    font-size: 14.5px;
+    font-size: 11.5px;
 
-    line-height: 1.42;
+    line-height: 1.3;
+  }
+
+
+  .vidya-about-intro-values {
+    margin-top: 6px;
   }
 
 
   .vidya-about-intro-values span {
-    font-size: 8px;
+    font-size: 6.8px;
   }
 
 
   .vidya-about-gallery {
     width:
       calc(
-        100% - 16px
+        100% - 12px
       );
   }
 
 
   .vidya-about-gallery-card--1 {
-    height: 76svh;
+    height:
+      calc(
+        100svh - 18px
+      );
 
-    min-height: 430px;
+    min-height: 0;
 
-    max-height: 550px;
+    max-height: none;
   }
 
 }
