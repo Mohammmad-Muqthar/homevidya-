@@ -17,7 +17,7 @@ function IntroReveal({
 }) {
 
   /* =========================================================
-     MOBILE
+     DEVICE
   ========================================================= */
 
   const [isMobile] =
@@ -30,7 +30,6 @@ function IntroReveal({
         return false;
       }
 
-
       return window.matchMedia(
         "(max-width: 768px)"
       ).matches;
@@ -39,19 +38,12 @@ function IntroReveal({
 
 
   /* =========================================================
-     INTRO STATE
+     STATE
   ========================================================= */
 
   const [started, setStarted] =
     useState(false);
 
-
-  /*
-    Exact zoom origin inside the left solid stroke
-    of the D.
-
-    Null until SVG text is measured.
-  */
 
   const [zoomOrigin, setZoomOrigin] =
     useState(null);
@@ -89,11 +81,11 @@ function IntroReveal({
 
 
   const maskId =
-    `vidya-video-mask-${cleanId}`;
+    `vidya-mask-${cleanId}`;
 
 
   /* =========================================================
-     SVG DIMENSIONS
+     SVG VALUES
   ========================================================= */
 
   const viewWidth =
@@ -129,7 +121,7 @@ function IntroReveal({
 
 
   /* =========================================================
-     PAGE LOCK
+     LOCK PAGE
   ========================================================= */
 
   useEffect(() => {
@@ -163,26 +155,7 @@ function IntroReveal({
 
 
   /* =========================================================
-     PREPARE + MEASURE D
-
-     Important:
-
-     Character indexes:
-
-     V = 0
-     I = 1
-     D = 2
-     Y = 3
-     A = 4
-
-     We measure the actual rendered D.
-
-     Then choose a point only 9% inside its width.
-
-     That puts the transform origin inside the
-     thick LEFT vertical stroke of D.
-
-     NOT in D's white hollow centre.
+     FIND D TRANSPARENT AREA
   ========================================================= */
 
   useEffect(() => {
@@ -197,10 +170,6 @@ function IntroReveal({
 
     const prepare =
       async () => {
-
-        /* ---------------------------------------------
-           WAIT FOR MANROPE
-        --------------------------------------------- */
 
         if (
           document.fonts?.load
@@ -219,7 +188,7 @@ function IntroReveal({
 
                   window.setTimeout(
                     resolve,
-                    180
+                    160
                   );
 
                 }
@@ -228,7 +197,7 @@ function IntroReveal({
             ]);
 
           } catch {
-            // continue with fallback
+            // continue
           }
 
         }
@@ -238,10 +207,6 @@ function IntroReveal({
           return;
         }
 
-
-        /* ---------------------------------------------
-           ALLOW SVG TEXT TO LAYOUT
-        --------------------------------------------- */
 
         frame1 =
           requestAnimationFrame(() => {
@@ -266,7 +231,7 @@ function IntroReveal({
                 try {
 
                   /*
-                    Real rendered bounding box of D.
+                    D = character index 2
                   */
 
                   const dBox =
@@ -276,18 +241,15 @@ function IntroReveal({
 
 
                   /*
-                    LEFT STEM OF D.
+                    Inside D's thick left stroke.
 
-                    9% into D width:
-                    safely inside black glyph stroke.
-
-                    50% vertically:
-                    middle of D's strong left stroke.
+                    This is the transparent/video area,
+                    NOT the white hollow area.
                   */
 
                   const originX =
                     dBox.x +
-                    dBox.width * 0.09;
+                    dBox.width * 0.085;
 
 
                   const originY =
@@ -302,19 +264,12 @@ function IntroReveal({
 
                 } catch {
 
-                  /*
-                    Fallback tuned for VIDYA.
-
-                    Still positioned LEFT of D's
-                    hollow centre.
-                  */
-
                   setZoomOrigin({
 
                     x:
                       isMobile
-                        ? 456
-                        : 878,
+                        ? 452
+                        : 872,
 
                     y:
                       centerY,
@@ -366,12 +321,6 @@ function IntroReveal({
 
   /* =========================================================
      START
-
-     Start only after:
-     - D origin exists
-     - Hero is ready
-
-     There is still a small fallback if Hero takes too long.
   ========================================================= */
 
   useEffect(() => {
@@ -527,7 +476,7 @@ function IntroReveal({
     const timer =
       window.setTimeout(
         completeIntro,
-        2200
+        2300
       );
 
 
@@ -546,7 +495,7 @@ function IntroReveal({
 
 
   /* =========================================================
-     ZOOM FINISHED
+     COMPLETE AT END OF ZOOM
   ========================================================= */
 
   const handleZoomEnd =
@@ -555,7 +504,7 @@ function IntroReveal({
 
         if (
           event.animationName ===
-          "vidyaVideoOpeningZoom"
+          "vidyaOpeningZoom"
         ) {
 
           completeIntro();
@@ -629,9 +578,9 @@ function IntroReveal({
 
           >
 
-            {/* =================================================
-                WHITE BACKGROUND
-            ================================================= */}
+            {/* =============================================
+                WHITE SCREEN
+            ============================================= */}
 
             <rect
 
@@ -646,16 +595,9 @@ function IntroReveal({
             />
 
 
-            {/* =================================================
-                ONE SINGLE VIDYA OPENING
-
-                No box.
-                No circle.
-                No extra D.
-                No second mask.
-
-                Only the real VIDYA text zooms.
-            ================================================= */}
+            {/* =============================================
+                TRANSPARENT VIDYA
+            ============================================= */}
 
             <g
 
@@ -708,11 +650,12 @@ function IntroReveal({
         </defs>
 
 
-        {/* =================================================
+        {/* ===============================================
             WHITE COVER
 
-            Real Hero video sits underneath.
-        ================================================= */}
+            Becomes transparent near beginning
+            of zoom and NEVER comes back.
+        =============================================== */}
 
         <rect
 

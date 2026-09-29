@@ -1,20 +1,12 @@
 import {
   useCallback,
+  useEffect,
+  useRef,
   useState,
 } from "react";
 
-
-/* =========================================================
-   HOME INTRO
-========================================================= */
-
 import IntroReveal
   from "./components/HomeIntro/HomeIntro";
-
-
-/* =========================================================
-   HOME COMPONENTS
-========================================================= */
 
 import Hero
   from "./components/Hero/Hero";
@@ -38,15 +30,20 @@ import FAQ
   from "./components/FAQ/FAQ";
 
 
-/* =========================================================
-   HOME PAGE
-========================================================= */
-
 export default function HomePage() {
 
-  /* =======================================================
+  /* =========================================================
+     CHECK WHETHER INTRO ALREADY PLAYED
+  ========================================================= */
+
+  const introAlreadyDone =
+    typeof window !== "undefined" &&
+    window.__VIDYA_HOME_INTRO_DONE__ === true;
+
+
+  /* =========================================================
      HERO VIDEO READY
-  ======================================================= */
+  ========================================================= */
 
   const [
     heroReady,
@@ -54,56 +51,43 @@ export default function HomePage() {
   ] = useState(false);
 
 
-  /* =======================================================
+  /* =========================================================
      INTRO
-
-     Refresh Home:
-     plays intro.
-
-     Navigate away and return Home:
-     does not replay during same browser load.
-  ======================================================= */
+  ========================================================= */
 
   const [
     showIntro,
     setShowIntro,
-  ] = useState(() => {
-
-    if (
-      typeof window ===
-      "undefined"
-    ) {
-      return false;
-    }
+  ] = useState(
+    () => !introAlreadyDone
+  );
 
 
-    return (
-      window.__VIDYA_HOME_INTRO_DONE__
-      !== true
-    );
+  /* =========================================================
+     HERO CONTENT
 
-  });
+     false while VIDYA intro is active.
 
+     After intro finishes:
+     wait only 120ms,
+     then Hero text appears.
+  ========================================================= */
 
-  /* =======================================================
-     INTRO COMPLETE
-  ======================================================= */
-
-  const handleIntroComplete =
-    useCallback(() => {
-
-      window.__VIDYA_HOME_INTRO_DONE__ =
-        true;
-
-
-      setShowIntro(false);
-
-    }, []);
+  const [
+    showHeroContent,
+    setShowHeroContent,
+  ] = useState(
+    () => introAlreadyDone
+  );
 
 
-  /* =======================================================
+  const revealTimerRef =
+    useRef(null);
+
+
+  /* =========================================================
      HERO VIDEO READY
-  ======================================================= */
+  ========================================================= */
 
   const handleHeroReady =
     useCallback(() => {
@@ -113,21 +97,84 @@ export default function HomePage() {
     }, []);
 
 
-  /* =======================================================
+  /* =========================================================
+     INTRO COMPLETE
+  ========================================================= */
+
+  const handleIntroComplete =
+    useCallback(() => {
+
+      window.__VIDYA_HOME_INTRO_DONE__ =
+        true;
+
+
+      /* -----------------------------------------------
+         REMOVE VIDYA INTRO FIRST
+      ------------------------------------------------ */
+
+      setShowIntro(false);
+
+
+      /* -----------------------------------------------
+         HERO TEXT
+
+         Small 120ms separation.
+
+         Fast enough to feel connected,
+         but Hero text cannot appear
+         during the VIDYA zoom.
+      ------------------------------------------------ */
+
+      revealTimerRef.current =
+        window.setTimeout(() => {
+
+          setShowHeroContent(true);
+
+        }, 120);
+
+    }, []);
+
+
+  /* =========================================================
+     CLEANUP
+  ========================================================= */
+
+  useEffect(() => {
+
+    return () => {
+
+      if (
+        revealTimerRef.current
+      ) {
+
+        window.clearTimeout(
+          revealTimerRef.current
+        );
+
+      }
+
+    };
+
+  }, []);
+
+
+  /* =========================================================
      RETURN
-  ======================================================= */
+  ========================================================= */
 
   return (
     <>
 
       {/* ===================================================
-          HOME INTRO
+          VIDYA INTRO
       =================================================== */}
 
       {showIntro && (
 
         <IntroReveal
-          ready={heroReady}
+          ready={
+            heroReady
+          }
 
           onComplete={
             handleIntroComplete
@@ -138,11 +185,7 @@ export default function HomePage() {
 
 
       {/* ===================================================
-          HOME CONTENT
-
-          IMPORTANT:
-          Hero is mounted immediately so the real
-          Hero video can show through VIDYA.
+          HOME PAGE
       =================================================== */}
 
       <div className="home-page">
@@ -150,6 +193,10 @@ export default function HomePage() {
         <Hero
           onVideoReady={
             handleHeroReady
+          }
+
+          showContent={
+            showHeroContent
           }
         />
 
@@ -175,5 +222,4 @@ export default function HomePage() {
 
     </>
   );
-
 }
