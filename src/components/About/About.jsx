@@ -88,36 +88,27 @@ const About = () => {
       gsap.context(() => {
 
         /* =====================================================
-           DESKTOP
+           LARGE DESKTOP
         ===================================================== */
 
         mm.add(
-          "(min-width: 769px)",
+          "(min-width: 1201px)",
 
           () => {
+            const introItems =
+              section.querySelectorAll(
+                [
+                  ".vidya-about-intro-title",
+                  ".vidya-about-intro-divider",
+                  ".vidya-about-intro-copy",
+                  ".vidya-about-intro-values",
+                ].join(",")
+              );
+
 
             /* =================================================
-               TEXT ENTRANCE
-
-               This happens BEFORE the About section
-               reaches the top/pinned position.
-
-               So:
-               1. section enters viewport
-               2. text fully settles
-               3. section pins
-               4. small hold
-               5. green transition begins
+               CONTENT ENTERS FIRST
             ================================================= */
-
-            const introItems =
-              gsap.utils.toArray([
-                ".vidya-about-intro-title",
-                ".vidya-about-intro-divider",
-                ".vidya-about-intro-copy",
-                ".vidya-about-intro-values",
-              ]);
-
 
             const introTimeline =
               gsap.timeline({
@@ -129,7 +120,7 @@ const About = () => {
                     "top 88%",
 
                   end:
-                    "top 18%",
+                    "top 20%",
 
                   scrub:
                     0.55,
@@ -145,7 +136,7 @@ const About = () => {
 
               {
                 y:
-                  48,
+                  38,
 
                 opacity:
                   0,
@@ -159,7 +150,7 @@ const About = () => {
                   1,
 
                 stagger:
-                  0.08,
+                  0.055,
 
                 ease:
                   "none",
@@ -168,7 +159,7 @@ const About = () => {
 
 
             /* =================================================
-               INITIAL TRANSITION POSITIONS
+               LESS EMPTY SPACE BELOW TEXT
             ================================================= */
 
             gsap.set(
@@ -176,29 +167,23 @@ const About = () => {
               {
                 y: () =>
                   stage.offsetHeight *
-                  0.90,
+                  0.84,
               }
             );
 
-
-            /*
-              Gallery stays very close behind green.
-
-              This prevents large empty green space.
-            */
 
             gsap.set(
               story,
               {
                 y: () =>
                   stage.offsetHeight *
-                  0.92,
+                  0.87,
               }
             );
 
 
             /* =================================================
-               MAIN PINNED TRANSITION
+               MAIN TRANSITION
             ================================================= */
 
             const timeline =
@@ -213,11 +198,11 @@ const About = () => {
                   end: () =>
                     `+=${
                       stage.offsetHeight *
-                      0.82
+                      0.78
                     }`,
 
                   scrub:
-                    0.82,
+                    0.78,
 
                   pin:
                     stage,
@@ -234,25 +219,18 @@ const About = () => {
               });
 
 
-            /* =================================================
-               SMALL HOLD
-
-               User sees complete text section
-               before anything covers it.
-            ================================================= */
+            /* SMALL HOLD */
 
             timeline.to(
               {},
               {
                 duration:
-                  0.18,
+                  0.14,
               }
             );
 
 
-            /* =================================================
-               GREEN CURVE
-            ================================================= */
+            /* GREEN */
 
             timeline.to(
               green,
@@ -269,15 +247,11 @@ const About = () => {
                   "none",
               },
 
-              0.18
+              0.14
             );
 
 
-            /* =================================================
-               IMAGES
-
-               Follow closely behind green.
-            ================================================= */
+            /* GALLERY */
 
             timeline.to(
               story,
@@ -287,13 +261,188 @@ const About = () => {
                   0,
 
                 duration:
-                  0.74,
+                  0.76,
 
                 ease:
                   "none",
               },
 
-              0.225
+              0.19
+            );
+
+
+            return () => {
+              introTimeline.kill();
+              timeline.kill();
+            };
+          }
+        );
+
+
+        /* =====================================================
+           LAPTOP
+           KEEP CURRENT BEHAVIOUR
+        ===================================================== */
+
+        mm.add(
+          "(min-width: 769px) and (max-width: 1200px)",
+
+          () => {
+            const introItems =
+              section.querySelectorAll(
+                [
+                  ".vidya-about-intro-title",
+                  ".vidya-about-intro-divider",
+                  ".vidya-about-intro-copy",
+                  ".vidya-about-intro-values",
+                ].join(",")
+              );
+
+
+            const introTimeline =
+              gsap.timeline({
+                scrollTrigger: {
+                  trigger:
+                    section,
+
+                  start:
+                    "top 88%",
+
+                  end:
+                    "top 20%",
+
+                  scrub:
+                    0.55,
+
+                  invalidateOnRefresh:
+                    true,
+                },
+              });
+
+
+            introTimeline.fromTo(
+              introItems,
+
+              {
+                y:
+                  38,
+
+                opacity:
+                  0,
+              },
+
+              {
+                y:
+                  0,
+
+                opacity:
+                  1,
+
+                stagger:
+                  0.055,
+
+                ease:
+                  "none",
+              }
+            );
+
+
+            gsap.set(
+              green,
+              {
+                y: () =>
+                  stage.offsetHeight *
+                  0.90,
+              }
+            );
+
+
+            gsap.set(
+              story,
+              {
+                y: () =>
+                  stage.offsetHeight *
+                  0.92,
+              }
+            );
+
+
+            const timeline =
+              gsap.timeline({
+                scrollTrigger: {
+                  trigger:
+                    section,
+
+                  start:
+                    "top top",
+
+                  end: () =>
+                    `+=${
+                      stage.offsetHeight *
+                      0.78
+                    }`,
+
+                  scrub:
+                    0.78,
+
+                  pin:
+                    stage,
+
+                  pinSpacing:
+                    true,
+
+                  anticipatePin:
+                    1,
+
+                  invalidateOnRefresh:
+                    true,
+                },
+              });
+
+
+            timeline.to(
+              {},
+              {
+                duration:
+                  0.14,
+              }
+            );
+
+
+            timeline.to(
+              green,
+
+              {
+                y: () =>
+                  -stage.offsetHeight *
+                  0.18,
+
+                duration:
+                  0.82,
+
+                ease:
+                  "none",
+              },
+
+              0.14
+            );
+
+
+            timeline.to(
+              story,
+
+              {
+                y:
+                  0,
+
+                duration:
+                  0.76,
+
+                ease:
+                  "none",
+              },
+
+              0.19
             );
 
 
@@ -307,15 +456,12 @@ const About = () => {
 
         /* =====================================================
            MOBILE
-
-           KEEP CURRENT MOBILE BEHAVIOUR
         ===================================================== */
 
         mm.add(
           "(max-width: 768px)",
 
           () => {
-
             gsap.set(
               green,
               {
@@ -348,7 +494,7 @@ const About = () => {
                   end: () =>
                     `+=${
                       stage.offsetHeight *
-                      0.50
+                      0.52
                     }`,
 
                   scrub:
@@ -378,7 +524,7 @@ const About = () => {
                   0.16,
 
                 duration:
-                  0.69,
+                  0.70,
 
                 ease:
                   "none",
@@ -396,7 +542,7 @@ const About = () => {
                   0,
 
                 duration:
-                  0.64,
+                  0.66,
 
                 ease:
                   "none",
@@ -486,11 +632,6 @@ const About = () => {
 
           <div className="vidya-about-intro-inner">
 
-
-            {/* =============================================
-                HEADING
-            ============================================= */}
-
             <h2 className="vidya-about-intro-title">
 
               Our Learning{" "}
@@ -502,52 +643,51 @@ const About = () => {
             </h2>
 
 
-            {/* =============================================
-                DIVIDER
-            ============================================= */}
+            <div
+              className="vidya-about-intro-divider"
+            />
 
-            <div className="vidya-about-intro-divider" />
-
-
-            {/* =============================================
-                BODY
-            ============================================= */}
 
             <div className="vidya-about-intro-copy">
 
-              <p>
+              <p className="vidya-about-copy-lead">
 
-                At Vidya Academy, we believe that
-                education is more than the lessons
-                taught in a classroom. Every child
-                brings unique interests, abilities
-                and ideas to school, and our approach
-                encourages them to explore these
-                qualities with curiosity and
-                confidence.
+                At Vidya Academy, learning goes beyond
+                the classroom. Every child is encouraged
+                to explore ideas with curiosity and
+                confidence through meaningful discussions,
+                practical activities, creative experiences
+                and collaborative learning.
 
               </p>
 
 
-              <p>
+              <p className="vidya-about-intro-extra vidya-about-intro-extra--1">
 
-                Learning at Vidya Academy is designed
-                to be engaging, purposeful and
-                connected to everyday life. Through
-                classroom discussions, practical
-                activities, creative experiences and
-                collaborative projects, students are
-                encouraged to participate actively
-                in their own learning.
+                We believe children learn best when they
+                are actively involved in the process.
+                Our learning environment encourages
+                students to ask questions, communicate
+                their ideas, work with others and discover
+                different ways of approaching a challenge.
+
+              </p>
+
+
+              <p className="vidya-about-intro-extra vidya-about-intro-extra--2">
+
+                Alongside academic learning, students are
+                encouraged to become thoughtful,
+                independent and confident learners.
+                Each experience helps them connect
+                knowledge with everyday life, develop
+                their own perspective and continue
+                growing with purpose.
 
               </p>
 
             </div>
 
-
-            {/* =============================================
-                VALUES
-            ============================================= */}
 
             <div className="vidya-about-intro-values">
 
@@ -575,7 +715,7 @@ const About = () => {
 
 
         {/* =================================================
-            GREEN TRANSITION
+            GREEN
         ================================================= */}
 
         <div
@@ -625,7 +765,9 @@ const About = () => {
                   />
 
 
-                  <span className="vidya-about-gallery-number">
+                  <span
+                    className="vidya-about-gallery-number"
+                  >
                     {item.id}
                   </span>
 
