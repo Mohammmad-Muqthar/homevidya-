@@ -10,530 +10,374 @@ import { createPortal } from "react-dom";
 
 import "./HomeIntro.css";
 
+/* =========================================================
+   VIDYA ACADEMY HOME INTRO
+========================================================= */
 
-function IntroReveal({
+export default function IntroReveal({
   ready = false,
   onComplete,
 }) {
-
   /* =========================================================
      DEVICE
   ========================================================= */
 
-  const [isMobile] =
-    useState(() => {
+  const [isMobile] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
 
-      if (
-        typeof window ===
-        "undefined"
-      ) {
-        return false;
-      }
-
-      return window.matchMedia(
-        "(max-width: 768px)"
-      ).matches;
-
-    });
-
+    return window.matchMedia(
+      "(max-width: 768px)"
+    ).matches;
+  });
 
   /* =========================================================
      STATE
   ========================================================= */
 
-  const [started, setStarted] =
-    useState(false);
+  const [started, setStarted] = useState(false);
 
-
-  const [zoomOrigin, setZoomOrigin] =
-    useState(null);
-
+  const [zoomOrigin, setZoomOrigin] = useState(null);
 
   /* =========================================================
      REFS
   ========================================================= */
 
-  const wordRef =
-    useRef(null);
+  const wordRef = useRef(null);
 
+  const completedRef = useRef(false);
 
-  const completedRef =
-    useRef(false);
-
-
-  const previousOverflowRef =
-    useRef("");
-
+  const previousOverflowRef = useRef("");
 
   /* =========================================================
-     UNIQUE MASK
+     UNIQUE SVG MASK
   ========================================================= */
 
-  const reactId =
-    useId();
+  const reactId = useId();
 
+  const cleanId = reactId.replace(/:/g, "");
 
-  const cleanId =
-    reactId.replace(
-      /:/g,
-      ""
-    );
-
-
-  const maskId =
-    `vidya-mask-${cleanId}`;
-
+  const maskId = `vidya-mask-${cleanId}`;
 
   /* =========================================================
-     SVG VALUES
+     SVG DIMENSIONS
   ========================================================= */
 
-  const viewWidth =
-    isMobile
-      ? 1000
-      : 1920;
+  const viewWidth = isMobile ? 1000 : 1920;
 
+  const viewHeight = isMobile ? 1600 : 1080;
 
-  const viewHeight =
-    isMobile
-      ? 1600
-      : 1080;
+  const centerX = viewWidth / 2;
 
+  const centerY = viewHeight / 2;
 
-  const centerX =
-    viewWidth / 2;
+  const textWidth = isMobile ? 790 : 1040;
 
-
-  const centerY =
-    viewHeight / 2;
-
-
-  const textWidth =
-    isMobile
-      ? 790
-      : 1040;
-
-
-  const fontSize =
-    isMobile
-      ? 205
-      : 270;
-
+  const fontSize = isMobile ? 205 : 270;
 
   /* =========================================================
-     LOCK PAGE
+     PAGE LOCK
   ========================================================= */
 
   useEffect(() => {
-
     previousOverflowRef.current =
       document.body.style.overflow;
 
-
-    document.body.style.overflow =
-      "hidden";
-
+    document.body.style.overflow = "hidden";
 
     document.body.classList.add(
       "vidya-page-intro-active"
     );
 
-
     return () => {
-
       document.body.style.overflow =
         previousOverflowRef.current;
-
 
       document.body.classList.remove(
         "vidya-page-intro-active"
       );
-
     };
-
   }, []);
 
-
   /* =========================================================
-     FIND D TRANSPARENT AREA
+     FIND ZOOM ORIGIN
+
+     CHANGED:
+     ZOOM TOWARDS THE WHITE SPACE
+     BETWEEN I AND D
   ========================================================= */
 
   useEffect(() => {
-
-    let cancelled =
-      false;
-
+    let cancelled = false;
 
     let frame1;
     let frame2;
 
+    const prepare = async () => {
+      if (document.fonts?.load) {
+        try {
+          await Promise.race([
+            document.fonts.load(
+              '800 270px "Manrope"'
+            ),
 
-    const prepare =
-      async () => {
+            new Promise((resolve) => {
+              window.setTimeout(resolve, 120);
+            }),
+          ]);
+        } catch {
+          // Continue with available font.
+        }
+      }
 
-        if (
-          document.fonts?.load
-        ) {
+      if (cancelled) {
+        return;
+      }
 
-          try {
-
-            await Promise.race([
-
-              document.fonts.load(
-                '800 270px "Manrope"'
-              ),
-
-              new Promise(
-                (resolve) => {
-
-                  window.setTimeout(
-                    resolve,
-                    160
-                  );
-
-                }
-              ),
-
-            ]);
-
-          } catch {
-            // continue
+      frame1 = requestAnimationFrame(() => {
+        frame2 = requestAnimationFrame(() => {
+          if (cancelled) {
+            return;
           }
 
-        }
+          const text = wordRef.current;
 
+          if (!text) {
+            return;
+          }
 
-        if (cancelled) {
-          return;
-        }
+          try {
+            /*
+              VIDYA CHARACTER INDEXES
 
+              V = 0
+              I = 1
+              D = 2
 
-        frame1 =
-          requestAnimationFrame(() => {
+              Calculate the white gap between
+              I and D using the rendered font.
+            */
 
-            frame2 =
-              requestAnimationFrame(() => {
+            const iBox = text.getExtentOfChar(1);
 
-                if (cancelled) {
-                  return;
-                }
+            const dBox = text.getExtentOfChar(2);
 
+            const gapStart =
+              iBox.x + iBox.width;
 
-                const text =
-                  wordRef.current;
+            const gapEnd = dBox.x;
 
+            let originX;
 
-                if (!text) {
-                  return;
-                }
+            if (gapEnd > gapStart) {
+              originX =
+                (gapStart + gapEnd) / 2;
+            } else {
+              /*
+                Fallback for fonts where SVG
+                includes character spacing
+                inside the measured boxes.
+              */
 
+              const characterDistance =
+                Math.abs(dBox.x - iBox.x);
 
-                try {
+              originX =
+                dBox.x -
+                Math.min(
+                  fontSize * 0.07,
+                  characterDistance * 0.25
+                );
+            }
 
-                  /*
-                    D = character index 2
-                  */
+            const originY =
+              dBox.y + dBox.height * 0.5;
 
-                  const dBox =
-                    text.getExtentOfChar(
-                      2
-                    );
+            setZoomOrigin({
+              x: originX,
+              y: originY,
+            });
+          } catch {
+            /*
+              Fallback if character
+              measurements are unavailable.
+            */
 
-
-                  /*
-                    Inside D's thick left stroke.
-
-                    This is the transparent/video area,
-                    NOT the white hollow area.
-                  */
-
-                  const originX =
-                    dBox.x +
-                    dBox.width * 0.085;
-
-
-                  const originY =
-                    dBox.y +
-                    dBox.height * 0.50;
-
-
-                  setZoomOrigin({
-                    x: originX,
-                    y: originY,
-                  });
-
-                } catch {
-
-                  setZoomOrigin({
-
-                    x:
-                      isMobile
-                        ? 452
-                        : 872,
-
-                    y:
-                      centerY,
-
-                  });
-
-                }
-
-              });
-
-          });
-
-      };
-
+            setZoomOrigin({
+              x: isMobile ? 410 : 780,
+              y: centerY,
+            });
+          }
+        });
+      });
+    };
 
     prepare();
 
-
     return () => {
-
-      cancelled =
-        true;
-
+      cancelled = true;
 
       if (frame1) {
-
-        cancelAnimationFrame(
-          frame1
-        );
-
+        cancelAnimationFrame(frame1);
       }
-
 
       if (frame2) {
-
-        cancelAnimationFrame(
-          frame2
-        );
-
+        cancelAnimationFrame(frame2);
       }
-
     };
-
   }, [
     centerY,
+    fontSize,
     isMobile,
   ]);
 
-
   /* =========================================================
-     START
+     START INTRO
+
+     INITIAL HOLD IS CONTROLLED BY CSS
   ========================================================= */
 
   useEffect(() => {
-
-    if (
-      started ||
-      !zoomOrigin
-    ) {
+    if (started || !zoomOrigin) {
       return;
     }
 
-
-    let cancelled =
-      false;
-
+    let cancelled = false;
 
     let fallbackTimer;
 
     let frame1;
     let frame2;
 
-
-    const start =
-      () => {
-
-        if (cancelled) {
-          return;
-        }
-
-
-        frame1 =
-          requestAnimationFrame(() => {
-
-            frame2 =
-              requestAnimationFrame(() => {
-
-                if (!cancelled) {
-
-                  setStarted(
-                    true
-                  );
-
-                }
-
-              });
-
-          });
-
-      };
-
-
-    if (ready) {
-
-      start();
-
-    } else {
-
-      fallbackTimer =
-        window.setTimeout(
-          start,
-          400
-        );
-
-    }
-
-
-    return () => {
-
-      cancelled =
-        true;
-
-
-      if (fallbackTimer) {
-
-        window.clearTimeout(
-          fallbackTimer
-        );
-
+    const start = () => {
+      if (cancelled) {
+        return;
       }
 
-
-      if (frame1) {
-
-        cancelAnimationFrame(
-          frame1
-        );
-
-      }
-
-
-      if (frame2) {
-
-        cancelAnimationFrame(
-          frame2
-        );
-
-      }
-
+      frame1 = requestAnimationFrame(() => {
+        frame2 = requestAnimationFrame(() => {
+          if (!cancelled) {
+            setStarted(true);
+          }
+        });
+      });
     };
 
+    if (ready) {
+      start();
+    } else {
+      fallbackTimer = window.setTimeout(
+        start,
+        250
+      );
+    }
+
+    return () => {
+      cancelled = true;
+
+      if (fallbackTimer) {
+        window.clearTimeout(fallbackTimer);
+      }
+
+      if (frame1) {
+        cancelAnimationFrame(frame1);
+      }
+
+      if (frame2) {
+        cancelAnimationFrame(frame2);
+      }
+    };
   }, [
     ready,
     started,
     zoomOrigin,
   ]);
 
-
   /* =========================================================
-     COMPLETE
+     COMPLETE INTRO
   ========================================================= */
 
-  const completeIntro =
-    useCallback(() => {
+  const completeIntro = useCallback(() => {
+    if (completedRef.current) {
+      return;
+    }
 
-      if (
-        completedRef.current
-      ) {
-        return;
-      }
+    completedRef.current = true;
 
+    document.body.classList.remove(
+      "vidya-page-intro-active"
+    );
 
-      completedRef.current =
-        true;
+    document.body.style.overflow =
+      previousOverflowRef.current || "";
 
-
-      document.body.classList.remove(
-        "vidya-page-intro-active"
-      );
-
-
-      document.body.style.overflow =
-        previousOverflowRef.current || "";
-
-
-      onComplete?.();
-
-    }, [
-      onComplete,
-    ]);
-
+    onComplete?.();
+  }, [onComplete]);
 
   /* =========================================================
-     SAFETY COMPLETE
+     SAFETY COMPLETION
+
+     DESKTOP:
+     1.05 SECOND HOLD
+     2.25 SECOND ZOOM
+
+     MOBILE:
+     0.85 SECOND HOLD
+     1.95 SECOND ZOOM
   ========================================================= */
 
   useEffect(() => {
-
     if (!started) {
       return;
     }
 
-
-    const timer =
-      window.setTimeout(
-        completeIntro,
-        2300
-      );
-
+    const timer = window.setTimeout(
+      completeIntro,
+      isMobile ? 3800 : 4300
+    );
 
     return () => {
-
-      window.clearTimeout(
-        timer
-      );
-
+      window.clearTimeout(timer);
     };
-
   }, [
     started,
     completeIntro,
+    isMobile,
   ]);
 
-
   /* =========================================================
-     COMPLETE AT END OF ZOOM
+     COMPLETE WHEN ZOOM FINISHES
   ========================================================= */
 
-  const handleZoomEnd =
-    useCallback(
-      (event) => {
+  const handleZoomEnd = useCallback(
+    (event) => {
+      if (
+        event.animationName ===
+          "vidyaOpeningZoom" ||
+        event.animationName ===
+          "vidyaOpeningZoomMobile"
+      ) {
+        completeIntro();
+      }
+    },
+    [completeIntro]
+  );
 
-        if (
-          event.animationName ===
-          "vidyaOpeningZoom"
-        ) {
+  /* =========================================================
+     SSR
+  ========================================================= */
 
-          completeIntro();
-
-        }
-
-      },
-      [completeIntro]
-    );
-
-
-  if (
-    typeof document ===
-    "undefined"
-  ) {
-
+  if (typeof document === "undefined") {
     return null;
-
   }
-
 
   /* =========================================================
      RENDER
   ========================================================= */
 
   return createPortal(
-
     <div
-
       className={[
         "vidya-intro",
 
@@ -543,147 +387,91 @@ function IntroReveal({
       ]
         .filter(Boolean)
         .join(" ")}
-
     >
-
       <svg
-
         className="vidya-intro-svg"
-
-        viewBox={
-          `0 0 ${viewWidth} ${viewHeight}`
-        }
-
+        viewBox={`0 0 ${viewWidth} ${viewHeight}`}
         preserveAspectRatio="xMidYMid slice"
-
         aria-hidden="true"
-
       >
-
         <defs>
+          {/* ===============================================
+              TRANSPARENCY MASK
+          =============================================== */}
 
           <mask
-
             id={maskId}
-
             x="0"
             y="0"
-
             width={viewWidth}
             height={viewHeight}
-
             maskUnits="userSpaceOnUse"
-
             maskContentUnits="userSpaceOnUse"
-
           >
-
             {/* =============================================
                 WHITE SCREEN
             ============================================= */}
 
             <rect
-
               x="0"
               y="0"
-
               width={viewWidth}
               height={viewHeight}
-
               fill="#ffffff"
-
             />
-
 
             {/* =============================================
                 TRANSPARENT VIDYA
+
+                ZOOM ORIGIN:
+                WHITE GAP BETWEEN I AND D
             ============================================= */}
 
             <g
-
               className="vidya-video-opening"
-
               style={{
-
-                transformOrigin:
-                  zoomOrigin
-                    ? `${zoomOrigin.x}px ${zoomOrigin.y}px`
-                    : "50% 50%",
-
+                transformOrigin: zoomOrigin
+                  ? `${zoomOrigin.x}px ${zoomOrigin.y}px`
+                  : "50% 50%",
               }}
-
-              onAnimationEnd={
-                handleZoomEnd
-              }
-
+              onAnimationEnd={handleZoomEnd}
             >
-
               <text
-
                 ref={wordRef}
-
                 className="vidya-intro-text"
-
                 x={centerX}
                 y={centerY}
-
                 textAnchor="middle"
-
                 dominantBaseline="central"
-
                 fill="#000000"
-
                 fontSize={fontSize}
-
                 textLength={textWidth}
-
                 lengthAdjust="spacingAndGlyphs"
-
               >
                 VIDYA
               </text>
-
             </g>
-
           </mask>
-
         </defs>
-
 
         {/* ===============================================
             WHITE COVER
 
-            Becomes transparent near beginning
-            of zoom and NEVER comes back.
+            FADES COMPLETELY BEFORE
+            THE FINAL PART OF THE ZOOM
         =============================================== */}
 
         <rect
-
           className="vidya-white-cover"
-
           x="0"
           y="0"
-
           width={viewWidth}
           height={viewHeight}
-
           fill="#ffffff"
-
-          mask={
-            `url(#${maskId})`
-          }
-
+          mask={`url(#${maskId})`}
         />
-
       </svg>
-
     </div>,
-
     document.body
-
   );
-
 }
-
-
-export default IntroReveal;

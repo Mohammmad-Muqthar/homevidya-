@@ -1,4 +1,16 @@
 /* =========================================================
+   VIDYA ACADEMY HOME INTRO
+
+   WHITE GAP BETWEEN I AND D
+
+   LONGER INITIAL HOLD
+   SMOOTH ZOOM
+   EARLIER WHITE FADE
+   TRANSPARENT FINAL ZOOM
+========================================================= */
+
+
+/* =========================================================
    INTRO ROOT
 ========================================================= */
 
@@ -15,7 +27,6 @@
   height: 100dvh;
 
   margin: 0;
-
   padding: 0;
 
   overflow: hidden;
@@ -26,19 +37,12 @@
 
   opacity: 1;
 
-  transform:
-    translateZ(0);
+  transform: translateZ(0);
 
-  backface-visibility:
-    hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 
-  -webkit-backface-visibility:
-    hidden;
-
-  contain:
-    layout
-    paint
-    style;
+  contain: layout paint style;
 }
 
 
@@ -47,8 +51,7 @@
 ========================================================= */
 
 body.vidya-page-intro-active {
-  overflow:
-    hidden !important;
+  overflow: hidden !important;
 }
 
 
@@ -56,84 +59,54 @@ body.vidya-page-intro-active {
    HERO FALLBACK
 ========================================================= */
 
-body.vidya-page-intro-active
-.vidya-hero,
-
-body.vidya-page-intro-active
-.vidya-hero-video-box {
-  background:
-    #000000 !important;
+body.vidya-page-intro-active .vidya-hero,
+body.vidya-page-intro-active .vidya-hero-video-box {
+  background: #000000 !important;
 }
 
 
 /* =========================================================
-   HIDE NAVIGATION
+   HIDE NAVIGATION DURING INTRO
 ========================================================= */
 
-body.vidya-page-intro-active
-.navbar,
+body.vidya-page-intro-active .navbar,
+body.vidya-page-intro-active .Navbar,
+body.vidya-page-intro-active .vidya-navbar,
+body.vidya-page-intro-active .main-navbar,
+body.vidya-page-intro-active .site-navbar,
+body.vidya-page-intro-active .nav-wrapper,
+body.vidya-page-intro-active .bottom-blur,
+body.vidya-page-intro-active .BottomBlur {
+  opacity: 0 !important;
 
-body.vidya-page-intro-active
-.Navbar,
+  visibility: hidden !important;
 
-body.vidya-page-intro-active
-.vidya-navbar,
-
-body.vidya-page-intro-active
-.main-navbar,
-
-body.vidya-page-intro-active
-.site-navbar,
-
-body.vidya-page-intro-active
-.nav-wrapper,
-
-body.vidya-page-intro-active
-.bottom-blur,
-
-body.vidya-page-intro-active
-.BottomBlur {
-  opacity:
-    0 !important;
-
-  visibility:
-    hidden !important;
-
-  pointer-events:
-    none !important;
+  pointer-events: none !important;
 }
 
 
 /* =========================================================
    HERO CONTENT
 
-   KEEP VIDEO VISIBLE.
+   VIDEO CONTINUES UNDER INTRO
 ========================================================= */
 
-body.vidya-page-intro-active
-.vidya-hero-bottom {
-  opacity:
-    0 !important;
+body.vidya-page-intro-active .vidya-hero-bottom {
+  opacity: 0 !important;
 
-  visibility:
-    hidden !important;
+  visibility: hidden !important;
 
-  pointer-events:
-    none !important;
+  pointer-events: none !important;
 }
 
 
-body.vidya-page-intro-active
-.vidya-hero-overlay {
-  opacity:
-    0 !important;
+body.vidya-page-intro-active .vidya-hero-overlay {
+  opacity: 0 !important;
 }
 
 
-body.vidya-page-intro-active
-.vidya-hero-video-box::after {
-  opacity:
-    0 !important;
+body.vidya-page-intro-active .vidya-hero-video-box::after {
+  opacity: 0 !important;
 }
 
 
@@ -149,11 +122,9 @@ body.vidya-page-intro-active
   display: block;
 
   width: 100%;
-
   height: 100%;
 
   margin: 0;
-
   padding: 0;
 
   overflow: hidden;
@@ -162,14 +133,10 @@ body.vidya-page-intro-active
 
   pointer-events: none;
 
-  transform:
-    translateZ(0);
+  transform: translateZ(0);
 
-  backface-visibility:
-    hidden;
-
-  -webkit-backface-visibility:
-    hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 
@@ -185,117 +152,85 @@ body.vidya-page-intro-active
     Helvetica,
     sans-serif;
 
-  font-weight:
-    800;
+  font-weight: 800;
 
-  letter-spacing:
-    -0.06em;
+  letter-spacing: -0.06em;
 
-  font-kerning:
-    none;
+  font-kerning: none;
 
-  font-feature-settings:
-    "kern" 0;
+  font-feature-settings: "kern" 0;
 
-  text-rendering:
-    optimizeSpeed;
+  text-rendering: optimizeSpeed;
 
-  -webkit-font-smoothing:
-    antialiased;
+  -webkit-font-smoothing: antialiased;
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
-  user-select:
-    none;
+  user-select: none;
 }
 
 
 /* =========================================================
-   VIDYA OPENING
+   ZOOM ELEMENT
 ========================================================= */
 
 .vidya-video-opening {
-  transform-box:
-    view-box;
+  transform-box: view-box;
 
   transform:
-    scale3d(
-      1,
-      1,
-      1
-    );
+    translateZ(0)
+    scale3d(1, 1, 1);
 
-  will-change:
-    transform;
+  will-change: transform;
 
-  backface-visibility:
-    hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 
-  -webkit-backface-visibility:
-    hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
 
 /* =========================================================
-   MAIN ZOOM
+   DESKTOP ANIMATION
 
-   Same effect.
+   HOLD: 1.05 SECONDS
+   ZOOM: 2.25 SECONDS
 
-   Just a little slower now.
-
-   Hold:
-   0.26s
-
-   Zoom:
-   1.45s
+   TOTAL: 3.3 SECONDS
 ========================================================= */
 
-.vidya-intro--started
-.vidya-video-opening {
+.vidya-intro--started .vidya-video-opening {
   animation:
     vidyaOpeningZoom
-    1.45s
+    2.25s
     cubic-bezier(
-      0.52,
-      0,
-      0.08,
+      0.28,
+      0.02,
+      0.18,
       1
     )
-    0.26s
+    1.05s
     forwards;
 }
 
 
 /* =========================================================
-   ONE CONTINUOUS ZOOM
-
-   No second animation.
-   No box.
-   No extra D.
+   DESKTOP ZOOM
 ========================================================= */
 
 @keyframes vidyaOpeningZoom {
-
-  from {
+  0% {
     transform:
-      scale3d(
-        1,
-        1,
-        1
-      );
+      translateZ(0)
+      scale3d(1, 1, 1);
   }
 
-
-  to {
+  100% {
     transform:
-      scale3d(
-        26,
-        26,
-        1
-      );
+      translateZ(0)
+      scale3d(26, 26, 1);
   }
-
 }
 
 
@@ -304,74 +239,100 @@ body.vidya-page-intro-active
 ========================================================= */
 
 .vidya-white-cover {
-  opacity:
-    1;
+  opacity: 1;
 
-  will-change:
-    opacity;
+  fill-opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: none;
+
+  will-change: opacity;
+
+  transform: translateZ(0);
 }
 
 
 /* =========================================================
-   WHITE BECOMES TRANSPARENT EARLY
+   DESKTOP WHITE FADE
 
-   Zoom starts:
-   0.26s
+   INITIAL HOLD:
+   WHITE REMAINS VISIBLE.
 
-   White starts disappearing:
-   0.38s
+   FADE BEGINS:
+   1.2 SECONDS.
 
-   White fully gone:
-   ~0.60s
+   COMPLETELY TRANSPARENT:
+   APPROXIMATELY 1.95 SECONDS.
 
-   Zoom continues until:
-   ~1.71s
+   ZOOM ENDS:
+   3.3 SECONDS.
 
-   So there is NO white during the main
-   large zoom.
+   THIS LEAVES THE FINAL 1.35 SECONDS
+   COMPLETELY TRANSPARENT.
 ========================================================= */
 
-.vidya-intro--started
-.vidya-white-cover {
+.vidya-intro--started .vidya-white-cover {
   animation:
-    vidyaMakeWhiteTransparent
-    0.22s
+    vidyaWhiteDisappear
+    0.75s
     cubic-bezier(
       0.4,
       0,
       0.2,
       1
     )
-    0.38s
+    1.2s
     forwards;
 }
 
 
-@keyframes vidyaMakeWhiteTransparent {
+/* =========================================================
+   DESKTOP WHITE TRANSPARENCY
+========================================================= */
 
+@keyframes vidyaWhiteDisappear {
   0% {
-    opacity:
-      1;
+    opacity: 1;
+
+    visibility: visible;
   }
 
+  15% {
+    opacity: 0.85;
 
-  20% {
-    opacity:
-      0.88;
+    visibility: visible;
   }
 
+  30% {
+    opacity: 0.5;
+
+    visibility: visible;
+  }
 
   50% {
-    opacity:
-      0.42;
+    opacity: 0.2;
+
+    visibility: visible;
   }
 
+  70% {
+    opacity: 0.04;
+
+    visibility: visible;
+  }
+
+  85% {
+    opacity: 0;
+
+    visibility: hidden;
+  }
 
   100% {
-    opacity:
-      0;
-  }
+    opacity: 0;
 
+    visibility: hidden;
+  }
 }
 
 
@@ -383,20 +344,15 @@ body.vidya-page-intro-active
 .vidya-intro-svg,
 .vidya-video-opening,
 .vidya-white-cover {
-  filter:
-    none !important;
+  filter: none !important;
 
-  backdrop-filter:
-    none !important;
+  backdrop-filter: none !important;
 
-  -webkit-backdrop-filter:
-    none !important;
+  -webkit-backdrop-filter: none !important;
 
-  box-shadow:
-    none !important;
+  box-shadow: none !important;
 
-  text-shadow:
-    none !important;
+  text-shadow: none !important;
 }
 
 
@@ -421,7 +377,7 @@ body.vidya-page-intro-active
 .vidya-hero-video-box::after {
   transition:
     opacity
-    0.22s
+    0.24s
     ease;
 }
 
@@ -430,85 +386,160 @@ body.vidya-page-intro-active
    MOBILE
 ========================================================= */
 
-@media (
-  max-width: 768px
-) {
+@media (max-width: 768px) {
+
+  /* =====================================================
+     MOBILE ROOT
+  ===================================================== */
 
   .vidya-intro {
-    height:
-      100dvh;
+    height: 100dvh;
   }
 
+
+  /* =====================================================
+     MOBILE FONT
+  ===================================================== */
 
   .vidya-intro-text {
-    letter-spacing:
-      -0.055em;
+    letter-spacing: -0.055em;
   }
 
 
-  /* =======================================================
+  /* =====================================================
      MOBILE ZOOM
 
-     Also slightly slower.
-  ======================================================= */
+     HOLD: 0.85 SECONDS
+     ZOOM: 1.95 SECONDS
+  ===================================================== */
 
-  .vidya-intro--started
-  .vidya-video-opening {
+  .vidya-intro--started .vidya-video-opening {
     animation:
       vidyaOpeningZoomMobile
-      1.25s
+      1.95s
       cubic-bezier(
-        0.52,
-        0,
-        0.08,
+        0.28,
+        0.02,
+        0.18,
         1
       )
-      0.22s
+      0.85s
       forwards;
   }
 
 
+  /* =====================================================
+     MOBILE ZOOM KEYFRAMES
+  ===================================================== */
+
   @keyframes vidyaOpeningZoomMobile {
-
-    from {
+    0% {
       transform:
-        scale3d(
-          1,
-          1,
-          1
-        );
+        translateZ(0)
+        scale3d(1, 1, 1);
     }
 
-
-    to {
+    100% {
       transform:
-        scale3d(
-          22,
-          22,
-          1
-        );
+        translateZ(0)
+        scale3d(22, 22, 1);
     }
-
   }
 
 
-  /* =======================================================
-     WHITE STILL DISAPPEARS EARLY
-  ======================================================= */
+  /* =====================================================
+     MOBILE WHITE FADE
 
-  .vidya-intro--started
-  .vidya-white-cover {
+     START:
+     1.02 SECONDS
+
+     COMPLETELY TRANSPARENT:
+     APPROXIMATELY 1.68 SECONDS
+
+     ZOOM FINISHES:
+     2.8 SECONDS
+  ===================================================== */
+
+  .vidya-intro--started .vidya-white-cover {
     animation:
-      vidyaMakeWhiteTransparent
-      0.20s
+      vidyaWhiteDisappearMobile
+      0.66s
       cubic-bezier(
         0.4,
         0,
         0.2,
         1
       )
-      0.34s
+      1.02s
       forwards;
+  }
+
+
+  /* =====================================================
+     MOBILE TRANSPARENCY
+  ===================================================== */
+
+  @keyframes vidyaWhiteDisappearMobile {
+    0% {
+      opacity: 1;
+
+      visibility: visible;
+    }
+
+    15% {
+      opacity: 0.85;
+
+      visibility: visible;
+    }
+
+    30% {
+      opacity: 0.5;
+
+      visibility: visible;
+    }
+
+    50% {
+      opacity: 0.2;
+
+      visibility: visible;
+    }
+
+    70% {
+      opacity: 0.04;
+
+      visibility: visible;
+    }
+
+    85% {
+      opacity: 0;
+
+      visibility: hidden;
+    }
+
+    100% {
+      opacity: 0;
+
+      visibility: hidden;
+    }
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE PERFORMANCE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .vidya-intro-svg {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .vidya-video-opening {
+    transform:
+      translate3d(0, 0, 0)
+      scale3d(1, 1, 1);
   }
 
 }
@@ -518,14 +549,10 @@ body.vidya-page-intro-active
    REDUCED MOTION
 ========================================================= */
 
-@media (
-  prefers-reduced-motion:
-    reduce
-) {
+@media (prefers-reduced-motion: reduce) {
 
   .vidya-intro {
-    display:
-      none;
+    display: none;
   }
 
 }

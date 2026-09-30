@@ -1,10 +1,22 @@
-import { useLayoutEffect, useRef } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from "react";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./Footer.css";
 
 gsap.registerPlugin(ScrollTrigger);
+
+
+/* =========================================================
+   MASCOT VIDEO
+========================================================= */
+
+const MASCOT_VIDEO = "/mascot-doll.webm";
 
 
 /* =========================================================
@@ -26,7 +38,6 @@ const SCHOOL = {
 const footerColumns = [
   {
     title: "School",
-
     links: [
       {
         label: "About us",
@@ -57,7 +68,6 @@ const footerColumns = [
 
   {
     title: "Admissions",
-
     links: [
       {
         label: "Admission enquiry",
@@ -80,7 +90,6 @@ const footerColumns = [
 
   {
     title: "Connect",
-
     links: [
       {
         label: "Instagram",
@@ -108,7 +117,7 @@ const footerColumns = [
 
 
 /* =========================================================
-   WHATSAPP
+   WHATSAPP ICON
 ========================================================= */
 
 function WhatsAppIcon() {
@@ -136,7 +145,7 @@ function WhatsAppIcon() {
 
 
 /* =========================================================
-   LOCATION
+   LOCATION ICON
 ========================================================= */
 
 function LocationIcon() {
@@ -164,7 +173,7 @@ function LocationIcon() {
 
 
 /* =========================================================
-   PHONE
+   PHONE ICON
 ========================================================= */
 
 function PhoneIcon() {
@@ -187,7 +196,7 @@ function PhoneIcon() {
 
 
 /* =========================================================
-   EMAIL
+   EMAIL ICON
 ========================================================= */
 
 function EmailIcon() {
@@ -220,11 +229,158 @@ function EmailIcon() {
 
 
 /* =========================================================
-   FOOTER
+   FOOTER COMPONENT
 ========================================================= */
 
 export default function Footer() {
   const footerRef = useRef(null);
+  const mascotRef = useRef(null);
+
+
+  /* =========================================================
+     VIDEO AUTOPLAY
+  ========================================================= */
+
+  const handleVideoReady = (event) => {
+    const video = event.currentTarget;
+
+    video.muted = true;
+
+    video.play().catch(() => {});
+  };
+
+
+  /* =========================================================
+     MASCOT VISIBILITY
+
+     HIDE:
+     HERO + INTRO
+
+     SHOW:
+     ALL OTHER SECTIONS
+     INCLUDING FOOTER
+  ========================================================= */
+
+  useEffect(() => {
+    const mascot = mascotRef.current;
+
+    if (!mascot) {
+      return undefined;
+    }
+
+    let frameId = null;
+
+
+    const updateMascot = () => {
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
+
+      frameId = requestAnimationFrame(() => {
+        const hero = document.querySelector(
+          [
+            ".raya-hero",
+            "[data-navbar-hero]",
+            ".campus-hero",
+            ".page-hero",
+          ].join(",")
+        );
+
+        let heroVisible = false;
+
+        if (hero) {
+          const heroRect = hero.getBoundingClientRect();
+
+          heroVisible =
+            heroRect.bottom > 80 &&
+            heroRect.top < window.innerHeight;
+        }
+
+
+        const introActive = document.body.classList.contains(
+          "vidya-page-intro-active"
+        );
+
+
+        /* ===============================================
+           HIDE ON HERO / INTRO
+        =============================================== */
+
+        if (heroVisible || introActive) {
+          mascot.classList.remove(
+            "vidya-site-mascot--visible"
+          );
+
+          return;
+        }
+
+
+        /* ===============================================
+           SHOW EVERYWHERE ELSE
+        =============================================== */
+
+        mascot.classList.add(
+          "vidya-site-mascot--visible"
+        );
+      });
+    };
+
+
+    updateMascot();
+
+
+    window.addEventListener(
+      "scroll",
+      updateMascot,
+      {
+        passive: true,
+      }
+    );
+
+
+    window.addEventListener(
+      "resize",
+      updateMascot
+    );
+
+
+    const observer = new MutationObserver(
+      updateMascot
+    );
+
+
+    observer.observe(
+      document.body,
+      {
+        childList: true,
+        subtree: true,
+      }
+    );
+
+
+    return () => {
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
+
+      window.removeEventListener(
+        "scroll",
+        updateMascot
+      );
+
+      window.removeEventListener(
+        "resize",
+        updateMascot
+      );
+
+      observer.disconnect();
+    };
+  }, []);
+
+
+  /* =========================================================
+     FOOTER GSAP ANIMATIONS
+  ========================================================= */
 
   useLayoutEffect(() => {
     const footer = footerRef.current;
@@ -232,6 +388,7 @@ export default function Footer() {
     if (!footer) {
       return undefined;
     }
+
 
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -262,7 +419,6 @@ export default function Footer() {
             trigger: footer,
 
             start: "top bottom",
-
             end: "top 82%",
 
             scrub: 1.8,
@@ -274,7 +430,7 @@ export default function Footer() {
 
 
       /* =====================================================
-         LEFT CONTENT
+         LEFT INFORMATION
       ===================================================== */
 
       gsap.fromTo(
@@ -293,7 +449,6 @@ export default function Footer() {
             trigger: footer,
 
             start: "top 91%",
-
             end: "top 72%",
 
             scrub: 1.5,
@@ -324,7 +479,6 @@ export default function Footer() {
             trigger: footer,
 
             start: "top 90%",
-
             end: "top 72%",
 
             scrub: 1.5,
@@ -334,50 +488,13 @@ export default function Footer() {
 
 
       /* =====================================================
-         MASCOT ENTRANCE ONLY
-         
-         IMPORTANT:
-         The floating animation is on the wrapper,
-         so this animation never fights with floating.
-      ===================================================== */
-
-      gsap.fromTo(
-        ".vidya-footer-mascot",
-        {
-          y: 25,
-          opacity: 0,
-          scale: 0.97,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-
-          duration: 1.2,
-
-          ease: "power3.out",
-
-          scrollTrigger: {
-            trigger:
-              ".vidya-footer-mascot-wrap",
-
-            start: "top 92%",
-
-            toggleActions:
-              "play none none reverse",
-          },
-        }
-      );
-
-
-      /* =====================================================
-         WORDMARK
+         LARGE WORDMARK
       ===================================================== */
 
       gsap.fromTo(
         ".vidya-footer-large-name",
         {
-          y: 25,
+          y: 14,
           opacity: 0.55,
         },
         {
@@ -387,14 +504,12 @@ export default function Footer() {
           ease: "power2.out",
 
           scrollTrigger: {
-            trigger:
-              ".vidya-footer-brand",
+            trigger: ".vidya-footer-brand",
 
-            start: "top 94%",
+            start: "top 98%",
+            end: "top 80%",
 
-            end: "top 76%",
-
-            scrub: 1.5,
+            scrub: 1.3,
           },
         }
       );
@@ -417,11 +532,9 @@ export default function Footer() {
           ease: "power2.out",
 
           scrollTrigger: {
-            trigger:
-              ".vidya-footer-bottom",
+            trigger: ".vidya-footer-bottom",
 
             start: "top 98%",
-
             end: "top 86%",
 
             scrub: 1.4,
@@ -431,6 +544,10 @@ export default function Footer() {
 
     }, footer);
 
+
+    /* =====================================================
+       REFRESH SCROLLTRIGGER
+    ===================================================== */
 
     const handleResize = () => {
       ScrollTrigger.refresh();
@@ -456,159 +573,193 @@ export default function Footer() {
 
       ctx.revert();
     };
+
   }, []);
 
 
-  /* =======================================================
+  /* =========================================================
      WHATSAPP
-  ======================================================= */
+  ========================================================= */
 
-  const whatsappNumber =
-    SCHOOL.whatsapp.replace(
-      /\D/g,
-      ""
-    );
-
-
-  const whatsappHref =
-    whatsappNumber
-      ? `https://wa.me/${whatsappNumber}`
-      : "#faq";
+  const whatsappNumber = SCHOOL.whatsapp.replace(
+    /\D/g,
+    ""
+  );
 
 
-  const hasWhatsapp =
-    Boolean(
-      whatsappNumber
-    );
+  const whatsappHref = whatsappNumber
+    ? `https://wa.me/${whatsappNumber}`
+    : "#faq";
 
+
+  const hasWhatsapp = Boolean(whatsappNumber);
+
+
+  /* =========================================================
+     MASCOT CLICK = BACK TO TOP
+  ========================================================= */
+
+  const handleGoToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+
+  /* =========================================================
+     RETURN
+  ========================================================= */
 
   return (
-    <footer
-      ref={footerRef}
-      id="footer"
-      className="vidya-footer"
-    >
+    <>
 
-      <div className="vidya-footer-container">
+      {/* ===================================================
+          SINGLE FIXED MASCOT
+
+          NO TEXT
+          NO ARROW
+      =================================================== */}
+
+      <button
+        ref={mascotRef}
+        type="button"
+        className="vidya-site-mascot"
+        onClick={handleGoToTop}
+        aria-label="Back to top"
+      >
+        <video
+          className="vidya-site-mascot-video"
+          src={MASCOT_VIDEO}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          disablePictureInPicture
+          aria-hidden="true"
+          onCanPlay={handleVideoReady}
+        />
+      </button>
 
 
-        {/* =================================================
-            MAIN
-        ================================================= */}
+      {/* ===================================================
+          FOOTER
+      =================================================== */}
 
-        <div className="vidya-footer-main">
+      <footer
+        ref={footerRef}
+        id="footer"
+        className="vidya-footer"
+      >
+        <div className="vidya-footer-container">
 
 
           {/* =================================================
-              LEFT INFORMATION
+              MAIN
           ================================================= */}
 
-          <div className="vidya-footer-info">
-
-            {/* <h2 className="vidya-footer-title">
-              Vidya Academy
-            </h2> */}
+          <div className="vidya-footer-main">
 
 
-            <p className="vidya-footer-description">
-              A vibrant learning community
-              where curiosity leads to confidence
-              and every child is inspired to grow.
-            </p>
+            {/* ===============================================
+                LEFT INFORMATION
+            =============================================== */}
+
+            <div className="vidya-footer-info">
+
+              <p className="vidya-footer-description">
+                A vibrant learning community where
+                curiosity leads to confidence and every
+                child is inspired to grow.
+              </p>
 
 
-            {/* =================================================
-                CONTACT
-            ================================================= */}
+              <div className="vidya-footer-details">
 
-            <div className="vidya-footer-details">
 
-              <div className="vidya-footer-detail">
+                {/* LOCATION */}
 
-                <span className="detail-icon">
-                  <LocationIcon />
-                </span>
+                <div className="vidya-footer-detail">
+                  <span className="detail-icon">
+                    <LocationIcon />
+                  </span>
 
-                <span>
-                  {SCHOOL.location}
-                </span>
+                  <span>
+                    {SCHOOL.location}
+                  </span>
+                </div>
+
+
+                {/* PHONE */}
+
+                <div className="vidya-footer-detail">
+                  <span className="detail-icon">
+                    <PhoneIcon />
+                  </span>
+
+                  <span>
+                    {SCHOOL.phone}
+                  </span>
+                </div>
+
+
+                {/* EMAIL */}
+
+                <div className="vidya-footer-detail">
+                  <span className="detail-icon">
+                    <EmailIcon />
+                  </span>
+
+                  <span>
+                    {SCHOOL.email}
+                  </span>
+                </div>
 
               </div>
 
 
-              <div className="vidya-footer-detail">
+              {/* WHATSAPP */}
 
-                <span className="detail-icon">
-                  <PhoneIcon />
-                </span>
+              <div className="vidya-footer-actions">
 
-                <span>
-                  {SCHOOL.phone}
-                </span>
+                <a
+                  className="vidya-footer-whatsapp"
+                  href={whatsappHref}
+                  target={
+                    hasWhatsapp
+                      ? "_blank"
+                      : undefined
+                  }
+                  rel={
+                    hasWhatsapp
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                >
+                  <WhatsAppIcon />
 
-              </div>
-
-
-              <div className="vidya-footer-detail">
-
-                <span className="detail-icon">
-                  <EmailIcon />
-                </span>
-
-                <span>
-                  {SCHOOL.email}
-                </span>
+                  <span>
+                    Chat on WhatsApp
+                  </span>
+                </a>
 
               </div>
 
             </div>
 
 
-            {/* =================================================
-                WHATSAPP
-            ================================================= */}
+            {/* ===============================================
+                NAVIGATION
+            =============================================== */}
 
-            <div className="vidya-footer-actions">
+            <nav
+              className="vidya-footer-navigation"
+              aria-label="Footer navigation"
+            >
 
-              <a
-                className="vidya-footer-whatsapp"
-                href={whatsappHref}
-                target={
-                  hasWhatsapp
-                    ? "_blank"
-                    : undefined
-                }
-                rel={
-                  hasWhatsapp
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-              >
+              {footerColumns.map((column) => (
 
-                <WhatsAppIcon />
-
-                <span>
-                  Chat on WhatsApp
-                </span>
-
-              </a>
-
-            </div>
-
-          </div>
-
-
-          {/* =================================================
-              NAVIGATION
-          ================================================= */}
-
-          <nav
-            className="vidya-footer-navigation"
-            aria-label="Footer navigation"
-          >
-
-            {footerColumns.map(
-              (column) => (
                 <div
                   className="vidya-footer-column"
                   key={column.title}
@@ -621,107 +772,87 @@ export default function Footer() {
 
                   <ul>
 
-                    {column.links.map(
-                      (link) => (
-                        <li
-                          key={
-                            `${column.title}-${link.label}`
-                          }
-                        >
+                    {column.links.map((link) => (
 
-                          <a
-                            href={
-                              link.href
-                            }
-                          >
-                            {link.label}
-                          </a>
+                      <li
+                        key={`${column.title}-${link.label}`}
+                      >
 
-                        </li>
-                      )
-                    )}
+                        <a href={link.href}>
+                          {link.label}
+                        </a>
+
+                      </li>
+
+                    ))}
 
                   </ul>
 
                 </div>
-              )
-            )}
 
-          </nav>
+              ))}
+
+            </nav>
+
+          </div>
 
 
           {/* =================================================
-              MASCOT
+              LARGE WORDMARK
           ================================================= */}
 
-          <div className="vidya-footer-visual">
+          <div className="vidya-footer-brand">
 
-            <div className="vidya-footer-mascot-wrap">
+            <div className="vidya-footer-wordmark-window">
 
-              <img
-                src="/images/vidu-footer-mascot.png"
-                alt="Vidya Academy mascot studying"
-                className="vidya-footer-mascot"
-              />
+              <h2 className="vidya-footer-large-name">
+                VIDYA ACADEMY
+              </h2>
+
+            </div>
+
+          </div>
+
+
+          {/* =================================================
+              BOTTOM
+          ================================================= */}
+
+          <div className="vidya-footer-bottom">
+
+            <p>
+              ©{" "}
+              {new Date().getFullYear()}{" "}
+              Vidya Academy.
+              All rights reserved.
+            </p>
+
+
+            <div className="vidya-footer-bottom-links">
+
+              <a href="#footer">
+                Privacy policy
+              </a>
+
+              <span>|</span>
+
+              <a href="#footer">
+                Terms of use
+              </a>
+
+              <span>|</span>
+
+              <a href="#footer">
+                Sitemap
+              </a>
 
             </div>
 
           </div>
 
         </div>
+      </footer>
 
-
-        {/* =================================================
-            LARGE WORDMARK
-        ================================================= */}
-
-        <div className="vidya-footer-brand">
-
-          <h2 className="vidya-footer-large-name">
-            VIDYA ACADEMY
-          </h2>
-
-        </div>
-
-
-        {/* =================================================
-            BOTTOM
-        ================================================= */}
-
-        <div className="vidya-footer-bottom">
-
-          <p>
-            ©{" "}
-            {new Date().getFullYear()}{" "}
-            Vidya Academy.
-            All rights reserved.
-          </p>
-
-
-          <div className="vidya-footer-bottom-links">
-
-            <a href="#footer">
-              Privacy policy
-            </a>
-
-            <span>|</span>
-
-            <a href="#footer">
-              Terms of use
-            </a>
-
-            <span>|</span>
-
-            <a href="#footer">
-              Sitemap
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </footer>
+    </>
   );
 }
