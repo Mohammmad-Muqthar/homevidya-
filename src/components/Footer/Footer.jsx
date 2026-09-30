@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
    MASCOT VIDEO
 ========================================================= */
 
-const MASCOT_VIDEO = "/mascot-doll.webm";
+const MASCOT_VIDEO = "/mascot-doll1.webm";
 
 
 /* =========================================================
