@@ -27,43 +27,73 @@ import "swiper/css/pagination";
 import "./AcademicPrograms.css";
 
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(
+  ScrollTrigger
+);
 
+
+/* =========================================================
+   PROGRAM DATA
+========================================================= */
 
 const programs = [
   {
     id: 1,
-    title: "Early Years",
-    age: "Ages 3 — 5",
+
+    title:
+      "Early Years",
+
+    age:
+      "Ages 3 — 5",
+
     image:
       "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1800&q=90",
   },
 
   {
     id: 2,
-    title: "Primary Years",
-    age: "Grades 1 — 5",
+
+    title:
+      "Primary Years",
+
+    age:
+      "Grades 1 — 5",
+
     image:
       "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=90",
   },
 
   {
     id: 3,
-    title: "Middle Years",
-    age: "Grades 6 — 8",
+
+    title:
+      "Middle Years",
+
+    age:
+      "Grades 6 — 8",
+
     image:
       "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1800&q=90",
   },
 
   {
     id: 4,
-    title: "Senior Years",
-    age: "Grades 9 — 12",
+
+    title:
+      "Senior Years",
+
+    age:
+      "Grades 9 — 12",
+
     image:
       "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1800&q=90",
   },
 ];
 
+
+/* =========================================================
+   PROGRAM CARD
+========================================================= */
 
 const ProgramCard = ({
   program,
@@ -71,58 +101,138 @@ const ProgramCard = ({
   onEnter,
   onLeave,
 }) => {
+
   return (
+
     <article
       className={`
         academic-card
-        ${active ? "is-active" : ""}
+
+        ${
+          active
+            ? "is-active"
+            : ""
+        }
       `}
+
       tabIndex={0}
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-      onFocus={onEnter}
-      onBlur={onLeave}
+
+      onMouseEnter={
+        onEnter
+      }
+
+      onMouseLeave={
+        onLeave
+      }
+
+      onFocus={
+        onEnter
+      }
+
+      onBlur={
+        onLeave
+      }
     >
+
+      {/* =================================================
+          IMAGE
+      ================================================= */}
+
       <img
-        src={program.image}
+        src={
+          program.image
+        }
+
         alt=""
+
         className="academic-card-image"
+
         loading="lazy"
       />
 
-      <div className="academic-card-overlay" />
 
-      <div className="academic-card-top">
-        <span className="academic-card-age">
+      {/* =================================================
+          OVERLAY
+      ================================================= */}
+
+      <div
+        className="academic-card-overlay"
+      />
+
+
+      {/* =================================================
+          AGE BADGE
+      ================================================= */}
+
+      <div
+        className="academic-card-top"
+      >
+
+        <span
+          className="academic-card-age"
+        >
           {program.age}
         </span>
+
       </div>
 
-      <div className="academic-card-content">
+
+      {/* =================================================
+          CONTENT
+      ================================================= */}
+
+      <div
+        className="academic-card-content"
+      >
+
         <h3>
           {program.title}
         </h3>
 
-        <span className="academic-card-arrow">
-          <ArrowUpRight size={20} />
+
+        <span
+          className="academic-card-arrow"
+        >
+
+          <ArrowUpRight
+            size={20}
+          />
+
         </span>
+
       </div>
+
     </article>
+
   );
+
 };
 
 
+/* =========================================================
+   ACADEMIC PROGRAMS
+========================================================= */
+
 export default function AcademicPrograms() {
+
   const sectionRef =
     useRef(null);
 
   const headingRef =
     useRef(null);
 
-  const [activeCard, setActiveCard] =
+
+  const [
+    activeCard,
+    setActiveCard,
+  ] =
     useState(null);
 
-  const [isMobile, setIsMobile] =
+
+  const [
+    isMobile,
+    setIsMobile,
+  ] =
     useState(
       () =>
         typeof window !==
@@ -136,10 +246,13 @@ export default function AcademicPrograms() {
   ========================================================= */
 
   useEffect(() => {
+
     const handleResize = () => {
+
       setIsMobile(
         window.innerWidth <= 768
       );
+
     };
 
 
@@ -150,11 +263,14 @@ export default function AcademicPrograms() {
 
 
     return () => {
+
       window.removeEventListener(
         "resize",
         handleResize
       );
+
     };
+
   }, []);
 
 
@@ -163,160 +279,236 @@ export default function AcademicPrograms() {
   ========================================================= */
 
   useLayoutEffect(() => {
+
     const section =
       sectionRef.current;
 
-    if (!section) return;
+
+    if (!section) {
+      return;
+    }
 
 
-    const ctx = gsap.context(() => {
+    const ctx =
+      gsap.context(() => {
 
-      gsap.fromTo(
-        headingRef.current,
-        {
-          opacity: 0,
-          y: 45,
-        },
-        {
-          opacity: 1,
-          y: 0,
+        /* =================================================
+           HEADING ENTER
+        ================================================= */
 
-          duration: 0.9,
+        gsap.fromTo(
+          headingRef.current,
 
-          ease: "power4.out",
+          {
+            opacity: 0,
 
-          scrollTrigger: {
-            trigger:
-              headingRef.current,
-
-            start: "top 88%",
-
-            once: true,
+            y: 45,
           },
-        }
-      );
+
+          {
+            opacity: 1,
+
+            y: 0,
+
+            duration:
+              0.9,
+
+            ease:
+              "power4.out",
+
+            scrollTrigger: {
+
+              trigger:
+                headingRef.current,
+
+              start:
+                "top 88%",
+
+              once:
+                true,
+
+            },
+
+          }
+        );
 
 
-      gsap.fromTo(
-        ".academic-card",
-        {
-          opacity: 0,
-          y: 45,
-        },
-        {
-          opacity: 1,
-          y: 0,
+        /* =================================================
+           CARDS ENTER
+        ================================================= */
 
-          duration: 0.85,
+        gsap.fromTo(
+          ".academic-card",
 
-          stagger: 0.08,
+          {
+            opacity: 0,
 
-          ease: "power4.out",
-
-          scrollTrigger: {
-            trigger:
-              ".academic-cards-area",
-
-            start: "top 86%",
-
-            once: true,
+            y: 45,
           },
-        }
-      );
+
+          {
+            opacity: 1,
+
+            y: 0,
+
+            duration:
+              0.85,
+
+            stagger:
+              0.08,
+
+            ease:
+              "power4.out",
+
+            scrollTrigger: {
+
+              trigger:
+                ".academic-cards-area",
+
+              start:
+                "top 86%",
+
+              once:
+                true,
+
+            },
+
+          }
+        );
 
 
-      /* DESKTOP IMAGE PARALLAX ONLY */
+        /* =================================================
+           DESKTOP IMAGE PARALLAX
+        ================================================= */
 
-      const mm =
-        gsap.matchMedia();
+        const mm =
+          gsap.matchMedia();
 
 
-      mm.add(
-        "(min-width: 769px)",
-        () => {
+        mm.add(
+          "(min-width: 769px)",
 
-          gsap.utils
-            .toArray(
-              ".academic-card"
-            )
-            .forEach(
-              (card, index) => {
+          () => {
 
-                const image =
-                  card.querySelector(
-                    ".academic-card-image"
+            gsap.utils
+              .toArray(
+                ".academic-card"
+              )
+              .forEach(
+                (
+                  card,
+                  index
+                ) => {
+
+                  const image =
+                    card.querySelector(
+                      ".academic-card-image"
+                    );
+
+
+                  gsap.fromTo(
+                    image,
+
+                    {
+                      yPercent:
+                        -4,
+
+                      scale:
+                        1.08,
+                    },
+
+                    {
+                      yPercent:
+                        4 +
+                        index,
+
+                      scale:
+                        1.02,
+
+                      ease:
+                        "none",
+
+                      scrollTrigger: {
+
+                        trigger:
+                          card,
+
+                        start:
+                          "top bottom",
+
+                        end:
+                          "bottom top",
+
+                        scrub:
+                          1,
+
+                      },
+
+                    }
                   );
 
+                }
+              );
 
-                gsap.fromTo(
-                  image,
-                  {
-                    yPercent: -4,
-                    scale: 1.08,
-                  },
-                  {
-                    yPercent:
-                      4 +
-                      index,
-
-                    scale: 1.02,
-
-                    ease: "none",
-
-                    scrollTrigger: {
-                      trigger: card,
-
-                      start:
-                        "top bottom",
-
-                      end:
-                        "bottom top",
-
-                      scrub: 1,
-                    },
-                  }
-                );
-
-              }
-            );
-
-        }
-      );
+          }
+        );
 
 
-      return () =>
-        mm.revert();
+        return () =>
+          mm.revert();
 
-    }, section);
+      }, section);
 
 
     return () => {
-      ctx.revert();
-    };
-  }, [isMobile]);
 
+      ctx.revert();
+
+    };
+
+  }, [
+    isMobile,
+  ]);
+
+
+  /* =========================================================
+     RETURN
+  ========================================================= */
 
   return (
+
     <section
       ref={sectionRef}
+
       className="academic-programs"
+
       id="programs"
     >
-      <div className="academic-programs-container">
 
-        {/* HEADING */}
+      <div
+        className="academic-programs-container"
+      >
 
-        <div className="academic-programs-header">
+        {/* =================================================
+            HEADING
+        ================================================= */}
+
+        <div
+          className="academic-programs-header"
+        >
 
           <h2
             ref={headingRef}
+
             className="academic-programs-title"
           >
+
             Academic
 
             <span>
               programmes.
             </span>
+
           </h2>
 
         </div>
@@ -324,25 +516,35 @@ export default function AcademicPrograms() {
 
         {/* =================================================
             CARDS AREA
-        ================================================== */}
+        ================================================= */}
 
-        <div className="academic-cards-area">
+        <div
+          className="academic-cards-area"
+        >
 
           {/* ===============================================
               DESKTOP
-          ================================================ */}
+          =============================================== */}
 
           {!isMobile && (
 
-            <div className="academic-cards">
+            <div
+              className="academic-cards"
+            >
 
               {programs.map(
-                (program) => (
+                (
+                  program
+                ) => (
 
                   <ProgramCard
-                    key={program.id}
+                    key={
+                      program.id
+                    }
 
-                    program={program}
+                    program={
+                      program
+                    }
 
                     active={
                       activeCard ===
@@ -372,7 +574,7 @@ export default function AcademicPrograms() {
 
           {/* ===============================================
               MOBILE SWIPER
-          ================================================ */}
+          =============================================== */}
 
           {isMobile && (
 
@@ -383,42 +585,67 @@ export default function AcademicPrograms() {
                 Pagination,
               ]}
 
-              slidesPerView={1.12}
+              slidesPerView={
+                1.12
+              }
 
-              spaceBetween={16}
+              spaceBetween={
+                16
+              }
 
-              speed={650}
+              speed={
+                650
+              }
 
-              grabCursor={true}
+              grabCursor={
+                true
+              }
 
-              resistance={true}
+              resistance={
+                true
+              }
 
-              resistanceRatio={0.82}
+              resistanceRatio={
+                0.82
+              }
 
-              touchRatio={1}
+              touchRatio={
+                1
+              }
 
-              threshold={5}
+              threshold={
+                5
+              }
 
               pagination={{
-                clickable: true,
+                clickable:
+                  true,
               }}
 
               onSlideChange={(
                 swiper
               ) => {
+
                 setActiveCard(
                   programs[
                     swiper.activeIndex
-                  ]?.id ?? null
+                  ]?.id ??
+                    null
                 );
+
               }}
             >
 
               {programs.map(
-                (program, index) => (
+                (
+                  program,
+                  index
+                ) => (
 
                   <SwiperSlide
-                    key={program.id}
+                    key={
+                      program.id
+                    }
                   >
 
                     <ProgramCard
@@ -430,7 +657,8 @@ export default function AcademicPrograms() {
                         activeCard
                           ? activeCard ===
                             program.id
-                          : index === 0
+                          : index ===
+                            0
                       }
 
                       onEnter={() =>
@@ -454,6 +682,9 @@ export default function AcademicPrograms() {
         </div>
 
       </div>
+
     </section>
+
   );
+
 }

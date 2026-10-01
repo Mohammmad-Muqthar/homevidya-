@@ -1,9 +1,21 @@
 /* =========================================================
    VIDYA NAVBAR
+
+   UPDATED:
+   - NO LINK UNDERLINE
+   - CLEAN LINK HOVER
+   - NEW ENQUIRE BUTTON HOVER
+   - ORANGE -> GREEN BOTTOM-UP FILL
+========================================================= */
+
+
+/* =========================================================
+   NAVBAR ROOT
 ========================================================= */
 
 .vidya-nav {
   position: fixed;
+
   top: 0;
   left: 0;
 
@@ -12,51 +24,63 @@
   width: 100%;
 
   color: #ffffff;
+
   background: transparent;
 
-  transform: translateY(0);
+  transform:
+    translateY(0);
 
   font-family:
     "Manrope",
     sans-serif;
 
   transition:
-    transform 0.5s
+    transform
+      0.5s
       cubic-bezier(
         0.22,
         1,
         0.36,
         1
       ),
-    background 0.4s ease,
-    color 0.35s ease,
-    box-shadow 0.4s ease,
-    backdrop-filter 0.4s ease;
+    background
+      0.4s
+      ease,
+    color
+      0.35s
+      ease,
+    box-shadow
+      0.4s
+      ease,
+    backdrop-filter
+      0.4s
+      ease;
 }
 
 
 /* =========================================================
-   NORMAL SHOW / HIDE
+   SHOW / HIDE
 ========================================================= */
 
 .vidya-nav.is-visible {
-  transform: translateY(0);
+  transform:
+    translateY(0);
 }
 
 
 .vidya-nav.is-hidden {
-  transform: translateY(-110%);
+  transform:
+    translateY(-110%);
 }
 
 
 /* =========================================================
    HERO SCROLL
-
-   HIDE EVERYTHING TOGETHER
 ========================================================= */
 
 .vidya-nav.is-hero.is-hero-scrolled:not(.is-menu-open) {
-  transform: translateY(-110%);
+  transform:
+    translateY(-110%);
 }
 
 
@@ -65,14 +89,20 @@
 ========================================================= */
 
 .vidya-nav.is-hero {
-  color: #ffffff;
+  color:
+    #ffffff;
 
-  background: transparent;
+  background:
+    transparent;
 
-  box-shadow: none;
+  box-shadow:
+    none;
 
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  backdrop-filter:
+    none;
+
+  -webkit-backdrop-filter:
+    none;
 }
 
 
@@ -81,7 +111,8 @@
 ========================================================= */
 
 .vidya-nav.is-page.is-visible {
-  color: #073e2c;
+  color:
+    #073e2c;
 
   background:
     rgba(
@@ -126,20 +157,25 @@
 ========================================================= */
 
 .vidya-nav-inner {
-  position: relative;
+  position:
+    relative;
 
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     1fr
     auto
     1fr;
 
-  align-items: center;
+  align-items:
+    center;
 
-  width: 100%;
+  width:
+    100%;
 
-  height: 82px;
+  height:
+    82px;
 
   padding:
     0
@@ -167,7 +203,8 @@
 
 .vidya-nav.is-page
 .vidya-nav-inner {
-  height: 70px;
+  height:
+    70px;
 }
 
 
@@ -176,25 +213,49 @@
 ========================================================= */
 
 .vidya-nav-brand {
-  justify-self: start;
+  justify-self:
+    start;
 
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  color: inherit;
+  min-width:
+    96px;
 
-  min-width: 96px;
+  color:
+    inherit;
+
+  text-decoration:
+    none;
 
   transition:
     opacity
     0.25s
-    ease;
+    ease,
+    transform
+    0.35s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
 }
 
 
+/* =========================================================
+   LOGO HOVER
+========================================================= */
+
 .vidya-nav-brand:hover {
-  opacity: 0.78;
+  opacity:
+    0.92;
+
+  transform:
+    translateY(-1px);
 }
 
 
@@ -203,7 +264,8 @@
 ========================================================= */
 
 .vidya-nav-logo {
-  display: block;
+  display:
+    block;
 
   width:
     clamp(
@@ -212,20 +274,21 @@
       116px
     );
 
-  height: auto;
+  height:
+    auto;
 
-  max-width: 100%;
+  max-width:
+    100%;
 
-  object-fit: contain;
+  object-fit:
+    contain;
 
   object-position:
     left center;
 }
 
 
-/* =========================================================
-   HERO LOGO
-========================================================= */
+/* HERO LOGO */
 
 .vidya-nav.is-hero
 .vidya-nav-logo {
@@ -235,9 +298,7 @@
 }
 
 
-/* =========================================================
-   PAGE LOGO
-========================================================= */
+/* PAGE LOGO */
 
 .vidya-nav.is-page
 .vidya-nav-logo {
@@ -257,61 +318,88 @@
 ========================================================= */
 
 .vidya-nav-links {
-  justify-self: center;
+  justify-self:
+    center;
 
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
   gap:
     clamp(
-      22px,
-      2vw,
-      38px
+      24px,
+      2.1vw,
+      40px
     );
 }
 
 
 /* =========================================================
-   LINKS
+   NAV LINK
+
+   NO UNDERLINE
 ========================================================= */
 
 .vidya-nav-link {
-  position: relative;
+  position:
+    relative;
 
-  display: block;
+  display:
+    block;
 
   padding:
-    12px
+    15px
     0;
 
-  color: inherit;
+  color:
+    inherit;
 
   font-size:
     clamp(
-      15px,
-      1vw,
-      17px
+      17px,
+      1.15vw,
+      19px
     );
 
-  font-weight: 500;
+  font-weight:
+    500;
 
-  line-height: 1;
+  line-height:
+    1;
 
   letter-spacing:
     -0.025em;
 
-  white-space: nowrap;
+  white-space:
+    nowrap;
+
+  text-decoration:
+    none;
+
+  transition:
+    color
+    0.3s
+    ease;
 }
 
 
+/* =========================================================
+   LINK TEXT
+
+   ONLY SMALL MOVEMENT
+   NO LINE
+========================================================= */
+
 .vidya-nav-link span {
-  display: block;
+  position:
+    relative;
+
+  display:
+    block;
 
   transition:
-    opacity
-    0.25s
-    ease,
     transform
     0.35s
     cubic-bezier(
@@ -319,16 +407,68 @@
       1,
       0.36,
       1
-    );
+    ),
+    opacity
+    0.3s
+    ease;
 }
 
 
-.vidya-nav-link:hover
-span {
-  opacity: 0.58;
+/* =========================================================
+   LINK HOVER
 
-  transform:
-    translateY(-2px);
+   NO UNDERLINE
+========================================================= */
+
+@media (
+  hover: hover
+) {
+
+  .vidya-nav-link:hover
+  span {
+    transform:
+      translateY(-2px);
+  }
+
+
+  /* HERO */
+
+  .vidya-nav.is-hero
+  .vidya-nav-link:hover {
+    color:
+      #f9a01b;
+  }
+
+
+  /* PAGE */
+
+  .vidya-nav.is-page
+  .vidya-nav-link:hover {
+    color:
+      #0b8255;
+  }
+
+}
+
+
+/* =========================================================
+   ACTIVE LINK
+
+   COLOR ONLY
+   NO UNDERLINE
+========================================================= */
+
+.vidya-nav.is-hero
+.vidya-nav-link.is-active {
+  color:
+    #f9a01b;
+}
+
+
+.vidya-nav.is-page
+.vidya-nav-link.is-active {
+  color:
+    #0b8255;
 }
 
 
@@ -337,81 +477,81 @@ span {
 ========================================================= */
 
 .vidya-nav-actions {
-  justify-self: end;
+  justify-self:
+    end;
 
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  gap: 12px;
+  gap:
+    12px;
 }
 
 
 /* =========================================================
    ENQUIRE BUTTON
 
-   LARGER BUTTON
-   DIAGONAL SWEEP HOVER
+   NORMAL:
+   ORANGE
+
+   HOVER:
+   GREEN FILL RISES FROM BOTTOM
 ========================================================= */
 
 .vidya-nav-cta {
-  position: relative;
+  position:
+    relative;
 
-  display: inline-flex;
+  display:
+    inline-flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  justify-content: center;
+  justify-content:
+    center;
 
-  min-width: 126px;
+  min-width:
+    128px;
 
-  height: 48px;
+  height:
+    50px;
 
   padding:
     0
-    26px;
+    27px;
 
-  overflow: hidden;
+  overflow:
+    hidden;
+
+  color:
+    #0b8255;
+
+  background:
+    linear-gradient(
+      #0b8255,
+      #0b8255
+    )
+    left
+    bottom /
+    100%
+    0
+    no-repeat,
+    #f9a01b;
 
   border:
     1px
     solid
-    #f5c842;
+    #f9a01b;
 
-  border-radius: 0;
-
-  /*
-     Two-color background.
-
-     Initially only the yellow side
-     is visible.
-
-     On hover the green side sweeps in.
-  */
-
-  background-image:
-    linear-gradient(
-      112deg,
-      #0e6b45 0%,
-      #0e6b45 47%,
-      #f5c842 53%,
-      #f5c842 100%
-    );
-
-  background-size:
-    230% 100%;
-
-  background-position:
-    100% 0;
-
-  background-repeat:
-    no-repeat;
-
-  color:
-    #073c2b;
+  border-radius:
+    0;
 
   font-size:
-    14.5px;
+    15.5px;
 
   font-weight:
     700;
@@ -422,14 +562,29 @@ span {
   letter-spacing:
     -0.015em;
 
-  cursor: pointer;
+  cursor:
+    pointer;
 
   text-decoration:
     none;
 
+  transform:
+    translateY(0);
+
+  box-shadow:
+    0
+    0
+    0
+    rgba(
+      0,
+      0,
+      0,
+      0
+    );
+
   transition:
-    background-position
-    0.6s
+    background-size
+    0.5s
     cubic-bezier(
       0.22,
       1,
@@ -441,92 +596,55 @@ span {
     ease,
     border-color
     0.3s
-    ease;
-}
-
-
-/* =========================================================
-   SUBTLE SHINE
-
-   Runs across during hover.
-========================================================= */
-
-.vidya-nav-cta::after {
-  content: "";
-
-  position: absolute;
-
-  top: -35%;
-
-  left: -35%;
-
-  width: 24%;
-
-  height: 170%;
-
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(
-        255,
-        255,
-        255,
-        0.22
-      ),
-      transparent
-    );
-
-  transform:
-    translateX(-160%)
-    rotate(12deg);
-
-  opacity: 0;
-
-  transition:
+    ease,
     transform
-    0.65s
+    0.4s
     cubic-bezier(
       0.22,
       1,
       0.36,
       1
     ),
-    opacity
-    0.15s
+    box-shadow
+    0.4s
     ease;
 }
 
 
 /* =========================================================
-   ENQUIRE HOVER
-
-   NO BUTTON JUMP.
-   NO NORMAL COLOR SWITCH.
-
-   GREEN SWEEPS THROUGH BUTTON.
+   NEW BUTTON HOVER
 ========================================================= */
 
-.vidya-nav-cta:hover {
-  background-position:
-    0 0;
+@media (
+  hover: hover
+) {
 
-  color:
-    #ffffff;
+  .vidya-nav-cta:hover {
+    color:
+      #ffffff;
 
-  border-color:
-    #0e6b45;
-}
+    background-size:
+      100%
+      100%;
 
+    border-color:
+      #0b8255;
 
-.vidya-nav-cta:hover::after {
-  opacity: 1;
+    transform:
+      translateY(-2px);
 
-  transform:
-    translateX(620%)
-    rotate(12deg);
+    box-shadow:
+      0
+      12px
+      28px
+      rgba(
+        11,
+        130,
+        85,
+        0.2
+      );
+  }
+
 }
 
 
@@ -536,7 +654,19 @@ span {
 
 .vidya-nav-cta:active {
   transform:
+    translateY(0)
     scale(0.98);
+
+  box-shadow:
+    0
+    5px
+    14px
+    rgba(
+      11,
+      130,
+      85,
+      0.14
+    );
 }
 
 
@@ -548,7 +678,7 @@ span {
   outline:
     2px
     solid
-    #f5c842;
+    #f9a01b;
 
   outline-offset:
     4px;
@@ -560,19 +690,26 @@ span {
 ========================================================= */
 
 .vidya-nav-mobile-toggle {
-  display: none;
+  display:
+    none;
 
-  place-items: center;
+  place-items:
+    center;
 
-  width: 40px;
+  width:
+    40px;
 
-  height: 40px;
+  height:
+    40px;
 
-  padding: 0;
+  padding:
+    0;
 
-  color: inherit;
+  color:
+    inherit;
 
-  background: transparent;
+  background:
+    transparent;
 
   border:
     1px
@@ -584,18 +721,55 @@ span {
       0.28
     );
 
-  border-radius: 0;
+  border-radius:
+    0;
 
-  cursor: pointer;
+  cursor:
+    pointer;
+
+  transition:
+    background
+    0.3s
+    ease,
+    border-color
+    0.3s
+    ease,
+    transform
+    0.3s
+    ease;
 }
 
 
-.vidya-nav-mobile-toggle span {
-  display: grid;
+.vidya-nav-mobile-toggle:hover {
+  transform:
+    scale(1.05);
 
-  place-items: center;
+  background:
+    rgba(
+      249,
+      160,
+      27,
+      0.12
+    );
+
+  border-color:
+    #f9a01b;
 }
 
+
+.vidya-nav-mobile-toggle
+span {
+  display:
+    grid;
+
+  place-items:
+    center;
+}
+
+
+/* =========================================================
+   PAGE MOBILE TOGGLE
+========================================================= */
 
 .vidya-nav.is-page
 .vidya-nav-mobile-toggle {
@@ -614,20 +788,22 @@ span {
 ========================================================= */
 
 .vidya-nav.is-menu-open,
-
 .vidya-nav.is-page.is-menu-open,
-
 .vidya-nav.is-hero.is-menu-open {
-  color: #073e2c;
+  color:
+    #073e2c;
 
-  background: #f5f3e9;
+  background:
+    #f5f3e9;
 
   transform:
     translateY(0);
 
-  backdrop-filter: none;
+  backdrop-filter:
+    none;
 
-  -webkit-backdrop-filter: none;
+  -webkit-backdrop-filter:
+    none;
 
   box-shadow:
     0
@@ -637,7 +813,7 @@ span {
       7,
       62,
       44,
-      0.10
+      0.1
     );
 }
 
@@ -665,7 +841,8 @@ span {
 
 .vidya-nav.is-menu-open
 .vidya-nav-mobile-toggle {
-  color: #073e2c;
+  color:
+    #073e2c;
 
   border-color:
     rgba(
@@ -682,18 +859,26 @@ span {
 ========================================================= */
 
 .vidya-mobile-menu {
-  position: fixed;
+  position:
+    fixed;
 
-  z-index: 1050;
+  z-index:
+    1050;
 
-  inset: 0;
+  inset:
+    0;
 
-  width: 100%;
+  width:
+    100%;
 
-  height: 100vh;
-  height: 100svh;
+  height:
+    100vh;
 
-  overflow-y: auto;
+  height:
+    100svh;
+
+  overflow-y:
+    auto;
 
   background:
     #f5f3e9;
@@ -712,9 +897,11 @@ span {
 ========================================================= */
 
 .vidya-mobile-menu-inner {
-  display: flex;
+  display:
+    flex;
 
-  flex-direction: column;
+  flex-direction:
+    column;
 
   width:
     min(
@@ -728,7 +915,8 @@ span {
     100%;
 
   margin:
-    0 auto;
+    0
+    auto;
 
   padding:
     92px
@@ -742,12 +930,14 @@ span {
 ========================================================= */
 
 .vidya-mobile-menu-links {
-  display: flex;
+  display:
+    flex;
 
   flex-direction:
     column;
 
-  width: 100%;
+  width:
+    100%;
 
   border-top:
     1px
@@ -761,23 +951,32 @@ span {
 }
 
 
-.vidya-mobile-menu-links a {
-  display: flex;
+/* =========================================================
+   MOBILE LINK
+========================================================= */
 
-  align-items: center;
+.vidya-mobile-menu-links
+a {
+  display:
+    flex;
+
+  align-items:
+    center;
 
   justify-content:
     space-between;
 
-  width: 100%;
+  width:
+    100%;
 
   min-height:
-    54px;
+    60px;
 
-  gap: 18px;
+  gap:
+    18px;
 
   padding:
-    13px
+    14px
     0;
 
   color:
@@ -795,9 +994,9 @@ span {
 
   font-size:
     clamp(
-      17px,
-      4.6vw,
-      20px
+      20px,
+      5vw,
+      23px
     );
 
   font-weight:
@@ -808,10 +1007,52 @@ span {
 
   letter-spacing:
     -0.03em;
+
+  text-decoration:
+    none;
+
+  transition:
+    color
+    0.3s
+    ease,
+    padding-left
+    0.35s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
 }
 
 
-.vidya-mobile-menu-links a
+/* =========================================================
+   MOBILE LINK HOVER
+========================================================= */
+
+.vidya-mobile-menu-links
+a:hover {
+  color:
+    #f9a01b;
+
+  padding-left:
+    7px;
+}
+
+
+.vidya-mobile-menu-links
+a.is-active {
+  color:
+    #0b8255;
+}
+
+
+/* =========================================================
+   MOBILE LINK ARROW
+========================================================= */
+
+.vidya-mobile-menu-links
+a
 svg {
   flex-shrink:
     0;
@@ -823,6 +1064,33 @@ svg {
       44,
       0.52
     );
+
+  transition:
+    color
+    0.3s
+    ease,
+    transform
+    0.35s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+.vidya-mobile-menu-links
+a:hover
+svg {
+  color:
+    #f9a01b;
+
+  transform:
+    translate(
+      2px,
+      -2px
+    );
 }
 
 
@@ -831,7 +1099,8 @@ svg {
 ========================================================= */
 
 .vidya-mobile-menu-footer {
-  display: flex;
+  display:
+    flex;
 
   flex-direction:
     column;
@@ -853,7 +1122,12 @@ svg {
 }
 
 
-.vidya-mobile-menu-footer p {
+/* =========================================================
+   MOBILE FOOTER TEXT
+========================================================= */
+
+.vidya-mobile-menu-footer
+p {
   max-width:
     260px;
 
@@ -881,12 +1155,16 @@ svg {
 
 /* =========================================================
    MOBILE ENQUIRE
+
+   SAME NEW FILL EFFECT
 ========================================================= */
 
 .vidya-mobile-menu-cta {
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
   justify-content:
     space-between;
@@ -895,23 +1173,118 @@ svg {
     100%;
 
   min-height:
-    50px;
+    54px;
 
   padding:
     0
-    16px;
+    18px;
 
   color:
-    #ffffff;
+    #0b8255;
 
   background:
-    #0e6b45;
+    linear-gradient(
+      #0b8255,
+      #0b8255
+    )
+    left
+    bottom /
+    100%
+    0
+    no-repeat,
+    #f9a01b;
+
+  border:
+    1px
+    solid
+    #f9a01b;
 
   font-size:
-    14px;
+    15px;
 
   font-weight:
     700;
+
+  text-decoration:
+    none;
+
+  transition:
+    background-size
+    0.5s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
+    color
+    0.3s
+    ease,
+    border-color
+    0.3s
+    ease,
+    transform
+    0.35s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
+    box-shadow
+    0.35s
+    ease;
+}
+
+
+.vidya-mobile-menu-cta:hover {
+  color:
+    #ffffff;
+
+  background-size:
+    100%
+    100%;
+
+  border-color:
+    #0b8255;
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0
+    10px
+    24px
+    rgba(
+      11,
+      130,
+      85,
+      0.18
+    );
+}
+
+
+.vidya-mobile-menu-cta
+svg {
+  transition:
+    transform
+    0.35s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+.vidya-mobile-menu-cta:hover
+svg {
+  transform:
+    translate(
+      3px,
+      -3px
+    );
 }
 
 
@@ -919,7 +1292,9 @@ svg {
    SMALL DESKTOP
 ========================================================= */
 
-@media (max-width: 1320px) {
+@media (
+  max-width: 1320px
+) {
 
   .vidya-nav-inner {
     padding:
@@ -942,13 +1317,9 @@ svg {
 
   .vidya-nav-link {
     font-size:
-      14px;
+      16px;
   }
 
-
-  /* =====================================================
-     ENQUIRE STILL LARGER
-  ===================================================== */
 
   .vidya-nav-cta {
     min-width:
@@ -962,7 +1333,7 @@ svg {
       21px;
 
     font-size:
-      13.5px;
+      14px;
   }
 
 }
@@ -972,10 +1343,13 @@ svg {
    TABLET
 ========================================================= */
 
-@media (max-width: 1080px) {
+@media (
+  max-width: 1080px
+) {
 
   .vidya-nav-inner {
-    display: flex;
+    display:
+      flex;
 
     justify-content:
       space-between;
@@ -1016,11 +1390,11 @@ svg {
    MOBILE
 ========================================================= */
 
-@media (max-width: 768px) {
+@media (
+  max-width: 768px
+) {
 
-  /* =====================================================
-     HEADER
-  ===================================================== */
+  /* HEADER */
 
   .vidya-nav-inner {
     height:
@@ -1046,9 +1420,7 @@ svg {
   }
 
 
-  /* =====================================================
-     MOBILE LOGO
-  ===================================================== */
+  /* LOGO */
 
   .vidya-nav-brand {
     min-width:
@@ -1066,9 +1438,7 @@ svg {
   }
 
 
-  /* =====================================================
-     DESKTOP CTA OFF
-  ===================================================== */
+  /* DESKTOP CTA OFF */
 
   .vidya-nav-cta {
     display:
@@ -1076,9 +1446,7 @@ svg {
   }
 
 
-  /* =====================================================
-     MOBILE MENU BUTTON
-  ===================================================== */
+  /* MENU BUTTON */
 
   .vidya-nav-mobile-toggle {
     width:
@@ -1089,9 +1457,7 @@ svg {
   }
 
 
-  /* =====================================================
-     MOBILE MENU
-  ===================================================== */
+  /* MOBILE MENU */
 
   .vidya-mobile-menu-inner {
     width:
@@ -1106,19 +1472,22 @@ svg {
   }
 
 
-  .vidya-mobile-menu-links a {
+  /* MOBILE LINKS */
+
+  .vidya-mobile-menu-links
+  a {
     min-height:
-      52px;
+      57px;
 
     padding:
-      12px
+      13px
       0;
 
     font-size:
       clamp(
-        17px,
-        4.8vw,
-        19px
+        19px,
+        5vw,
+        22px
       );
   }
 
@@ -1135,7 +1504,9 @@ svg {
    SMALL MOBILE
 ========================================================= */
 
-@media (max-width: 420px) {
+@media (
+  max-width: 420px
+) {
 
   .vidya-nav-inner {
     height:
@@ -1153,10 +1524,6 @@ svg {
       62px;
   }
 
-
-  /* =====================================================
-     SMALL LOGO
-  ===================================================== */
 
   .vidya-nav-logo {
     width:
@@ -1186,12 +1553,13 @@ svg {
   }
 
 
-  .vidya-mobile-menu-links a {
+  .vidya-mobile-menu-links
+  a {
     min-height:
-      50px;
+      54px;
 
     font-size:
-      17px;
+      19px;
   }
 
 
@@ -1205,31 +1573,68 @@ svg {
 
 /* =========================================================
    TOUCH DEVICES
-
-   PREVENT HOVER FROM STICKING
 ========================================================= */
 
-@media (hover: none) {
+@media (
+  hover: none
+) {
 
-  .vidya-nav-cta:hover {
-    background-position:
-      100% 0;
-
-    color:
-      #073c2b;
-
-    border-color:
-      #f5c842;
+  .vidya-nav-link:hover
+  span {
+    transform:
+      none;
   }
 
 
-  .vidya-nav-cta:hover::after {
-    opacity:
+  .vidya-nav-cta:hover {
+    color:
+      #0b8255;
+
+    background-size:
+      100%
       0;
 
+    border-color:
+      #f9a01b;
+
     transform:
-      translateX(-160%)
-      rotate(12deg);
+      none;
+
+    box-shadow:
+      none;
+  }
+
+
+  .vidya-mobile-menu-links
+  a:hover {
+    padding-left:
+      0;
+  }
+
+
+  .vidya-mobile-menu-cta:hover {
+    color:
+      #0b8255;
+
+    background-size:
+      100%
+      0;
+
+    border-color:
+      #f9a01b;
+
+    transform:
+      none;
+
+    box-shadow:
+      none;
+  }
+
+
+  .vidya-mobile-menu-cta:hover
+  svg {
+    transform:
+      none;
   }
 
 }

@@ -1,15 +1,44 @@
 /* =========================================================
    ACADEMIC PROGRAMMES
+
+   COLORS
+
+   DARK GREEN:
+   #0b8255
+
+   LIGHT GREEN:
+   #26b474
+
+   ORANGE:
+   #f9a01b
+========================================================= */
+
+
+/* =========================================================
+   SECTION
 ========================================================= */
 
 .academic-programs {
-  position: relative;
+  --academic-dark-green:
+    #0b8255;
 
-  width: 100%;
+  --academic-light-green:
+    #26b474;
 
-  overflow: hidden;
+  --academic-orange:
+    #f9a01b;
 
-  background: #f5f3e9;
+  position:
+    relative;
+
+  width:
+    100%;
+
+  overflow:
+    hidden;
+
+  background:
+    #f5f3e9;
 
   padding:
     clamp(
@@ -36,14 +65,15 @@
       calc(
         100% -
         (
-          var(--page-padding)
-          * 2
+          var(--page-padding) *
+          2
         )
       ),
       var(--container)
     );
 
-  margin-inline: auto;
+  margin-inline:
+    auto;
 }
 
 
@@ -63,13 +93,16 @@
 
 /* =========================================================
    TITLE
+
+   DARK GREEN
 ========================================================= */
 
 .academic-programs-title {
-  margin: 0;
+  margin:
+    0;
 
   color:
-    var(--green-deep);
+    #0b8255;
 
   font-family:
     "Manrope",
@@ -82,9 +115,11 @@
       72px
     );
 
-  font-weight: 550;
+  font-weight:
+    550;
 
-  line-height: 0.98;
+  line-height:
+    0.98;
 
   letter-spacing:
     -0.055em;
@@ -95,11 +130,19 @@
 }
 
 
-.academic-programs-title span {
-  margin-left: 14px;
+/* =========================================================
+   SECOND PART
+
+   LIGHT GREEN
+========================================================= */
+
+.academic-programs-title
+span {
+  margin-left:
+    14px;
 
   color:
-    var(--green);
+    #26b474;
 }
 
 
@@ -108,7 +151,8 @@
 ========================================================= */
 
 .academic-cards-area {
-  position: relative;
+  position:
+    relative;
 }
 
 
@@ -117,9 +161,11 @@
 ========================================================= */
 
 .academic-cards {
-  display: flex;
+  display:
+    flex;
 
-  align-items: stretch;
+  align-items:
+    stretch;
 
   gap:
     clamp(
@@ -128,7 +174,8 @@
       22px
     );
 
-  width: 100%;
+  width:
+    100%;
 }
 
 
@@ -137,12 +184,14 @@
 ========================================================= */
 
 .academic-card {
-  position: relative;
+  position:
+    relative;
 
   flex:
     1 1 0;
 
-  min-width: 0;
+  min-width:
+    0;
 
   height:
     clamp(
@@ -151,46 +200,50 @@
       500px
     );
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  /* NO CURVED EDGES */
-  border-radius: 0;
+  border-radius:
+    0;
 
   background:
-    var(--green-deep);
+    #0b8255;
 
-  cursor: pointer;
+  cursor:
+    pointer;
 
-  isolation: isolate;
+  isolation:
+    isolate;
 
-  outline: none;
+  outline:
+    none;
 
   transition:
     flex
-      0.6s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      ),
+    0.6s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
 
     transform
-      0.5s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      ),
+    0.5s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
 
     opacity
-      0.45s
-      ease,
+    0.45s
+    ease,
 
     box-shadow
-      0.5s
-      ease;
+    0.5s
+    ease;
 
   will-change:
     transform,
@@ -199,7 +252,7 @@
 
 
 /* =========================================================
-   ACTIVE
+   ACTIVE CARD
 ========================================================= */
 
 .academic-card.is-active {
@@ -210,7 +263,9 @@
     translateY(-6px);
 
   box-shadow:
-    0 24px 55px
+    0
+    24px
+    55px
     rgba(
       4,
       61,
@@ -219,6 +274,10 @@
     );
 }
 
+
+/* =========================================================
+   OTHER CARDS WHEN ACTIVE
+========================================================= */
 
 .academic-cards:has(
   .academic-card.is-active
@@ -229,7 +288,8 @@
   flex:
     0.93 1 0;
 
-  opacity: 0.9;
+  opacity:
+    0.9;
 }
 
 
@@ -238,32 +298,42 @@
 ========================================================= */
 
 .academic-card-image {
-  position: absolute;
+  position:
+    absolute;
 
-  top: -6%;
-  left: 0;
+  top:
+    -6%;
 
-  z-index: 0;
+  left:
+    0;
 
-  width: 100%;
-  height: 112%;
+  z-index:
+    0;
 
-  max-width: none;
+  width:
+    100%;
 
-  object-fit: cover;
+  height:
+    112%;
+
+  max-width:
+    none;
+
+  object-fit:
+    cover;
 
   object-position:
     center center;
 
   transition:
     transform
-      0.7s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      );
+    0.7s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
 
   will-change:
     transform;
@@ -275,11 +345,14 @@
 ========================================================= */
 
 .academic-card-overlay {
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
+  inset:
+    0;
 
-  z-index: 1;
+  z-index:
+    1;
 
   background:
     linear-gradient(
@@ -313,47 +386,114 @@
 
 
 /* =========================================================
-   AGE
+   AGE BADGE POSITION
 ========================================================= */
 
 .academic-card-top {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 5;
+  z-index:
+    5;
 
-  top: 20px;
+  top:
+    20px;
 
-  left: 20px;
+  left:
+    20px;
 }
 
 
+/* =========================================================
+   AGE BADGE
+
+   ORANGE #f9a01b
+========================================================= */
+
 .academic-card-age {
-  display: inline-flex;
+  display:
+    inline-flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  min-height: 32px;
+  justify-content:
+    center;
+
+  min-height:
+    32px;
 
   padding:
     0
     13px;
 
-  border-radius: 100px;
+  border-radius:
+    100px;
 
   background:
-    rgba(
-      245,
-      200,
-      66,
-      0.94
-    );
+    #f9a01b;
 
   color:
-    var(--green-deep);
+    #0b8255;
 
-  font-size: 12px;
+  font-size:
+    12px;
 
-  font-weight: 700;
+  font-weight:
+    700;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    -0.01em;
+
+  box-shadow:
+    0
+    6px
+    18px
+    rgba(
+      0,
+      0,
+      0,
+      0.12
+    );
+
+  transition:
+    transform
+    0.35s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
+
+    box-shadow
+    0.35s
+    ease;
+}
+
+
+/* =========================================================
+   ACTIVE BADGE
+========================================================= */
+
+.academic-card.is-active
+.academic-card-age {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0
+    10px
+    22px
+    rgba(
+      0,
+      0,
+      0,
+      0.16
+    );
 }
 
 
@@ -362,9 +502,11 @@
 ========================================================= */
 
 .academic-card-content {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 5;
+  z-index:
+    5;
 
   left:
     clamp(
@@ -387,14 +529,17 @@
       30px
     );
 
-  display: flex;
+  display:
+    flex;
 
-  align-items: flex-end;
+  align-items:
+    flex-end;
 
   justify-content:
     space-between;
 
-  gap: 15px;
+  gap:
+    15px;
 }
 
 
@@ -402,12 +547,16 @@
    CARD TITLE
 ========================================================= */
 
-.academic-card-content h3 {
-  margin: 0;
+.academic-card-content
+h3 {
+  margin:
+    0;
 
-  max-width: 210px;
+  max-width:
+    210px;
 
-  color: #ffffff;
+  color:
+    #ffffff;
 
   font-family:
     "Manrope",
@@ -420,9 +569,11 @@
       37px
     );
 
-  font-weight: 600;
+  font-weight:
+    600;
 
-  line-height: 1;
+  line-height:
+    1;
 
   letter-spacing:
     -0.04em;
@@ -434,17 +585,23 @@
 ========================================================= */
 
 .academic-card-arrow {
-  display: grid;
+  display:
+    grid;
 
-  place-items: center;
+  place-items:
+    center;
 
-  flex-shrink: 0;
+  flex-shrink:
+    0;
 
-  width: 44px;
+  width:
+    44px;
 
-  height: 44px;
+  height:
+    44px;
 
-  border-radius: 50%;
+  border-radius:
+    50%;
 
   background:
     rgba(
@@ -455,24 +612,42 @@
     );
 
   color:
-    var(--green-deep);
+    #0b8255;
 
   transition:
     transform
-      0.4s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      );
+    0.4s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
+
+    background
+    0.3s
+    ease,
+
+    color
+    0.3s
+    ease;
 }
 
+
+/* =========================================================
+   ACTIVE ARROW
+========================================================= */
 
 .academic-card.is-active
 .academic-card-arrow {
   transform:
     rotate(45deg);
+
+  background:
+    #f9a01b;
+
+  color:
+    #0b8255;
 }
 
 
@@ -481,16 +656,21 @@
 ========================================================= */
 
 .academic-card::after {
-  content: "";
+  content:
+    "";
 
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
+  inset:
+    0;
 
-  z-index: 6;
+  z-index:
+    6;
 
   border:
-    1px solid
+    1px
+    solid
     rgba(
       255,
       255,
@@ -498,9 +678,11 @@
       0.12
     );
 
-  border-radius: inherit;
+  border-radius:
+    inherit;
 
-  pointer-events: none;
+  pointer-events:
+    none;
 }
 
 
@@ -515,52 +697,63 @@
       var(--page-padding)
     );
 
-  overflow: visible;
+  overflow:
+    visible;
 
-  padding-bottom: 45px;
+  padding-bottom:
+    45px;
 }
 
 
-/* Swiper slides need full card height */
+/* =========================================================
+   SWIPER SLIDE
+========================================================= */
 
 .academic-mobile-swiper
 .swiper-slide {
-  height: auto;
+  height:
+    auto;
 
   transition:
     transform
-      0.55s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      ),
+    0.55s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
 
     opacity
-      0.45s
-      ease;
+    0.45s
+    ease;
 }
 
 
-/* Non-active cards slightly fade */
+/* =========================================================
+   NON ACTIVE SLIDE
+========================================================= */
 
 .academic-mobile-swiper
 .swiper-slide:not(
   .swiper-slide-active
 ) {
-  opacity: 0.72;
+  opacity:
+    0.72;
 
   transform:
     scale(0.96);
 }
 
 
-/* Active card */
+/* =========================================================
+   ACTIVE SLIDE
+========================================================= */
 
 .academic-mobile-swiper
 .swiper-slide-active {
-  opacity: 1;
+  opacity:
+    1;
 
   transform:
     scale(1);
@@ -568,20 +761,27 @@
 
 
 /* =========================================================
-   SWIPER DOTS
+   SWIPER PAGINATION
 ========================================================= */
 
 .academic-mobile-swiper
 .swiper-pagination {
-  bottom: 2px;
+  bottom:
+    2px;
 }
 
 
+/* =========================================================
+   SWIPER BULLET
+========================================================= */
+
 .academic-mobile-swiper
 .swiper-pagination-bullet {
-  width: 7px;
+  width:
+    7px;
 
-  height: 7px;
+  height:
+    7px;
 
   margin:
     0
@@ -589,42 +789,49 @@
 
   background:
     rgba(
-      3,
-      57,
-      37,
+      11,
+      130,
+      85,
       0.24
     );
 
-  opacity: 1;
+  opacity:
+    1;
 
   transition:
     width
-      0.35s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      ),
+    0.35s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
 
     border-radius
-      0.35s
-      ease,
+    0.35s
+    ease,
 
     background
-      0.35s
-      ease;
+    0.35s
+    ease;
 }
 
 
+/* =========================================================
+   ACTIVE SWIPER BULLET
+========================================================= */
+
 .academic-mobile-swiper
 .swiper-pagination-bullet-active {
-  width: 26px;
+  width:
+    26px;
 
-  border-radius: 20px;
+  border-radius:
+    20px;
 
   background:
-    var(--green);
+    #26b474;
 }
 
 
@@ -641,7 +848,8 @@ and
 ) {
 
   .academic-cards {
-    display: grid;
+    display:
+      grid;
 
     grid-template-columns:
       repeat(
@@ -652,15 +860,18 @@ and
         )
       );
 
-    gap: 18px;
+    gap:
+      18px;
   }
 
 
   .academic-card,
   .academic-card.is-active {
-    height: 440px;
+    height:
+      440px;
 
-    transform: none;
+    transform:
+      none;
   }
 
 }
@@ -682,12 +893,11 @@ and
   }
 
 
-  .academic-programs-container {
-    /*
-      Keep left alignment with site,
-      but allow slider to overflow right.
-    */
+  /* =====================================================
+     MOBILE CONTAINER
+  ===================================================== */
 
+  .academic-programs-container {
     width:
       calc(
         100% -
@@ -697,17 +907,27 @@ and
     margin-left:
       var(--page-padding);
 
-    margin-right: 0;
+    margin-right:
+      0;
   }
 
 
+  /* =====================================================
+     MOBILE HEADER
+  ===================================================== */
+
   .academic-programs-header {
-    margin-bottom: 38px;
+    margin-bottom:
+      38px;
 
     padding-right:
       var(--page-padding);
   }
 
+
+  /* =====================================================
+     MOBILE TITLE
+  ===================================================== */
 
   .academic-programs-title {
     font-size:
@@ -717,56 +937,61 @@ and
         54px
       );
 
-    line-height: 1;
+    line-height:
+      1;
   }
 
 
-  .academic-programs-title span {
-    display: block;
+  .academic-programs-title
+  span {
+    display:
+      block;
 
     margin:
       5px
       0
       0;
+
+    color:
+      #26b474;
   }
 
 
-  /* -----------------------------------------------
+  /* =====================================================
      MOBILE CARD
-  ------------------------------------------------ */
+  ===================================================== */
 
   .academic-card,
   .academic-card.is-active {
-    width: 100%;
+    width:
+      100%;
 
-    height: 400px;
+    height:
+      400px;
 
-    transform: none;
+    transform:
+      none;
 
-    box-shadow: none;
+    box-shadow:
+      none;
   }
 
-
-  /*
-    NO CURVED CARD EDGES ON MOBILE
-  */
 
   .academic-card {
-    border-radius: 0;
+    border-radius:
+      0;
   }
 
-
-  /*
-    Swiper controls scale,
-    so disable desktop flex behaviour.
-  */
 
   .academic-card.is-active {
-    flex: none;
+    flex:
+      none;
   }
 
 
-  /* Active image gets a tiny zoom */
+  /* =====================================================
+     ACTIVE IMAGE
+  ===================================================== */
 
   .swiper-slide-active
   .academic-card-image {
@@ -775,7 +1000,12 @@ and
   }
 
 
-  .academic-card-content h3 {
+  /* =====================================================
+     MOBILE CARD TITLE
+  ===================================================== */
+
+  .academic-card-content
+  h3 {
     font-size:
       clamp(
         27px,
@@ -785,10 +1015,29 @@ and
   }
 
 
-  .academic-card-arrow {
-    width: 42px;
+  /* =====================================================
+     MOBILE ARROW
+  ===================================================== */
 
-    height: 42px;
+  .academic-card-arrow {
+    width:
+      42px;
+
+    height:
+      42px;
+  }
+
+
+  /* =====================================================
+     MOBILE AGE BADGE
+  ===================================================== */
+
+  .academic-card-age {
+    background:
+      #f9a01b;
+
+    color:
+      #0b8255;
   }
 
 }
@@ -804,30 +1053,89 @@ and
 
   .academic-card,
   .academic-card.is-active {
-    height: 365px;
+    height:
+      365px;
   }
 
 
   .academic-card-top {
-    top: 17px;
+    top:
+      17px;
 
-    left: 17px;
+    left:
+      17px;
+  }
+
+
+  .academic-card-age {
+    min-height:
+      30px;
+
+    padding:
+      0
+      12px;
+
+    font-size:
+      11px;
   }
 
 
   .academic-card-content {
-    left: 18px;
+    left:
+      18px;
 
-    right: 18px;
+    right:
+      18px;
 
-    bottom: 18px;
+    bottom:
+      18px;
   }
 
 
   .academic-card-arrow {
-    width: 40px;
+    width:
+      40px;
 
-    height: 40px;
+    height:
+      40px;
+  }
+
+}
+
+
+/* =========================================================
+   TOUCH
+========================================================= */
+
+@media (
+  hover: none
+) {
+
+  .academic-card-age {
+    transform:
+      none !important;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+
+  .academic-card,
+  .academic-card-image,
+  .academic-card-arrow,
+  .academic-card-age,
+  .academic-mobile-swiper
+  .swiper-slide {
+    transition:
+      none !important;
   }
 
 }

@@ -3,13 +3,17 @@
 ========================================================= */
 
 .life-school {
-  position: relative;
+  position:
+    relative;
 
-  width: 100%;
+  width:
+    100%;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  background: #0b563b;
+  background:
+    #0b563b;
 
   padding:
     clamp(
@@ -42,8 +46,8 @@
     calc(
       100% -
       (
-        var(--life-side-space)
-        * 2
+        var(--life-side-space) *
+        2
       )
     );
 
@@ -66,9 +70,11 @@
 ========================================================= */
 
 .life-school-title {
-  margin: 0;
+  margin:
+    0;
 
-  color: #ffffff;
+  color:
+    #ffffff;
 
   font-family:
     "Manrope",
@@ -81,9 +87,11 @@
       70px
     );
 
-  font-weight: 550;
+  font-weight:
+    550;
 
-  line-height: 1;
+  line-height:
+    1;
 
   letter-spacing:
     -0.058em;
@@ -97,12 +105,10 @@
 }
 
 
-/* =========================================================
-   SECOND PART OF HEADING
-========================================================= */
-
-.life-school-title span {
-  display: inline;
+.life-school-title
+span {
+  display:
+    inline;
 
   color:
     rgba(
@@ -119,11 +125,14 @@
 ========================================================= */
 
 .life-school-slider-wrap {
-  position: relative;
+  position:
+    relative;
 
-  width: 100%;
+  width:
+    100%;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
   will-change:
     transform,
@@ -132,27 +141,35 @@
 
 
 /* =========================================================
-   HORIZONTAL SLIDER
+   SLIDER
 ========================================================= */
 
 .life-school-slider {
-  display: flex;
+  display:
+    flex;
 
-  align-items: stretch;
+  align-items:
+    stretch;
 
-  gap: 16px;
+  gap:
+    18px;
 
-  width: 100%;
+  width:
+    100%;
 
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-x:
+    auto;
+
+  overflow-y:
+    hidden;
 
   padding:
-    4px
+    6px
     0
-    9px;
+    12px;
 
-  cursor: grab;
+  cursor:
+    grab;
 
   scroll-snap-type:
     x proximity;
@@ -169,19 +186,22 @@
   touch-action:
     pan-x pan-y;
 
-  user-select: none;
+  user-select:
+    none;
 
-  scrollbar-width: none;
+  scrollbar-width:
+    none;
 }
 
 
 .life-school-slider::-webkit-scrollbar {
-  display: none;
+  display:
+    none;
 }
 
 
 /* =========================================================
-   FIRST CARD LEFT SPACE
+   SIDE SPACING
 ========================================================= */
 
 .life-school-card:first-child {
@@ -189,10 +209,6 @@
     var(--life-side-space);
 }
 
-
-/* =========================================================
-   LAST CARD RIGHT SPACE
-========================================================= */
 
 .life-school-card:last-child {
   margin-right:
@@ -205,45 +221,54 @@
 ========================================================= */
 
 .life-school-slider.is-dragging {
-  cursor: grabbing;
+  cursor:
+    grabbing;
 
-  scroll-snap-type: none;
+  scroll-snap-type:
+    none;
 }
 
 
 /* =========================================================
    CARD
+
+   WIDER
+   SHORTER HEIGHT
 ========================================================= */
 
 .life-school-card {
-  position: relative;
+  position:
+    relative;
 
   flex:
     0 0
     clamp(
-      260px,
-      23vw,
-      350px
+      360px,
+      29vw,
+      455px
     );
 
   height:
     clamp(
-      335px,
-      29vw,
-      420px
+      340px,
+      27vw,
+      410px
     );
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  /* NO CURVED EDGES */
-  border-radius: 0;
+  border-radius:
+    0;
 
-  outline: none;
+  outline:
+    none;
 
   background:
     #073f32;
 
-  isolation: isolate;
+  isolation:
+    isolate;
 
   scroll-snap-align:
     start;
@@ -255,55 +280,68 @@
 ========================================================= */
 
 .life-school-card-image {
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
+  inset:
+    0;
 
-  z-index: 0;
+  z-index:
+    0;
 
-  display: block;
+  display:
+    block;
 
-  width: 100%;
-  height: 100%;
+  width:
+    100%;
 
-  object-fit: cover;
+  height:
+    100%;
+
+  object-fit:
+    cover;
 
   object-position:
     center;
 
-  pointer-events: none;
+  pointer-events:
+    none;
 
   transform:
     scale(1.01);
 
   transition:
     transform
-      0.7s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      ),
+    0.7s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
 
     opacity
-      0.5s
-      ease;
+    0.5s
+    ease;
 }
 
 
 /* =========================================================
-   DEFAULT IMAGE GRADIENT
+   DEFAULT GRADIENT
 ========================================================= */
 
 .life-school-card-gradient {
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
+  inset:
+    0;
 
-  z-index: 1;
+  z-index:
+    1;
 
-  pointer-events: none;
+  pointer-events:
+    none;
 
   background:
     linear-gradient(
@@ -336,23 +374,27 @@
 
   transition:
     opacity
-      0.45s
-      ease;
+    0.45s
+    ease;
 }
 
 
 /* =========================================================
-   PREMIUM TEAL HOVER OVERLAY
+   HOVER OVERLAY
 ========================================================= */
 
 .life-school-card-hover-overlay {
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
+  inset:
+    0;
 
-  z-index: 2;
+  z-index:
+    2;
 
-  pointer-events: none;
+  pointer-events:
+    none;
 
   background:
     linear-gradient(
@@ -383,55 +425,18 @@
       100%
     );
 
-  opacity: 0;
+  opacity:
+    0;
 
   transition:
     opacity
-      0.5s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      );
-}
-
-
-/* =========================================================
-   NUMBER
-========================================================= */
-
-.life-school-card-number {
-  position: absolute;
-
-  z-index: 5;
-
-  top: 19px;
-  right: 20px;
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      0.76
+    0.5s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
     );
-
-  font-family:
-    "Manrope",
-    sans-serif;
-
-  font-size: 11px;
-
-  font-weight: 600;
-
-  letter-spacing:
-    0.06em;
-
-  transition:
-    color
-      0.4s
-      ease;
 }
 
 
@@ -440,29 +445,31 @@
 ========================================================= */
 
 .life-school-card-content {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 5;
+  z-index:
+    5;
 
   left:
     clamp(
-      20px,
-      1.7vw,
-      27px
+      23px,
+      1.9vw,
+      31px
     );
 
   right:
     clamp(
-      20px,
-      1.7vw,
-      27px
+      23px,
+      1.9vw,
+      31px
     );
 
   bottom:
     clamp(
-      21px,
+      23px,
       1.8vw,
-      28px
+      29px
     );
 
   transform:
@@ -470,25 +477,26 @@
 
   transition:
     transform
-      0.5s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      );
+    0.5s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
 }
 
 
 /* =========================================================
-   CARD LABEL
+   LABEL
 ========================================================= */
 
 .life-school-card-label {
-  display: block;
+  display:
+    block;
 
   margin-bottom:
-    9px;
+    10px;
 
   color:
     rgba(
@@ -502,11 +510,14 @@
     "Manrope",
     sans-serif;
 
-  font-size: 9px;
+  font-size:
+    10px;
 
-  font-weight: 700;
+  font-weight:
+    700;
 
-  line-height: 1;
+  line-height:
+    1;
 
   letter-spacing:
     0.16em;
@@ -516,19 +527,22 @@
 
   transition:
     color
-      0.4s
-      ease;
+    0.4s
+    ease;
 }
 
 
 /* =========================================================
-   CARD TITLE
+   TITLE
 ========================================================= */
 
-.life-school-card-content h3 {
-  max-width: 280px;
+.life-school-card-content
+h3 {
+  max-width:
+    340px;
 
-  margin: 0;
+  margin:
+    0;
 
   color:
     #ffffff;
@@ -539,14 +553,16 @@
 
   font-size:
     clamp(
-      24px,
-      2vw,
-      33px
+      27px,
+      2.1vw,
+      35px
     );
 
-  font-weight: 550;
+  font-weight:
+    550;
 
-  line-height: 1;
+  line-height:
+    1;
 
   letter-spacing:
     -0.045em;
@@ -558,37 +574,40 @@
 ========================================================= */
 
 .life-school-card-description-wrap {
-  display: grid;
+  display:
+    grid;
 
   grid-template-rows:
     0fr;
 
-  opacity: 0;
+  opacity:
+    0;
 
-  margin-top: 0;
+  margin-top:
+    0;
 
   transition:
     grid-template-rows
-      0.5s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      ),
+    0.5s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
 
     opacity
-      0.35s
-      ease,
+    0.35s
+    ease,
 
     margin
-      0.5s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      );
+    0.5s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
 }
 
 
@@ -597,13 +616,17 @@
 ========================================================= */
 
 .life-school-card-description {
-  min-height: 0;
+  min-height:
+    0;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  max-width: 285px;
+  max-width:
+    350px;
 
-  margin: 0;
+  margin:
+    0;
 
   color:
     rgba(
@@ -624,27 +647,34 @@
       15px
     );
 
-  font-weight: 400;
+  font-weight:
+    400;
 
-  line-height: 1.48;
+  line-height:
+    1.48;
 }
 
 
 /* =========================================================
-   SUBTLE CARD BORDER
+   BORDER
 ========================================================= */
 
 .life-school-card::after {
-  content: "";
+  content:
+    "";
 
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
+  inset:
+    0;
 
-  z-index: 7;
+  z-index:
+    7;
 
   border:
-    1px solid
+    1px
+    solid
     rgba(
       255,
       255,
@@ -652,14 +682,8 @@
       0.13
     );
 
-  /*
-    Inherits 0 radius from card.
-  */
-
-  border-radius:
-    inherit;
-
-  pointer-events: none;
+  pointer-events:
+    none;
 }
 
 
@@ -667,17 +691,16 @@
    DESKTOP HOVER
 ========================================================= */
 
-@media (hover: hover) {
-
-  /* SHOW TEAL OVERLAY */
+@media (
+  hover: hover
+) {
 
   .life-school-card:hover
   .life-school-card-hover-overlay {
-    opacity: 1;
+    opacity:
+      1;
   }
 
-
-  /* KEEP IMAGE VISIBLE */
 
   .life-school-card:hover
   .life-school-card-image {
@@ -689,16 +712,12 @@
   }
 
 
-  /* REDUCE DEFAULT GRADIENT */
-
   .life-school-card:hover
   .life-school-card-gradient {
     opacity:
       0.12;
   }
 
-
-  /* CONTENT SLIGHTLY MOVES UP */
 
   .life-school-card:hover
   .life-school-card-content {
@@ -707,66 +726,29 @@
   }
 
 
-  /* LABEL */
-
-  .life-school-card:hover
-  .life-school-card-label {
-    color:
-      rgba(
-        255,
-        255,
-        255,
-        0.67
-      );
-  }
-
-
-  /* TITLE */
-
-  .life-school-card:hover
-  .life-school-card-content h3 {
-    color:
-      #ffffff;
-  }
-
-
-  /* NUMBER */
-
-  .life-school-card:hover
-  .life-school-card-number {
-    color:
-      rgba(
-        255,
-        255,
-        255,
-        0.66
-      );
-  }
-
-
-  /* DESCRIPTION */
-
   .life-school-card:hover
   .life-school-card-description-wrap {
     grid-template-rows:
       1fr;
 
-    opacity: 1;
+    opacity:
+      1;
 
     margin-top:
-      15px;
+      14px;
   }
 
 }
 
 
 /* =========================================================
-   KEYBOARD FOCUS
+   KEYBOARD
 ========================================================= */
 
 .life-school-card:focus-visible
 .life-school-card-hover-overlay {
-  opacity: 1;
+  opacity:
+    1;
 }
 
 
@@ -775,33 +757,37 @@
   grid-template-rows:
     1fr;
 
-  opacity: 1;
+  opacity:
+    1;
 
   margin-top:
-    15px;
+    14px;
 }
 
 
 /* =========================================================
-   BOTTOM AREA
+   BOTTOM
 ========================================================= */
 
 .life-school-bottom {
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
   justify-content:
     space-between;
 
-  gap: 30px;
+  gap:
+    30px;
 
   width:
     calc(
       100% -
       (
-        var(--life-side-space)
-        * 2
+        var(--life-side-space) *
+        2
       )
     );
 
@@ -809,7 +795,7 @@
     var(--container);
 
   margin:
-    28px
+    30px
     auto
     0;
 }
@@ -820,21 +806,30 @@
 ========================================================= */
 
 .life-school-progress {
+  flex:
+    0 1
+    430px;
+
   width:
     min(
-      390px,
-      34vw
+      430px,
+      36vw
     );
 }
 
 
 .life-school-progress-track {
-  position: relative;
+  position:
+    relative;
 
-  width: 100%;
-  height: 2px;
+  width:
+    100%;
 
-  overflow: hidden;
+  height:
+    2px;
+
+  overflow:
+    hidden;
 
   background:
     rgba(
@@ -847,16 +842,18 @@
 
 
 .life-school-progress-fill {
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
+  inset:
+    0;
 
   background:
     rgba(
       255,
       255,
       255,
-      0.8
+      0.82
     );
 
   transform-origin:
@@ -864,59 +861,233 @@
 
   transition:
     transform
-      0.08s
-      linear;
+    0.08s
+    linear;
 }
 
 
 /* =========================================================
-   DRAG HINT
+   ARROWS
 ========================================================= */
 
-.life-school-drag {
-  display: flex;
+.life-school-arrows {
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
 
-  gap: 11px;
+  gap:
+    10px;
 
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      0.52
-    );
-
-  font-family:
-    "Manrope",
-    sans-serif;
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-  letter-spacing:
-    0.14em;
-
-  text-transform:
-    uppercase;
+  flex-shrink:
+    0;
 }
 
 
-.life-school-drag-line {
-  display: block;
+/* =========================================================
+   ARROW BUTTON
+========================================================= */
 
-  width: 32px;
-  height: 1px;
+.life-school-arrow-button {
+  position:
+    relative;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  width:
+    52px;
+
+  height:
+    52px;
+
+  padding:
+    0;
+
+  flex-shrink:
+    0;
+
+  overflow:
+    hidden;
+
+  color:
+    #073f32;
 
   background:
+    #f9a01b;
+
+  border:
+    1px
+    solid
+    #f9a01b;
+
+  border-radius:
+    50%;
+
+  cursor:
+    pointer;
+
+  outline:
+    none;
+
+  transition:
+    transform
+    0.4s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
+
+    box-shadow
+    0.4s
+    ease;
+}
+
+
+/* =========================================================
+   ARROW ICON
+========================================================= */
+
+.life-school-arrow-button
+svg {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  transition:
+    transform
+    0.4s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+/* =========================================================
+   INNER RING
+========================================================= */
+
+.life-school-arrow-button::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  inset:
+    4px;
+
+  border:
+    1px
+    solid
     rgba(
       255,
       255,
       255,
-      0.32
+      0
     );
+
+  border-radius:
+    50%;
+
+  transform:
+    scale(0.75);
+
+  opacity:
+    0;
+
+  transition:
+    transform
+    0.4s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
+
+    opacity
+    0.35s
+    ease;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+@media (
+  hover: hover
+) {
+
+  .life-school-arrow-button:hover {
+    transform:
+      translateY(-3px);
+
+    box-shadow:
+      0
+      12px
+      28px
+      rgba(
+        0,
+        0,
+        0,
+        0.18
+      );
+  }
+
+
+  .life-school-arrow-button:hover::before {
+    opacity:
+      1;
+
+    transform:
+      scale(1);
+
+    border-color:
+      rgba(
+        255,
+        255,
+        255,
+        0.5
+      );
+  }
+
+
+  .life-school-arrow-button--prev:hover
+  svg {
+    transform:
+      translateX(-3px);
+  }
+
+
+  .life-school-arrow-button--next:hover
+  svg {
+    transform:
+      translateX(3px);
+  }
+
+}
+
+
+/* =========================================================
+   ACTIVE
+========================================================= */
+
+.life-school-arrow-button:active {
+  transform:
+    scale(0.94);
 }
 
 
@@ -944,21 +1115,33 @@
   }
 
 
+  /* WIDER + SHORTER */
+
   .life-school-card {
     flex-basis:
-      300px;
+      385px;
 
     height:
-      380px;
-
-    /* KEEP SQUARE */
-    border-radius: 0;
+      365px;
   }
 
 
-  .life-school-card-content h3 {
+  .life-school-card-content
+  h3 {
     font-size:
-      28px;
+      30px;
+
+    max-width:
+      310px;
+  }
+
+
+  .life-school-arrow-button {
+    width:
+      48px;
+
+    height:
+      48px;
   }
 
 }
@@ -1017,7 +1200,8 @@
   }
 
 
-  .life-school-title span {
+  .life-school-title
+  span {
     display:
       inline;
   }
@@ -1029,7 +1213,7 @@
 
   .life-school-slider {
     gap:
-      13px;
+      14px;
 
     scroll-snap-type:
       x mandatory;
@@ -1052,64 +1236,55 @@
 
 
   /* =====================================================
-     MOBILE CARD
+     MOBILE
+
+     MORE WIDTH
+     LESS HEIGHT
   ===================================================== */
 
   .life-school-card {
     flex:
       0 0
       calc(
-        100vw - 95px
+        100vw - 48px
       );
 
     max-width:
-      320px;
+      380px;
 
     height:
-      370px;
-
-    /* NO CURVED EDGES */
-    border-radius:
-      0;
-  }
-
-
-  .life-school-card-number {
-    top:
-      17px;
-
-    right:
-      17px;
+      350px;
   }
 
 
   .life-school-card-content {
     left:
-      19px;
+      21px;
 
     right:
-      19px;
+      21px;
 
     bottom:
-      20px;
+      21px;
   }
 
 
-  .life-school-card-content h3 {
+  .life-school-card-content
+  h3 {
     max-width:
-      250px;
+      300px;
 
     font-size:
       clamp(
-        24px,
-        6.6vw,
-        30px
+        25px,
+        6.9vw,
+        32px
       );
   }
 
 
   /* =====================================================
-     KEEP MOBILE CLEAN
+     MOBILE DESCRIPTION OFF
   ===================================================== */
 
   .life-school-card-description-wrap {
@@ -1123,25 +1298,50 @@
   ===================================================== */
 
   .life-school-bottom {
+    gap:
+      18px;
+
     width:
       calc(
         100% - 40px
       );
 
     margin-top:
-      24px;
+      25px;
   }
 
 
   .life-school-progress {
+    flex:
+      1;
+
     width:
-      100%;
+      auto;
   }
 
 
-  .life-school-drag {
-    display:
-      none;
+  .life-school-arrows {
+    gap:
+      8px;
+  }
+
+
+  .life-school-arrow-button {
+    width:
+      45px;
+
+    height:
+      45px;
+  }
+
+
+  .life-school-arrow-button
+  svg {
+    width:
+      19px;
+
+    height:
+      19px;
   }
 
 }
@@ -1181,39 +1381,137 @@
   }
 
 
+  /* =====================================================
+     WIDER SMALL MOBILE CARD
+     SHORTER HEIGHT
+  ===================================================== */
+
   .life-school-card {
     flex-basis:
       calc(
-        100vw - 82px
+        100vw - 42px
       );
 
     max-width:
-      310px;
+      365px;
 
     height:
-      340px;
-
-    /* NO CURVED EDGES */
-    border-radius:
-      0;
+      325px;
   }
 
 
-  .life-school-card-content h3 {
+  .life-school-card-content
+  h3 {
+    max-width:
+      285px;
+
     font-size:
       clamp(
-        23px,
-        6.4vw,
-        29px
+        24px,
+        6.6vw,
+        30px
       );
   }
 
 
   .life-school-bottom {
+    gap:
+      13px;
+
     width:
       calc(
         100% - 36px
       );
+  }
+
+
+  .life-school-arrows {
+    gap:
+      7px;
+  }
+
+
+  .life-school-arrow-button {
+    width:
+      42px;
+
+    height:
+      42px;
+  }
+
+
+  .life-school-arrow-button
+  svg {
+    width:
+      18px;
+
+    height:
+      18px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 360px
+) {
+
+  .life-school-card {
+    flex-basis:
+      calc(
+        100vw - 36px
+      );
+
+    max-width:
+      340px;
+
+    height:
+      310px;
+  }
+
+
+  .life-school-arrow-button {
+    width:
+      40px;
+
+    height:
+      40px;
+  }
+
+}
+
+
+/* =========================================================
+   TOUCH
+========================================================= */
+
+@media (
+  hover: none
+) {
+
+  .life-school-arrow-button:hover {
+    transform:
+      none;
+
+    box-shadow:
+      none;
+  }
+
+
+  .life-school-arrow-button:hover
+  svg {
+    transform:
+      none;
+  }
+
+
+  .life-school-arrow-button:hover::before {
+    opacity:
+      0;
   }
 
 }
@@ -1224,7 +1522,8 @@
 ========================================================= */
 
 @media (
-  prefers-reduced-motion: reduce
+  prefers-reduced-motion:
+    reduce
 ) {
 
   .life-school-title,
@@ -1232,7 +1531,9 @@
   .life-school-card-image,
   .life-school-card-content,
   .life-school-card-hover-overlay,
-  .life-school-card-description-wrap {
+  .life-school-card-description-wrap,
+  .life-school-arrow-button,
+  .life-school-arrow-button svg {
     transition:
       none !important;
 

@@ -75,10 +75,8 @@ const Hero = ({
 
      Runs immediately.
 
-     Hero video must exist underneath
+     Hero video stays underneath
      the VIDYA intro.
-
-     NO HERO TEXT is required here.
   ========================================================= */
 
   useLayoutEffect(() => {
@@ -139,11 +137,13 @@ const Hero = ({
 
           {
             yPercent: -3,
+
             scale: 1.02,
           },
 
           {
             yPercent: 8,
+
             scale: 1.1,
 
             ease: "none",
@@ -185,15 +185,10 @@ const Hero = ({
   /* =========================================================
      HERO CONTENT REVEAL
 
-     CRITICAL:
+     MUCH FASTER NOW.
 
-     This effect cannot run while showContent=false
-     because the Hero text DOES NOT EXIST in the DOM.
-
-     showContent becomes true only:
-     VIDYA finished
-          +
-     300ms delay
+     Content begins immediately when
+     showContent becomes true.
   ========================================================= */
 
   useLayoutEffect(() => {
@@ -237,17 +232,18 @@ const Hero = ({
       gsap.context(() => {
 
         /* -----------------------------------------------
-           INITIAL HIDDEN STATE
+           INITIAL STATE
 
-           useLayoutEffect runs before paint,
-           so there is no text flash.
+           Smaller movement means it appears
+           noticeably faster.
         ------------------------------------------------ */
 
         gsap.set(
           title,
           {
             opacity: 0,
-            y: 70,
+
+            y: 34,
           }
         );
 
@@ -256,7 +252,8 @@ const Hero = ({
           paragraph,
           {
             opacity: 0,
-            y: 35,
+
+            y: 18,
           }
         );
 
@@ -265,7 +262,8 @@ const Hero = ({
           buttons,
           {
             opacity: 0,
-            y: 30,
+
+            y: 16,
           }
         );
 
@@ -276,7 +274,8 @@ const Hero = ({
             bottom,
             {
               opacity: 0,
-              y: 15,
+
+              y: 10,
             }
           );
 
@@ -284,15 +283,23 @@ const Hero = ({
 
 
         /* -----------------------------------------------
-           HERO REVEAL
+           FAST HERO REVEAL
+
+           Starts immediately.
+
+           Title = almost instant
+           Description = follows immediately
+           Buttons = follows immediately
         ------------------------------------------------ */
 
         const reveal =
           gsap.timeline({
 
             defaults: {
+
               ease:
-                "power4.out",
+                "power3.out",
+
             },
 
           });
@@ -304,9 +311,11 @@ const Hero = ({
           title,
           {
             opacity: 1,
+
             y: 0,
 
-            duration: 1.1,
+            duration:
+              0.36,
           },
           0
         );
@@ -318,11 +327,13 @@ const Hero = ({
           paragraph,
           {
             opacity: 1,
+
             y: 0,
 
-            duration: 0.8,
+            duration:
+              0.34,
           },
-          0.28
+          0.035
         );
 
 
@@ -332,15 +343,17 @@ const Hero = ({
           buttons,
           {
             opacity: 1,
+
             y: 0,
 
-            duration: 0.8,
+            duration:
+              0.34,
           },
-          0.42
+          0.07
         );
 
 
-        /* BOTTOM */
+        /* BOTTOM CUE */
 
         if (bottom) {
 
@@ -348,11 +361,13 @@ const Hero = ({
             bottom,
             {
               opacity: 1,
+
               y: 0,
 
-              duration: 0.7,
+              duration:
+                0.3,
             },
-            0.52
+            0.1
           );
 
         }
@@ -360,8 +375,6 @@ const Hero = ({
 
         /* -----------------------------------------------
            CONTENT PARALLAX
-
-           Created only after Hero content exists.
         ------------------------------------------------ */
 
         gsap.to(
@@ -419,7 +432,6 @@ const Hero = ({
 
     setVideoModal(true);
 
-
     document.body.style.overflow =
       "hidden";
 
@@ -429,7 +441,6 @@ const Hero = ({
   const closeVideo = () => {
 
     setVideoModal(false);
-
 
     document.body.style.overflow =
       "";
@@ -445,49 +456,32 @@ const Hero = ({
     <>
 
       <section
-
         ref={sectionRef}
-
         className="raya-hero"
-
         id="home"
-
         data-navbar-hero
-
       >
 
         {/* =================================================
             VIDEO
-
-            ALWAYS PRESENT
         ================================================= */}
 
         <div className="raya-hero-media">
 
           <video
-
             ref={videoRef}
-
             className="raya-hero-video"
-
             autoPlay
-
             muted
-
             loop
-
             playsInline
-
             preload="auto"
-
             onCanPlay={
               onVideoReady
             }
-
             onPlaying={
               onVideoReady
             }
-
           >
 
             <source
@@ -506,15 +500,7 @@ const Hero = ({
 
 
         {/* =================================================
-            HERO TEXT
-
-            THIS ENTIRE BLOCK DOES NOT EXIST
-            DURING VIDYA INTRO.
-
-            No opacity trick.
-            No visibility trick.
-
-            React simply doesn't render it.
+            HERO CONTENT
         ================================================= */}
 
         {showContent && (
@@ -524,21 +510,15 @@ const Hero = ({
             <div className="raya-hero-container">
 
               <div
-
                 ref={contentRef}
-
                 className="raya-hero-content"
-
               >
 
                 {/* TITLE */}
 
                 <h1
-
                   ref={titleRef}
-
                   className="raya-hero-title"
-
                 >
 
                   <span className="raya-title-main">
@@ -556,11 +536,8 @@ const Hero = ({
                 {/* DESCRIPTION */}
 
                 <p
-
                   ref={paragraphRef}
-
                   className="raya-hero-description"
-
                 >
                   A school where curiosity,
                   confidence and character
@@ -571,40 +548,30 @@ const Hero = ({
                 {/* ACTIONS */}
 
                 <div
-
                   ref={buttonsRef}
-
                   className="raya-hero-actions"
-
                 >
 
                   <a
-
                     href="#about"
-
                     className="
                       raya-hero-button
                       raya-hero-button-primary
                     "
-
                   >
                     Explore Vidya
                   </a>
 
 
                   <button
-
                     type="button"
-
                     className="
                       raya-hero-button
                       raya-hero-button-video
                     "
-
                     onClick={
                       openVideo
                     }
-
                   >
 
                     <span className="raya-hero-play">
@@ -615,7 +582,6 @@ const Hero = ({
                       />
 
                     </span>
-
 
                     Watch our story
 
@@ -630,26 +596,20 @@ const Hero = ({
 
             {/* =============================================
                 BOTTOM CUE
-
-                Also absent during VIDYA intro.
             ============================================= */}
 
             <div
-
               ref={bottomRef}
-
               className="raya-hero-bottom"
-
             >
 
-              <span>
+              {/* <span>
                 Discover Vidya
-              </span>
+              </span> */}
 
-
-              <ArrowDown
+              {/* <ArrowDown
                 size={17}
-              />
+              /> */}
 
             </div>
 
@@ -669,7 +629,6 @@ const Hero = ({
         {videoModal && (
 
           <motion.div
-
             className="raya-video-modal"
 
             initial={{
@@ -687,11 +646,9 @@ const Hero = ({
             transition={{
               duration: 0.45,
             }}
-
           >
 
             <motion.div
-
               className="raya-video-modal-inner"
 
               initial={{
@@ -722,19 +679,13 @@ const Hero = ({
                 ],
 
               }}
-
             >
 
               <video
-
                 className="raya-video-modal-video"
-
                 autoPlay
-
                 controls
-
                 playsInline
-
               >
 
                 <source
@@ -748,7 +699,6 @@ const Hero = ({
 
 
             <button
-
               type="button"
 
               className="raya-video-close"
@@ -758,7 +708,6 @@ const Hero = ({
               }
 
               aria-label="Close video"
-
             >
 
               <X size={24} />

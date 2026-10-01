@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./QuickFacts.css";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -57,7 +58,8 @@ const facts = [
 
     value: "15:1",
 
-    title: "Student–Teacher Ratio",
+    title:
+      "Student–Teacher Ratio",
 
     description:
       "More interaction, individual attention and meaningful learning.",
@@ -85,7 +87,8 @@ const facts = [
 
     value: "30+",
 
-    title: "Learning Spaces",
+    title:
+      "Learning Spaces",
 
     description:
       "Spaces designed for exploration, collaboration and discovery.",
@@ -99,7 +102,8 @@ const facts = [
 
     value: "100%",
 
-    title: "Child-Centred",
+    title:
+      "Child-Centred",
 
     description:
       "Every experience is shaped around each child's growth and confidence.",
@@ -126,9 +130,11 @@ function FactCard({
   fact,
   duplicate = false,
 }) {
+
   const handleImageError = (
     event
   ) => {
+
     const image =
       event.currentTarget;
 
@@ -139,10 +145,12 @@ function FactCard({
 
     image.src =
       fallbackImage;
+
   };
 
 
   return (
+
     <article
       className="quick-marquee-card"
 
@@ -153,10 +161,16 @@ function FactCard({
       }
     >
 
-      {/* IMAGE */}
+      {/* =================================================
+          FULL IMAGE
+          NO OVERLAY
+          NO NUMBER
+      ================================================= */}
 
       <img
-        src={fact.image}
+        src={
+          fact.image
+        }
 
         alt={
           duplicate
@@ -178,27 +192,17 @@ function FactCard({
       />
 
 
-      {/* OVERLAY */}
+      {/* =================================================
+          CONTENT
+      ================================================= */}
 
       <div
-        className="quick-marquee-overlay"
+        className="quick-marquee-content"
+      >
 
-        aria-hidden="true"
-      />
-
-
-      {/* NUMBER */}
-
-      <span className="quick-marquee-number">
-        {fact.id}
-      </span>
-
-
-      {/* CONTENT */}
-
-      <div className="quick-marquee-content">
-
-        <strong className="quick-marquee-value">
+        <strong
+          className="quick-marquee-value"
+        >
           {fact.value}
         </strong>
 
@@ -208,7 +212,9 @@ function FactCard({
         </h3>
 
 
-        <div className="quick-marquee-description-wrap">
+        <div
+          className="quick-marquee-description-wrap"
+        >
 
           <p>
             {fact.description}
@@ -219,7 +225,9 @@ function FactCard({
       </div>
 
     </article>
+
   );
+
 }
 
 
@@ -231,7 +239,9 @@ function FactGroup({
   items,
   duplicate = false,
 }) {
+
   return (
+
     <div
       className="quick-marquee-group"
 
@@ -243,7 +253,9 @@ function FactGroup({
     >
 
       {items.map(
-        (fact) => (
+        (
+          fact
+        ) => (
 
           <FactCard
             key={`${fact.id}-${
@@ -252,7 +264,9 @@ function FactGroup({
                 : "original"
             }`}
 
-            fact={fact}
+            fact={
+              fact
+            }
 
             duplicate={
               duplicate
@@ -263,7 +277,9 @@ function FactGroup({
       )}
 
     </div>
+
   );
+
 }
 
 
@@ -273,8 +289,9 @@ function FactGroup({
 
 function createMobileAutoSlider(
   row,
-  delay = 3400
+  delay = 2600
 ) {
+
   if (!row) {
     return () => {};
   }
@@ -323,10 +340,11 @@ function createMobileAutoSlider(
 
 
   /* =======================================================
-     SCROLL PADDING
+     GET PADDING
   ======================================================= */
 
   const getPadding = () => {
+
     const styles =
       window.getComputedStyle(
         row
@@ -338,6 +356,7 @@ function createMobileAutoSlider(
         styles.scrollPaddingLeft
       ) || 0
     );
+
   };
 
 
@@ -349,6 +368,7 @@ function createMobileAutoSlider(
     index,
     smooth = true
   ) => {
+
     const card =
       cards[index];
 
@@ -374,6 +394,7 @@ function createMobileAutoSlider(
 
 
     row.scrollTo({
+
       left:
         Math.max(
           0,
@@ -384,20 +405,23 @@ function createMobileAutoSlider(
         smooth
           ? "smooth"
           : "auto",
+
     });
 
 
     currentIndex =
       index;
+
   };
 
 
   /* =======================================================
-     FIND ACTIVE CARD
+     UPDATE CURRENT INDEX
   ======================================================= */
 
   const updateCurrentIndex =
     () => {
+
       const rowRect =
         row.getBoundingClientRect();
 
@@ -410,6 +434,7 @@ function createMobileAutoSlider(
       let closest =
         0;
 
+
       let closestDistance =
         Infinity;
 
@@ -419,6 +444,7 @@ function createMobileAutoSlider(
           card,
           index
         ) => {
+
           const rect =
             card.getBoundingClientRect();
 
@@ -434,18 +460,23 @@ function createMobileAutoSlider(
             distance <
             closestDistance
           ) {
+
             closestDistance =
               distance;
 
+
             closest =
               index;
+
           }
+
         }
       );
 
 
       currentIndex =
         closest;
+
     };
 
 
@@ -454,6 +485,7 @@ function createMobileAutoSlider(
   ======================================================= */
 
   const next = () => {
+
     if (
       interacting ||
       document.hidden
@@ -473,18 +505,24 @@ function createMobileAutoSlider(
       nextIndex,
       true
     );
+
   };
 
 
   /* =======================================================
-     START AUTO
+     START
   ======================================================= */
 
   const start = () => {
-    if (intervalId) {
+
+    if (
+      intervalId
+    ) {
+
       clearInterval(
         intervalId
       );
+
     }
 
 
@@ -493,15 +531,19 @@ function createMobileAutoSlider(
         next,
         delay
       );
+
   };
 
 
   /* =======================================================
-     STOP AUTO
+     STOP
   ======================================================= */
 
   const stop = () => {
-    if (!intervalId) {
+
+    if (
+      !intervalId
+    ) {
       return;
     }
 
@@ -513,15 +555,17 @@ function createMobileAutoSlider(
 
     intervalId =
       null;
+
   };
 
 
   /* =======================================================
-     USER TOUCHES CARD
+     POINTER DOWN
   ======================================================= */
 
   const handlePointerDown =
     () => {
+
       interacting =
         true;
 
@@ -529,20 +573,26 @@ function createMobileAutoSlider(
       stop();
 
 
-      if (resumeTimer) {
+      if (
+        resumeTimer
+      ) {
+
         clearTimeout(
           resumeTimer
         );
+
       }
+
     };
 
 
   /* =======================================================
-     USER RELEASES
+     POINTER END
   ======================================================= */
 
   const handlePointerEnd =
     () => {
+
       updateCurrentIndex();
 
 
@@ -550,40 +600,54 @@ function createMobileAutoSlider(
         false;
 
 
-      if (resumeTimer) {
+      if (
+        resumeTimer
+      ) {
+
         clearTimeout(
           resumeTimer
         );
+
       }
 
 
       resumeTimer =
         window.setTimeout(
           () => {
+
             start();
+
           },
-          3000
+          1800
         );
+
     };
 
 
   /* =======================================================
-     MANUAL HORIZONTAL SCROLL
+     MANUAL SCROLL
   ======================================================= */
 
-  const handleScroll = () => {
-    if (scrollFrame) {
-      cancelAnimationFrame(
+  const handleScroll =
+    () => {
+
+      if (
         scrollFrame
-      );
-    }
+      ) {
+
+        cancelAnimationFrame(
+          scrollFrame
+        );
+
+      }
 
 
-    scrollFrame =
-      requestAnimationFrame(
-        updateCurrentIndex
-      );
-  };
+      scrollFrame =
+        requestAnimationFrame(
+          updateCurrentIndex
+        );
+
+    };
 
 
   /* =======================================================
@@ -592,15 +656,21 @@ function createMobileAutoSlider(
 
   const handleVisibility =
     () => {
+
       if (
         document.hidden
       ) {
+
         stop();
+
       } else if (
         !interacting
       ) {
+
         start();
+
       }
+
     };
 
 
@@ -651,10 +721,7 @@ function createMobileAutoSlider(
 
 
   /* =======================================================
-     INITIAL POSITION
-
-     Wait two frames so mobile layout
-     has its real width before measuring.
+     INITIAL
   ======================================================= */
 
   let frameOne =
@@ -667,9 +734,11 @@ function createMobileAutoSlider(
   frameOne =
     requestAnimationFrame(
       () => {
+
         frameTwo =
           requestAnimationFrame(
             () => {
+
               row.scrollLeft =
                 0;
 
@@ -679,8 +748,10 @@ function createMobileAutoSlider(
 
 
               start();
+
             }
           );
+
       }
     );
 
@@ -690,34 +761,51 @@ function createMobileAutoSlider(
   ======================================================= */
 
   return () => {
+
     stop();
 
 
-    if (resumeTimer) {
+    if (
+      resumeTimer
+    ) {
+
       clearTimeout(
         resumeTimer
       );
+
     }
 
 
-    if (scrollFrame) {
+    if (
+      scrollFrame
+    ) {
+
       cancelAnimationFrame(
         scrollFrame
       );
+
     }
 
 
-    if (frameOne) {
+    if (
+      frameOne
+    ) {
+
       cancelAnimationFrame(
         frameOne
       );
+
     }
 
 
-    if (frameTwo) {
+    if (
+      frameTwo
+    ) {
+
       cancelAnimationFrame(
         frameTwo
       );
+
     }
 
 
@@ -749,7 +837,9 @@ function createMobileAutoSlider(
       "visibilitychange",
       handleVisibility
     );
+
   };
+
 }
 
 
@@ -758,6 +848,7 @@ function createMobileAutoSlider(
 ========================================================= */
 
 export default function QuickFacts() {
+
   const sectionRef =
     useRef(null);
 
@@ -774,7 +865,12 @@ export default function QuickFacts() {
     useRef(null);
 
 
+  /* =========================================================
+     ANIMATION
+  ========================================================= */
+
   useLayoutEffect(() => {
+
     const section =
       sectionRef.current;
 
@@ -811,10 +907,6 @@ export default function QuickFacts() {
 
         /* =====================================================
            BASELINE
-
-           Never start hidden or translated.
-
-           This removes the first-load broken state.
         ===================================================== */
 
         gsap.set(
@@ -822,10 +914,16 @@ export default function QuickFacts() {
             topRow,
             bottomRow,
           ],
+
           {
-            opacity: 1,
-            x: 0,
-            y: 0,
+            opacity:
+              1,
+
+            x:
+              0,
+
+            y:
+              0,
           }
         );
 
@@ -839,12 +937,9 @@ export default function QuickFacts() {
 
           () => {
 
-            /* ===============================================
-               RESET
-            =============================================== */
-
             topRow.scrollLeft =
               0;
+
 
             bottomRow.scrollLeft =
               0;
@@ -852,72 +947,90 @@ export default function QuickFacts() {
 
             gsap.set(
               topTrack,
+
               {
-                xPercent: 0,
+                xPercent:
+                  0,
               }
             );
 
 
             gsap.set(
               bottomTrack,
+
               {
-                xPercent: -50,
+                xPercent:
+                  -50,
               }
             );
 
 
-            /* ===============================================
-               CONTINUOUS MARQUEE
-            =============================================== */
+            /* TOP */
 
             const topTween =
               gsap.to(
                 topTrack,
+
                 {
-                  xPercent: -50,
+                  xPercent:
+                    -50,
 
-                  duration: 26,
+                  duration:
+                    19,
 
-                  repeat: -1,
+                  repeat:
+                    -1,
 
-                  ease: "none",
+                  ease:
+                    "none",
                 }
               );
 
+
+            /* BOTTOM */
 
             const bottomTween =
               gsap.to(
                 bottomTrack,
+
                 {
-                  xPercent: 0,
+                  xPercent:
+                    0,
 
-                  duration: 29,
+                  duration:
+                    21,
 
-                  repeat: -1,
+                  repeat:
+                    -1,
 
-                  ease: "none",
+                  ease:
+                    "none",
                 }
               );
 
 
-            /* ===============================================
+            /* =================================================
                SUBTLE VERTICAL DEPTH
-            =============================================== */
+            ================================================= */
 
             const topDepth =
               gsap.fromTo(
                 topRow,
 
                 {
-                  y: 14,
+                  y:
+                    10,
                 },
 
                 {
-                  y: -14,
+                  y:
+                    -10,
 
-                  ease: "none",
+                  ease:
+                    "none",
 
                   scrollTrigger: {
+
                     trigger:
                       section,
 
@@ -928,11 +1041,13 @@ export default function QuickFacts() {
                       "bottom top",
 
                     scrub:
-                      1.15,
+                      1,
 
                     invalidateOnRefresh:
                       true,
+
                   },
+
                 }
               );
 
@@ -942,15 +1057,19 @@ export default function QuickFacts() {
                 bottomRow,
 
                 {
-                  y: -10,
+                  y:
+                    -8,
                 },
 
                 {
-                  y: 12,
+                  y:
+                    8,
 
-                  ease: "none",
+                  ease:
+                    "none",
 
                   scrollTrigger: {
+
                     trigger:
                       section,
 
@@ -961,18 +1080,20 @@ export default function QuickFacts() {
                       "bottom top",
 
                     scrub:
-                      1.2,
+                      1,
 
                     invalidateOnRefresh:
                       true,
+
                   },
+
                 }
               );
 
 
-            /* ===============================================
+            /* =================================================
                SCROLL VELOCITY
-            =============================================== */
+            ================================================= */
 
             let settleCall =
               null;
@@ -980,6 +1101,7 @@ export default function QuickFacts() {
 
             const velocityTrigger =
               ScrollTrigger.create({
+
                 trigger:
                   section,
 
@@ -990,7 +1112,10 @@ export default function QuickFacts() {
                   "bottom top",
 
                 onUpdate:
-                  (self) => {
+                  (
+                    self
+                  ) => {
+
                     const velocity =
                       Math.abs(
                         self.getVelocity()
@@ -999,11 +1124,11 @@ export default function QuickFacts() {
 
                     const speed =
                       Math.min(
-                        1.8,
+                        1.7,
 
                         1 +
-                          velocity /
-                            3000
+                        velocity /
+                        3500
                       );
 
 
@@ -1020,23 +1145,27 @@ export default function QuickFacts() {
                     if (
                       settleCall
                     ) {
+
                       settleCall.kill();
+
                     }
 
 
                     settleCall =
                       gsap.delayedCall(
-                        0.16,
+                        0.15,
 
                         () => {
+
                           gsap.to(
                             topTween,
+
                             {
                               timeScale:
                                 1,
 
                               duration:
-                                0.65,
+                                0.5,
 
                               ease:
                                 "power3.out",
@@ -1046,24 +1175,29 @@ export default function QuickFacts() {
 
                           gsap.to(
                             bottomTween,
+
                             {
                               timeScale:
                                 1,
 
                               duration:
-                                0.65,
+                                0.5,
 
                               ease:
                                 "power3.out",
                             }
                           );
+
                         }
                       );
+
                   },
+
               });
 
 
             return () => {
+
               topTween.kill();
 
               bottomTween.kill();
@@ -1078,7 +1212,9 @@ export default function QuickFacts() {
               if (
                 settleCall
               ) {
+
                 settleCall.kill();
+
               }
 
 
@@ -1089,27 +1225,28 @@ export default function QuickFacts() {
                   topRow,
                   bottomRow,
                 ],
+
                 {
                   clearProps:
                     "transform",
                 }
               );
+
             };
+
           }
         );
 
 
         /* =====================================================
            MOBILE
-
-           NO DESKTOP GSAP TRANSFORMS.
-           NATIVE CARD SCROLLING.
         ===================================================== */
 
         mm.add(
           "(max-width: 768px)",
 
           () => {
+
             gsap.killTweensOf(
               [
                 topTrack,
@@ -1127,6 +1264,7 @@ export default function QuickFacts() {
                 topRow,
                 bottomRow,
               ],
+
               {
                 clearProps:
                   "transform",
@@ -1137,12 +1275,14 @@ export default function QuickFacts() {
             topRow.scrollLeft =
               0;
 
+
             bottomRow.scrollLeft =
               0;
 
 
             let destroyTop =
               () => {};
+
 
             let destroyBottom =
               () => {};
@@ -1151,51 +1291,60 @@ export default function QuickFacts() {
             let frameOne =
               null;
 
+
             let frameTwo =
               null;
 
 
-            /*
-              Double frame prevents measuring
-              cards before mobile layout settles.
-            */
-
             frameOne =
               requestAnimationFrame(
                 () => {
+
                   frameTwo =
                     requestAnimationFrame(
                       () => {
+
                         destroyTop =
                           createMobileAutoSlider(
                             topRow,
-                            3600
+                            2600
                           );
 
 
                         destroyBottom =
                           createMobileAutoSlider(
                             bottomRow,
-                            4100
+                            2900
                           );
+
                       }
                     );
+
                 }
               );
 
 
             return () => {
-              if (frameOne) {
+
+              if (
+                frameOne
+              ) {
+
                 cancelAnimationFrame(
                   frameOne
                 );
+
               }
 
 
-              if (frameTwo) {
+              if (
+                frameTwo
+              ) {
+
                 cancelAnimationFrame(
                   frameTwo
                 );
+
               }
 
 
@@ -1207,9 +1356,12 @@ export default function QuickFacts() {
               topRow.scrollLeft =
                 0;
 
+
               bottomRow.scrollLeft =
                 0;
+
             };
+
           }
         );
 
@@ -1217,12 +1369,12 @@ export default function QuickFacts() {
 
 
     /* =====================================================
-       KEEP SCROLLTRIGGER CORRECT AFTER
-       FONT / IMAGE / LAYOUT CHANGES
+       REFRESH SCROLLTRIGGER
     ===================================================== */
 
     let refreshFrame =
       null;
+
 
     let refreshTimeout =
       null;
@@ -1230,46 +1382,46 @@ export default function QuickFacts() {
 
     const refresh =
       () => {
-        if (refreshFrame) {
+
+        if (
+          refreshFrame
+        ) {
+
           cancelAnimationFrame(
             refreshFrame
           );
+
         }
 
 
         refreshFrame =
           requestAnimationFrame(
             () => {
+
               ScrollTrigger.refresh();
+
             }
           );
+
       };
 
-
-    /*
-      Initial refresh after browser has
-      completed first layout.
-    */
 
     refreshTimeout =
       window.setTimeout(
         refresh,
-        120
+        100
       );
 
-
-    /*
-      Fonts can alter measurements after
-      the first React render.
-    */
 
     if (
       document.fonts &&
       document.fonts.ready
     ) {
+
       document.fonts.ready.then(
         refresh
       );
+
     }
 
 
@@ -1285,10 +1437,6 @@ export default function QuickFacts() {
     );
 
 
-    /* =====================================================
-       WATCH SECTION SIZE CHANGES
-    ===================================================== */
-
     let resizeObserver =
       null;
 
@@ -1296,10 +1444,13 @@ export default function QuickFacts() {
     if (
       "ResizeObserver" in window
     ) {
+
       resizeObserver =
         new ResizeObserver(
           () => {
+
             refresh();
+
           }
         );
 
@@ -1307,19 +1458,25 @@ export default function QuickFacts() {
       resizeObserver.observe(
         section
       );
+
     }
 
 
     return () => {
+
       clearTimeout(
         refreshTimeout
       );
 
 
-      if (refreshFrame) {
+      if (
+        refreshFrame
+      ) {
+
         cancelAnimationFrame(
           refreshFrame
         );
+
       }
 
 
@@ -1338,20 +1495,31 @@ export default function QuickFacts() {
       if (
         resizeObserver
       ) {
+
         resizeObserver.disconnect();
+
       }
 
 
       mm.revert();
 
       ctx.revert();
+
     };
+
   }, []);
 
 
+  /* =========================================================
+     RETURN
+  ========================================================= */
+
   return (
+
     <section
-      ref={sectionRef}
+      ref={
+        sectionRef
+      }
 
       className="quick-facts"
 
@@ -1362,10 +1530,28 @@ export default function QuickFacts() {
           HEADER
       ====================================================== */}
 
-      <div className="quick-facts-header">
+      <div
+        className="quick-facts-header"
+      >
 
-        <h2 className="quick-facts-heading">
-          Vidya at a glance.
+        <h2
+          className="quick-facts-heading"
+        >
+
+          <span
+            className="quick-facts-heading-main"
+          >
+            Vidya at a
+          </span>
+
+          {" "}
+
+          <span
+            className="quick-facts-heading-soft"
+          >
+            glance.
+          </span>
+
         </h2>
 
       </div>
@@ -1375,13 +1561,16 @@ export default function QuickFacts() {
           CARDS
       ====================================================== */}
 
-      <div className="quick-marquee-wall">
+      <div
+        className="quick-marquee-wall"
+      >
 
-
-        {/* TOP */}
+        {/* TOP ROW */}
 
         <div
-          ref={topRowRef}
+          ref={
+            topRowRef
+          }
 
           className="
             quick-marquee-row
@@ -1390,18 +1579,24 @@ export default function QuickFacts() {
         >
 
           <div
-            ref={topTrackRef}
+            ref={
+              topTrackRef
+            }
 
             className="quick-marquee-track"
           >
 
             <FactGroup
-              items={topFacts}
+              items={
+                topFacts
+              }
             />
 
 
             <FactGroup
-              items={topFacts}
+              items={
+                topFacts
+              }
 
               duplicate
             />
@@ -1411,10 +1606,12 @@ export default function QuickFacts() {
         </div>
 
 
-        {/* BOTTOM */}
+        {/* BOTTOM ROW */}
 
         <div
-          ref={bottomRowRef}
+          ref={
+            bottomRowRef
+          }
 
           className="
             quick-marquee-row
@@ -1423,18 +1620,24 @@ export default function QuickFacts() {
         >
 
           <div
-            ref={bottomTrackRef}
+            ref={
+              bottomTrackRef
+            }
 
             className="quick-marquee-track"
           >
 
             <FactGroup
-              items={bottomFacts}
+              items={
+                bottomFacts
+              }
             />
 
 
             <FactGroup
-              items={bottomFacts}
+              items={
+                bottomFacts
+              }
 
               duplicate
             />
@@ -1446,5 +1649,7 @@ export default function QuickFacts() {
       </div>
 
     </section>
+
   );
+
 }

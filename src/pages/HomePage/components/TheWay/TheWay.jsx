@@ -8,18 +8,22 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./TheWay.css";
 
-gsap.registerPlugin(ScrollTrigger);
+
+gsap.registerPlugin(
+  ScrollTrigger
+);
 
 
 /* =========================================================
-   THE VIDYA WAY
+   THE VIDYA WAY DATA
 ========================================================= */
 
 const wayItems = [
   {
     id: "01",
 
-    title: "Curiosity",
+    title:
+      "Curiosity",
 
     description:
       "We encourage children to ask questions, explore ideas and discover the joy of learning for themselves.",
@@ -27,13 +31,15 @@ const wayItems = [
     image:
       "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=90",
 
-    reverse: false,
+    reverse:
+      false,
   },
 
   {
     id: "02",
 
-    title: "Confidence",
+    title:
+      "Confidence",
 
     description:
       "Children learn to express themselves, take initiative and believe in their ability to move forward.",
@@ -41,13 +47,15 @@ const wayItems = [
     image:
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=90",
 
-    reverse: true,
+    reverse:
+      true,
   },
 
   {
     id: "03",
 
-    title: "Character",
+    title:
+      "Character",
 
     description:
       "Respect, responsibility and empathy shape everyday experiences and help students grow into thoughtful individuals.",
@@ -55,13 +63,15 @@ const wayItems = [
     image:
       "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1600&q=90",
 
-    reverse: false,
+    reverse:
+      false,
   },
 
   {
     id: "04",
 
-    title: "Creativity",
+    title:
+      "Creativity",
 
     description:
       "Students are given room to imagine, experiment and turn their ideas into something meaningful.",
@@ -69,12 +79,18 @@ const wayItems = [
     image:
       "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1600&q=90",
 
-    reverse: true,
+    reverse:
+      true,
   },
 ];
 
 
+/* =========================================================
+   COMPONENT
+========================================================= */
+
 export default function TheWay() {
+
   const sectionRef =
     useRef(null);
 
@@ -85,7 +101,12 @@ export default function TheWay() {
     useRef([]);
 
 
+  /* =========================================================
+     ANIMATIONS
+  ========================================================= */
+
   useLayoutEffect(() => {
+
     const section =
       sectionRef.current;
 
@@ -131,6 +152,7 @@ export default function TheWay() {
               "power4.out",
 
             scrollTrigger: {
+
               trigger:
                 headingRef.current,
 
@@ -139,21 +161,22 @@ export default function TheWay() {
 
               once:
                 true,
+
             },
+
           }
         );
 
 
         /* =====================================================
-           DESKTOP CARD ANIMATION
-
-           Keep transform animation only on desktop.
+           DESKTOP CARDS
         ===================================================== */
 
         mm.add(
           "(min-width: 769px)",
 
           () => {
+
             const cards =
               cardsRef.current.filter(
                 Boolean
@@ -194,6 +217,7 @@ export default function TheWay() {
                     "power4.out",
 
                   scrollTrigger: {
+
                     trigger:
                       cards[0],
 
@@ -202,14 +226,19 @@ export default function TheWay() {
 
                     once:
                       true,
+
                   },
+
                 }
               );
 
 
             return () => {
+
               animation.kill();
+
             };
+
           }
         );
 
@@ -217,15 +246,14 @@ export default function TheWay() {
         /* =====================================================
            MOBILE
 
-           Remove GSAP transforms from cards.
-
-           This keeps native touch scrolling clean.
+           REMOVE GSAP TRANSFORMS
         ===================================================== */
 
         mm.add(
           "(max-width: 768px)",
 
           () => {
+
             const cards =
               cardsRef.current.filter(
                 Boolean
@@ -243,6 +271,7 @@ export default function TheWay() {
                   "transform",
               }
             );
+
           }
         );
 
@@ -250,16 +279,27 @@ export default function TheWay() {
 
 
     return () => {
+
       mm.revert();
+
       ctx.revert();
+
     };
+
   }, []);
 
 
+  /* =========================================================
+     RETURN
+  ========================================================= */
+
   return (
+
     <section
       ref={sectionRef}
+
       className="vidya-way"
+
       id="the-way"
     >
 
@@ -267,17 +307,28 @@ export default function TheWay() {
           HEADER
       ====================================================== */}
 
-      <div className="vidya-way-header">
+      <div
+        className="vidya-way-header"
+      >
 
         <h2
           ref={headingRef}
+
           className="vidya-way-heading"
         >
 
-          The way we help
+          <span
+            className="vidya-way-heading-dark"
+          >
+            The Vidya
+          </span>
 
-          <span>
-            every child grow.
+          {" "}
+
+          <span
+            className="vidya-way-heading-light"
+          >
+            Way.
           </span>
 
         </h2>
@@ -289,7 +340,9 @@ export default function TheWay() {
           CARDS
       ====================================================== */}
 
-      <div className="vidya-way-cards">
+      <div
+        className="vidya-way-cards"
+      >
 
         {wayItems.map(
           (
@@ -298,16 +351,24 @@ export default function TheWay() {
           ) => (
 
             <article
-              key={item.id}
+              key={
+                item.id
+              }
 
-              ref={(element) => {
+              ref={(
+                element
+              ) => {
+
                 cardsRef.current[
                   index
-                ] = element;
+                ] =
+                  element;
+
               }}
 
               className={`
                 vidya-way-card
+
                 ${
                   item.reverse
                     ? "is-reverse"
@@ -318,9 +379,13 @@ export default function TheWay() {
 
               {/* =================================================
                   IMAGE
+
+                  NUMBERS REMOVED
               ================================================= */}
 
-              <div className="vidya-way-card-image-wrap">
+              <div
+                className="vidya-way-card-image-wrap"
+              >
 
                 <img
                   src={
@@ -338,11 +403,6 @@ export default function TheWay() {
                   draggable="false"
                 />
 
-
-                <span className="vidya-way-number">
-                  {item.id}
-                </span>
-
               </div>
 
 
@@ -350,7 +410,9 @@ export default function TheWay() {
                   CONTENT
               ================================================= */}
 
-              <div className="vidya-way-card-content">
+              <div
+                className="vidya-way-card-content"
+              >
 
                 <div>
 
@@ -366,7 +428,9 @@ export default function TheWay() {
                 </div>
 
 
-                <span className="vidya-way-card-link">
+                <span
+                  className="vidya-way-card-link"
+                >
                   DISCOVER MORE
                 </span>
 
@@ -380,5 +444,7 @@ export default function TheWay() {
       </div>
 
     </section>
+
   );
+
 }

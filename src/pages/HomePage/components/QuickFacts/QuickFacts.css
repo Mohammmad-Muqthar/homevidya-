@@ -9,8 +9,7 @@
 
   overflow: hidden;
 
-  background:
-    #0b563b;
+  background: #0b563b;
 
   padding:
     clamp(
@@ -53,8 +52,8 @@
       calc(
         100% -
         (
-          var(--page-padding)
-          * 2
+          var(--page-padding) *
+          2
         )
       ),
       var(--container)
@@ -73,39 +72,53 @@
 
 /* =========================================================
    HEADING
-
-   ALWAYS VISIBLE AT FIRST PAINT.
-   NO GSAP HIDDEN STATE.
+   SAME AS LIFE AT SCHOOL
 ========================================================= */
 
 .quick-facts-heading {
-  margin:
-    0;
+  margin: 0;
 
-  color:
-    #ffffff;
+  font-family:
+    "Manrope",
+    sans-serif;
 
   font-size:
     clamp(
-      47px,
-      4.5vw,
-      72px
+      45px,
+      4.3vw,
+      70px
     );
 
-  font-weight:
-    520;
+  font-weight: 550;
 
-  line-height:
-    0.98;
+  line-height: 1;
 
   letter-spacing:
     -0.058em;
 
-  opacity:
-    1;
+  opacity: 1;
 
-  transform:
-    none;
+  transform: none;
+}
+
+
+/* =========================================================
+   HEADING COLORS
+========================================================= */
+
+.quick-facts-heading-main {
+  color: #ffffff;
+}
+
+
+.quick-facts-heading-soft {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.68
+    );
 }
 
 
@@ -114,125 +127,51 @@
 ========================================================= */
 
 .quick-marquee-wall {
-  position:
-    relative;
+  position: relative;
 
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  width:
-    100%;
+  width: 100%;
 
   gap:
     clamp(
-      34px,
-      3.1vw,
-      48px
+      25px,
+      2.2vw,
+      34px
     );
 
   padding:
-    5px
+    4px
     0
-    15px;
+    10px;
 }
 
 
 /* =========================================================
    ROW
+
+   NO SIDE BLUR
+   NO SIDE GRADIENT
 ========================================================= */
 
 .quick-marquee-row {
-  position:
-    relative;
+  position: relative;
 
-  width:
-    100%;
+  width: 100%;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  opacity:
-    1;
+  opacity: 1;
 }
 
-
-/* =========================================================
-   DESKTOP EDGE FADE
-========================================================= */
 
 .quick-marquee-row::before,
 .quick-marquee-row::after {
-  content:
-    "";
+  content: none !important;
 
-  position:
-    absolute;
-
-  z-index:
-    20;
-
-  top:
-    0;
-
-  bottom:
-    0;
-
-  width:
-    clamp(
-      18px,
-      3vw,
-      52px
-    );
-
-  pointer-events:
-    none;
-}
-
-
-.quick-marquee-row::before {
-  left:
-    0;
-
-  background:
-    linear-gradient(
-      90deg,
-
-      #0b563b
-      0%,
-
-      rgba(
-        11,
-        86,
-        59,
-        0
-      )
-      100%
-    );
-}
-
-
-.quick-marquee-row::after {
-  right:
-    0;
-
-  background:
-    linear-gradient(
-      270deg,
-
-      #0b563b
-      0%,
-
-      rgba(
-        11,
-        86,
-        59,
-        0
-      )
-      100%
-    );
+  display: none !important;
 }
 
 
@@ -241,17 +180,15 @@
 ========================================================= */
 
 .quick-marquee-track {
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: stretch;
 
-  width:
-    max-content;
+  width: max-content;
 
-  will-change:
-    transform;
+  min-width: max-content;
+
+  will-change: transform;
 }
 
 
@@ -260,28 +197,15 @@
 ========================================================= */
 
 .quick-marquee-group {
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: stretch;
 
-  flex-shrink:
-    0;
+  flex-shrink: 0;
 
-  gap:
-    clamp(
-      14px,
-      1.2vw,
-      20px
-    );
+  gap: 16px;
 
-  padding-right:
-    clamp(
-      14px,
-      1.2vw,
-      20px
-    );
+  padding-right: 16px;
 }
 
 
@@ -290,8 +214,7 @@
 ========================================================= */
 
 .quick-marquee-card {
-  position:
-    relative;
+  position: relative;
 
   flex:
     0 0
@@ -315,223 +238,177 @@
       310px
     );
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  border-radius:
-    0;
+  border-radius: 0;
 
-  background:
-    #063f2d;
+  background: transparent;
 
-  isolation:
-    isolate;
+  isolation: isolate;
+
+  cursor: pointer;
 }
 
 
 /* =========================================================
-   IMAGE
+   FULL IMAGE
 ========================================================= */
 
 .quick-marquee-image {
-  position:
-    absolute;
+  position: absolute;
 
-  inset:
-    0;
+  inset: 0;
 
-  z-index:
-    0;
+  z-index: 0;
 
-  display:
-    block;
+  display: block;
 
-  width:
-    100%;
+  width: 100%;
 
-  height:
-    100%;
+  height: 100%;
 
-  max-width:
-    none;
+  max-width: none;
 
-  object-fit:
-    cover;
+  object-fit: cover;
 
-  object-position:
-    center;
+  object-position: center;
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
-  user-select:
-    none;
+  user-select: none;
 
-  -webkit-user-drag:
-    none;
+  -webkit-user-drag: none;
 
   transform:
     translateZ(0)
     scale(1.001);
 
-  backface-visibility:
-    hidden;
+  backface-visibility: hidden;
 
-  -webkit-backface-visibility:
-    hidden;
+  -webkit-backface-visibility: hidden;
+
+  transition:
+    transform
+    0.7s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
+
+    filter
+    0.45s
+    ease;
 }
 
 
 /* =========================================================
-   OVERLAY
+   LIGHT GRAY HOVER OVERLAY
+
+   HIDDEN NORMALLY
 ========================================================= */
 
-.quick-marquee-overlay {
-  position:
-    absolute;
+.quick-marquee-card::before {
+  content: "";
 
-  inset:
-    0;
+  position: absolute;
 
-  z-index:
-    1;
+  inset: 0;
 
-  pointer-events:
-    none;
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+    rgba(
+      120,
+      120,
+      120,
+      0.48
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity
+    0.45s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+/* =========================================================
+   VERY SUBTLE BOTTOM DEPTH
+
+   STILL TRANSPARENT
+   NOT A COLOR PANEL
+========================================================= */
+
+.quick-marquee-card::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  pointer-events: none;
 
   background:
     linear-gradient(
       180deg,
 
       rgba(
-        3,
-        31,
-        23,
-        0.02
+        0,
+        0,
+        0,
+        0
       )
-      8%,
+      35%,
 
       rgba(
-        3,
-        36,
-        26,
-        0.07
+        0,
+        0,
+        0,
+        0.05
       )
-      38%,
+      60%,
 
       rgba(
-        3,
-        43,
-        29,
-        0.28
-      )
-      61%,
-
-      rgba(
-        2,
-        36,
-        25,
-        0.93
+        0,
+        0,
+        0,
+        0.18
       )
       100%
     );
 
+  opacity: 0;
+
   transition:
-    background
-    0.4s
+    opacity
+    0.45s
     ease;
 }
 
 
 /* =========================================================
-   NUMBER
-========================================================= */
-
-.quick-marquee-number {
-  position:
-    absolute;
-
-  z-index:
-    5;
-
-  top:
-    19px;
-
-  right:
-    20px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  min-width:
-    39px;
-
-  height:
-    32px;
-
-  padding:
-    0
-    9px;
-
-  border:
-    1px
-    solid
-    rgba(
-      255,
-      255,
-      255,
-      0.27
-    );
-
-  border-radius:
-    0;
-
-  background:
-    rgba(
-      3,
-      35,
-      25,
-      0.2
-    );
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      0.9
-    );
-
-  font-size:
-    9px;
-
-  font-weight:
-    700;
-
-  letter-spacing:
-    0.08em;
-
-  pointer-events:
-    none;
-}
-
-
-/* =========================================================
    CONTENT
+
+   WHITE
+   HIDDEN NORMALLY
 ========================================================= */
 
 .quick-marquee-content {
-  position:
-    absolute;
+  position: absolute;
 
-  z-index:
-    5;
+  z-index: 5;
 
   left:
     clamp(
@@ -554,29 +431,57 @@
       30px
     );
 
-  color:
-    #ffffff;
+  color: #ffffff;
 
-  pointer-events:
-    none;
+  pointer-events: none;
+
+  opacity: 0;
+
+  transform:
+    translateY(18px);
+
+  transition:
+    opacity
+    0.42s
+    ease,
+
+    transform
+    0.55s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+
+  text-shadow:
+    0
+    2px
+    12px
+    rgba(
+      0,
+      0,
+      0,
+      0.2
+    );
 }
 
 
 /* =========================================================
    VALUE
+
+   WHITE
 ========================================================= */
 
 .quick-marquee-value {
-  display:
-    block;
+  display: block;
 
   margin:
     0
     0
     8px;
 
-  color:
-    #ffffff;
+  color: #ffffff;
 
   font-size:
     clamp(
@@ -585,11 +490,9 @@
       55px
     );
 
-  font-weight:
-    520;
+  font-weight: 560;
 
-  line-height:
-    0.9;
+  line-height: 0.9;
 
   letter-spacing:
     -0.065em;
@@ -598,17 +501,17 @@
 
 /* =========================================================
    TITLE
+
+   WHITE
 ========================================================= */
 
-.quick-marquee-content h3 {
-  max-width:
-    330px;
+.quick-marquee-content
+h3 {
+  max-width: 330px;
 
-  margin:
-    0;
+  margin: 0;
 
-  color:
-    #ffffff;
+  color: #ffffff;
 
   font-size:
     clamp(
@@ -617,11 +520,9 @@
       28px
     );
 
-  font-weight:
-    560;
+  font-weight: 560;
 
-  line-height:
-    1.02;
+  line-height: 1.02;
 
   letter-spacing:
     -0.045em;
@@ -629,73 +530,73 @@
 
 
 /* =========================================================
-   DESCRIPTION
+   DESCRIPTION WRAPPER
 ========================================================= */
 
 .quick-marquee-description-wrap {
-  display:
-    grid;
+  display: grid;
 
   grid-template-rows:
     0fr;
 
-  margin-top:
-    0;
+  margin-top: 0;
 
-  opacity:
-    0;
+  opacity: 0;
 
   transition:
     grid-template-rows
-      0.4s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      ),
+    0.5s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
 
     margin
-      0.4s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      ),
+    0.5s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    ),
 
     opacity
-      0.3s
-      ease;
+    0.35s
+    ease;
 }
 
 
-.quick-marquee-description-wrap p {
-  min-height:
-    0;
+/* =========================================================
+   DESCRIPTION
 
-  max-width:
-    320px;
+   WHITE
+========================================================= */
 
-  overflow:
-    hidden;
+.quick-marquee-description-wrap
+p {
+  min-height: 0;
 
-  margin:
-    0;
+  max-width: 320px;
+
+  overflow: hidden;
+
+  margin: 0;
 
   color:
     rgba(
       255,
       255,
       255,
-      0.72
+      0.9
     );
 
-  font-size:
-    13px;
+  font-size: 13px;
 
-  line-height:
-    1.45;
+  font-weight: 400;
+
+  line-height: 1.45;
 }
 
 
@@ -705,51 +606,86 @@
 
 @media (hover: hover) {
 
-  .quick-marquee-card:hover
-  .quick-marquee-overlay {
-    background:
-      linear-gradient(
-        180deg,
+  /* LIGHT GRAY OVERLAY */
 
-        rgba(
-          4,
-          39,
-          28,
-          0.08
-        )
-        0%,
-
-        rgba(
-          4,
-          47,
-          33,
-          0.24
-        )
-        48%,
-
-        rgba(
-          2,
-          35,
-          24,
-          0.96
-        )
-        100%
-      );
+  .quick-marquee-card:hover::before {
+    opacity: 1;
   }
 
+
+  /* SUBTLE DEPTH */
+
+  .quick-marquee-card:hover::after {
+    opacity: 1;
+  }
+
+
+  /* IMAGE ZOOM */
+
+  .quick-marquee-card:hover
+  .quick-marquee-image {
+    transform:
+      scale(1.045);
+  }
+
+
+  /* SHOW ALL TEXT */
+
+  .quick-marquee-card:hover
+  .quick-marquee-content {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+
+  /* SHOW DESCRIPTION */
 
   .quick-marquee-card:hover
   .quick-marquee-description-wrap {
     grid-template-rows:
       1fr;
 
-    margin-top:
-      10px;
+    margin-top: 10px;
 
-    opacity:
-      1;
+    opacity: 1;
   }
 
+}
+
+
+/* =========================================================
+   KEYBOARD FOCUS
+========================================================= */
+
+.quick-marquee-card:focus-within::before {
+  opacity: 1;
+}
+
+
+.quick-marquee-card:focus-within::after {
+  opacity: 1;
+}
+
+
+.quick-marquee-card:focus-within
+.quick-marquee-content {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+
+.quick-marquee-card:focus-within
+.quick-marquee-description-wrap {
+  grid-template-rows:
+    1fr;
+
+  margin-top: 10px;
+
+  opacity: 1;
 }
 
 
@@ -758,43 +694,48 @@
 ========================================================= */
 
 @media
-(max-width: 1050px)
+(
+  max-width: 1050px
+)
 and
-(min-width: 769px) {
+(
+  min-width: 769px
+) {
 
   .quick-facts {
-    padding-top:
-      52px;
+    padding-top: 52px;
   }
 
 
   .quick-marquee-wall {
-    gap:
-      36px;
+    gap: 26px;
+  }
+
+
+  .quick-marquee-group {
+    gap: 14px;
+
+    padding-right: 14px;
   }
 
 
   .quick-marquee-card {
-    flex-basis:
-      355px;
+    flex-basis: 355px;
 
-    width:
-      355px;
+    width: 355px;
 
-    height:
-      240px;
+    height: 240px;
   }
 
 
   .quick-marquee-value {
-    font-size:
-      43px;
+    font-size: 43px;
   }
 
 
-  .quick-marquee-content h3 {
-    font-size:
-      23px;
+  .quick-marquee-content
+  h3 {
+    font-size: 23px;
   }
 
 }
@@ -836,23 +777,25 @@ and
 
 
   .quick-facts-heading {
-    max-width:
-      520px;
+    max-width: 520px;
+
+    font-family:
+      "Manrope",
+      sans-serif;
 
     font-size:
       clamp(
-        38px,
-        10vw,
-        50px
+        37px,
+        9.5vw,
+        49px
       );
 
-    line-height:
-      0.98;
+    font-weight: 550;
 
-    /*
-      NEVER ALLOW GSAP INITIAL
-      TRANSFORMS ON MOBILE.
-    */
+    line-height: 0.98;
+
+    letter-spacing:
+      -0.058em;
 
     opacity:
       1 !important;
@@ -862,13 +805,18 @@ and
   }
 
 
+  .quick-facts-heading-main,
+  .quick-facts-heading-soft {
+    display: inline;
+  }
+
+
   /* =====================================================
      WALL
   ===================================================== */
 
   .quick-marquee-wall {
-    gap:
-      20px;
+    gap: 18px;
 
     padding:
       2px
@@ -878,40 +826,17 @@ and
 
 
   /* =====================================================
-     NO DESKTOP EDGE FADE
-  ===================================================== */
-
-  .quick-marquee-row::before,
-  .quick-marquee-row::after {
-    display:
-      none;
-  }
-
-
-  /* =====================================================
-     MOBILE ROW
-
-     CRITICAL:
-     BOTH HORIZONTAL AND VERTICAL TOUCH
-     MOVEMENT ARE ALLOWED.
+     ROW
   ===================================================== */
 
   .quick-marquee-row {
-    position:
-      relative;
+    position: relative;
 
-    width:
-      100%;
+    width: 100%;
 
-    overflow-x:
-      auto;
+    overflow-x: auto;
 
-    overflow-y:
-      hidden;
-
-    /*
-      Smooth card snapping.
-    */
+    overflow-y: hidden;
 
     scroll-snap-type:
       x mandatory;
@@ -922,11 +847,6 @@ and
     scroll-padding-right:
       20px;
 
-    /*
-      Horizontal container should not
-      pull the entire page sideways.
-    */
-
     overscroll-behavior-x:
       contain;
 
@@ -936,28 +856,15 @@ and
     -webkit-overflow-scrolling:
       touch;
 
-    /*
-      THIS IS THE IMPORTANT FIX.
-
-      Previous:
-      touch-action: pan-x;
-
-      Now:
-      horizontal card swipe +
-      vertical page scroll.
-    */
-
     touch-action:
-      pan-x pan-y;
+      pan-x
+      pan-y;
 
-    scrollbar-width:
-      none;
+    scrollbar-width: none;
 
-    mask-image:
-      none;
+    mask-image: none;
 
-    -webkit-mask-image:
-      none;
+    -webkit-mask-image: none;
 
     opacity:
       1 !important;
@@ -965,14 +872,20 @@ and
     transform:
       none !important;
 
-    will-change:
-      auto;
+    will-change: auto;
   }
 
 
   .quick-marquee-row::-webkit-scrollbar {
-    display:
-      none;
+    display: none;
+  }
+
+
+  .quick-marquee-row::before,
+  .quick-marquee-row::after {
+    content: none !important;
+
+    display: none !important;
   }
 
 
@@ -981,32 +894,24 @@ and
   ===================================================== */
 
   .quick-marquee-track {
-    display:
-      flex;
+    display: flex;
 
-    align-items:
-      stretch;
+    align-items: stretch;
 
-    width:
-      max-content;
+    width: max-content;
 
     padding:
       0
       20px;
 
-    /*
-      Desktop marquee transforms must
-      NEVER remain on mobile.
-    */
-
     transform:
       none !important;
 
-    will-change:
-      auto;
+    will-change: auto;
 
     touch-action:
-      pan-x pan-y;
+      pan-x
+      pan-y;
   }
 
 
@@ -1015,37 +920,33 @@ and
   ===================================================== */
 
   .quick-marquee-group {
-    display:
-      flex;
+    display: flex;
 
-    align-items:
-      stretch;
+    align-items: stretch;
 
-    gap:
-      12px;
+    gap: 12px;
 
-    padding-right:
-      0;
+    padding-right: 0;
 
     touch-action:
-      pan-x pan-y;
+      pan-x
+      pan-y;
   }
 
 
   /* =====================================================
-     HIDE DESKTOP DUPLICATE
+     HIDE DUPLICATE MOBILE GROUP
   ===================================================== */
 
   .quick-marquee-group[
     aria-hidden="true"
   ] {
-    display:
-      none;
+    display: none;
   }
 
 
   /* =====================================================
-     MOBILE CARD
+     CARD
   ===================================================== */
 
   .quick-marquee-card {
@@ -1060,8 +961,7 @@ and
         100vw - 40px
       );
 
-    max-width:
-      none;
+    max-width: none;
 
     height:
       clamp(
@@ -1070,8 +970,9 @@ and
         280px
       );
 
-    border-radius:
-      0;
+    border-radius: 0;
+
+    background: transparent;
 
     scroll-snap-align:
       start;
@@ -1079,19 +980,14 @@ and
     scroll-snap-stop:
       always;
 
-    /*
-      Vertical scrolling can begin
-      directly on the card.
-    */
-
     touch-action:
-      pan-x pan-y;
+      pan-x
+      pan-y;
 
     transform:
       none !important;
 
-    will-change:
-      auto;
+    will-change: auto;
   }
 
 
@@ -1100,100 +996,91 @@ and
   ===================================================== */
 
   .quick-marquee-image {
-    width:
-      100%;
+    width: 100%;
 
-    height:
-      100%;
+    height: 100%;
 
-    object-fit:
-      cover;
+    object-fit: cover;
+
+    object-position: center;
 
     transform:
       none !important;
 
-    backface-visibility:
-      hidden;
+    pointer-events: none;
 
-    -webkit-backface-visibility:
-      hidden;
+    user-select: none;
 
-    /*
-      Image never catches drag.
-    */
-
-    pointer-events:
-      none;
-
-    user-select:
-      none;
-
-    -webkit-user-drag:
-      none;
+    -webkit-user-drag: none;
   }
 
 
   /* =====================================================
-     OVERLAY
+     MOBILE GRAY OVERLAY
+
+     MOBILE HAS NO HOVER,
+     SO KEEP A LIGHT OVERLAY VISIBLE
   ===================================================== */
 
-  .quick-marquee-overlay {
-    pointer-events:
-      none;
+  .quick-marquee-card::before {
+    display: block;
+
+    content: "";
+
+    background:
+      rgba(
+        105,
+        105,
+        105,
+        0.35
+      );
+
+    opacity: 1;
+  }
+
+
+  .quick-marquee-card::after {
+    opacity: 1;
   }
 
 
   /* =====================================================
-     NUMBER
-  ===================================================== */
+     MOBILE CONTENT
 
-  .quick-marquee-number {
-    top:
-      16px;
-
-    right:
-      16px;
-
-    min-width:
-      35px;
-
-    height:
-      29px;
-
-    padding:
-      0
-      8px;
-
-    font-size:
-      8px;
-
-    pointer-events:
-      none;
-  }
-
-
-  /* =====================================================
-     CONTENT
+     ALWAYS VISIBLE
+     WHITE
   ===================================================== */
 
   .quick-marquee-content {
-    left:
-      20px;
+    left: 20px;
 
-    right:
-      20px;
+    right: 20px;
 
-    bottom:
-      20px;
+    bottom: 20px;
 
-    pointer-events:
-      none;
+    color: #ffffff;
+
+    opacity: 1;
+
+    transform: none;
+
+    text-shadow:
+      0
+      2px
+      10px
+      rgba(
+        0,
+        0,
+        0,
+        0.2
+      );
   }
 
 
   .quick-marquee-value {
-    margin-bottom:
-      6px;
+    margin-bottom: 6px;
+
+    color: #ffffff;
 
     font-size:
       clamp(
@@ -1204,9 +1091,11 @@ and
   }
 
 
-  .quick-marquee-content h3 {
-    max-width:
-      300px;
+  .quick-marquee-content
+  h3 {
+    max-width: 300px;
+
+    color: #ffffff;
 
     font-size:
       clamp(
@@ -1215,8 +1104,7 @@ and
         27px
       );
 
-    line-height:
-      1.02;
+    line-height: 1.02;
   }
 
 
@@ -1225,8 +1113,7 @@ and
   ===================================================== */
 
   .quick-marquee-description-wrap {
-    display:
-      none;
+    display: none;
   }
 
 }
@@ -1252,8 +1139,7 @@ and
         100% - 36px
       );
 
-    margin-bottom:
-      23px;
+    margin-bottom: 23px;
   }
 
 
@@ -1268,8 +1154,7 @@ and
 
 
   .quick-marquee-wall {
-    gap:
-      18px;
+    gap: 16px;
   }
 
 
@@ -1285,7 +1170,8 @@ and
       18px;
 
     touch-action:
-      pan-x pan-y;
+      pan-x
+      pan-y;
   }
 
 
@@ -1301,7 +1187,8 @@ and
       18px;
 
     touch-action:
-      pan-x pan-y;
+      pan-x
+      pan-y;
   }
 
 
@@ -1310,8 +1197,7 @@ and
   ===================================================== */
 
   .quick-marquee-group {
-    gap:
-      10px;
+    gap: 10px;
   }
 
 
@@ -1330,8 +1216,7 @@ and
         100vw - 36px
       );
 
-    max-width:
-      none;
+    max-width: none;
 
     height:
       clamp(
@@ -1340,11 +1225,13 @@ and
         250px
       );
 
-    border-radius:
-      0;
+    border-radius: 0;
+
+    background: transparent;
 
     touch-action:
-      pan-x pan-y;
+      pan-x
+      pan-y;
   }
 
 
@@ -1353,44 +1240,34 @@ and
   ===================================================== */
 
   .quick-marquee-content {
-    left:
-      17px;
+    left: 17px;
 
-    right:
-      17px;
+    right: 17px;
 
-    bottom:
-      17px;
+    bottom: 17px;
+
+    color: #ffffff;
+
+    opacity: 1;
+
+    transform: none;
   }
 
 
   .quick-marquee-value {
-    font-size:
-      36px;
+    color: #ffffff;
+
+    font-size: 36px;
   }
 
 
-  .quick-marquee-content h3 {
-    max-width:
-      260px;
+  .quick-marquee-content
+  h3 {
+    max-width: 260px;
 
-    font-size:
-      21px;
-  }
+    color: #ffffff;
 
-
-  .quick-marquee-number {
-    top:
-      13px;
-
-    right:
-      13px;
-
-    min-width:
-      32px;
-
-    height:
-      27px;
+    font-size: 21px;
   }
 
 }
@@ -1403,8 +1280,7 @@ and
 @media (max-width: 360px) {
 
   .quick-facts {
-    padding-top:
-      36px;
+    padding-top: 36px;
   }
 
 
@@ -1435,8 +1311,7 @@ and
 
 
   .quick-marquee-group {
-    gap:
-      9px;
+    gap: 9px;
   }
 
 
@@ -1451,20 +1326,22 @@ and
         100vw - 30px
       );
 
-    height:
-      205px;
+    height: 205px;
   }
 
 
   .quick-marquee-value {
-    font-size:
-      33px;
+    color: #ffffff;
+
+    font-size: 33px;
   }
 
 
-  .quick-marquee-content h3 {
-    font-size:
-      19px;
+  .quick-marquee-content
+  h3 {
+    color: #ffffff;
+
+    font-size: 19px;
   }
 
 }
@@ -1481,22 +1358,20 @@ and
 
   .quick-facts-heading,
   .quick-marquee-row,
-  .quick-marquee-card {
-    transform:
+  .quick-marquee-card,
+  .quick-marquee-image,
+  .quick-marquee-content,
+  .quick-marquee-card::before,
+  .quick-marquee-card::after {
+    transition:
       none !important;
 
-    opacity:
-      1 !important;
-
-    transition:
+    transform:
       none !important;
   }
 
 
   .quick-marquee-track {
-    transform:
-      none !important;
-
     animation:
       none !important;
   }

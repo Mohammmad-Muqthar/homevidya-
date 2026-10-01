@@ -74,11 +74,6 @@ const faqItems = [
 
 export default function FAQ() {
 
-  /*
-    IMPORTANT:
-    -1 = all questions closed initially.
-  */
-
   const [activeIndex, setActiveIndex] =
     useState(-1);
 
@@ -109,10 +104,11 @@ export default function FAQ() {
 
 
   /* =========================================================
-     ENTRANCE
+     FAQ ENTRANCE
   ========================================================= */
 
   useLayoutEffect(() => {
+
     const section =
       sectionRef.current;
 
@@ -124,13 +120,6 @@ export default function FAQ() {
 
     const ctx =
       gsap.context(() => {
-
-        /*
-          Left content.
-
-          Only opacity.
-          No transform because sticky must remain stable.
-        */
 
         gsap.fromTo(
           headingRef.current,
@@ -160,13 +149,6 @@ export default function FAQ() {
           }
         );
 
-
-        /*
-          Questions.
-
-          No Y / X transform.
-          Keeps first question exactly in position.
-        */
 
         gsap.fromTo(
           listRef.current,
@@ -200,31 +182,130 @@ export default function FAQ() {
 
 
     requestAnimationFrame(() => {
+
       ScrollTrigger.refresh();
+
     });
 
 
     return () => {
+
       ctx.revert();
+
     };
+
   }, []);
 
 
   /* =========================================================
-     FAQ SIZE REFRESH
+     REFRESH FAQ
   ========================================================= */
 
   useEffect(() => {
+
     const timer =
-      window.setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 520);
+      window.setTimeout(
+        () => {
+
+          ScrollTrigger.refresh();
+
+        },
+        520
+      );
 
 
     return () => {
+
       clearTimeout(timer);
+
     };
+
   }, [activeIndex]);
+
+
+  /* =========================================================
+     OPEN FORM
+  ========================================================= */
+
+  const openForm =
+    () => {
+
+      setFormOpen(true);
+
+    };
+
+
+  /* =========================================================
+     CLOSE FORM
+  ========================================================= */
+
+  const closeForm =
+    () => {
+
+      const overlay =
+        overlayRef.current;
+
+      const panel =
+        panelRef.current;
+
+
+      if (
+        !overlay ||
+        !panel
+      ) {
+
+        setFormOpen(false);
+
+        return;
+
+      }
+
+
+      gsap
+        .timeline({
+
+          onComplete:
+            () => {
+
+              setFormOpen(false);
+
+            },
+
+        })
+
+        .to(
+          panel,
+
+          {
+            opacity: 0,
+
+            y: 28,
+
+            scale: 0.992,
+
+            duration: 0.32,
+
+            ease:
+              "power3.inOut",
+          }
+        )
+
+        .to(
+          overlay,
+
+          {
+            opacity: 0,
+
+            duration: 0.2,
+
+            ease:
+              "power2.inOut",
+          },
+
+          "-=0.14"
+        );
+
+    };
 
 
   /* =========================================================
@@ -232,6 +313,7 @@ export default function FAQ() {
   ========================================================= */
 
   useEffect(() => {
+
     if (!formOpen) {
       return;
     }
@@ -254,6 +336,7 @@ export default function FAQ() {
 
 
     const oldBody = {
+
       position:
         body.style.position,
 
@@ -274,6 +357,7 @@ export default function FAQ() {
 
       paddingRight:
         body.style.paddingRight,
+
     };
 
 
@@ -290,6 +374,7 @@ export default function FAQ() {
       "admission-modal-open"
     );
 
+
     body.classList.add(
       "admission-modal-open"
     );
@@ -302,17 +387,22 @@ export default function FAQ() {
     body.style.position =
       "fixed";
 
+
     body.style.top =
       `-${scrollY}px`;
+
 
     body.style.left =
       "0";
 
+
     body.style.right =
       "0";
 
+
     body.style.width =
       "100%";
+
 
     body.style.overflow =
       "hidden";
@@ -321,16 +411,19 @@ export default function FAQ() {
     if (
       scrollbarWidth > 0
     ) {
+
       body.style.paddingRight =
         `${scrollbarWidth}px`;
+
     }
 
 
     /* =====================================================
-       OPEN MODAL
+       OPEN ANIMATION
     ===================================================== */
 
     requestAnimationFrame(() => {
+
       const overlay =
         overlayRef.current;
 
@@ -364,13 +457,16 @@ export default function FAQ() {
         overlay,
 
         {
-          opacity: 0,
+          opacity:
+            0,
         },
 
         {
-          opacity: 1,
+          opacity:
+            1,
 
-          duration: 0.28,
+          duration:
+            0.28,
 
           ease:
             "power2.out",
@@ -382,21 +478,28 @@ export default function FAQ() {
         panel,
 
         {
-          opacity: 0,
+          opacity:
+            0,
 
-          y: 38,
+          y:
+            38,
 
-          scale: 0.988,
+          scale:
+            0.988,
         },
 
         {
-          opacity: 1,
+          opacity:
+            1,
 
-          y: 0,
+          y:
+            0,
 
-          scale: 1,
+          scale:
+            1,
 
-          duration: 0.58,
+          duration:
+            0.58,
 
           ease:
             "power4.out",
@@ -410,19 +513,25 @@ export default function FAQ() {
         fields,
 
         {
-          opacity: 0,
+          opacity:
+            0,
 
-          y: 9,
+          y:
+            9,
         },
 
         {
-          opacity: 1,
+          opacity:
+            1,
 
-          y: 0,
+          y:
+            0,
 
-          duration: 0.38,
+          duration:
+            0.38,
 
-          stagger: 0.03,
+          stagger:
+            0.03,
 
           ease:
             "power3.out",
@@ -432,9 +541,14 @@ export default function FAQ() {
       );
 
 
-      timeline.add(() => {
-        closeRef.current?.focus();
-      });
+      timeline.add(
+        () => {
+
+          closeRef.current?.focus();
+
+        }
+      );
+
     });
 
 
@@ -443,9 +557,11 @@ export default function FAQ() {
     ===================================================== */
 
     return () => {
+
       html.classList.remove(
         "admission-modal-open"
       );
+
 
       body.classList.remove(
         "admission-modal-open"
@@ -459,20 +575,26 @@ export default function FAQ() {
       body.style.position =
         oldBody.position;
 
+
       body.style.top =
         oldBody.top;
+
 
       body.style.left =
         oldBody.left;
 
+
       body.style.right =
         oldBody.right;
+
 
       body.style.width =
         oldBody.width;
 
+
       body.style.overflow =
         oldBody.overflow;
+
 
       body.style.paddingRight =
         oldBody.paddingRight;
@@ -484,83 +606,17 @@ export default function FAQ() {
       );
 
 
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
-      });
-    };
-  }, [formOpen]);
+      requestAnimationFrame(
+        () => {
 
+          ScrollTrigger.refresh();
 
-  /* =========================================================
-     FORM OPEN
-  ========================================================= */
-
-  const openForm = () => {
-    setFormOpen(true);
-  };
-
-
-  /* =========================================================
-     FORM CLOSE
-  ========================================================= */
-
-  const closeForm = () => {
-    const overlay =
-      overlayRef.current;
-
-    const panel =
-      panelRef.current;
-
-
-    if (
-      !overlay ||
-      !panel
-    ) {
-      setFormOpen(false);
-
-      return;
-    }
-
-
-    gsap
-      .timeline({
-        onComplete: () => {
-          setFormOpen(false);
-        },
-      })
-
-      .to(
-        panel,
-
-        {
-          opacity: 0,
-
-          y: 28,
-
-          scale: 0.992,
-
-          duration: 0.32,
-
-          ease:
-            "power3.inOut",
         }
-      )
-
-      .to(
-        overlay,
-
-        {
-          opacity: 0,
-
-          duration: 0.2,
-
-          ease:
-            "power2.inOut",
-        },
-
-        "-=0.14"
       );
-  };
+
+    };
+
+  }, [formOpen]);
 
 
   /* =========================================================
@@ -568,15 +624,20 @@ export default function FAQ() {
   ========================================================= */
 
   useEffect(() => {
+
     const handleKeyDown =
       (event) => {
+
         if (
           event.key ===
             "Escape" &&
           formOpen
         ) {
+
           closeForm();
+
         }
+
       };
 
 
@@ -587,11 +648,14 @@ export default function FAQ() {
 
 
     return () => {
+
       window.removeEventListener(
         "keydown",
         handleKeyDown
       );
+
     };
+
   }, [formOpen]);
 
 
@@ -601,7 +665,9 @@ export default function FAQ() {
 
   const handleSubmit =
     (event) => {
+
       event.preventDefault();
+
     };
 
 
@@ -610,6 +676,7 @@ export default function FAQ() {
   ========================================================= */
 
   return (
+
     <>
 
       {/* =====================================================
@@ -617,29 +684,36 @@ export default function FAQ() {
       ====================================================== */}
 
       <section
-        ref={sectionRef}
+        ref={
+          sectionRef
+        }
+
         className="faq-section"
+
         id="faq"
       >
 
-        <div className="faq-layout">
+        <div
+          className="faq-layout"
+        >
 
+          {/* LEFT */}
 
-          {/* =================================================
-              LEFT SIDE
-
-              IMPORTANT:
-              faq-left-column itself is sticky.
-          ================================================= */}
-
-          <aside className="faq-left-column">
+          <aside
+            className="faq-left-column"
+          >
 
             <div
-              ref={headingRef}
+              ref={
+                headingRef
+              }
+
               className="faq-sticky"
             >
 
-              <h2 className="faq-title">
+              <h2
+                className="faq-title"
+              >
 
                 Questions parents
 
@@ -650,7 +724,9 @@ export default function FAQ() {
               </h2>
 
 
-              <p className="faq-intro-copy">
+              <p
+                className="faq-intro-copy"
+              >
 
                 Everything you may want to
                 know before beginning your
@@ -674,7 +750,9 @@ export default function FAQ() {
                 </span>
 
 
-                <span className="faq-admission-arrow">
+                <span
+                  className="faq-admission-arrow"
+                >
                   ↗
                 </span>
 
@@ -685,12 +763,13 @@ export default function FAQ() {
           </aside>
 
 
-          {/* =================================================
-              QUESTIONS
-          ================================================= */}
+          {/* QUESTIONS */}
 
           <div
-            ref={listRef}
+            ref={
+              listRef
+            }
+
             className="faq-list"
           >
 
@@ -731,34 +810,28 @@ export default function FAQ() {
                         isOpen
                       }
 
-                      onClick={() =>
-                        setActiveIndex(
-                          isOpen
-                            ? -1
-                            : index
-                        )
+                      onClick={
+                        () =>
+                          setActiveIndex(
+                            isOpen
+                              ? -1
+                              : index
+                          )
                       }
                     >
 
-                      <span className="faq-number">
+                      <span
+                        className="faq-question-copy"
+                      >
 
-                        {String(
-                          index + 1
-                        ).padStart(
-                          2,
-                          "0"
-                        )}
-
-                      </span>
-
-
-                      <span className="faq-question-copy">
                         {item.question}
+
                       </span>
 
 
                       <span
                         className="faq-plus"
+
                         aria-hidden="true"
                       >
 
@@ -771,7 +844,9 @@ export default function FAQ() {
                     </button>
 
 
-                    <div className="faq-answer">
+                    <div
+                      className="faq-answer"
+                    >
 
                       <div>
 
@@ -786,6 +861,7 @@ export default function FAQ() {
                   </article>
 
                 );
+
               }
             )}
 
@@ -797,28 +873,38 @@ export default function FAQ() {
 
 
       {/* =====================================================
-          ADMISSION MODAL
+          ADMISSION FORM
       ====================================================== */}
 
       {formOpen && (
 
         <div
-          ref={overlayRef}
+          ref={
+            overlayRef
+          }
 
           className="admission-overlay"
 
-          onPointerDown={(event) => {
-            if (
-              event.target ===
-              event.currentTarget
-            ) {
-              closeForm();
+          onPointerDown={
+            (event) => {
+
+              if (
+                event.target ===
+                event.currentTarget
+              ) {
+
+                closeForm();
+
+              }
+
             }
-          }}
+          }
         >
 
           <div
-            ref={panelRef}
+            ref={
+              panelRef
+            }
 
             className="admission-panel"
 
@@ -828,15 +914,18 @@ export default function FAQ() {
 
             aria-labelledby="admission-title"
 
-            onPointerDown={(event) =>
-              event.stopPropagation()
+            onPointerDown={
+              (event) =>
+                event.stopPropagation()
             }
           >
 
             {/* CLOSE */}
 
             <button
-              ref={closeRef}
+              ref={
+                closeRef
+              }
 
               type="button"
 
@@ -848,23 +937,25 @@ export default function FAQ() {
 
               aria-label="Close admission form"
             >
+
               <span />
+
               <span />
+
             </button>
 
 
             {/* =================================================
-                LEFT MODAL CONTENT
+                LEFT SIDE
             ================================================= */}
 
-            <div className="admission-panel-left">
+            <div
+              className="admission-panel-left"
+            >
 
-              <span className="admission-panel-label">
-                VIDYA ADMISSIONS
-              </span>
-
-
-              <h2 id="admission-title">
+              <h2
+                id="admission-title"
+              >
 
                 Begin your
 
@@ -875,54 +966,28 @@ export default function FAQ() {
               </h2>
 
 
-              <p>
+              {/* DESKTOP MASCOT */}
 
-                Share a few details and
-                our admissions team will
-                help you with the next step.
+              <div
+                className="admission-mascot-wrap"
 
-              </p>
+                aria-hidden="true"
+              >
 
-
-              <div className="admission-step-list">
-
-                <div className="admission-step">
-
-                  <span>
-                    01
-                  </span>
-
-                  <p>
-                    Send your enquiry
-                  </p>
-
-                </div>
+                <div
+                  className="admission-mascot-glow"
+                />
 
 
-                <div className="admission-step">
+                <img
+                  src="/images/vidya-admission-mascot.png"
 
-                  <span>
-                    02
-                  </span>
+                  alt=""
 
-                  <p>
-                    Connect with our team
-                  </p>
+                  className="admission-mascot"
 
-                </div>
-
-
-                <div className="admission-step">
-
-                  <span>
-                    03
-                  </span>
-
-                  <p>
-                    Plan your campus visit
-                  </p>
-
-                </div>
+                  draggable="false"
+                />
 
               </div>
 
@@ -930,10 +995,12 @@ export default function FAQ() {
 
 
             {/* =================================================
-                RIGHT MODAL FORM
+                RIGHT FORM
             ================================================= */}
 
-            <div className="admission-panel-right">
+            <div
+              className="admission-panel-right"
+            >
 
               <form
                 className="admission-form"
@@ -945,11 +1012,16 @@ export default function FAQ() {
 
                 {/* CHILD */}
 
-                <div className="admission-field">
+                <div
+                  className="admission-field"
+                >
 
-                  <label htmlFor="childName">
+                  <label
+                    htmlFor="childName"
+                  >
                     Child's name
                   </label>
+
 
                   <input
                     id="childName"
@@ -966,11 +1038,16 @@ export default function FAQ() {
 
                 {/* PARENT */}
 
-                <div className="admission-field">
+                <div
+                  className="admission-field"
+                >
 
-                  <label htmlFor="parentName">
+                  <label
+                    htmlFor="parentName"
+                  >
                     Parent / guardian
                   </label>
+
 
                   <input
                     id="parentName"
@@ -987,11 +1064,16 @@ export default function FAQ() {
 
                 {/* MOBILE */}
 
-                <div className="admission-field">
+                <div
+                  className="admission-field"
+                >
 
-                  <label htmlFor="mobile">
+                  <label
+                    htmlFor="mobile"
+                  >
                     Mobile number
                   </label>
+
 
                   <input
                     id="mobile"
@@ -1010,11 +1092,16 @@ export default function FAQ() {
 
                 {/* EMAIL */}
 
-                <div className="admission-field">
+                <div
+                  className="admission-field"
+                >
 
-                  <label htmlFor="email">
+                  <label
+                    htmlFor="email"
+                  >
                     Email address
                   </label>
+
 
                   <input
                     id="email"
@@ -1033,11 +1120,16 @@ export default function FAQ() {
 
                 {/* GRADE */}
 
-                <div className="admission-field">
+                <div
+                  className="admission-field"
+                >
 
-                  <label htmlFor="grade">
+                  <label
+                    htmlFor="grade"
+                  >
                     Grade
                   </label>
+
 
                   <select
                     id="grade"
@@ -1049,10 +1141,12 @@ export default function FAQ() {
 
                     <option
                       value=""
+
                       disabled
                     >
                       Select grade
                     </option>
+
 
                     <option>
                       Early Years
@@ -1113,11 +1207,16 @@ export default function FAQ() {
 
                 {/* YEAR */}
 
-                <div className="admission-field">
+                <div
+                  className="admission-field"
+                >
 
-                  <label htmlFor="academicYear">
+                  <label
+                    htmlFor="academicYear"
+                  >
                     Academic year
                   </label>
+
 
                   <select
                     id="academicYear"
@@ -1129,14 +1228,17 @@ export default function FAQ() {
 
                     <option
                       value=""
+
                       disabled
                     >
                       Select year
                     </option>
 
+
                     <option>
                       2026 – 2027
                     </option>
+
 
                     <option>
                       2027 – 2028
@@ -1149,11 +1251,19 @@ export default function FAQ() {
 
                 {/* MESSAGE */}
 
-                <div className="admission-field admission-field-full">
+                <div
+                  className="
+                    admission-field
+                    admission-field-full
+                  "
+                >
 
-                  <label htmlFor="message">
+                  <label
+                    htmlFor="message"
+                  >
                     Message
                   </label>
+
 
                   <textarea
                     id="message"
@@ -1168,7 +1278,12 @@ export default function FAQ() {
 
                 {/* SUBMIT */}
 
-                <div className="admission-field admission-field-full">
+                <div
+                  className="
+                    admission-field
+                    admission-field-full
+                  "
+                >
 
                   <button
                     type="submit"
@@ -1179,6 +1294,7 @@ export default function FAQ() {
                     <span>
                       Submit enquiry
                     </span>
+
 
                     <span>
                       ↗
@@ -1199,5 +1315,7 @@ export default function FAQ() {
       )}
 
     </>
+
   );
+
 }
