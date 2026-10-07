@@ -8,12 +8,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./CampusBuildings.css";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 
 /* =========================================================
-   SMALL MARQUEE IMAGES
+   BUILDING MARQUEE IMAGES
 ========================================================= */
 
 const buildingMarqueeImages = [
@@ -130,7 +129,6 @@ const buildingImages = [
 ========================================================= */
 
 const CampusBuildings = () => {
-
   const sectionRef =
     useRef(null);
 
@@ -149,7 +147,6 @@ const CampusBuildings = () => {
   ========================================================= */
 
   useLayoutEffect(() => {
-
     const section =
       sectionRef.current;
 
@@ -175,32 +172,32 @@ const CampusBuildings = () => {
     const ctx =
       gsap.context(() => {
 
-
         /* =====================================================
-           INFINITE BUILDINGS MARQUEE
+           INFINITE MARQUEE
         ===================================================== */
 
         const marqueeTween =
           gsap.to(
             marqueeTrack,
+
             {
               xPercent:
                 -50,
 
               duration:
-                25,
-
-              ease:
-                "none",
+                30,
 
               repeat:
                 -1,
+
+              ease:
+                "none",
             }
           );
 
 
         /* =====================================================
-           SUBTLE MARQUEE SCROLL DRIFT
+           SUBTLE MARQUEE DRIFT
         ===================================================== */
 
         const marqueeShell =
@@ -209,15 +206,20 @@ const CampusBuildings = () => {
           );
 
 
-        if (marqueeShell) {
-
+        if (
+          marqueeShell
+        ) {
           gsap.fromTo(
             marqueeShell,
+
             {
-              x: 14,
+              x:
+                8,
             },
+
             {
-              x: -14,
+              x:
+                -8,
 
               ease:
                 "none",
@@ -237,25 +239,27 @@ const CampusBuildings = () => {
               },
             }
           );
-
         }
 
 
         /* =====================================================
-           DESCRIPTION REVEAL
+           CAPTION REVEAL
         ===================================================== */
 
-        if (caption) {
-
+        if (
+          caption
+        ) {
           gsap.fromTo(
             caption,
+
             {
               opacity:
                 0,
 
               y:
-                24,
+                18,
             },
+
             {
               opacity:
                 1,
@@ -271,28 +275,27 @@ const CampusBuildings = () => {
                   caption,
 
                 start:
-                  "top 90%",
+                  "top 92%",
 
                 end:
-                  "top 72%",
+                  "top 78%",
 
                 scrub:
-                  0.55,
+                  0.5,
               },
             }
           );
-
         }
 
 
         /* =====================================================
-           DESKTOP BUILDINGS
+           DESKTOP PHOTOS
         ===================================================== */
 
         mm.add(
           "(min-width: 769px)",
-          () => {
 
+          () => {
             const photos =
               photoRefs.current.filter(
                 Boolean
@@ -304,31 +307,28 @@ const CampusBuildings = () => {
                 card,
                 index
               ) => {
-
                 const image =
                   card.querySelector(
                     "img"
                   );
 
 
-                /* =============================================
-                   CARD REVEAL
-                ============================================= */
-
                 gsap.fromTo(
                   card,
+
                   {
                     opacity:
                       0,
 
                     y:
-                      52 +
+                      36 +
                       (
                         index %
                         3
                       ) *
-                        13,
+                        7,
                   },
+
                   {
                     opacity:
                       1,
@@ -347,7 +347,7 @@ const CampusBuildings = () => {
                         "top 94%",
 
                       end:
-                        "top 70%",
+                        "top 72%",
 
                       scrub:
                         0.65,
@@ -356,27 +356,26 @@ const CampusBuildings = () => {
                 );
 
 
-                /* =============================================
-                   IMAGE PARALLAX
-                ============================================= */
-
-                if (image) {
-
+                if (
+                  image
+                ) {
                   gsap.fromTo(
                     image,
+
                     {
                       scale:
-                        1.075,
+                        1.05,
 
                       yPercent:
-                        -3,
+                        -2.5,
                     },
+
                     {
                       scale:
                         1,
 
                       yPercent:
-                        3,
+                        2.5,
 
                       ease:
                         "none",
@@ -392,28 +391,25 @@ const CampusBuildings = () => {
                           "bottom top",
 
                         scrub:
-                          0.75,
+                          0.72,
                       },
                     }
                   );
-
                 }
-
               }
             );
-
           }
         );
 
 
         /* =====================================================
-           MOBILE
+           MOBILE PHOTOS
         ===================================================== */
 
         mm.add(
           "(max-width: 768px)",
-          () => {
 
+          () => {
             const photos =
               photoRefs.current.filter(
                 Boolean
@@ -422,9 +418,9 @@ const CampusBuildings = () => {
 
             photos.forEach(
               (
-                card
+                card,
+                index
               ) => {
-
                 const image =
                   card.querySelector(
                     "img"
@@ -433,13 +429,20 @@ const CampusBuildings = () => {
 
                 gsap.fromTo(
                   card,
+
                   {
                     opacity:
                       0,
 
                     y:
-                      28,
+                      20 +
+                      (
+                        index %
+                        2
+                      ) *
+                        4,
                   },
+
                   {
                     opacity:
                       1,
@@ -448,7 +451,7 @@ const CampusBuildings = () => {
                       0,
 
                     duration:
-                      0.72,
+                      0.68,
 
                     ease:
                       "power3.out",
@@ -467,14 +470,17 @@ const CampusBuildings = () => {
                 );
 
 
-                if (image) {
-
+                if (
+                  image
+                ) {
                   gsap.fromTo(
                     image,
+
                     {
                       scale:
-                        1.05,
+                        1.025,
                     },
+
                     {
                       scale:
                         1,
@@ -493,24 +499,19 @@ const CampusBuildings = () => {
                           "bottom top",
 
                         scrub:
-                          0.5,
+                          0.4,
                       },
                     }
                   );
-
                 }
-
               }
             );
-
           }
         );
 
 
         return () => {
-
           marqueeTween.kill();
-
         };
 
       }, section);
@@ -522,17 +523,35 @@ const CampusBuildings = () => {
 
     let resizeTimer;
 
+    let previousWidth =
+      window.innerWidth;
+
 
     const refresh =
       () => {
-
         ScrollTrigger.refresh();
-
       };
 
 
     const handleResize =
       () => {
+        const currentWidth =
+          window.innerWidth;
+
+
+        if (
+          Math.abs(
+            currentWidth -
+            previousWidth
+          ) < 3
+        ) {
+          return;
+        }
+
+
+        previousWidth =
+          currentWidth;
+
 
         clearTimeout(
           resizeTimer
@@ -542,9 +561,8 @@ const CampusBuildings = () => {
         resizeTimer =
           setTimeout(
             refresh,
-            120
+            150
           );
-
       };
 
 
@@ -555,70 +573,61 @@ const CampusBuildings = () => {
 
 
     images.forEach(
-      (
-        image
-      ) => {
-
+      (image) => {
         if (
           !image.complete
         ) {
-
           image.addEventListener(
             "load",
             refresh
           );
-
         }
-
       }
     );
 
 
-    if (
-      document.fonts?.ready
-    ) {
-
-      document.fonts.ready.then(
+    document.fonts
+      ?.ready
+      ?.then(
         refresh
       );
-
-    }
 
 
     window.addEventListener(
       "resize",
-      handleResize
+      handleResize,
+      {
+        passive:
+          true,
+      }
     );
 
 
     requestAnimationFrame(
       () => {
-
         requestAnimationFrame(
           refresh
         );
-
       }
     );
 
 
-    return () => {
+    /* =====================================================
+       CLEANUP
+    ===================================================== */
 
+    return () => {
       clearTimeout(
         resizeTimer
       );
 
 
       images.forEach(
-        (
-          image
-        ) => {
-
+        (image) => {
           image.removeEventListener(
             "load",
             refresh
           );
-
         }
       );
 
@@ -632,7 +641,6 @@ const CampusBuildings = () => {
       mm.revert();
 
       ctx.revert();
-
     };
 
   }, []);
@@ -665,24 +673,16 @@ const CampusBuildings = () => {
           ) => (
 
             <div
-              key={
-                `${prefix}-${index}`
-              }
+              key={`${prefix}-${index}`}
 
               className="campus-buildings-marquee-item"
             >
 
-              <div
-                className="campus-buildings-thumb"
-              >
+              <div className="campus-buildings-thumb">
 
                 <img
-                  src={
-                    image
-                  }
-
+                  src={image}
                   alt=""
-
                   draggable="false"
                 />
 
@@ -708,27 +708,19 @@ const CampusBuildings = () => {
   ========================================================= */
 
   return (
-
     <section
       ref={sectionRef}
 
       className="campus-buildings"
     >
 
-
       {/* =====================================================
-          MOVING BUILDINGS TITLE
+          MARQUEE
+      ===================================================== */}
 
-          NO TEXT SECTION ABOVE THIS.
-      ====================================================== */}
+      <div className="campus-buildings-marquee-section">
 
-      <div
-        className="campus-buildings-marquee-section"
-      >
-
-        <div
-          className="campus-buildings-marquee-shell"
-        >
+        <div className="campus-buildings-marquee-shell">
 
           <div
             ref={marqueeTrackRef}
@@ -754,8 +746,8 @@ const CampusBuildings = () => {
 
 
       {/* =====================================================
-          SHORT BUILDING STATEMENT
-      ====================================================== */}
+          DESCRIPTION
+      ===================================================== */}
 
       <div
         ref={captionRef}
@@ -764,10 +756,17 @@ const CampusBuildings = () => {
       >
 
         <p>
-          Open light. Thoughtful lines.
+
+          <span className="campus-buildings-caption-accent">
+            Open light. Thoughtful lines.
+          </span>
+
+          {" "}
+
           Spaces designed to give ideas,
           imagination and learning room
           to grow.
+
         </p>
 
       </div>
@@ -775,11 +774,9 @@ const CampusBuildings = () => {
 
       {/* =====================================================
           BUILDING PHOTOS
-      ====================================================== */}
+      ===================================================== */}
 
-      <div
-        className="campus-buildings-grid"
-      >
+      <div className="campus-buildings-grid">
 
         {buildingImages.map(
           (
@@ -788,20 +785,14 @@ const CampusBuildings = () => {
           ) => (
 
             <figure
-              key={
-                image.id
-              }
+              key={image.id}
 
               ref={
-                (
-                  element
-                ) => {
-
+                (element) => {
                   photoRefs.current[
                     index
                   ] =
                     element;
-
                 }
               }
 
@@ -812,19 +803,17 @@ const CampusBuildings = () => {
             >
 
               <img
-                src={
-                  image.src
-                }
+                src={image.src}
 
-                alt={
-                  image.alt
-                }
+                alt={image.alt}
 
                 loading={
                   index < 3
                     ? "eager"
                     : "lazy"
                 }
+
+                decoding="async"
 
                 draggable="false"
               />
@@ -836,11 +825,8 @@ const CampusBuildings = () => {
 
       </div>
 
-
     </section>
-
   );
-
 };
 
 

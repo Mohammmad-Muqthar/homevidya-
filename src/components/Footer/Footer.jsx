@@ -16,7 +16,8 @@ gsap.registerPlugin(ScrollTrigger);
    MASCOT VIDEO
 ========================================================= */
 
-const MASCOT_VIDEO = "/mascot-doll1.webm";
+const MASCOT_VIDEO =
+  "/mascot-doll1.webm";
 
 
 /* =========================================================
@@ -24,10 +25,17 @@ const MASCOT_VIDEO = "/mascot-doll1.webm";
 ========================================================= */
 
 const SCHOOL = {
-  location: "Kundapura, Karnataka, India",
-  phone: "+91 00000 00000",
-  email: "admissions@vidyaacademy.edu",
-  whatsapp: "",
+  location:
+    "Kundapura, Karnataka, India",
+
+  phone:
+    "+91 00000 00000",
+
+  email:
+    "admissions@vidyaacademy.edu",
+
+  whatsapp:
+    "",
 };
 
 
@@ -37,79 +45,115 @@ const SCHOOL = {
 
 const footerColumns = [
   {
-    title: "School",
+    title:
+      "School",
+
     links: [
       {
-        label: "About us",
-        href: "#about",
+        label:
+          "About us",
+        href:
+          "#about",
       },
       {
-        label: "Campus",
-        href: "#about",
+        label:
+          "Campus",
+        href:
+          "#about",
       },
       {
-        label: "Experience",
-        href: "#life-at-school",
+        label:
+          "Experience",
+        href:
+          "#life-at-school",
       },
       {
-        label: "Programmes",
-        href: "#academic-programs",
+        label:
+          "Programmes",
+        href:
+          "#academic-programs",
       },
       {
-        label: "The Vidya Way",
-        href: "#the-way",
+        label:
+          "The Vidya Way",
+        href:
+          "#the-way",
       },
       {
-        label: "Quick facts",
-        href: "#quick-facts",
+        label:
+          "Quick facts",
+        href:
+          "#quick-facts",
       },
     ],
   },
 
   {
-    title: "Admissions",
+    title:
+      "Admissions",
+
     links: [
       {
-        label: "Admission enquiry",
-        href: "#faq",
+        label:
+          "Admission enquiry",
+        href:
+          "#faq",
       },
       {
-        label: "Contact admissions",
-        href: "#faq",
+        label:
+          "Contact admissions",
+        href:
+          "#faq",
       },
       {
-        label: "FAQs",
-        href: "#faq",
+        label:
+          "FAQs",
+        href:
+          "#faq",
       },
       {
-        label: "Fees & finance",
-        href: "#faq",
+        label:
+          "Fees & finance",
+        href:
+          "#faq",
       },
     ],
   },
 
   {
-    title: "Connect",
+    title:
+      "Connect",
+
     links: [
       {
-        label: "Instagram",
-        href: "#footer",
+        label:
+          "Instagram",
+        href:
+          "#footer",
       },
       {
-        label: "LinkedIn",
-        href: "#footer",
+        label:
+          "LinkedIn",
+        href:
+          "#footer",
       },
       {
-        label: "YouTube",
-        href: "#footer",
+        label:
+          "YouTube",
+        href:
+          "#footer",
       },
       {
-        label: "Parent login",
-        href: "#footer",
+        label:
+          "Parent login",
+        href:
+          "#footer",
       },
       {
-        label: "Careers",
-        href: "#footer",
+        label:
+          "Careers",
+        href:
+          "#footer",
       },
     ],
   },
@@ -117,7 +161,7 @@ const footerColumns = [
 
 
 /* =========================================================
-   WHATSAPP ICON
+   ICONS
 ========================================================= */
 
 function WhatsAppIcon() {
@@ -144,10 +188,6 @@ function WhatsAppIcon() {
 }
 
 
-/* =========================================================
-   LOCATION ICON
-========================================================= */
-
 function LocationIcon() {
   return (
     <svg
@@ -172,10 +212,6 @@ function LocationIcon() {
 }
 
 
-/* =========================================================
-   PHONE ICON
-========================================================= */
-
 function PhoneIcon() {
   return (
     <svg
@@ -194,10 +230,6 @@ function PhoneIcon() {
   );
 }
 
-
-/* =========================================================
-   EMAIL ICON
-========================================================= */
 
 function EmailIcon() {
   return (
@@ -229,101 +261,127 @@ function EmailIcon() {
 
 
 /* =========================================================
-   FOOTER COMPONENT
+   FOOTER
 ========================================================= */
 
 export default function Footer() {
-  const footerRef = useRef(null);
-  const mascotRef = useRef(null);
+  const footerRef =
+    useRef(null);
+
+  const containerRef =
+    useRef(null);
+
+  const mascotRef =
+    useRef(null);
 
 
   /* =========================================================
-     VIDEO AUTOPLAY
+     VIDEO
   ========================================================= */
 
-  const handleVideoReady = (event) => {
-    const video = event.currentTarget;
+  const handleVideoReady =
+    (event) => {
+      const video =
+        event.currentTarget;
 
-    video.muted = true;
+      video.muted =
+        true;
 
-    video.play().catch(() => {});
-  };
+      video
+        .play()
+        .catch(
+          () => {}
+        );
+    };
 
 
   /* =========================================================
      MASCOT VISIBILITY
-
-     HIDE:
-     HERO + INTRO
-
-     SHOW:
-     ALL OTHER SECTIONS
-     INCLUDING FOOTER
   ========================================================= */
 
   useEffect(() => {
-    const mascot = mascotRef.current;
+    const mascot =
+      mascotRef.current;
 
-    if (!mascot) {
+    if (
+      !mascot
+    ) {
       return undefined;
     }
 
-    let frameId = null;
+
+    let frameId =
+      null;
 
 
-    const updateMascot = () => {
-      if (frameId) {
-        cancelAnimationFrame(frameId);
-      }
-
-      frameId = requestAnimationFrame(() => {
-        const hero = document.querySelector(
-          [
-            ".raya-hero",
-            "[data-navbar-hero]",
-            ".campus-hero",
-            ".page-hero",
-          ].join(",")
-        );
-
-        let heroVisible = false;
-
-        if (hero) {
-          const heroRect = hero.getBoundingClientRect();
-
-          heroVisible =
-            heroRect.bottom > 80 &&
-            heroRect.top < window.innerHeight;
-        }
-
-
-        const introActive = document.body.classList.contains(
-          "vidya-page-intro-active"
-        );
-
-
-        /* ===============================================
-           HIDE ON HERO / INTRO
-        =============================================== */
-
-        if (heroVisible || introActive) {
-          mascot.classList.remove(
-            "vidya-site-mascot--visible"
+    const updateMascot =
+      () => {
+        if (
+          frameId
+        ) {
+          cancelAnimationFrame(
+            frameId
           );
-
-          return;
         }
 
 
-        /* ===============================================
-           SHOW EVERYWHERE ELSE
-        =============================================== */
+        frameId =
+          requestAnimationFrame(
+            () => {
+              const hero =
+                document.querySelector(
+                  [
+                    ".raya-hero",
+                    "[data-navbar-hero]",
+                    ".campus-hero",
+                    ".page-hero",
+                  ].join(",")
+                );
 
-        mascot.classList.add(
-          "vidya-site-mascot--visible"
-        );
-      });
-    };
+
+              let heroVisible =
+                false;
+
+
+              if (
+                hero
+              ) {
+                const heroRect =
+                  hero.getBoundingClientRect();
+
+
+                heroVisible =
+                  heroRect.bottom >
+                    80 &&
+                  heroRect.top <
+                    window.innerHeight;
+              }
+
+
+              const introActive =
+                document.body.classList.contains(
+                  "vidya-page-intro-active"
+                );
+
+
+              if (
+                heroVisible ||
+                introActive
+              ) {
+                mascot.classList.remove(
+                  "vidya-site-mascot--visible"
+                );
+
+                return;
+              }
+
+
+              mascot.classList.add(
+                "vidya-site-mascot--visible"
+              );
+            }
+          );
+      };
 
 
     updateMascot();
@@ -333,7 +391,8 @@ export default function Footer() {
       "scroll",
       updateMascot,
       {
-        passive: true,
+        passive:
+          true,
       }
     );
 
@@ -344,232 +403,368 @@ export default function Footer() {
     );
 
 
-    const observer = new MutationObserver(
-      updateMascot
-    );
+    const observer =
+      new MutationObserver(
+        updateMascot
+      );
 
 
     observer.observe(
       document.body,
       {
-        childList: true,
-        subtree: true,
+        childList:
+          true,
+
+        subtree:
+          true,
       }
     );
 
 
     return () => {
-      if (frameId) {
-        cancelAnimationFrame(frameId);
+      if (
+        frameId
+      ) {
+        cancelAnimationFrame(
+          frameId
+        );
       }
+
 
       window.removeEventListener(
         "scroll",
         updateMascot
       );
 
+
       window.removeEventListener(
         "resize",
         updateMascot
       );
 
+
       observer.disconnect();
     };
+
   }, []);
 
 
   /* =========================================================
-     FOOTER GSAP ANIMATIONS
+     FOOTER ANIMATIONS
+
+     IMPORTANT FIX:
+     NEVER MOVE THE FOOTER ROOT.
+
+     ONLY MOVE THE INNER CONTENT.
   ========================================================= */
 
   useLayoutEffect(() => {
-    const footer = footerRef.current;
+    const footer =
+      footerRef.current;
 
-    if (!footer) {
+    const container =
+      containerRef.current;
+
+
+    if (
+      !footer ||
+      !container
+    ) {
       return undefined;
     }
 
 
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    /* remove any old GSAP transform
+       that may still exist on footer */
 
-
-    const ctx = gsap.context(() => {
-      if (reducedMotion) {
-        return;
+    gsap.set(
+      footer,
+      {
+        clearProps:
+          "transform",
       }
+    );
 
 
-      /* =====================================================
-         FOOTER REVEAL
-      ===================================================== */
+    const reducedMotion =
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
 
-      gsap.fromTo(
-        footer,
-        {
-          yPercent: 2,
-        },
-        {
-          yPercent: 0,
 
-          ease: "none",
-
-          scrollTrigger: {
-            trigger: footer,
-
-            start: "top bottom",
-            end: "top 82%",
-
-            scrub: 1.8,
-
-            invalidateOnRefresh: true,
-          },
+    const ctx =
+      gsap.context(() => {
+        if (
+          reducedMotion
+        ) {
+          return;
         }
-      );
 
 
-      /* =====================================================
-         LEFT INFORMATION
-      ===================================================== */
+        /* =====================================================
+           FOOTER INNER REVEAL
+        ===================================================== */
 
-      gsap.fromTo(
-        ".vidya-footer-info",
-        {
-          y: 18,
-          opacity: 0.65,
-        },
-        {
-          y: 0,
-          opacity: 1,
+        gsap.fromTo(
+          container,
 
-          ease: "power2.out",
-
-          scrollTrigger: {
-            trigger: footer,
-
-            start: "top 91%",
-            end: "top 72%",
-
-            scrub: 1.5,
+          {
+            yPercent:
+              2,
           },
-        }
-      );
+
+          {
+            yPercent:
+              0,
+
+            ease:
+              "none",
+
+            scrollTrigger: {
+              trigger:
+                footer,
+
+              start:
+                "top bottom",
+
+              end:
+                "top 82%",
+
+              scrub:
+                1.8,
+
+              invalidateOnRefresh:
+                true,
+            },
+          }
+        );
 
 
-      /* =====================================================
-         NAVIGATION
-      ===================================================== */
+        /* =====================================================
+           LEFT INFO
+        ===================================================== */
 
-      gsap.fromTo(
-        ".vidya-footer-column",
-        {
-          y: 14,
-          opacity: 0.55,
-        },
-        {
-          y: 0,
-          opacity: 1,
+        gsap.fromTo(
+          ".vidya-footer-info",
 
-          stagger: 0.07,
+          {
+            y:
+              18,
 
-          ease: "power2.out",
-
-          scrollTrigger: {
-            trigger: footer,
-
-            start: "top 90%",
-            end: "top 72%",
-
-            scrub: 1.5,
+            opacity:
+              0.65,
           },
-        }
-      );
+
+          {
+            y:
+              0,
+
+            opacity:
+              1,
+
+            ease:
+              "power2.out",
+
+            scrollTrigger: {
+              trigger:
+                footer,
+
+              start:
+                "top 91%",
+
+              end:
+                "top 72%",
+
+              scrub:
+                1.5,
+            },
+          }
+        );
 
 
-      /* =====================================================
-         LARGE WORDMARK
-      ===================================================== */
+        /* =====================================================
+           COLUMNS
+        ===================================================== */
 
-      gsap.fromTo(
-        ".vidya-footer-large-name",
-        {
-          y: 14,
-          opacity: 0.55,
-        },
-        {
-          y: 0,
-          opacity: 1,
+        gsap.fromTo(
+          ".vidya-footer-column",
 
-          ease: "power2.out",
+          {
+            y:
+              14,
 
-          scrollTrigger: {
-            trigger: ".vidya-footer-brand",
-
-            start: "top 98%",
-            end: "top 80%",
-
-            scrub: 1.3,
+            opacity:
+              0.55,
           },
-        }
-      );
+
+          {
+            y:
+              0,
+
+            opacity:
+              1,
+
+            stagger:
+              0.07,
+
+            ease:
+              "power2.out",
+
+            scrollTrigger: {
+              trigger:
+                footer,
+
+              start:
+                "top 90%",
+
+              end:
+                "top 72%",
+
+              scrub:
+                1.5,
+            },
+          }
+        );
 
 
-      /* =====================================================
-         BOTTOM
-      ===================================================== */
+        /* =====================================================
+           WORDMARK
+        ===================================================== */
 
-      gsap.fromTo(
-        ".vidya-footer-bottom",
-        {
-          y: 10,
-          opacity: 0.55,
-        },
-        {
-          y: 0,
-          opacity: 1,
+        gsap.fromTo(
+          ".vidya-footer-large-name",
 
-          ease: "power2.out",
+          {
+            y:
+              14,
 
-          scrollTrigger: {
-            trigger: ".vidya-footer-bottom",
-
-            start: "top 98%",
-            end: "top 86%",
-
-            scrub: 1.4,
+            opacity:
+              0.55,
           },
-        }
-      );
 
-    }, footer);
+          {
+            y:
+              0,
+
+            opacity:
+              1,
+
+            ease:
+              "power2.out",
+
+            scrollTrigger: {
+              trigger:
+                ".vidya-footer-brand",
+
+              start:
+                "top 98%",
+
+              end:
+                "top 80%",
+
+              scrub:
+                1.3,
+            },
+          }
+        );
 
 
-    /* =====================================================
-       REFRESH SCROLLTRIGGER
-    ===================================================== */
+        /* =====================================================
+           BOTTOM
+        ===================================================== */
 
-    const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
+        gsap.fromTo(
+          ".vidya-footer-bottom",
+
+          {
+            y:
+              10,
+
+            opacity:
+              0.55,
+          },
+
+          {
+            y:
+              0,
+
+            opacity:
+              1,
+
+            ease:
+              "power2.out",
+
+            scrollTrigger: {
+              trigger:
+                ".vidya-footer-bottom",
+
+              start:
+                "top 98%",
+
+              end:
+                "top 86%",
+
+              scrub:
+                1.4,
+            },
+          }
+        );
+
+      }, footer);
+
+
+    let resizeTimer;
+
+
+    const handleResize =
+      () => {
+        clearTimeout(
+          resizeTimer
+        );
+
+
+        resizeTimer =
+          setTimeout(
+            () => {
+              ScrollTrigger.refresh();
+            },
+            120
+          );
+      };
 
 
     window.addEventListener(
       "resize",
-      handleResize
+      handleResize,
+      {
+        passive:
+          true,
+      }
     );
 
 
-    requestAnimationFrame(() => {
-      ScrollTrigger.refresh();
-    });
+    requestAnimationFrame(
+      () => {
+        requestAnimationFrame(
+          () => {
+            ScrollTrigger.refresh();
+          }
+        );
+      }
+    );
 
 
     return () => {
+      clearTimeout(
+        resizeTimer
+      );
+
+
       window.removeEventListener(
         "resize",
         handleResize
       );
+
 
       ctx.revert();
     };
@@ -581,45 +776,51 @@ export default function Footer() {
      WHATSAPP
   ========================================================= */
 
-  const whatsappNumber = SCHOOL.whatsapp.replace(
-    /\D/g,
-    ""
-  );
+  const whatsappNumber =
+    SCHOOL.whatsapp.replace(
+      /\D/g,
+      ""
+    );
 
 
-  const whatsappHref = whatsappNumber
-    ? `https://wa.me/${whatsappNumber}`
-    : "#faq";
+  const whatsappHref =
+    whatsappNumber
+      ? `https://wa.me/${whatsappNumber}`
+      : "#faq";
 
 
-  const hasWhatsapp = Boolean(whatsappNumber);
+  const hasWhatsapp =
+    Boolean(
+      whatsappNumber
+    );
 
 
   /* =========================================================
-     MASCOT CLICK = BACK TO TOP
+     BACK TO TOP
   ========================================================= */
 
-  const handleGoToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const handleGoToTop =
+    () => {
+      window.scrollTo({
+        top:
+          0,
+
+        behavior:
+          "smooth",
+      });
+    };
 
 
   /* =========================================================
-     RETURN
+     JSX
   ========================================================= */
 
   return (
     <>
 
-      {/* ===================================================
-          SINGLE FIXED MASCOT
-
-          NO TEXT
-          NO ARROW
-      =================================================== */}
+      {/* =====================================================
+          FIXED MASCOT
+      ===================================================== */}
 
       <button
         ref={mascotRef}
@@ -628,6 +829,7 @@ export default function Footer() {
         onClick={handleGoToTop}
         aria-label="Back to top"
       >
+
         <video
           className="vidya-site-mascot-video"
           src={MASCOT_VIDEO}
@@ -640,20 +842,24 @@ export default function Footer() {
           aria-hidden="true"
           onCanPlay={handleVideoReady}
         />
+
       </button>
 
 
-      {/* ===================================================
+      {/* =====================================================
           FOOTER
-      =================================================== */}
+      ===================================================== */}
 
       <footer
         ref={footerRef}
         id="footer"
         className="vidya-footer"
       >
-        <div className="vidya-footer-container">
 
+        <div
+          ref={containerRef}
+          className="vidya-footer-container"
+        >
 
           {/* =================================================
               MAIN
@@ -661,9 +867,8 @@ export default function Footer() {
 
           <div className="vidya-footer-main">
 
-
             {/* ===============================================
-                LEFT INFORMATION
+                SCHOOL INFO
             =============================================== */}
 
             <div className="vidya-footer-info">
@@ -677,10 +882,8 @@ export default function Footer() {
 
               <div className="vidya-footer-details">
 
-
-                {/* LOCATION */}
-
                 <div className="vidya-footer-detail">
+
                   <span className="detail-icon">
                     <LocationIcon />
                   </span>
@@ -688,12 +891,12 @@ export default function Footer() {
                   <span>
                     {SCHOOL.location}
                   </span>
+
                 </div>
 
 
-                {/* PHONE */}
-
                 <div className="vidya-footer-detail">
+
                   <span className="detail-icon">
                     <PhoneIcon />
                   </span>
@@ -701,12 +904,12 @@ export default function Footer() {
                   <span>
                     {SCHOOL.phone}
                   </span>
+
                 </div>
 
 
-                {/* EMAIL */}
-
                 <div className="vidya-footer-detail">
+
                   <span className="detail-icon">
                     <EmailIcon />
                   </span>
@@ -714,12 +917,11 @@ export default function Footer() {
                   <span>
                     {SCHOOL.email}
                   </span>
+
                 </div>
 
               </div>
 
-
-              {/* WHATSAPP */}
 
               <div className="vidya-footer-actions">
 
@@ -737,11 +939,13 @@ export default function Footer() {
                       : undefined
                   }
                 >
+
                   <WhatsAppIcon />
 
                   <span>
                     Chat on WhatsApp
                   </span>
+
                 </a>
 
               </div>
@@ -758,39 +962,47 @@ export default function Footer() {
               aria-label="Footer navigation"
             >
 
-              {footerColumns.map((column) => (
+              {footerColumns.map(
+                (column) => (
 
-                <div
-                  className="vidya-footer-column"
-                  key={column.title}
-                >
+                  <div
+                    className="vidya-footer-column"
+                    key={column.title}
+                  >
 
-                  <h3>
-                    {column.title}
-                  </h3>
+                    <h3>
+                      {column.title}
+                    </h3>
 
 
-                  <ul>
+                    <ul>
 
-                    {column.links.map((link) => (
+                      {column.links.map(
+                        (link) => (
 
-                      <li
-                        key={`${column.title}-${link.label}`}
-                      >
+                          <li
+                            key={
+                              `${column.title}-${link.label}`
+                            }
+                          >
 
-                        <a href={link.href}>
-                          {link.label}
-                        </a>
+                            <a
+                              href={link.href}
+                            >
+                              {link.label}
+                            </a>
 
-                      </li>
+                          </li>
 
-                    ))}
+                        )
+                      )}
 
-                  </ul>
+                    </ul>
 
-                </div>
+                  </div>
 
-              ))}
+                )
+              )}
 
             </nav>
 
@@ -798,7 +1010,7 @@ export default function Footer() {
 
 
           {/* =================================================
-              LARGE WORDMARK
+              LARGE VIDYA ACADEMY
           ================================================= */}
 
           <div className="vidya-footer-brand">
@@ -820,11 +1032,10 @@ export default function Footer() {
 
           <div className="vidya-footer-bottom">
 
-            <p>
+            <p className="vidya-footer-copyright">
               ©{" "}
               {new Date().getFullYear()}{" "}
-              Vidya Academy.
-              All rights reserved.
+              Vidya Academy. All rights reserved.
             </p>
 
 
@@ -834,13 +1045,17 @@ export default function Footer() {
                 Privacy policy
               </a>
 
-              <span>|</span>
+              <span>
+                |
+              </span>
 
               <a href="#footer">
                 Terms of use
               </a>
 
-              <span>|</span>
+              <span>
+                |
+              </span>
 
               <a href="#footer">
                 Sitemap
@@ -851,6 +1066,7 @@ export default function Footer() {
           </div>
 
         </div>
+
       </footer>
 
     </>

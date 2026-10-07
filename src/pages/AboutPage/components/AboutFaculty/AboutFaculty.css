@@ -1,0 +1,1934 @@
+/* =========================================================
+   VIDYA ACADEMY
+   ABOUT — FACULTY
+
+   HOMEPAGE DARK SECTION SYSTEM
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+.about-faculty {
+  --cream:
+    #f3f0e6;
+
+  --cream-light:
+    #f5f3e9;
+
+  --deep-green:
+    #0b563b;
+
+  --green:
+    #0b8255;
+
+  --bright-green:
+    #26b474;
+
+  --orange:
+    #f9a01b;
+
+  --white:
+    #ffffff;
+
+  --soft-white:
+    rgba(
+      255,
+      255,
+      255,
+      0.68
+    );
+
+  --page-padding:
+    clamp(
+      42px,
+      5.2vw,
+      88px
+    );
+
+
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--deep-green);
+
+
+  padding:
+    clamp(
+      80px,
+      7vw,
+      115px
+    )
+    0
+    clamp(
+      90px,
+      8vw,
+      130px
+    );
+
+
+  color:
+    #ffffff;
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   MANROPE EVERYWHERE
+========================================================= */
+
+.about-faculty,
+.about-faculty *,
+.about-faculty *::before,
+.about-faculty *::after {
+  box-sizing:
+    border-box;
+
+
+  font-family:
+    "Manrope",
+    sans-serif !important;
+}
+
+
+/* =========================================================
+   CLEAN BACKGROUND
+
+   NO RADIAL GLOW
+========================================================= */
+
+.about-faculty::before,
+.about-faculty::after {
+  content:
+    none;
+}
+
+
+/* =========================================================
+   INNER
+========================================================= */
+
+.about-faculty-inner {
+  position:
+    relative;
+
+
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--page-padding) *
+          2
+        )
+      ),
+      1580px
+    );
+
+
+  margin:
+    0 auto;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.about-faculty-intro {
+  display:
+    grid;
+
+
+  grid-template-columns:
+    minmax(
+      0,
+      1.08fr
+    )
+    minmax(
+      340px,
+      0.68fr
+    );
+
+
+  align-items:
+    end;
+
+
+  gap:
+    clamp(
+      60px,
+      8vw,
+      135px
+    );
+
+
+  margin-bottom:
+    clamp(
+      58px,
+      5vw,
+      80px
+    );
+}
+
+
+/* =========================================================
+   HEADING WRAP
+========================================================= */
+
+.about-faculty-heading-wrap {
+  width:
+    100%;
+
+
+  max-width:
+    840px;
+}
+
+
+/* =========================================================
+   MAIN HEADING
+
+   SAME AS HOMEPAGE DARK SECTIONS
+========================================================= */
+
+.about-faculty-heading {
+  display:
+    block;
+
+
+  max-width:
+    820px;
+
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  color:
+    #ffffff;
+
+
+  font-size:
+    clamp(
+      45px,
+      4.3vw,
+      70px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    -0.058em;
+
+
+  text-wrap:
+    balance;
+
+
+  text-rendering:
+    geometricPrecision;
+
+
+  will-change:
+    opacity,
+    transform;
+}
+
+
+/* =========================================================
+   ALL HEADING WORDS
+========================================================= */
+
+.about-faculty-heading span {
+  font-size:
+    inherit;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    inherit;
+
+
+  line-height:
+    inherit;
+
+
+  letter-spacing:
+    inherit;
+}
+
+
+/* =========================================================
+   MAIN WORDS
+========================================================= */
+
+.about-faculty-heading-main {
+  color:
+    #ffffff;
+}
+
+
+/* =========================================================
+   STAY CURIOUS
+
+   SAME GREY/SOFT WHITE AS HOMEPAGE DARK HEADINGS
+========================================================= */
+
+.about-faculty-heading-soft {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.68
+    );
+}
+
+
+/* =========================================================
+   QUOTE CARD
+========================================================= */
+
+.about-faculty-quote-card {
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  max-width:
+    480px;
+
+
+  margin:
+    0
+    0
+    4px
+    auto;
+
+
+  padding:
+    clamp(
+      30px,
+      2.7vw,
+      42px
+    );
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--cream);
+
+
+  color:
+    var(--deep-green);
+
+
+  border:
+    0;
+
+
+  border-radius:
+    0;
+
+
+  will-change:
+    opacity,
+    transform;
+}
+
+
+/* =========================================================
+   ORANGE TOP ACCENT
+========================================================= */
+
+.about-faculty-quote-card::before {
+  content:
+    "";
+
+
+  position:
+    absolute;
+
+
+  top:
+    0;
+
+
+  left:
+    0;
+
+
+  width:
+    100%;
+
+
+  height:
+    4px;
+
+
+  background:
+    var(--orange);
+}
+
+
+/* =========================================================
+   QUOTE MARK
+========================================================= */
+
+.about-faculty-quote-mark {
+  display:
+    block;
+
+
+  height:
+    42px;
+
+
+  margin-bottom:
+    5px;
+
+
+  color:
+    var(--bright-green);
+
+
+  font-size:
+    64px;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    500;
+
+
+  line-height:
+    0.8;
+
+
+  letter-spacing:
+    -0.08em;
+}
+
+
+/* =========================================================
+   QUOTE COPY
+========================================================= */
+
+.about-faculty-quote {
+  margin:
+    0
+    0
+    27px;
+
+
+  color:
+    rgba(
+      7,
+      52,
+      37,
+      0.72
+    );
+
+
+  font-size:
+    clamp(
+      13px,
+      0.9vw,
+      16px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    400;
+
+
+  line-height:
+    1.58;
+
+
+  letter-spacing:
+    -0.012em;
+}
+
+
+/* =========================================================
+   AUTHOR
+========================================================= */
+
+.about-faculty-author {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  gap:
+    12px;
+}
+
+
+/* =========================================================
+   AUTHOR IMAGE
+========================================================= */
+
+.about-faculty-author-image {
+  width:
+    44px;
+
+
+  height:
+    44px;
+
+
+  flex:
+    0 0
+    44px;
+
+
+  overflow:
+    hidden;
+
+
+  border-radius:
+    50%;
+
+
+  background:
+    #d9ddd4;
+}
+
+
+.about-faculty-author-image img {
+  display:
+    block;
+
+
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
+  object-fit:
+    cover;
+}
+
+
+/* =========================================================
+   AUTHOR COPY
+========================================================= */
+
+.about-faculty-author-copy {
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  gap:
+    3px;
+}
+
+
+.about-faculty-author-copy strong {
+  color:
+    var(--deep-green);
+
+
+  font-size:
+    12px;
+
+
+  font-weight:
+    700;
+
+
+  line-height:
+    1.2;
+}
+
+
+.about-faculty-author-copy span {
+  color:
+    rgba(
+      11,
+      86,
+      59,
+      0.54
+    );
+
+
+  font-size:
+    10px;
+
+
+  font-weight:
+    500;
+
+
+  line-height:
+    1.2;
+}
+
+
+/* =========================================================
+   MOSAIC
+========================================================= */
+
+.about-faculty-mosaic {
+  display:
+    grid;
+
+
+  grid-template-columns:
+    1.08fr
+    1fr
+    1fr;
+
+
+  grid-template-rows:
+    repeat(
+      2,
+      minmax(
+        245px,
+        1fr
+      )
+    );
+
+
+  gap:
+    18px;
+
+
+  width:
+    100%;
+}
+
+
+/* =========================================================
+   TILE BASE
+========================================================= */
+
+.about-faculty-tile {
+  position:
+    relative;
+
+
+  min-width:
+    0;
+
+
+  min-height:
+    0;
+
+
+  margin:
+    0;
+
+
+  overflow:
+    hidden;
+
+
+  border-radius:
+    0;
+
+
+  will-change:
+    opacity,
+    transform;
+}
+
+
+/* =========================================================
+   LARGE GREEN TILE
+========================================================= */
+
+.about-faculty-tile--large {
+  grid-column:
+    1;
+
+
+  grid-row:
+    1 / span 2;
+
+
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  justify-content:
+    space-between;
+
+
+  min-height:
+    510px;
+
+
+  padding:
+    clamp(
+      30px,
+      3vw,
+      48px
+    );
+
+
+  background:
+    var(--green);
+
+
+  color:
+    #ffffff;
+}
+
+
+/* =========================================================
+   IMAGE ONE
+========================================================= */
+
+.about-faculty-tile--image-one {
+  grid-column:
+    2;
+
+
+  grid-row:
+    1;
+}
+
+
+/* =========================================================
+   ORANGE
+========================================================= */
+
+.about-faculty-tile--orange {
+  grid-column:
+    3;
+
+
+  grid-row:
+    1;
+
+
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  justify-content:
+    space-between;
+
+
+  padding:
+    clamp(
+      28px,
+      3vw,
+      46px
+    );
+
+
+  background:
+    var(--orange);
+
+
+  color:
+    var(--deep-green);
+}
+
+
+/* =========================================================
+   CREAM
+========================================================= */
+
+.about-faculty-tile--cream {
+  grid-column:
+    2;
+
+
+  grid-row:
+    2;
+
+
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  justify-content:
+    space-between;
+
+
+  padding:
+    clamp(
+      28px,
+      3vw,
+      46px
+    );
+
+
+  background:
+    var(--cream);
+
+
+  color:
+    var(--deep-green);
+}
+
+
+/* =========================================================
+   IMAGE TWO
+========================================================= */
+
+.about-faculty-tile--image-two {
+  grid-column:
+    3;
+
+
+  grid-row:
+    2;
+}
+
+
+/* =========================================================
+   TILE LABEL
+========================================================= */
+
+.about-faculty-tile-label {
+  display:
+    block;
+
+
+  margin-bottom:
+    24px;
+
+
+  color:
+    inherit;
+
+
+  font-size:
+    9px;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    700;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.14em;
+
+
+  text-transform:
+    uppercase;
+
+
+  opacity:
+    0.7;
+}
+
+
+/* =========================================================
+   BIG NUMBER
+========================================================= */
+
+.about-faculty-number {
+  display:
+    block;
+
+
+  margin:
+    auto
+    0
+    0;
+
+
+  color:
+    inherit;
+
+
+  font-size:
+    clamp(
+      64px,
+      6vw,
+      100px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    600;
+
+
+  line-height:
+    0.88;
+
+
+  letter-spacing:
+    -0.078em;
+}
+
+
+/* =========================================================
+   WORD STAT
+========================================================= */
+
+.about-faculty-number--word {
+  font-size:
+    clamp(
+      48px,
+      4.6vw,
+      78px
+    );
+}
+
+
+/* =========================================================
+   TILE PARAGRAPH
+========================================================= */
+
+.about-faculty-tile > p {
+  width:
+    min(
+      270px,
+      95%
+    );
+
+
+  margin:
+    22px
+    0
+    0;
+
+
+  color:
+    inherit;
+
+
+  font-size:
+    clamp(
+      12px,
+      0.83vw,
+      15px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    500;
+
+
+  line-height:
+    1.45;
+
+
+  letter-spacing:
+    -0.018em;
+
+
+  opacity:
+    0.8;
+}
+
+
+/* =========================================================
+   IMAGE TILES
+========================================================= */
+
+.about-faculty-tile--image {
+  background:
+    #073f32;
+}
+
+
+.about-faculty-tile--image img {
+  position:
+    absolute;
+
+
+  inset:
+    -3%
+    0;
+
+
+  display:
+    block;
+
+
+  width:
+    100%;
+
+
+  height:
+    106%;
+
+
+  max-width:
+    none;
+
+
+  object-fit:
+    cover;
+
+
+  object-position:
+    center;
+
+
+  transform:
+    scale(
+      1.055
+    );
+
+
+  transform-origin:
+    center;
+
+
+  will-change:
+    transform;
+
+
+  pointer-events:
+    none;
+
+
+  user-select:
+    none;
+
+
+  -webkit-user-drag:
+    none;
+
+
+  backface-visibility:
+    hidden;
+}
+
+
+.about-faculty-tile--image-one img {
+  object-position:
+    center 48%;
+}
+
+
+.about-faculty-tile--image-two img {
+  object-position:
+    center 38%;
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.about-faculty-tile--image::after {
+  content:
+    "";
+
+
+  position:
+    absolute;
+
+
+  z-index:
+    1;
+
+
+  inset:
+    0;
+
+
+  background:
+    linear-gradient(
+      180deg,
+
+      rgba(
+        7,
+        63,
+        50,
+        0
+      )
+      38%,
+
+      rgba(
+        7,
+        63,
+        50,
+        0.88
+      )
+      100%
+    );
+
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   IMAGE CAPTION
+========================================================= */
+
+.about-faculty-tile--image
+figcaption {
+  position:
+    absolute;
+
+
+  z-index:
+    3;
+
+
+  left:
+    clamp(
+      22px,
+      2.3vw,
+      36px
+    );
+
+
+  right:
+    clamp(
+      22px,
+      2.3vw,
+      36px
+    );
+
+
+  bottom:
+    clamp(
+      22px,
+      2.3vw,
+      34px
+    );
+
+
+  color:
+    #ffffff;
+}
+
+
+.about-faculty-tile--image
+figcaption span {
+  display:
+    block;
+
+
+  margin-bottom:
+    7px;
+
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.62
+    );
+
+
+  font-size:
+    8px;
+
+
+  font-weight:
+    700;
+
+
+  letter-spacing:
+    0.14em;
+
+
+  text-transform:
+    uppercase;
+}
+
+
+.about-faculty-tile--image
+figcaption strong {
+  display:
+    block;
+
+
+  max-width:
+    280px;
+
+
+  color:
+    #ffffff;
+
+
+  font-size:
+    clamp(
+      20px,
+      1.7vw,
+      29px
+    );
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    1.04;
+
+
+  letter-spacing:
+    -0.045em;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (
+  min-width: 1500px
+) {
+
+  .about-faculty {
+    padding:
+      95px
+      0
+      140px;
+  }
+
+
+  .about-faculty-mosaic {
+    grid-template-rows:
+      repeat(
+        2,
+        285px
+      );
+
+
+    gap:
+      20px;
+  }
+
+
+  .about-faculty-tile--large {
+    min-height:
+      590px;
+  }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media
+(
+  max-width: 1200px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .about-faculty {
+    --page-padding:
+      42px;
+
+
+    padding:
+      72px
+      0
+      110px;
+  }
+
+
+  .about-faculty-intro {
+    grid-template-columns:
+      1fr
+      0.72fr;
+
+
+    gap:
+      52px;
+
+
+    margin-bottom:
+      54px;
+  }
+
+
+  .about-faculty-heading {
+    font-size:
+      clamp(
+        43px,
+        4.5vw,
+        60px
+      );
+  }
+
+
+  .about-faculty-mosaic {
+    grid-template-rows:
+      repeat(
+        2,
+        minmax(
+          210px,
+          1fr
+        )
+      );
+
+
+    gap:
+      14px;
+  }
+
+
+  .about-faculty-tile--large {
+    min-height:
+      434px;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(
+  max-width: 900px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .about-faculty {
+    --page-padding:
+      30px;
+  }
+
+
+  .about-faculty-intro {
+    grid-template-columns:
+      1fr
+      0.8fr;
+
+
+    gap:
+      30px;
+  }
+
+
+  .about-faculty-quote-card {
+    padding:
+      25px;
+  }
+
+
+  .about-faculty-number {
+    font-size:
+      58px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .about-faculty {
+    --page-padding:
+      20px;
+
+
+    padding:
+      72px
+      0
+      78px;
+  }
+
+
+  .about-faculty-inner {
+    width:
+      calc(
+        100% - 40px
+      );
+  }
+
+
+  /* =====================================================
+     INTRO
+  ===================================================== */
+
+  .about-faculty-intro {
+    display:
+      flex;
+
+
+    flex-direction:
+      column;
+
+
+    align-items:
+      stretch;
+
+
+    gap:
+      30px;
+
+
+    margin-bottom:
+      42px;
+  }
+
+
+  .about-faculty-heading-wrap {
+    max-width:
+      560px;
+  }
+
+
+  .about-faculty-heading {
+    max-width:
+      560px;
+
+
+    font-size:
+      clamp(
+        37px,
+        9.5vw,
+        49px
+      );
+
+
+    font-weight:
+      550;
+
+
+    line-height:
+      0.98;
+
+
+    letter-spacing:
+      -0.058em;
+  }
+
+
+  /* =====================================================
+     QUOTE CARD
+  ===================================================== */
+
+  .about-faculty-quote-card {
+    width:
+      100%;
+
+
+    max-width:
+      520px;
+
+
+    margin:
+      0;
+
+
+    padding:
+      26px;
+  }
+
+
+  .about-faculty-quote-mark {
+    height:
+      35px;
+
+
+    font-size:
+      54px;
+  }
+
+
+  .about-faculty-quote {
+    font-size:
+      12px;
+
+
+    line-height:
+      1.55;
+  }
+
+
+  /* =====================================================
+     MOBILE MOSAIC
+  ===================================================== */
+
+  .about-faculty-mosaic {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+
+
+    grid-template-rows:
+      auto;
+
+
+    gap:
+      10px;
+  }
+
+
+  .about-faculty-tile--large {
+    grid-column:
+      1;
+
+
+    grid-row:
+      1 / span 2;
+
+
+    min-height:
+      430px;
+
+
+    padding:
+      22px;
+  }
+
+
+  .about-faculty-tile--image-one {
+    grid-column:
+      2;
+
+
+    grid-row:
+      1;
+
+
+    min-height:
+      210px;
+  }
+
+
+  .about-faculty-tile--orange {
+    grid-column:
+      2;
+
+
+    grid-row:
+      2;
+
+
+    min-height:
+      210px;
+
+
+    padding:
+      20px;
+  }
+
+
+  .about-faculty-tile--cream {
+    grid-column:
+      1;
+
+
+    grid-row:
+      3;
+
+
+    min-height:
+      190px;
+
+
+    padding:
+      20px;
+  }
+
+
+  .about-faculty-tile--image-two {
+    grid-column:
+      2;
+
+
+    grid-row:
+      3;
+
+
+    min-height:
+      190px;
+  }
+
+
+  .about-faculty-number {
+    font-size:
+      clamp(
+        46px,
+        11vw,
+        62px
+      );
+  }
+
+
+  .about-faculty-number--word {
+    font-size:
+      clamp(
+        33px,
+        8vw,
+        46px
+      );
+  }
+
+
+  .about-faculty-tile > p {
+    width:
+      100%;
+
+
+    margin-top:
+      15px;
+
+
+    font-size:
+      10px;
+
+
+    line-height:
+      1.4;
+  }
+
+
+  .about-faculty-tile-label {
+    margin-bottom:
+      16px;
+
+
+    font-size:
+      7px;
+  }
+
+
+  .about-faculty-tile--image
+  figcaption {
+    left:
+      16px;
+
+
+    right:
+      16px;
+
+
+    bottom:
+      16px;
+  }
+
+
+  .about-faculty-tile--image
+  figcaption span {
+    font-size:
+      6px;
+  }
+
+
+  .about-faculty-tile--image
+  figcaption strong {
+    font-size:
+      clamp(
+        15px,
+        4vw,
+        21px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  .about-faculty {
+    --page-padding:
+      18px;
+
+
+    padding:
+      60px
+      0
+      70px;
+  }
+
+
+  .about-faculty-inner {
+    width:
+      calc(
+        100% - 36px
+      );
+  }
+
+
+  .about-faculty-intro {
+    gap:
+      26px;
+
+
+    margin-bottom:
+      36px;
+  }
+
+
+  .about-faculty-heading {
+    font-size:
+      clamp(
+        35px,
+        9.6vw,
+        44px
+      );
+  }
+
+
+  .about-faculty-quote-card {
+    padding:
+      22px;
+  }
+
+
+  .about-faculty-mosaic {
+    gap:
+      8px;
+  }
+
+
+  .about-faculty-tile--large {
+    min-height:
+      360px;
+
+
+    padding:
+      18px;
+  }
+
+
+  .about-faculty-tile--image-one,
+  .about-faculty-tile--orange {
+    min-height:
+      176px;
+  }
+
+
+  .about-faculty-tile--orange,
+  .about-faculty-tile--cream {
+    padding:
+      16px;
+  }
+
+
+  .about-faculty-tile--cream,
+  .about-faculty-tile--image-two {
+    min-height:
+      165px;
+  }
+
+
+  .about-faculty-number {
+    font-size:
+      clamp(
+        40px,
+        10vw,
+        52px
+      );
+  }
+
+
+  .about-faculty-number--word {
+    font-size:
+      clamp(
+        28px,
+        7.2vw,
+        38px
+      );
+  }
+
+
+  .about-faculty-tile > p {
+    font-size:
+      8.7px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY NARROW MOBILE
+========================================================= */
+
+@media (
+  max-width: 350px
+) {
+
+  .about-faculty {
+    --page-padding:
+      15px;
+  }
+
+
+  .about-faculty-inner {
+    width:
+      calc(
+        100% - 30px
+      );
+  }
+
+
+  .about-faculty-mosaic {
+    grid-template-columns:
+      1fr;
+
+
+    gap:
+      10px;
+  }
+
+
+  .about-faculty-tile--large,
+  .about-faculty-tile--image-one,
+  .about-faculty-tile--orange,
+  .about-faculty-tile--cream,
+  .about-faculty-tile--image-two {
+    grid-column:
+      1;
+
+
+    grid-row:
+      auto;
+
+
+    min-height:
+      220px;
+  }
+
+
+  .about-faculty-tile--large {
+    min-height:
+      300px;
+  }
+
+
+  .about-faculty-tile > p {
+    font-size:
+      10px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+
+  .about-faculty-heading,
+  .about-faculty-quote-card,
+  .about-faculty-tile,
+  .about-faculty-tile img {
+    opacity:
+      1 !important;
+
+
+    transform:
+      none !important;
+  }
+
+}

@@ -1,0 +1,65 @@
+/* =========================================================
+   MAIN LAYOUT
+
+   IMPORTANT:
+   DO NOT:
+   - use display:flex here
+   - use overflow:hidden here
+   - use overflow-x:hidden here
+   - use min-height:100vh here
+   - use height:100%
+   - change navbar positioning
+   - change hero positioning
+
+   This keeps sticky + GSAP sections working normally.
+========================================================= */
+
+
+.main-layout {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  background: transparent;
+}
+
+
+/* =========================================================
+   PAGE CONTENT
+
+   NORMAL DOCUMENT FLOW
+========================================================= */
+
+.main-layout-content {
+  display: block;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  background: transparent;
+}
+
+
+/* =========================================================
+   REMOVE ONLY THE GAP BEFORE FOOTER
+
+   Nothing here affects the hero.
+========================================================= */
+
+.main-layout-content > :last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   FOOTER CONNECTION
+
+   No white space between page and footer.
+========================================================= */
+
+.main-layout-content + footer {
+  margin-top: 0;
+}

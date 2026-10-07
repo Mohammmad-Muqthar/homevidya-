@@ -1,0 +1,1590 @@
+/* =========================================================
+   VIDYA ACADEMY
+   MOTION EVENTS
+
+   NEW VERSION
+
+   - SMALLER CARDS
+   - 3 PER ROW
+   - CLEAN FILTER
+   - LEARN MORE BUTTON
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+.motion-events {
+  --cream:
+    #f5f3e9;
+
+  --cream-soft:
+    #f3f0e6;
+
+  --green:
+    #0b8255;
+
+  --deep-green:
+    #0b563b;
+
+  --deep-green-2:
+    #073f32;
+
+  --bright-green:
+    #26b474;
+
+  --orange:
+    #f9a01b;
+
+  --white:
+    #ffffff;
+
+  --text-dark:
+    #17231d;
+
+  --text-soft:
+    rgba(
+      23,
+      35,
+      29,
+      0.6
+    );
+
+  --border:
+    rgba(
+      11,
+      86,
+      59,
+      0.14
+    );
+
+
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--cream);
+
+
+  padding:
+    clamp(
+      34px,
+      3vw,
+      48px
+    )
+    0
+    clamp(
+      90px,
+      7vw,
+      125px
+    );
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+.motion-events,
+.motion-events *,
+.motion-events *::before,
+.motion-events *::after {
+  box-sizing:
+    border-box;
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   INNER
+========================================================= */
+
+.motion-events-inner {
+  width:
+    min(
+      calc(
+        100% - 96px
+      ),
+      1500px
+    );
+
+
+  margin:
+    0 auto;
+}
+
+
+/* =========================================================
+   FILTER WRAP
+========================================================= */
+
+.motion-events-filter-wrap {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    flex-start;
+
+
+  width:
+    100%;
+
+
+  margin:
+    0
+    0
+    clamp(
+      38px,
+      3.5vw,
+      54px
+    );
+
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+.motion-events-filter {
+  display:
+    inline-flex;
+
+
+  align-items:
+    center;
+
+
+  gap:
+    5px;
+
+
+  padding:
+    5px;
+
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.55
+    );
+
+
+  border:
+    1px solid
+    rgba(
+      11,
+      86,
+      59,
+      0.09
+    );
+}
+
+
+/* =========================================================
+   FILTER BUTTON
+========================================================= */
+
+.motion-events-filter-button {
+  position:
+    relative;
+
+
+  display:
+    inline-flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    center;
+
+
+  flex:
+    0
+    0
+    auto;
+
+
+  height:
+    39px;
+
+
+  margin:
+    0;
+
+
+  padding:
+    0
+    clamp(
+      13px,
+      1.1vw,
+      19px
+    );
+
+
+  border:
+    0;
+
+
+  border-radius:
+    0;
+
+
+  outline:
+    0;
+
+
+  background:
+    transparent;
+
+
+  color:
+    rgba(
+      23,
+      35,
+      29,
+      0.66
+    );
+
+
+  cursor:
+    pointer;
+
+
+  transition:
+    background
+      0.28s
+      ease,
+    color
+      0.28s
+      ease;
+}
+
+
+/* =========================================================
+   FILTER TEXT
+========================================================= */
+
+.motion-events-filter-button span {
+  position:
+    relative;
+
+
+  z-index:
+    2;
+
+
+  font-size:
+    clamp(
+      10px,
+      0.68vw,
+      12px
+    );
+
+
+  font-weight:
+    650;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.105em;
+
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   ACTIVE
+========================================================= */
+
+.motion-events-filter-button--active {
+  background:
+    var(--deep-green);
+
+
+  color:
+    #ffffff;
+}
+
+
+/* =========================================================
+   FILTER HOVER
+========================================================= */
+
+.motion-events-filter-button:not(
+  .motion-events-filter-button--active
+):hover {
+  background:
+    rgba(
+      11,
+      130,
+      85,
+      0.07
+    );
+
+
+  color:
+    var(--green);
+}
+
+
+/* =========================================================
+   GRID
+
+   3 CARDS PER ROW
+========================================================= */
+
+.motion-events-grid {
+  display:
+    grid;
+
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+
+  column-gap:
+    clamp(
+      18px,
+      1.8vw,
+      28px
+    );
+
+
+  row-gap:
+    clamp(
+      28px,
+      3vw,
+      44px
+    );
+
+
+  width:
+    100%;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.motion-event-card {
+  position:
+    relative;
+
+
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  min-width:
+    0;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    #ffffff;
+
+
+  border:
+    1px solid
+    rgba(
+      11,
+      86,
+      59,
+      0.09
+    );
+
+
+  transition:
+    transform
+      0.45s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    box-shadow
+      0.45s
+      ease,
+    border-color
+      0.35s
+      ease;
+
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.motion-event-card:hover {
+  transform:
+    translateY(
+      -5px
+    );
+
+
+  border-color:
+    rgba(
+      11,
+      130,
+      85,
+      0.18
+    );
+
+
+  box-shadow:
+    0
+    18px
+    42px
+    rgba(
+      7,
+      63,
+      50,
+      0.075
+    );
+}
+
+
+/* =========================================================
+   MEDIA
+
+   SMALLER THAN PREVIOUS VERSION
+========================================================= */
+
+.motion-event-media {
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  aspect-ratio:
+    1.48 / 1;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--deep-green);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.motion-event-image {
+  display:
+    block;
+
+
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
+  object-fit:
+    cover;
+
+
+  object-position:
+    center;
+
+
+  transform:
+    scale(
+      1.001
+    );
+
+
+  transform-origin:
+    center;
+
+
+  pointer-events:
+    none;
+
+
+  user-select:
+    none;
+
+
+  -webkit-user-drag:
+    none;
+
+
+  transition:
+    transform
+      0.75s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+
+/* =========================================================
+   IMAGE HOVER
+========================================================= */
+
+.motion-event-card:hover
+.motion-event-image {
+  transform:
+    scale(
+      1.04
+    );
+}
+
+
+/* =========================================================
+   DATE
+
+   COMPACT DATE BADGE
+========================================================= */
+
+.motion-event-date {
+  position:
+    absolute;
+
+
+  z-index:
+    3;
+
+
+  top:
+    12px;
+
+
+  right:
+    12px;
+
+
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    center;
+
+
+  width:
+    72px;
+
+
+  height:
+    78px;
+
+
+  padding:
+    7px;
+
+
+  background:
+    var(--cream);
+
+
+  border-top:
+    2px solid
+    var(--orange);
+
+
+  color:
+    var(--deep-green);
+
+
+  text-align:
+    center;
+
+
+  transition:
+    transform
+      0.35s
+      ease;
+}
+
+
+/* =========================================================
+   DATE HOVER
+========================================================= */
+
+.motion-event-card:hover
+.motion-event-date {
+  transform:
+    translateY(
+      -3px
+    );
+}
+
+
+/* =========================================================
+   MONTH
+========================================================= */
+
+.motion-event-date-month {
+  color:
+    var(--green);
+
+
+  font-size:
+    9px;
+
+
+  font-weight:
+    650;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.05em;
+
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   DAY
+========================================================= */
+
+.motion-event-date-day {
+  display:
+    block;
+
+
+  margin:
+    5px
+    0
+    3px;
+
+
+  color:
+    var(--deep-green);
+
+
+  font-size:
+    26px;
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    0.9;
+
+
+  letter-spacing:
+    -0.055em;
+}
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+.motion-event-date-year {
+  color:
+    rgba(
+      11,
+      86,
+      59,
+      0.62
+    );
+
+
+  font-size:
+    9px;
+
+
+  font-weight:
+    500;
+
+
+  line-height:
+    1;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.motion-event-content {
+  display:
+    flex;
+
+
+  flex:
+    1;
+
+
+  flex-direction:
+    column;
+
+
+  align-items:
+    flex-start;
+
+
+  padding:
+    clamp(
+      19px,
+      1.5vw,
+      24px
+    );
+
+
+  background:
+    #ffffff;
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.motion-event-category {
+  display:
+    block;
+
+
+  margin:
+    0
+    0
+    11px;
+
+
+  color:
+    var(--green);
+
+
+  font-size:
+    9px;
+
+
+  font-weight:
+    700;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.13em;
+
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.motion-event-title {
+  width:
+    100%;
+
+
+  margin:
+    0;
+
+
+  color:
+    var(--text-dark);
+
+
+  font-size:
+    clamp(
+      20px,
+      1.45vw,
+      25px
+    );
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    1.05;
+
+
+  letter-spacing:
+    -0.046em;
+
+
+  text-wrap:
+    balance;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.motion-event-description {
+  width:
+    100%;
+
+
+  margin:
+    15px
+    0
+    0;
+
+
+  color:
+    var(--text-soft);
+
+
+  font-size:
+    clamp(
+      12px,
+      0.82vw,
+      14px
+    );
+
+
+  font-weight:
+    400;
+
+
+  line-height:
+    1.52;
+
+
+  letter-spacing:
+    -0.012em;
+
+
+  text-wrap:
+    pretty;
+}
+
+
+/* =========================================================
+   LEARN MORE
+========================================================= */
+
+.motion-event-button {
+  position:
+    relative;
+
+
+  display:
+    inline-flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    space-between;
+
+
+  gap:
+    24px;
+
+
+  min-width:
+    138px;
+
+
+  height:
+    40px;
+
+
+  margin-top:
+    20px;
+
+
+  padding:
+    0
+    12px
+    0
+    15px;
+
+
+  overflow:
+    hidden;
+
+
+  border:
+    1px solid
+    rgba(
+      11,
+      86,
+      59,
+      0.48
+    );
+
+
+  background:
+    transparent;
+
+
+  color:
+    var(--deep-green);
+
+
+  text-decoration:
+    none;
+
+
+  transition:
+    border-color
+      0.3s
+      ease,
+    color
+      0.3s
+      ease;
+}
+
+
+/* =========================================================
+   BUTTON BACKGROUND
+========================================================= */
+
+.motion-event-button::before {
+  content:
+    "";
+
+
+  position:
+    absolute;
+
+
+  z-index:
+    0;
+
+
+  inset:
+    0;
+
+
+  background:
+    var(--deep-green);
+
+
+  transform:
+    translateY(
+      102%
+    );
+
+
+  transition:
+    transform
+      0.4s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+
+/* =========================================================
+   BUTTON CONTENT
+========================================================= */
+
+.motion-event-button > * {
+  position:
+    relative;
+
+
+  z-index:
+    2;
+}
+
+
+.motion-event-button > span {
+  font-size:
+    9px;
+
+
+  font-weight:
+    700;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.11em;
+
+
+  text-transform:
+    uppercase;
+}
+
+
+.motion-event-button svg {
+  width:
+    16px;
+
+
+  height:
+    16px;
+
+
+  transition:
+    transform
+      0.3s
+      ease;
+}
+
+
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
+
+.motion-event-button:hover {
+  border-color:
+    var(--deep-green);
+
+
+  color:
+    #ffffff;
+}
+
+
+.motion-event-button:hover::before {
+  transform:
+    translateY(
+      0
+    );
+}
+
+
+.motion-event-button:hover svg {
+  transform:
+    translateX(
+      3px
+    );
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (
+  min-width: 1600px
+) {
+
+  .motion-events-inner {
+    width:
+      min(
+        calc(
+          100% - 160px
+        ),
+        1540px
+      );
+  }
+
+
+  .motion-events-grid {
+    column-gap:
+      28px;
+
+
+    row-gap:
+      42px;
+  }
+
+
+  .motion-event-title {
+    font-size:
+      25px;
+  }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media
+(
+  max-width: 1200px
+)
+and
+(
+  min-width: 901px
+) {
+
+  .motion-events-inner {
+    width:
+      calc(
+        100% - 64px
+      );
+  }
+
+
+  .motion-events-grid {
+    column-gap:
+      18px;
+
+
+    row-gap:
+      32px;
+  }
+
+
+  .motion-event-content {
+    padding:
+      18px;
+  }
+
+
+  .motion-event-title {
+    font-size:
+      clamp(
+        18px,
+        1.8vw,
+        22px
+      );
+  }
+
+
+  .motion-event-description {
+    font-size:
+      12px;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+
+   2 CARDS
+========================================================= */
+
+@media (
+  max-width: 900px
+) {
+
+  .motion-events-inner {
+    width:
+      calc(
+        100% - 40px
+      );
+  }
+
+
+  .motion-events-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+
+
+    column-gap:
+      17px;
+
+
+    row-gap:
+      30px;
+  }
+
+
+  .motion-event-media {
+    aspect-ratio:
+      1.4 / 1;
+  }
+
+
+  .motion-event-content {
+    padding:
+      18px;
+  }
+
+
+  .motion-event-title {
+    font-size:
+      21px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 600px
+) {
+
+  .motion-events {
+    padding:
+      20px
+      0
+      68px;
+  }
+
+
+  .motion-events-inner {
+    width:
+      calc(
+        100% - 28px
+      );
+  }
+
+
+  /* =====================================================
+     FILTER MOBILE
+  ===================================================== */
+
+  .motion-events-filter-wrap {
+    width:
+      calc(
+        100vw - 14px
+      );
+
+
+    margin-bottom:
+      30px;
+
+
+    overflow-x:
+      auto;
+
+
+    overflow-y:
+      hidden;
+
+
+    scrollbar-width:
+      none;
+
+
+    -webkit-overflow-scrolling:
+      touch;
+  }
+
+
+  .motion-events-filter-wrap::-webkit-scrollbar {
+    display:
+      none;
+  }
+
+
+  .motion-events-filter {
+    flex:
+      0
+      0
+      max-content;
+
+
+    padding:
+      4px;
+
+
+    gap:
+      3px;
+  }
+
+
+  .motion-events-filter-button {
+    height:
+      37px;
+
+
+    padding:
+      0
+      12px;
+  }
+
+
+  .motion-events-filter-button span {
+    font-size:
+      9px;
+  }
+
+
+  /* =====================================================
+     ONE CARD
+  ===================================================== */
+
+  .motion-events-grid {
+    grid-template-columns:
+      1fr;
+
+
+    row-gap:
+      26px;
+  }
+
+
+  .motion-event-media {
+    aspect-ratio:
+      1.5 / 1;
+  }
+
+
+  /* =====================================================
+     DATE
+  ===================================================== */
+
+  .motion-event-date {
+    top:
+      10px;
+
+
+    right:
+      10px;
+
+
+    width:
+      68px;
+
+
+    height:
+      74px;
+  }
+
+
+  .motion-event-date-day {
+    font-size:
+      24px;
+  }
+
+
+  /* =====================================================
+     CONTENT
+  ===================================================== */
+
+  .motion-event-content {
+    padding:
+      18px
+      16px
+      20px;
+  }
+
+
+  .motion-event-category {
+    margin-bottom:
+      10px;
+
+
+    font-size:
+      8.5px;
+  }
+
+
+  .motion-event-title {
+    font-size:
+      clamp(
+        21px,
+        6.2vw,
+        27px
+      );
+  }
+
+
+  .motion-event-description {
+    margin-top:
+      12px;
+
+
+    font-size:
+      13px;
+  }
+
+
+  .motion-event-button {
+    min-width:
+      132px;
+
+
+    height:
+      39px;
+
+
+    margin-top:
+      18px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 380px
+) {
+
+  .motion-events-inner {
+    width:
+      calc(
+        100% - 20px
+      );
+  }
+
+
+  .motion-events-filter-wrap {
+    margin-bottom:
+      25px;
+  }
+
+
+  .motion-events-filter-button {
+    height:
+      35px;
+
+
+    padding:
+      0
+      10px;
+  }
+
+
+  .motion-events-filter-button span {
+    font-size:
+      8.5px;
+  }
+
+
+  .motion-event-content {
+    padding:
+      16px
+      14px
+      18px;
+  }
+
+
+  .motion-event-title {
+    font-size:
+      21px;
+  }
+
+
+  .motion-event-description {
+    font-size:
+      12.5px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+
+  .motion-events-filter-wrap,
+  .motion-event-card,
+  .motion-event-image,
+  .motion-event-date {
+    opacity:
+      1 !important;
+
+
+    transform:
+      none !important;
+
+
+    transition:
+      none !important;
+  }
+
+}

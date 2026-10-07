@@ -1,0 +1,34 @@
+/* =========================================================
+   VIDYA ACADEMY
+   MOTION PAGE
+========================================================= */
+
+.motion-page {
+  --cream: #f5f3e9;
+  --green: #0b8255;
+  --deep-green: #0b563b;
+  --bright-green: #26b474;
+  --orange: #f9a01b;
+
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  background: var(--cream);
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+.motion-page,
+.motion-page *,
+.motion-page *::before,
+.motion-page *::after {
+  box-sizing: border-box;
+}

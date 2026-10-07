@@ -1,0 +1,2388 @@
+/* =========================================================
+   VIDYA ACADEMY
+   ABOUT — A YEAR AT VIDYA
+
+   LARGE CALENDAR
+   NEW EDITORIAL STYLE
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+.about-year {
+  --cream:
+    #f3f0e6;
+
+  --cream-light:
+    #f5f3e9;
+
+  --paper:
+    #faf8f2;
+
+  --deep-green:
+    #0b563b;
+
+  --dark-green:
+    #073f32;
+
+  --green:
+    #0b8255;
+
+  --bright-green:
+    #26b474;
+
+  --orange:
+    #f9a01b;
+
+  --white:
+    #ffffff;
+
+  --page-padding:
+    clamp(
+      42px,
+      5.2vw,
+      88px
+    );
+
+
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--cream);
+
+
+  padding:
+    clamp(
+      82px,
+      7vw,
+      115px
+    )
+    0
+    clamp(
+      95px,
+      8vw,
+      135px
+    );
+
+
+  color:
+    var(--green);
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   FONT
+========================================================= */
+
+.about-year,
+.about-year *,
+.about-year *::before,
+.about-year *::after {
+  box-sizing:
+    border-box;
+
+
+  font-family:
+    "Manrope",
+    sans-serif !important;
+}
+
+
+/* =========================================================
+   INNER
+========================================================= */
+
+.about-year-inner {
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--page-padding) *
+          2
+        )
+      ),
+      1580px
+    );
+
+
+  margin:
+    0 auto;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.about-year-layout {
+  display:
+    grid;
+
+
+  grid-template-columns:
+    minmax(
+      0,
+      0.82fr
+    )
+    minmax(
+      540px,
+      1.18fr
+    );
+
+
+  align-items:
+    start;
+
+
+  gap:
+    clamp(
+      70px,
+      8vw,
+      135px
+    );
+}
+
+
+/* =========================================================
+   LEFT
+========================================================= */
+
+.about-year-left {
+  width:
+    100%;
+
+
+  max-width:
+    610px;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.about-year-heading-wrap {
+  width:
+    100%;
+
+
+  margin:
+    0
+    0
+    clamp(
+      40px,
+      4vw,
+      54px
+    );
+}
+
+
+.about-year-heading {
+  margin:
+    0;
+
+
+  color:
+    var(--green);
+
+
+  font-size:
+    clamp(
+      45px,
+      4.3vw,
+      70px
+    );
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    -0.058em;
+
+
+  text-rendering:
+    geometricPrecision;
+}
+
+
+.about-year-heading span {
+  font-size:
+    inherit;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    inherit;
+
+
+  line-height:
+    inherit;
+
+
+  letter-spacing:
+    inherit;
+}
+
+
+.about-year-heading-main {
+  color:
+    var(--green);
+}
+
+
+.about-year-heading-accent {
+  color:
+    var(--bright-green);
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.about-year-intro {
+  width:
+    min(
+      500px,
+      100%
+    );
+
+
+  margin:
+    20px
+    0
+    0;
+
+
+  color:
+    rgba(
+      7,
+      52,
+      37,
+      0.7
+    );
+
+
+  font-size:
+    clamp(
+      15px,
+      1vw,
+      17px
+    );
+
+
+  font-weight:
+    400;
+
+
+  line-height:
+    1.55;
+
+
+  letter-spacing:
+    -0.012em;
+}
+
+
+/* =========================================================
+   EVENT
+========================================================= */
+
+.about-year-event {
+  width:
+    min(
+      570px,
+      100%
+    );
+}
+
+
+/* =========================================================
+   EVENT IMAGE
+========================================================= */
+
+.about-year-event-image {
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  aspect-ratio:
+    1.64;
+
+
+  margin:
+    0
+    0
+    23px;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--green);
+}
+
+
+.about-year-event-image::after {
+  content:
+    "";
+
+
+  position:
+    absolute;
+
+
+  inset:
+    0;
+
+
+  background:
+    linear-gradient(
+      180deg,
+
+      transparent
+      65%,
+
+      rgba(
+        7,
+        63,
+        50,
+        0.18
+      )
+      100%
+    );
+
+
+  pointer-events:
+    none;
+}
+
+
+.about-year-event-image img {
+  display:
+    block;
+
+
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
+  object-fit:
+    cover;
+
+
+  object-position:
+    center;
+
+
+  animation:
+    aboutYearImageIn
+      450ms
+      ease
+      both;
+}
+
+
+@keyframes aboutYearImageIn {
+
+  from {
+    opacity:
+      0;
+
+
+    transform:
+      scale(
+        1.025
+      );
+  }
+
+
+  to {
+    opacity:
+      1;
+
+
+    transform:
+      scale(
+        1
+      );
+  }
+
+}
+
+
+/* =========================================================
+   EVENT DATE
+========================================================= */
+
+.about-year-event-date {
+  display:
+    block;
+
+
+  margin:
+    0
+    0
+    10px;
+
+
+  color:
+    var(--orange);
+
+
+  font-size:
+    10px;
+
+
+  font-weight:
+    700;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.13em;
+
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   EVENT TITLE
+========================================================= */
+
+.about-year-event-copy h3 {
+  margin:
+    0;
+
+
+  color:
+    var(--deep-green);
+
+
+  font-size:
+    clamp(
+      28px,
+      2.2vw,
+      37px
+    );
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    1.02;
+
+
+  letter-spacing:
+    -0.05em;
+}
+
+
+/* =========================================================
+   EVENT DESCRIPTION
+========================================================= */
+
+.about-year-event-copy p {
+  width:
+    min(
+      510px,
+      100%
+    );
+
+
+  margin:
+    16px
+    0
+    0;
+
+
+  color:
+    rgba(
+      7,
+      52,
+      37,
+      0.66
+    );
+
+
+  font-size:
+    clamp(
+      13px,
+      0.9vw,
+      15px
+    );
+
+
+  font-weight:
+    400;
+
+
+  line-height:
+    1.58;
+
+
+  letter-spacing:
+    -0.012em;
+}
+
+
+/* =========================================================
+   DOWNLOAD BUTTON
+========================================================= */
+
+.about-year-download {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    space-between;
+
+
+  gap:
+    25px;
+
+
+  width:
+    min(
+      460px,
+      100%
+    );
+
+
+  min-height:
+    66px;
+
+
+  margin-top:
+    30px;
+
+
+  padding:
+    10px
+    10px
+    10px
+    21px;
+
+
+  background:
+    var(--green);
+
+
+  color:
+    #ffffff;
+
+
+  text-decoration:
+    none;
+
+
+  border-radius:
+    0;
+
+
+  transition:
+    background
+      180ms ease,
+    transform
+      180ms ease;
+}
+
+
+.about-year-download:hover {
+  background:
+    var(--deep-green);
+
+
+  transform:
+    translateY(
+      -2px
+    );
+}
+
+
+/* =========================================================
+   DOWNLOAD COPY
+========================================================= */
+
+.about-year-download-copy {
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  min-width:
+    0;
+
+
+  gap:
+    4px;
+}
+
+
+.about-year-download-copy strong {
+  display:
+    block;
+
+
+  color:
+    #ffffff;
+
+
+  font-size:
+    12px;
+
+
+  font-weight:
+    700;
+
+
+  line-height:
+    1.25;
+
+
+  white-space:
+    normal;
+}
+
+
+.about-year-download-copy > span {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.62
+    );
+
+
+  font-size:
+    9px;
+
+
+  font-weight:
+    500;
+
+
+  line-height:
+    1.2;
+}
+
+
+/* =========================================================
+   DOWNLOAD ICON
+========================================================= */
+
+.about-year-download-icon {
+  display:
+    grid;
+
+
+  place-items:
+    center;
+
+
+  width:
+    44px;
+
+
+  height:
+    44px;
+
+
+  flex:
+    0 0
+    44px;
+
+
+  background:
+    #ffffff;
+
+
+  color:
+    var(--green);
+}
+
+
+.about-year-download-icon svg {
+  display:
+    block;
+
+
+  width:
+    17px;
+
+
+  height:
+    17px;
+
+
+  fill:
+    none;
+
+
+  stroke:
+    currentColor;
+
+
+  stroke-width:
+    1.8;
+
+
+  stroke-linecap:
+    round;
+
+
+  stroke-linejoin:
+    round;
+}
+
+
+/* =========================================================
+   CALENDAR COLUMN
+========================================================= */
+
+.about-year-calendar-column {
+  display:
+    flex;
+
+
+  justify-content:
+    flex-end;
+
+
+  width:
+    100%;
+}
+
+
+/* =========================================================
+   CALENDAR
+
+   LARGE AGAIN
+========================================================= */
+
+.about-year-calendar {
+  width:
+    100%;
+
+
+  max-width:
+    620px;
+
+
+  min-height:
+    610px;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--paper);
+
+
+  border:
+    1px
+    solid
+    rgba(
+      11,
+      130,
+      85,
+      0.14
+    );
+
+
+  will-change:
+    opacity,
+    transform;
+}
+
+
+/* =========================================================
+   BIG EDITORIAL HEADER
+========================================================= */
+
+.about-year-calendar-header {
+  display:
+    flex;
+
+
+  align-items:
+    flex-end;
+
+
+  justify-content:
+    space-between;
+
+
+  gap:
+    30px;
+
+
+  min-height:
+    160px;
+
+
+  padding:
+    34px
+    clamp(
+      32px,
+      4vw,
+      50px
+    );
+
+
+  background:
+    var(--green);
+
+
+  border-bottom:
+    7px
+    solid
+    var(--orange);
+}
+
+
+/* =========================================================
+   MONTH TITLE
+========================================================= */
+
+.about-year-calendar-title {
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  align-items:
+    flex-start;
+}
+
+
+.about-year-calendar-year {
+  display:
+    block;
+
+
+  margin-bottom:
+    8px;
+
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.58
+    );
+
+
+  font-size:
+    12px;
+
+
+  font-weight:
+    600;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.12em;
+}
+
+
+.about-year-calendar-title h3 {
+  margin:
+    0;
+
+
+  color:
+    #ffffff;
+
+
+  font-size:
+    clamp(
+      42px,
+      4vw,
+      60px
+    );
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    0.9;
+
+
+  letter-spacing:
+    -0.06em;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.about-year-calendar-nav {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  gap:
+    8px;
+}
+
+
+.about-year-arrow {
+  display:
+    grid;
+
+
+  place-items:
+    center;
+
+
+  width:
+    45px;
+
+
+  height:
+    45px;
+
+
+  padding:
+    0;
+
+
+  border:
+    1px
+    solid
+    rgba(
+      255,
+      255,
+      255,
+      0.24
+    );
+
+
+  border-radius:
+    50%;
+
+
+  background:
+    transparent;
+
+
+  color:
+    #ffffff;
+
+
+  cursor:
+    pointer;
+
+
+  transition:
+    background
+      180ms ease,
+    border-color
+      180ms ease,
+    color
+      180ms ease,
+    opacity
+      180ms ease;
+}
+
+
+.about-year-arrow span {
+  display:
+    block;
+
+
+  font-size:
+    17px;
+
+
+  line-height:
+    1;
+
+
+  transform:
+    translateY(
+      -1px
+    );
+}
+
+
+.about-year-arrow:hover:not(
+  :disabled
+) {
+  background:
+    var(--orange);
+
+
+  border-color:
+    var(--orange);
+
+
+  color:
+    var(--deep-green);
+}
+
+
+.about-year-arrow:disabled {
+  opacity:
+    0.26;
+
+
+  cursor:
+    default;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.about-year-calendar-body {
+  padding:
+    clamp(
+      28px,
+      3vw,
+      42px
+    )
+    clamp(
+      28px,
+      3.5vw,
+      48px
+    )
+    30px;
+}
+
+
+/* =========================================================
+   WEEK DAYS
+========================================================= */
+
+.about-year-weekdays {
+  display:
+    grid;
+
+
+  grid-template-columns:
+    repeat(
+      7,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+
+  gap:
+    6px;
+
+
+  margin-bottom:
+    10px;
+}
+
+
+.about-year-weekdays span {
+  display:
+    grid;
+
+
+  place-items:
+    center;
+
+
+  min-height:
+    36px;
+
+
+  color:
+    rgba(
+      7,
+      52,
+      37,
+      0.44
+    );
+
+
+  font-size:
+    9px;
+
+
+  font-weight:
+    700;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.05em;
+}
+
+
+/* =========================================================
+   DAY GRID
+========================================================= */
+
+.about-year-days {
+  display:
+    grid;
+
+
+  grid-template-columns:
+    repeat(
+      7,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+
+  gap:
+    6px;
+}
+
+
+/* =========================================================
+   NORMAL DAY
+========================================================= */
+
+.about-year-day {
+  position:
+    relative;
+
+
+  display:
+    grid;
+
+
+  place-items:
+    center;
+
+
+  width:
+    100%;
+
+
+  aspect-ratio:
+    1;
+
+
+  min-width:
+    0;
+
+
+  padding:
+    0;
+
+
+  border:
+    0;
+
+
+  border-bottom:
+    1px
+    solid
+    rgba(
+      11,
+      130,
+      85,
+      0.1
+    );
+
+
+  border-radius:
+    0;
+
+
+  background:
+    transparent;
+
+
+  color:
+    rgba(
+      7,
+      52,
+      37,
+      0.67
+    );
+
+
+  font-size:
+    clamp(
+      11px,
+      0.8vw,
+      13px
+    );
+
+
+  font-weight:
+    550;
+
+
+  cursor:
+    default;
+
+
+  transition:
+    background
+      180ms ease,
+    color
+      180ms ease,
+    border-color
+      180ms ease,
+    transform
+      180ms ease;
+}
+
+
+/* =========================================================
+   EVENT DAY
+
+   SOFT GREEN BLOCK
+========================================================= */
+
+.about-year-day.has-event {
+  border-bottom-color:
+    var(--bright-green);
+
+
+  background:
+    rgba(
+      38,
+      180,
+      116,
+      0.1
+    );
+
+
+  color:
+    var(--green);
+
+
+  cursor:
+    pointer;
+}
+
+
+.about-year-day.has-event:hover {
+  background:
+    var(--bright-green);
+
+
+  color:
+    var(--deep-green);
+
+
+  transform:
+    translateY(
+      -2px
+    );
+}
+
+
+/* =========================================================
+   SMALL EVENT INDICATOR
+========================================================= */
+
+.about-year-day i {
+  position:
+    absolute;
+
+
+  left:
+    50%;
+
+
+  bottom:
+    7px;
+
+
+  width:
+    4px;
+
+
+  height:
+    4px;
+
+
+  border-radius:
+    50%;
+
+
+  background:
+    var(--bright-green);
+
+
+  transform:
+    translateX(
+      -50%
+    );
+}
+
+
+.about-year-day.has-event:hover i {
+  background:
+    var(--deep-green);
+}
+
+
+/* =========================================================
+   SELECTED
+========================================================= */
+
+.about-year-day.is-selected,
+.about-year-day.is-selected:hover {
+  border-bottom-color:
+    var(--orange);
+
+
+  background:
+    var(--orange);
+
+
+  color:
+    var(--deep-green);
+
+
+  transform:
+    none;
+}
+
+
+.about-year-day.is-selected i {
+  background:
+    var(--deep-green);
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.about-year-day--empty {
+  border-bottom-color:
+    transparent;
+
+
+  background:
+    transparent;
+}
+
+
+/* =========================================================
+   CALENDAR FOOTER
+========================================================= */
+
+.about-year-calendar-footer {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    space-between;
+
+
+  gap:
+    20px;
+
+
+  margin-top:
+    31px;
+
+
+  padding-top:
+    21px;
+
+
+  border-top:
+    1px
+    solid
+    rgba(
+      11,
+      130,
+      85,
+      0.14
+    );
+}
+
+
+/* =========================================================
+   LEGEND
+========================================================= */
+
+.about-year-calendar-legend {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  flex-wrap:
+    wrap;
+
+
+  gap:
+    18px;
+}
+
+
+.about-year-calendar-legend > div {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  gap:
+    7px;
+
+
+  color:
+    rgba(
+      7,
+      52,
+      37,
+      0.54
+    );
+
+
+  font-size:
+    9px;
+
+
+  font-weight:
+    500;
+}
+
+
+.about-year-dot {
+  display:
+    block;
+
+
+  width:
+    9px;
+
+
+  height:
+    9px;
+}
+
+
+.about-year-dot--event {
+  background:
+    var(--bright-green);
+}
+
+
+.about-year-dot--selected {
+  background:
+    var(--orange);
+}
+
+
+/* =========================================================
+   NOTE
+========================================================= */
+
+.about-year-calendar-note {
+  color:
+    rgba(
+      7,
+      52,
+      37,
+      0.42
+    );
+
+
+  font-size:
+    9px;
+
+
+  font-weight:
+    500;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (
+  min-width: 1500px
+) {
+
+  .about-year-layout {
+    grid-template-columns:
+      minmax(
+        0,
+        0.82fr
+      )
+      620px;
+
+
+    gap:
+      145px;
+  }
+
+
+  .about-year-calendar {
+    max-width:
+      620px;
+  }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media
+(
+  max-width: 1200px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .about-year {
+    --page-padding:
+      42px;
+
+
+    padding:
+      74px
+      0
+      105px;
+  }
+
+
+  .about-year-layout {
+    grid-template-columns:
+      minmax(
+        0,
+        0.8fr
+      )
+      minmax(
+        500px,
+        1.2fr
+      );
+
+
+    gap:
+      50px;
+  }
+
+
+  .about-year-heading {
+    font-size:
+      clamp(
+        43px,
+        4.5vw,
+        60px
+      );
+  }
+
+
+  .about-year-calendar {
+    max-width:
+      560px;
+
+
+    min-height:
+      570px;
+  }
+
+
+  .about-year-calendar-header {
+    min-height:
+      138px;
+
+
+    padding:
+      29px
+      32px;
+  }
+
+
+  .about-year-calendar-title h3 {
+    font-size:
+      clamp(
+        37px,
+        4vw,
+        49px
+      );
+  }
+
+
+  .about-year-calendar-body {
+    padding:
+      30px;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(
+  max-width: 950px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .about-year {
+    --page-padding:
+      30px;
+  }
+
+
+  .about-year-layout {
+    grid-template-columns:
+      0.75fr
+      1.25fr;
+
+
+    gap:
+      32px;
+  }
+
+
+  .about-year-calendar {
+    min-width:
+      0;
+
+
+    max-width:
+      520px;
+  }
+
+
+  .about-year-calendar-header {
+    min-height:
+      125px;
+
+
+    padding:
+      26px;
+  }
+
+
+  .about-year-calendar-body {
+    padding:
+      25px;
+  }
+
+
+  .about-year-arrow {
+    width:
+      39px;
+
+
+    height:
+      39px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .about-year {
+    --page-padding:
+      20px;
+
+
+    padding:
+      68px
+      0
+      78px;
+  }
+
+
+  .about-year-inner {
+    width:
+      calc(
+        100% - 40px
+      );
+  }
+
+
+  .about-year-layout {
+    display:
+      flex;
+
+
+    flex-direction:
+      column;
+
+
+    gap:
+      36px;
+  }
+
+
+  /* =====================================================
+     MOBILE ORDER
+  ===================================================== */
+
+  .about-year-left {
+    display:
+      contents;
+  }
+
+
+  .about-year-heading-wrap {
+    order:
+      1;
+
+
+    margin-bottom:
+      0;
+  }
+
+
+  .about-year-calendar-column {
+    order:
+      2;
+
+
+    justify-content:
+      flex-start;
+  }
+
+
+  .about-year-event {
+    order:
+      3;
+  }
+
+
+  .about-year-download {
+    order:
+      4;
+  }
+
+
+  /* =====================================================
+     HEADING
+  ===================================================== */
+
+  .about-year-heading {
+    max-width:
+      520px;
+
+
+    font-size:
+      clamp(
+        37px,
+        9.5vw,
+        49px
+      );
+
+
+    line-height:
+      0.98;
+
+
+    letter-spacing:
+      -0.058em;
+  }
+
+
+  .about-year-intro {
+    max-width:
+      430px;
+
+
+    margin-top:
+      16px;
+
+
+    font-size:
+      13px;
+  }
+
+
+  /* =====================================================
+     CALENDAR
+
+     LARGE ON MOBILE TOO
+  ===================================================== */
+
+  .about-year-calendar-column {
+    width:
+      100%;
+  }
+
+
+  .about-year-calendar {
+    width:
+      100%;
+
+
+    max-width:
+      580px;
+
+
+    min-height:
+      0;
+  }
+
+
+  .about-year-calendar-header {
+    min-height:
+      125px;
+
+
+    padding:
+      26px
+      22px;
+  }
+
+
+  .about-year-calendar-year {
+    font-size:
+      10px;
+  }
+
+
+  .about-year-calendar-title h3 {
+    font-size:
+      clamp(
+        36px,
+        9vw,
+        48px
+      );
+  }
+
+
+  .about-year-arrow {
+    width:
+      38px;
+
+
+    height:
+      38px;
+  }
+
+
+  .about-year-calendar-body {
+    padding:
+      25px
+      18px
+      24px;
+  }
+
+
+  .about-year-weekdays,
+  .about-year-days {
+    gap:
+      5px;
+  }
+
+
+  .about-year-weekdays span {
+    min-height:
+      31px;
+
+
+    font-size:
+      8px;
+  }
+
+
+  .about-year-day {
+    font-size:
+      10px;
+  }
+
+
+  .about-year-day i {
+    bottom:
+      5px;
+  }
+
+
+  .about-year-calendar-footer {
+    margin-top:
+      27px;
+
+
+    padding-top:
+      18px;
+  }
+
+
+  /* =====================================================
+     EVENT
+  ===================================================== */
+
+  .about-year-event {
+    width:
+      100%;
+
+
+    max-width:
+      580px;
+  }
+
+
+  .about-year-event-copy h3 {
+    font-size:
+      clamp(
+        27px,
+        7vw,
+        34px
+      );
+  }
+
+
+  .about-year-event-copy p {
+    font-size:
+      12px;
+  }
+
+
+  /* =====================================================
+     DOWNLOAD
+  ===================================================== */
+
+  .about-year-download {
+    width:
+      100%;
+
+
+    max-width:
+      580px;
+
+
+    min-height:
+      64px;
+
+
+    margin-top:
+      -2px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  .about-year {
+    --page-padding:
+      18px;
+
+
+    padding:
+      58px
+      0
+      70px;
+  }
+
+
+  .about-year-inner {
+    width:
+      calc(
+        100% - 36px
+      );
+  }
+
+
+  .about-year-layout {
+    gap:
+      30px;
+  }
+
+
+  .about-year-heading {
+    font-size:
+      clamp(
+        35px,
+        9.6vw,
+        44px
+      );
+  }
+
+
+  .about-year-calendar-header {
+    min-height:
+      112px;
+
+
+    padding:
+      22px
+      17px;
+  }
+
+
+  .about-year-calendar-title h3 {
+    font-size:
+      37px;
+  }
+
+
+  .about-year-calendar-nav {
+    gap:
+      5px;
+  }
+
+
+  .about-year-arrow {
+    width:
+      34px;
+
+
+    height:
+      34px;
+  }
+
+
+  .about-year-calendar-body {
+    padding:
+      21px
+      12px
+      21px;
+  }
+
+
+  .about-year-weekdays,
+  .about-year-days {
+    gap:
+      3px;
+  }
+
+
+  .about-year-weekdays span {
+    min-height:
+      27px;
+
+
+    font-size:
+      7px;
+  }
+
+
+  .about-year-day {
+    font-size:
+      9px;
+  }
+
+
+  .about-year-day i {
+    bottom:
+      3px;
+
+
+    width:
+      3px;
+
+
+    height:
+      3px;
+  }
+
+
+  .about-year-calendar-footer {
+    align-items:
+      flex-start;
+
+
+    margin-top:
+      22px;
+
+
+    padding-top:
+      15px;
+  }
+
+
+  .about-year-calendar-legend {
+    gap:
+      12px;
+  }
+
+
+  .about-year-calendar-legend > div,
+  .about-year-calendar-note {
+    font-size:
+      7.5px;
+  }
+
+
+  .about-year-event-date {
+    font-size:
+      8px;
+  }
+
+
+  .about-year-event-copy h3 {
+    font-size:
+      27px;
+  }
+
+
+  .about-year-download {
+    padding-left:
+      16px;
+  }
+
+
+  .about-year-download-copy strong {
+    font-size:
+      11px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 360px
+) {
+
+  .about-year {
+    --page-padding:
+      15px;
+  }
+
+
+  .about-year-inner {
+    width:
+      calc(
+        100% - 30px
+      );
+  }
+
+
+  .about-year-heading {
+    font-size:
+      33px;
+  }
+
+
+  .about-year-calendar-header {
+    min-height:
+      102px;
+
+
+    padding:
+      19px
+      13px;
+  }
+
+
+  .about-year-calendar-title h3 {
+    font-size:
+      32px;
+  }
+
+
+  .about-year-calendar-year {
+    margin-bottom:
+      5px;
+
+
+    font-size:
+      8px;
+  }
+
+
+  .about-year-arrow {
+    width:
+      31px;
+
+
+    height:
+      31px;
+  }
+
+
+  .about-year-calendar-body {
+    padding:
+      18px
+      8px;
+  }
+
+
+  .about-year-weekdays,
+  .about-year-days {
+    gap:
+      2px;
+  }
+
+
+  .about-year-day {
+    font-size:
+      8px;
+  }
+
+
+  .about-year-calendar-footer {
+    flex-direction:
+      column;
+
+
+    gap:
+      11px;
+  }
+
+
+  .about-year-download {
+    min-height:
+      60px;
+
+
+    gap:
+      12px;
+
+
+    padding-left:
+      14px;
+  }
+
+
+  .about-year-download-icon {
+    width:
+      40px;
+
+
+    height:
+      40px;
+
+
+    flex-basis:
+      40px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+
+  .about-year-left *,
+  .about-year-calendar,
+  .about-year-event-image img {
+    opacity:
+      1 !important;
+
+
+    transform:
+      none !important;
+
+
+    animation:
+      none !important;
+  }
+
+}

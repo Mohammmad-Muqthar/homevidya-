@@ -1,71 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap");
+@import url(
+  "https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap"
+);
 
 
 /* =========================================================
    VIDYA ACADEMY FOOTER
-========================================================= */
-
-.vidya-footer {
-  --footer-white: #d4d5d5;
-  --footer-muted: #b4b6b7;
-  --footer-muted-light: #c5c7c7;
-  --footer-accent: #8fd8b2;
-  --footer-black: #070908;
-
-  --footer-line: rgba(180, 188, 183, 0.16);
-
-  --wordmark-stroke:
-    rgba(92, 106, 98, 0.94);
-
-  position: relative;
-  z-index: 80;
-
-  width: 100%;
-  margin: 0;
-
-  padding:
-    clamp(70px, 8vh, 100px)
-    0
-    26px;
-
-  overflow: hidden;
-
-  isolation: isolate;
-
-
-  /* =====================================================
-     DARK FOOTER GRADIENT
-  ===================================================== */
-
-  background:
-    radial-gradient(
-      ellipse at 50% 116%,
-      rgba(131, 148, 137, 0.07) 0%,
-      rgba(86, 102, 92, 0.03) 30%,
-      transparent 61%
-    ),
-    linear-gradient(
-      180deg,
-      #060807 0%,
-      #070908 28%,
-      #080a09 49%,
-      #090c0a 65%,
-      #0b100c 77%,
-      #101710 88%,
-      #182019 100%
-    );
-
-  color:
-    var(--footer-white);
-
-  font-family:
-    "Manrope",
-    sans-serif;
-}
-
-
-/* =========================================================
-   MASCOT SIZE
 ========================================================= */
 
 :root {
@@ -86,6 +25,200 @@
 
 
 /* =========================================================
+   FOOTER
+========================================================= */
+
+.vidya-footer {
+  --footer-white:
+    #d4d5d5;
+
+  --footer-muted:
+    #b4b6b7;
+
+  --footer-muted-light:
+    #c5c7c7;
+
+  --footer-accent:
+    #8fd8b2;
+
+  --footer-black:
+    #070908;
+
+  --footer-line:
+    rgba(
+      180,
+      188,
+      183,
+      0.16
+    );
+
+  --wordmark-stroke:
+    rgba(
+      92,
+      106,
+      98,
+      0.94
+    );
+
+
+  position:
+    relative;
+
+  z-index:
+    80;
+
+
+  display:
+    block;
+
+
+  width:
+    100%;
+
+
+  /*
+    2px overlap prevents browser
+    sub-pixel white seams.
+  */
+
+  margin:
+    -2px
+    0
+    0;
+
+
+  padding:
+    clamp(
+      70px,
+      8vh,
+      100px
+    )
+    0
+    26px;
+
+
+  overflow:
+    hidden;
+
+
+  isolation:
+    isolate;
+
+
+  background:
+    radial-gradient(
+      ellipse at 50% 116%,
+
+      rgba(
+        131,
+        148,
+        137,
+        0.07
+      )
+      0%,
+
+      rgba(
+        86,
+        102,
+        92,
+        0.03
+      )
+      30%,
+
+      transparent
+      61%
+    ),
+    linear-gradient(
+      180deg,
+
+      #060807
+      0%,
+
+      #070908
+      28%,
+
+      #080a09
+      49%,
+
+      #090c0a
+      65%,
+
+      #0b100c
+      77%,
+
+      #101710
+      88%,
+
+      #182019
+      100%
+    );
+
+
+  color:
+    var(
+      --footer-white
+    );
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+
+  /*
+    CRITICAL:
+    Never animate / translate
+    the footer root itself.
+  */
+
+  transform:
+    none !important;
+}
+
+
+/* =========================================================
+   TOP SEAM COVER
+
+   This sits 4px above footer and
+   guarantees no white line appears.
+========================================================= */
+
+.vidya-footer::before {
+  content:
+    "";
+
+
+  position:
+    absolute;
+
+  z-index:
+    0;
+
+
+  top:
+    -4px;
+
+  left:
+    0;
+
+
+  width:
+    100%;
+
+  height:
+    6px;
+
+
+  background:
+    #060807;
+
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
    RESET
 ========================================================= */
 
@@ -102,25 +235,22 @@
 }
 
 
-.vidya-footer {
-  font-family:
-    "Manrope",
-    sans-serif;
-}
-
-
 .vidya-footer h1,
 .vidya-footer h2,
 .vidya-footer h3,
 .vidya-footer p,
 .vidya-footer ul {
-  margin: 0;
-  padding: 0;
+  margin:
+    0;
+
+  padding:
+    0;
 }
 
 
 .vidya-footer a {
-  color: inherit;
+  color:
+    inherit;
 
   text-decoration:
     none;
@@ -129,31 +259,49 @@
 
 .vidya-footer button,
 .vidya-site-mascot {
-  font: inherit;
+  font:
+    inherit;
 }
 
 
 /* =========================================================
    CONTAINER
+
+   THIS moves during footer reveal.
+   Footer background itself does not.
 ========================================================= */
 
 .vidya-footer-container {
-  position: relative;
+  position:
+    relative;
 
-  z-index: 2;
+  z-index:
+    2;
 
-  display: flex;
 
-  flex-direction: column;
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
 
   width:
     min(
       1750px,
-      calc(100% - 110px)
+      calc(
+        100% - 110px
+      )
     );
+
 
   margin:
     0 auto;
+
+
+  will-change:
+    transform,
+    opacity;
 }
 
 
@@ -162,15 +310,28 @@
 ========================================================= */
 
 .vidya-footer-main {
-  position: relative;
+  position:
+    relative;
 
-  display: grid;
+
+  display:
+    grid;
+
 
   grid-template-columns:
-    minmax(390px, 0.9fr)
-    minmax(650px, 1.55fr);
+    minmax(
+      390px,
+      0.9fr
+    )
+    minmax(
+      650px,
+      1.55fr
+    );
 
-  align-items: start;
+
+  align-items:
+    start;
+
 
   gap:
     clamp(
@@ -179,7 +340,10 @@
       150px
     );
 
-  width: 100%;
+
+  width:
+    100%;
+
 
   min-height:
     310px;
@@ -191,34 +355,59 @@
 ========================================================= */
 
 .vidya-footer-info {
-  position: relative;
+  position:
+    relative;
 
-  z-index: 5;
+  z-index:
+    5;
 
-  display: flex;
 
-  flex-direction: column;
+  display:
+    flex;
 
-  align-items: flex-start;
+  flex-direction:
+    column;
 
-  width: 100%;
+  align-items:
+    flex-start;
+
+
+  width:
+    100%;
+
 
   max-width:
     590px;
 
+
   padding-top:
     4px;
+
+
+  will-change:
+    transform,
+    opacity;
 }
 
 
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
 .vidya-footer-description {
-  width: 100%;
+  width:
+    100%;
+
 
   max-width:
     560px;
 
+
   color:
-    var(--footer-muted-light);
+    var(
+      --footer-muted-light
+    );
+
 
   font-size:
     clamp(
@@ -227,11 +416,14 @@
       19px
     );
 
+
   font-weight:
     400;
 
+
   line-height:
     1.65;
+
 
   letter-spacing:
     -0.02em;
@@ -243,12 +435,16 @@
 ========================================================= */
 
 .vidya-footer-details {
-  display: flex;
+  display:
+    flex;
 
-  flex-direction: column;
+  flex-direction:
+    column;
+
 
   gap:
     15px;
+
 
   margin-top:
     32px;
@@ -256,24 +452,34 @@
 
 
 .vidya-footer-detail {
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
+  align-items:
+    center;
+
 
   gap:
     13px;
 
+
   color:
-    var(--footer-muted-light);
+    var(
+      --footer-muted-light
+    );
+
 
   font-size:
     14px;
 
+
   font-weight:
     400;
 
+
   line-height:
     1.4;
+
 
   letter-spacing:
     -0.015em;
@@ -285,11 +491,16 @@
 ========================================================= */
 
 .detail-icon {
-  display: inline-flex;
+  display:
+    inline-flex;
 
-  align-items: center;
 
-  justify-content: center;
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
 
   width:
     22px;
@@ -297,15 +508,25 @@
   height:
     22px;
 
+
   flex:
-    0 0 22px;
+    0
+    0
+    22px;
+
 
   color:
-    var(--footer-accent);
+    var(
+      --footer-accent
+    );
 }
 
 
 .detail-icon svg {
+  display:
+    block;
+
+
   width:
     19px;
 
@@ -325,29 +546,41 @@
 
 
 .vidya-footer-whatsapp {
-  position: relative;
+  position:
+    relative;
 
-  display: inline-flex;
 
-  align-items: center;
+  display:
+    inline-flex;
 
-  justify-content: center;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
 
   gap:
     11px;
 
+
   min-width:
     215px;
 
+
   height:
     54px;
+
 
   padding:
     0
     22px;
 
+
   overflow:
     hidden;
+
 
   border:
     1px solid
@@ -358,20 +591,28 @@
       0.18
     );
 
+
   border-radius:
     0;
 
+
   background:
-    var(--footer-black);
+    var(
+      --footer-black
+    );
+
 
   color:
     #d4d5d5;
 
+
   font-size:
     13px;
 
+
   font-weight:
     600;
+
 
   transition:
     transform
@@ -395,19 +636,33 @@
 
 
 .vidya-footer-whatsapp::before {
-  content: "";
+  content:
+    "";
 
-  position: absolute;
 
-  inset: 0;
+  position:
+    absolute;
 
-  z-index: 0;
+
+  inset:
+    0;
+
+
+  z-index:
+    0;
+
 
   background:
-    var(--footer-accent);
+    var(
+      --footer-accent
+    );
+
 
   transform:
-    translateY(102%);
+    translateY(
+      102%
+    );
+
 
   transition:
     transform
@@ -423,19 +678,25 @@
 
 .vidya-footer-whatsapp span,
 .vidya-footer-whatsapp svg {
-  position: relative;
+  position:
+    relative;
 
-  z-index: 2;
+  z-index:
+    2;
 }
 
 
 .vidya-footer-whatsapp svg {
-  width: 21px;
+  width:
+    21px;
 
-  height: 21px;
+  height:
+    21px;
+
 
   color:
     #43d67b;
+
 
   transition:
     color
@@ -446,13 +707,22 @@
 
 .vidya-footer-whatsapp:hover {
   color:
-    var(--footer-black);
+    var(
+      --footer-black
+    );
+
 
   border-color:
-    var(--footer-accent);
+    var(
+      --footer-accent
+    );
+
 
   transform:
-    translateY(-3px);
+    translateY(
+      -3px
+    );
+
 
   box-shadow:
     0
@@ -469,13 +739,17 @@
 
 .vidya-footer-whatsapp:hover::before {
   transform:
-    translateY(0);
+    translateY(
+      0
+    );
 }
 
 
 .vidya-footer-whatsapp:hover svg {
   color:
-    var(--footer-black);
+    var(
+      --footer-black
+    );
 }
 
 
@@ -484,7 +758,9 @@
 ========================================================= */
 
 .vidya-footer-navigation {
-  display: grid;
+  display:
+    grid;
+
 
   grid-template-columns:
     repeat(
@@ -495,6 +771,7 @@
       )
     );
 
+
   gap:
     clamp(
       42px,
@@ -502,7 +779,10 @@
       110px
     );
 
-  width: 100%;
+
+  width:
+    100%;
+
 
   padding-top:
     10px;
@@ -510,15 +790,24 @@
 
 
 .vidya-footer-column {
-  min-width: 0;
+  min-width:
+    0;
 
-  width: 100%;
+
+  width:
+    100%;
+
+
+  will-change:
+    transform,
+    opacity;
 }
 
 
 .vidya-footer-column h3 {
   color:
     #d4d5d5;
+
 
   font-size:
     clamp(
@@ -527,11 +816,14 @@
       23px
     );
 
+
   font-weight:
     600;
 
+
   line-height:
     1.15;
+
 
   letter-spacing:
     -0.04em;
@@ -539,15 +831,20 @@
 
 
 .vidya-footer-column ul {
-  display: flex;
+  display:
+    flex;
 
-  flex-direction: column;
+  flex-direction:
+    column;
+
 
   gap:
     14px;
 
+
   margin-top:
     23px;
+
 
   list-style:
     none;
@@ -558,6 +855,7 @@
   width:
     fit-content;
 
+
   max-width:
     100%;
 }
@@ -567,20 +865,28 @@
   display:
     inline-block;
 
+
   color:
-    var(--footer-muted);
+    var(
+      --footer-muted
+    );
+
 
   font-size:
     14px;
 
+
   font-weight:
     400;
+
 
   line-height:
     1.45;
 
+
   letter-spacing:
     -0.015em;
+
 
   transition:
     color
@@ -596,8 +902,11 @@
   color:
     #e4e5e5;
 
+
   transform:
-    translateX(3px);
+    translateX(
+      3px
+    );
 }
 
 
@@ -606,10 +915,13 @@
 ========================================================= */
 
 .vidya-site-mascot {
-  position: fixed;
+  position:
+    fixed;
+
 
   z-index:
     9999;
+
 
   right:
     clamp(
@@ -618,6 +930,7 @@
       20px
     );
 
+
   bottom:
     clamp(
       14px,
@@ -625,46 +938,76 @@
       24px
     );
 
+
   width:
-    var(--vidya-mascot-width);
+    var(
+      --vidya-mascot-width
+    );
+
 
   height:
-    var(--vidya-mascot-height);
+    var(
+      --vidya-mascot-height
+    );
 
-  margin: 0;
 
-  padding: 0;
+  margin:
+    0;
+
+
+  padding:
+    0;
+
 
   overflow:
     visible;
 
-  border: 0;
 
-  outline: none;
+  border:
+    0;
 
-  border-radius: 0;
+
+  outline:
+    none;
+
+
+  border-radius:
+    0;
+
 
   background:
     transparent;
 
+
   cursor:
     pointer;
 
-  opacity: 0;
+
+  opacity:
+    0;
+
 
   visibility:
     hidden;
 
+
   pointer-events:
     none;
 
+
   transform:
-    translateY(20px)
-    scale(0.95);
+    translateY(
+      20px
+    )
+    scale(
+      0.95
+    );
+
 
   transform-origin:
     right
     bottom;
+
 
   transition:
     opacity
@@ -684,18 +1027,30 @@
 }
 
 
+/* =========================================================
+   MASCOT VISIBLE
+========================================================= */
+
 .vidya-site-mascot--visible {
-  opacity: 1;
+  opacity:
+    1;
+
 
   visibility:
     visible;
 
+
   pointer-events:
     auto;
 
+
   transform:
-    translateY(0)
-    scale(1);
+    translateY(
+      0
+    )
+    scale(
+      1
+    );
 }
 
 
@@ -704,41 +1059,62 @@
 ========================================================= */
 
 .vidya-site-mascot-video {
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
 
-  z-index: 1;
+  inset:
+    0;
 
-  display: block;
 
-  width: 100%;
+  z-index:
+    1;
 
-  height: 100%;
+
+  display:
+    block;
+
+
+  width:
+    100%;
+
+  height:
+    100%;
+
 
   object-fit:
     contain;
+
 
   object-position:
     right
     bottom;
 
-  border: 0;
 
-  outline: none;
+  border:
+    0;
+
+
+  outline:
+    none;
+
 
   background:
     transparent;
 
+
   pointer-events:
     none;
+
 
   user-select:
     none;
 
+
   transform-origin:
     right
     bottom;
+
 
   filter:
     drop-shadow(
@@ -752,6 +1128,7 @@
         0.22
       )
     );
+
 
   transition:
     transform
@@ -771,8 +1148,13 @@
 .vidya-site-mascot:hover
 .vidya-site-mascot-video {
   transform:
-    translateY(-5px)
-    scale(1.035);
+    translateY(
+      -5px
+    )
+    scale(
+      1.035
+    );
+
 
   filter:
     drop-shadow(
@@ -790,15 +1172,21 @@
 
 
 /* =========================================================
-   WORDMARK AREA
+   BRAND AREA
 ========================================================= */
 
 .vidya-footer-brand {
-  position: relative;
+  position:
+    relative;
 
-  z-index: 5;
 
-  width: 100%;
+  z-index:
+    5;
+
+
+  width:
+    100%;
+
 
   margin-top:
     clamp(
@@ -807,16 +1195,13 @@
       72px
     );
 
-  /*
-     SMALL SAFE SPACE
-     ON BOTH SIDES
-  */
 
   padding-left:
     12px;
 
   padding-right:
     12px;
+
 
   overflow:
     hidden;
@@ -835,132 +1220,151 @@
       250px
     );
 
-  position: relative;
 
-  width: 100%;
+  position:
+    relative;
+
+
+  width:
+    100%;
+
 
   height:
     calc(
-      var(--wordmark-size)
+      var(
+        --wordmark-size
+      )
       * 0.78
     );
 
-  min-height: 0;
 
-  margin: 0;
+  min-height:
+    0;
 
-  padding: 0;
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
 
   overflow:
     hidden;
 
+
   border-bottom:
     1px solid
-    var(--footer-line);
+    var(
+      --footer-line
+    );
 }
 
 
 /* =========================================================
-   VIDYA ACADEMY
+   LARGE VIDYA ACADEMY
 ========================================================= */
 
 .vidya-footer-large-name {
-  display: block;
+  display:
+    block;
 
-  position: relative;
 
-  /*
-     NO LEFT SHIFT.
-     KEEP PERFECTLY CENTERED.
-  */
+  position:
+    relative;
 
-  left: 0;
-  right: auto;
 
-  width: 100%;
+  left:
+    0;
+
+
+  width:
+    100%;
+
 
   max-width:
     100%;
 
-  margin: 0;
 
-  padding: 0;
+  margin:
+    0;
 
 
-  /* =====================================================
-     POPPINS
-  ===================================================== */
+  padding:
+    0;
+
 
   font-family:
     "Poppins",
     sans-serif !important;
 
+
   font-size:
-    var(--wordmark-size);
+    var(
+      --wordmark-size
+    );
+
 
   font-weight:
     700 !important;
 
+
   line-height:
     1;
+
 
   letter-spacing:
     -0.055em;
 
+
   text-transform:
     uppercase;
 
+
   text-align:
     center;
+
 
   white-space:
     nowrap;
 
 
-  /* =====================================================
-     TRANSPARENT INSIDE
-  ===================================================== */
-
   color:
     transparent !important;
+
 
   -webkit-text-fill-color:
     transparent !important;
 
 
-  /* =====================================================
-     OUTLINE
-  ===================================================== */
-
   -webkit-text-stroke:
     1.45px
-    var(--wordmark-stroke);
+    var(
+      --wordmark-stroke
+    );
+
 
   text-stroke:
     1.45px
-    var(--wordmark-stroke);
+    var(
+      --wordmark-stroke
+    );
+
 
   text-shadow:
     none !important;
 
 
-  /* =====================================================
-     IMPORTANT
-
-     SAME HEIGHT AS BEFORE.
-     ONLY WIDTH IS REDUCED.
-
-     THIS PREVENTS V AND Y
-     FROM BEING CUT.
-  ===================================================== */
-
   scale:
     0.84
     1.15;
 
+
   transform-origin:
     center
     top;
+
 
   will-change:
     transform,
@@ -969,37 +1373,52 @@
 
 
 /* =========================================================
-   BOTTOM
+   FOOTER BOTTOM
 ========================================================= */
 
 .vidya-footer-bottom {
-  display: flex;
+  display:
+    flex;
+
 
   align-items:
     center;
 
+
   justify-content:
     space-between;
+
 
   gap:
     25px;
 
-  width: 100%;
+
+  width:
+    100%;
+
 
   margin-top:
     18px;
+
+
+  will-change:
+    transform,
+    opacity;
 }
 
 
-.vidya-footer-bottom p {
+.vidya-footer-copyright {
   color:
     #bec0c1;
+
 
   font-size:
     11px;
 
+
   font-weight:
     400;
+
 
   line-height:
     1.5;
@@ -1007,13 +1426,17 @@
 
 
 .vidya-footer-bottom-links {
-  display: flex;
+  display:
+    flex;
+
 
   align-items:
     center;
 
+
   gap:
     14px;
+
 
   color:
     #bec0c1;
@@ -1024,8 +1447,10 @@
   color:
     #bec0c1;
 
+
   font-size:
     11px;
+
 
   transition:
     color
@@ -1044,6 +1469,7 @@
   opacity:
     0.45;
 
+
   font-size:
     10px;
 }
@@ -1051,10 +1477,11 @@
 
 /* =========================================================
    LARGE DESKTOP
-   1600PX+
 ========================================================= */
 
-@media (min-width: 1600px) {
+@media (
+  min-width: 1600px
+) {
 
   :root {
     --vidya-mascot-width:
@@ -1087,12 +1514,14 @@
         1.55fr
       );
 
+
     gap:
       clamp(
         100px,
         9vw,
         180px
       );
+
 
     min-height:
       320px;
@@ -1112,6 +1541,7 @@
     margin-top:
       65px;
 
+
     padding-left:
       14px;
 
@@ -1127,27 +1557,14 @@
         11.5vw,
         255px
       );
-
-    height:
-      calc(
-        var(--wordmark-size)
-        * 0.78
-      );
   }
 
 
   .vidya-footer-large-name {
-    left:
-      0;
-
-    /*
-       SAME HEIGHT
-       LESS WIDTH
-    */
-
     scale:
       0.84
       1.15;
+
 
     -webkit-text-stroke:
       1.5px
@@ -1158,6 +1575,7 @@
         0.96
       );
 
+
     text-stroke:
       1.5px
       rgba(
@@ -1167,26 +1585,24 @@
         0.96
       );
   }
+
 }
 
 
 /* =========================================================
-   NORMAL DESKTOP / LAPTOP
-
-   THIS IS THE MAIN FIX
+   NORMAL DESKTOP
 ========================================================= */
 
 @media
-  (min-width: 901px)
-  and
-  (max-width: 1599px) {
+(
+  min-width: 901px
+)
+and
+(
+  max-width: 1599px
+) {
 
   .vidya-footer-brand {
-    /*
-       KEEP FULL AVAILABLE WIDTH
-       BUT GIVE V + Y SAFE SPACE
-    */
-
     padding-left:
       16px;
 
@@ -1196,39 +1612,25 @@
 
 
   .vidya-footer-large-name {
-    /*
-       NO MOVEMENT
-    */
-
     left:
       0;
 
-    right:
-      auto;
-
-
-    /*
-       SAME VERTICAL HEIGHT
-       LESS HORIZONTAL WIDTH
-
-       THIS FIXES:
-       V CUTTING
-       FINAL Y CUTTING
-    */
 
     scale:
       0.82
       1.15;
   }
+
 }
 
 
 /* =========================================================
    LAPTOP
-   1200PX AND BELOW
 ========================================================= */
 
-@media (max-width: 1200px) {
+@media (
+  max-width: 1200px
+) {
 
   :root {
     --vidya-mascot-width:
@@ -1258,6 +1660,7 @@
         1.4fr
       );
 
+
     gap:
       clamp(
         28px,
@@ -1277,6 +1680,7 @@
     right:
       16px;
 
+
     bottom:
       18px;
   }
@@ -1286,9 +1690,6 @@
     margin-top:
       52px;
 
-    /*
-       SMALL EQUAL SIDE SPACE
-    */
 
     padding-left:
       12px;
@@ -1305,30 +1706,14 @@
         11.4vw,
         175px
       );
-
-    height:
-      calc(
-        var(--wordmark-size)
-        * 0.78
-      );
   }
 
 
   .vidya-footer-large-name {
-    left:
-      0;
-
-
-    /*
-       LAPTOP WAS TOO WIDE.
-
-       HEIGHT STILL 1.15.
-       ONLY WIDTH REDUCED.
-    */
-
     scale:
       0.79
       1.15;
+
 
     -webkit-text-stroke:
       1.45px
@@ -1339,6 +1724,7 @@
         0.96
       );
 
+
     text-stroke:
       1.45px
       rgba(
@@ -1348,6 +1734,7 @@
         0.96
       );
   }
+
 }
 
 
@@ -1355,7 +1742,9 @@
    TABLET
 ========================================================= */
 
-@media (max-width: 900px) {
+@media (
+  max-width: 900px
+) {
 
   :root {
     --vidya-mascot-width:
@@ -1380,19 +1769,24 @@
         100% - 48px
       );
 
+
     margin:
       0 auto;
   }
 
 
   .vidya-footer-main {
-    display: flex;
+    display:
+      flex;
+
 
     flex-direction:
       column;
 
+
     gap:
       45px;
+
 
     min-height:
       0;
@@ -1400,53 +1794,45 @@
 
 
   .vidya-footer-navigation {
-    width: 100%;
+    width:
+      100%;
+
 
     gap:
       32px;
+
 
     padding-top:
       0;
   }
 
 
-  /* =====================================================
-     MASCOT ABOVE
-  ===================================================== */
-
   .vidya-site-mascot {
     right:
       14px;
 
+
     bottom:
       58px;
-
-    width:
-      var(--vidya-mascot-width);
-
-    height:
-      var(--vidya-mascot-height);
   }
 
 
-  /* =====================================================
-     FULL WIDTH WORDMARK
-  ===================================================== */
-
   .vidya-footer-brand {
-    width: 100%;
+    width:
+      100%;
+
 
     margin-top:
       50px;
 
+
     padding-left:
       0;
+
 
     padding-right:
       0;
 
-    overflow:
-      hidden;
 
     text-align:
       center;
@@ -1460,24 +1846,6 @@
         9.4vw,
         76px
       );
-
-    width: 100%;
-
-    height:
-      calc(
-        var(--wordmark-size)
-        * 0.8
-      );
-
-    min-height:
-      0;
-
-    margin: 0;
-
-    padding: 0;
-
-    overflow:
-      hidden;
   }
 
 
@@ -1485,46 +1853,28 @@
     left:
       0 !important;
 
-    right:
-      auto !important;
 
     width:
       100%;
 
-    max-width:
-      100%;
-
-    font-family:
-      "Poppins",
-      sans-serif !important;
 
     font-size:
-      var(--wordmark-size);
+      var(
+        --wordmark-size
+      );
 
-    font-weight:
-      700 !important;
-
-    line-height:
-      1;
 
     letter-spacing:
       -0.052em;
 
-    text-transform:
-      uppercase;
 
     text-align:
       center;
 
-    white-space:
-      nowrap;
 
-
-    color:
-      transparent !important;
-
-    -webkit-text-fill-color:
-      transparent !important;
+    scale:
+      0.84
+      1.15;
 
 
     -webkit-text-stroke:
@@ -1536,6 +1886,7 @@
         0.96
       );
 
+
     text-stroke:
       1.35px
       rgba(
@@ -1544,21 +1895,8 @@
         100,
         0.96
       );
-
-
-    /*
-       TABLET
-       FULL WORD VISIBLE
-    */
-
-    scale:
-      0.84
-      1.15;
-
-    transform-origin:
-      center
-      top;
   }
+
 }
 
 
@@ -1566,7 +1904,9 @@
    MOBILE
 ========================================================= */
 
-@media (max-width: 600px) {
+@media (
+  max-width: 600px
+) {
 
   :root {
     --vidya-mascot-width:
@@ -1591,6 +1931,7 @@
         100% - 28px
       );
 
+
     margin:
       0
       14px;
@@ -1598,18 +1939,26 @@
 
 
   .vidya-footer-main {
-    display: flex;
+    display:
+      flex;
+
 
     flex-direction:
       column;
 
+
     gap:
       34px;
+
 
     min-height:
       0;
   }
 
+
+  /* =====================================================
+     INFO
+  ===================================================== */
 
   .vidya-footer-info {
     max-width:
@@ -1621,6 +1970,7 @@
     max-width:
       100%;
 
+
     font-size:
       14px;
   }
@@ -1629,6 +1979,7 @@
   .vidya-footer-details {
     gap:
       12px;
+
 
     margin-top:
       24px;
@@ -1639,6 +1990,7 @@
     gap:
       9px;
 
+
     font-size:
       11px;
   }
@@ -1648,10 +2000,14 @@
     width:
       20px;
 
+
     height:
       20px;
 
-    flex-basis:
+
+    flex:
+      0
+      0
       20px;
   }
 
@@ -1660,14 +2016,20 @@
     width:
       17px;
 
+
     height:
       17px;
   }
 
 
+  /* =====================================================
+     BUTTON
+  ===================================================== */
+
   .vidya-footer-actions {
     width:
       100%;
+
 
     margin-top:
       25px;
@@ -1678,13 +2040,19 @@
     width:
       100%;
 
+
     min-width:
       0;
+
 
     height:
       51px;
   }
 
+
+  /* =====================================================
+     NAVIGATION
+  ===================================================== */
 
   .vidya-footer-navigation {
     grid-template-columns:
@@ -1696,11 +2064,14 @@
         )
       );
 
+
     gap:
       9px;
 
+
     width:
       100%;
+
 
     padding:
       0;
@@ -1711,6 +2082,7 @@
     font-size:
       13px;
 
+
     white-space:
       nowrap;
   }
@@ -1719,6 +2091,7 @@
   .vidya-footer-column ul {
     gap:
       10px;
+
 
     margin-top:
       17px;
@@ -1729,8 +2102,10 @@
     font-size:
       9px;
 
+
     line-height:
       1.35;
+
 
     overflow-wrap:
       anywhere;
@@ -1739,21 +2114,28 @@
 
   /* =====================================================
      MOBILE MASCOT
-     MOVED UP
   ===================================================== */
 
   .vidya-site-mascot {
     right:
       10px;
 
+
     bottom:
       54px;
 
+
     width:
-      var(--vidya-mascot-width);
+      var(
+        --vidya-mascot-width
+      );
+
 
     height:
-      var(--vidya-mascot-height);
+      var(
+        --vidya-mascot-height
+      );
+
 
     transform-origin:
       right
@@ -1766,6 +2148,7 @@
       right
       bottom;
 
+
     transform-origin:
       right
       bottom;
@@ -1773,36 +2156,38 @@
 
 
   /* =====================================================
-     MOBILE WORDMARK AREA
+     MOBILE WORDMARK
   ===================================================== */
 
   .vidya-footer-brand {
     width:
       100%;
 
+
     margin-top:
       45px;
+
 
     margin-bottom:
       30px;
 
+
     padding-left:
       0;
+
 
     padding-right:
       0;
 
+
     overflow:
       hidden;
+
 
     text-align:
       center;
   }
 
-
-  /* =====================================================
-     MOBILE WORDMARK WINDOW
-  ===================================================== */
 
   .vidya-footer-wordmark-window {
     --wordmark-size:
@@ -1812,57 +2197,56 @@
         62px
       );
 
-    width: 100%;
-
-    height:
-      calc(
-        var(--wordmark-size)
-        * 0.8
-      );
-
-    min-height:
-      0;
-
-    margin:
-      0;
-
-    padding:
-      0;
-
-    overflow:
-      hidden;
-
-    border-bottom:
-      1px solid
-      var(--footer-line);
-  }
-
-
-  /* =====================================================
-     MOBILE VIDYA ACADEMY
-  ===================================================== */
-
-  .vidya-footer-large-name {
-    display:
-      block;
-
-    position:
-      relative;
-
-    left:
-      0 !important;
-
-    right:
-      auto !important;
 
     width:
       100%;
 
-    max-width:
-      100%;
+
+    height:
+      calc(
+        var(
+          --wordmark-size
+        )
+        * 0.8
+      );
+
 
     margin:
       0;
+
+
+    padding:
+      0;
+
+
+    overflow:
+      hidden;
+
+
+    border-bottom:
+      1px solid
+      var(
+        --footer-line
+      );
+  }
+
+
+  .vidya-footer-large-name {
+    left:
+      0 !important;
+
+
+    width:
+      100%;
+
+
+    max-width:
+      100%;
+
+
+    margin:
+      0;
+
 
     padding:
       0;
@@ -1872,23 +2256,32 @@
       "Poppins",
       sans-serif !important;
 
+
     font-size:
-      var(--wordmark-size);
+      var(
+        --wordmark-size
+      );
+
 
     font-weight:
       700 !important;
 
+
     line-height:
       1;
+
 
     letter-spacing:
       -0.06em;
 
+
     text-transform:
       uppercase;
 
+
     text-align:
       center;
+
 
     white-space:
       nowrap;
@@ -1896,6 +2289,7 @@
 
     color:
       transparent !important;
+
 
     -webkit-text-fill-color:
       transparent !important;
@@ -1910,6 +2304,7 @@
         0.98
       );
 
+
     text-stroke:
       1.25px
       rgba(
@@ -1919,19 +2314,11 @@
         0.98
       );
 
-    text-shadow:
-      none !important;
-
-
-    /*
-       MOBILE:
-       FULL V + FINAL Y VISIBLE
-       HEIGHT SAME
-    */
 
     scale:
       0.84
       1.16;
+
 
     transform-origin:
       center
@@ -1941,52 +2328,149 @@
 
   /* =====================================================
      MOBILE BOTTOM
+
+     IMPORTANT:
+     BOTH LINES ARE PERFECTLY CENTERED.
+
+     NO 105PX RIGHT PADDING.
   ===================================================== */
 
   .vidya-footer-bottom {
+    display:
+      flex;
+
+
     flex-direction:
       column;
 
-    justify-content:
-      center;
 
     align-items:
       center;
 
+
+    justify-content:
+      center;
+
+
     gap:
-      10px;
+      8px;
+
+
+    width:
+      100%;
+
 
     margin-top:
       10px;
 
-    padding-left:
-      0;
 
-    padding-right:
-      105px;
+    margin-left:
+      auto;
+
+    margin-right:
+      auto;
+
+
+    padding:
+      0 !important;
+
 
     text-align:
       center;
   }
 
 
-  .vidya-footer-bottom p,
-  .vidya-footer-bottom-links a {
+  .vidya-footer-copyright {
+    display:
+      block;
+
+
+    width:
+      100%;
+
+
+    margin:
+      0 auto;
+
+
+    padding:
+      0;
+
+
+    color:
+      #bec0c1;
+
+
     font-size:
       9px;
+
+
+    line-height:
+      1.5;
+
+
+    text-align:
+      center;
   }
 
 
   .vidya-footer-bottom-links {
-    gap:
-      8px;
+    display:
+      flex;
 
-    flex-wrap:
-      wrap;
+
+    align-items:
+      center;
+
 
     justify-content:
       center;
+
+
+    gap:
+      7px;
+
+
+    width:
+      100%;
+
+
+    margin:
+      0 auto;
+
+
+    padding:
+      0;
+
+
+    flex-wrap:
+      nowrap;
+
+
+    color:
+      #bec0c1;
+
+
+    text-align:
+      center;
   }
+
+
+  .vidya-footer-bottom-links a {
+    font-size:
+      9px;
+
+
+    white-space:
+      nowrap;
+  }
+
+
+  .vidya-footer-bottom-links span {
+    font-size:
+      8px;
+  }
+
 }
 
 
@@ -1994,7 +2478,9 @@
    SMALL MOBILE
 ========================================================= */
 
-@media (max-width: 380px) {
+@media (
+  max-width: 380px
+) {
 
   :root {
     --vidya-mascot-width:
@@ -2011,6 +2497,7 @@
         100% - 22px
       );
 
+
     margin:
       0
       11px;
@@ -2033,35 +2520,19 @@
     right:
       8px;
 
+
     bottom:
       50px;
-
-    width:
-      var(--vidya-mascot-width);
-
-    height:
-      var(--vidya-mascot-height);
   }
 
 
   .vidya-footer-brand {
-    width:
-      100%;
-
     margin-top:
       40px;
 
+
     margin-bottom:
       28px;
-
-    padding-left:
-      0;
-
-    padding-right:
-      0;
-
-    overflow:
-      hidden;
   }
 
 
@@ -2072,56 +2543,17 @@
         12.4vw,
         48px
       );
-
-    width:
-      100%;
-
-    height:
-      calc(
-        var(--wordmark-size)
-        * 0.8
-      );
   }
 
 
   .vidya-footer-large-name {
-    left:
-      0 !important;
-
-    width:
-      100%;
-
-    font-family:
-      "Poppins",
-      sans-serif !important;
-
-    font-size:
-      var(--wordmark-size);
-
-    font-weight:
-      700 !important;
-
-    line-height:
-      1;
-
     letter-spacing:
       -0.062em;
 
-    text-transform:
-      uppercase;
 
-    text-align:
-      center;
-
-    white-space:
-      nowrap;
-
-
-    color:
-      transparent !important;
-
-    -webkit-text-fill-color:
-      transparent !important;
+    scale:
+      0.82
+      1.16;
 
 
     -webkit-text-stroke:
@@ -2133,6 +2565,7 @@
         0.98
       );
 
+
     text-stroke:
       1.2px
       rgba(
@@ -2141,18 +2574,27 @@
         104,
         0.98
       );
-
-
-    scale:
-      0.82
-      1.16;
   }
 
 
   .vidya-footer-bottom {
-    padding-right:
-      94px;
+    padding:
+      0 !important;
   }
+
+
+  .vidya-footer-copyright,
+  .vidya-footer-bottom-links a {
+    font-size:
+      8px;
+  }
+
+
+  .vidya-footer-bottom-links {
+    gap:
+      6px;
+  }
+
 }
 
 
@@ -2160,7 +2602,9 @@
    EXTRA SMALL MOBILE
 ========================================================= */
 
-@media (max-width: 330px) {
+@media (
+  max-width: 330px
+) {
 
   :root {
     --vidya-mascot-width:
@@ -2177,6 +2621,7 @@
         100% - 18px
       );
 
+
     margin:
       0
       9px;
@@ -2199,14 +2644,9 @@
     right:
       7px;
 
+
     bottom:
       46px;
-
-    width:
-      var(--vidya-mascot-width);
-
-    height:
-      var(--vidya-mascot-height);
   }
 
 
@@ -2214,70 +2654,26 @@
     margin-top:
       36px;
 
+
     margin-bottom:
       26px;
-
-    padding-left:
-      0;
-
-    padding-right:
-      0;
   }
 
 
   .vidya-footer-wordmark-window {
     --wordmark-size:
       36px;
-
-    width:
-      100%;
-
-    height:
-      calc(
-        var(--wordmark-size)
-        * 0.8
-      );
   }
 
 
   .vidya-footer-large-name {
-    left:
-      0 !important;
-
-    width:
-      100%;
-
-    font-family:
-      "Poppins",
-      sans-serif !important;
-
-    font-size:
-      var(--wordmark-size);
-
-    font-weight:
-      700 !important;
-
-    line-height:
-      1;
-
     letter-spacing:
       -0.065em;
 
-    text-transform:
-      uppercase;
 
-    text-align:
-      center;
-
-    white-space:
-      nowrap;
-
-
-    color:
-      transparent !important;
-
-    -webkit-text-fill-color:
-      transparent !important;
+    scale:
+      0.8
+      1.16;
 
 
     -webkit-text-stroke:
@@ -2289,6 +2685,7 @@
         0.98
       );
 
+
     text-stroke:
       1.15px
       rgba(
@@ -2297,18 +2694,27 @@
         104,
         0.98
       );
-
-
-    scale:
-      0.80
-      1.16;
   }
 
 
   .vidya-footer-bottom {
-    padding-right:
-      86px;
+    padding:
+      0 !important;
   }
+
+
+  .vidya-footer-copyright,
+  .vidya-footer-bottom-links a {
+    font-size:
+      7.5px;
+  }
+
+
+  .vidya-footer-bottom-links {
+    gap:
+      5px;
+  }
+
 }
 
 
@@ -2317,9 +2723,13 @@
 ========================================================= */
 
 @media
-  (min-width: 901px)
-  and
-  (max-height: 760px) {
+(
+  min-width: 901px
+)
+and
+(
+  max-height: 760px
+) {
 
   .vidya-footer {
     padding-top:
@@ -2343,6 +2753,7 @@
     margin-top:
       14px;
   }
+
 }
 
 
@@ -2350,9 +2761,11 @@
    REDUCED MOTION
 ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
 
-  .vidya-footer,
   .vidya-footer *,
   .vidya-footer *::before,
   .vidya-footer *::after,
@@ -2363,7 +2776,23 @@
     animation:
       none !important;
 
+
     transition:
       none !important;
   }
+
+
+  .vidya-footer-container,
+  .vidya-footer-info,
+  .vidya-footer-column,
+  .vidya-footer-large-name,
+  .vidya-footer-bottom {
+    opacity:
+      1 !important;
+
+
+    transform:
+      none !important;
+  }
+
 }

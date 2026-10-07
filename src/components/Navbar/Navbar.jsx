@@ -43,29 +43,27 @@ const navbarData = {
 
   links: [
     {
-      label: "About",
-      to: "/about",
+      label: "HOME",
+      to: "/",
     },
     {
-      label: "Academics",
-      to: "/academics",
-    },
-    {
-      label: "Experience",
-      to: "/experience",
-    },
-    {
-      label: "Campus",
+      label: "CAMPUS",
       to: "/campus",
     },
     {
-      label: "Life at School",
+      label: "MOTION-IN",
+      to: "/motion",
+    },
+    {
+      label: "PROGRAMS",
       to: "/life-at-school",
     },
     {
-      label: "FAQs",
-      to: "/#faq",
+      label: "ABOUT",
+      to: "/about",
     },
+    
+    
   ],
 
   cta: {

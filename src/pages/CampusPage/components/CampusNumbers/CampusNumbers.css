@@ -1,0 +1,1555 @@
+/* =========================================================
+   VIDYA ACADEMY
+   CAMPUS NUMBERS
+
+   HOMEPAGE + ABOUT PAGE THEME
+
+   FULL WIDTH FEATURE IMAGE
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+.campus-numbers {
+  --cream:
+    #f5f3e9;
+
+  --cream-soft:
+    #f3f0e6;
+
+  --deep-green:
+    #0b563b;
+
+  --deep-green-2:
+    #073f32;
+
+  --green:
+    #0b8255;
+
+  --bright-green:
+    #26b474;
+
+  --orange:
+    #f9a01b;
+
+  --white:
+    #ffffff;
+
+  --page-padding:
+    clamp(
+      68px,
+      5vw,
+      100px
+    );
+
+
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--cream);
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.campus-numbers,
+.campus-numbers *,
+.campus-numbers *::before,
+.campus-numbers *::after {
+  box-sizing:
+    border-box;
+
+
+  font-family:
+    "Manrope",
+    sans-serif !important;
+}
+
+
+/* =========================================================
+   FEATURE IMAGE
+
+   FULL SCREEN WIDTH
+
+   NO:
+   - side margin
+   - wrapper
+   - max-width
+   - cream frame
+========================================================= */
+
+.campus-numbers-visual {
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  height:
+    84vh;
+
+  height:
+    84svh;
+
+
+  min-height:
+    650px;
+
+
+  max-height:
+    920px;
+
+
+  margin:
+    0;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--deep-green);
+
+
+  isolation:
+    isolate;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.campus-numbers-image {
+  position:
+    absolute;
+
+
+  z-index:
+    1;
+
+
+  top:
+    -3%;
+
+
+  left:
+    0;
+
+
+  display:
+    block;
+
+
+  width:
+    100%;
+
+
+  height:
+    106%;
+
+
+  max-width:
+    none;
+
+
+  object-fit:
+    cover;
+
+
+  object-position:
+    center 52%;
+
+
+  transform:
+    scale(
+      1.05
+    );
+
+
+  transform-origin:
+    center center;
+
+
+  pointer-events:
+    none;
+
+
+  user-select:
+    none;
+
+
+  -webkit-user-drag:
+    none;
+
+
+  backface-visibility:
+    hidden;
+
+
+  -webkit-backface-visibility:
+    hidden;
+
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   SUBTLE OVERLAY
+========================================================= */
+
+.campus-numbers-overlay {
+  position:
+    absolute;
+
+
+  z-index:
+    2;
+
+
+  inset:
+    0;
+
+
+  background:
+    linear-gradient(
+      180deg,
+
+      rgba(
+        7,
+        63,
+        50,
+        0.04
+      )
+      0%,
+
+      rgba(
+        7,
+        63,
+        50,
+        0
+      )
+      42%,
+
+      rgba(
+        7,
+        63,
+        50,
+        0.05
+      )
+      63%,
+
+      rgba(
+        7,
+        63,
+        50,
+        0.43
+      )
+      100%
+    );
+
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   FEATURE IMAGE STATEMENT
+========================================================= */
+
+.campus-numbers-visual-caption {
+  position:
+    absolute;
+
+
+  z-index:
+    4;
+
+
+  right:
+    var(--page-padding);
+
+
+  bottom:
+    clamp(
+      58px,
+      8vh,
+      100px
+    );
+
+
+  width:
+    min(
+      620px,
+      42%
+    );
+
+
+  margin:
+    0;
+
+
+  color:
+    #ffffff;
+
+
+  font-size:
+    clamp(
+      42px,
+      3.9vw,
+      64px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    0.99;
+
+
+  letter-spacing:
+    -0.056em;
+
+
+  text-align:
+    left;
+
+
+  pointer-events:
+    none;
+
+
+  will-change:
+    opacity,
+    transform;
+}
+
+
+/* =========================================================
+   FEATURE TEXT ACCENT
+========================================================= */
+
+.campus-numbers-visual-caption span {
+  color:
+    var(--bright-green);
+
+
+  font-size:
+    inherit;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    inherit;
+
+
+  line-height:
+    inherit;
+
+
+  letter-spacing:
+    inherit;
+}
+
+
+/* =========================================================
+   STATS SECTION
+========================================================= */
+
+.campus-numbers-stats {
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--deep-green);
+
+
+  padding:
+    clamp(
+      90px,
+      7vw,
+      125px
+    )
+    0
+    clamp(
+      105px,
+      8vw,
+      145px
+    );
+}
+
+
+/* =========================================================
+   NO GLOW
+========================================================= */
+
+.campus-numbers-stats::before,
+.campus-numbers-stats::after {
+  content:
+    none;
+}
+
+
+/* =========================================================
+   INNER
+========================================================= */
+
+.campus-numbers-inner {
+  position:
+    relative;
+
+
+  z-index:
+    2;
+
+
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--page-padding) *
+          2
+        )
+      ),
+      1680px
+    );
+
+
+  margin:
+    0 auto;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.campus-numbers-heading {
+  margin:
+    0
+    0
+    clamp(
+      58px,
+      5vw,
+      82px
+    );
+
+
+  will-change:
+    opacity,
+    transform;
+}
+
+
+/* =========================================================
+   HEADING TEXT
+========================================================= */
+
+.campus-numbers-heading p {
+  width:
+    min(
+      850px,
+      100%
+    );
+
+
+  margin:
+    0;
+
+
+  color:
+    #ffffff;
+
+
+  font-size:
+    clamp(
+      42px,
+      4vw,
+      64px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    0.99;
+
+
+  letter-spacing:
+    -0.056em;
+}
+
+
+/* =========================================================
+   HEADING ACCENT
+========================================================= */
+
+.campus-numbers-heading span {
+  color:
+    var(--bright-green);
+
+
+  font-size:
+    inherit;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    inherit;
+
+
+  line-height:
+    inherit;
+
+
+  letter-spacing:
+    inherit;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.campus-numbers-grid {
+  display:
+    grid;
+
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+
+  column-gap:
+    clamp(
+      28px,
+      3vw,
+      54px
+    );
+
+
+  row-gap:
+    clamp(
+      54px,
+      5vw,
+      76px
+    );
+
+
+  width:
+    100%;
+}
+
+
+/* =========================================================
+   ITEM
+========================================================= */
+
+.campus-number-item {
+  position:
+    relative;
+
+
+  min-width:
+    0;
+
+
+  margin:
+    0;
+
+
+  padding:
+    7px
+    0
+    5px
+    clamp(
+      18px,
+      1.5vw,
+      28px
+    );
+
+
+  border-left:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.2
+    );
+
+
+  will-change:
+    opacity,
+    transform;
+}
+
+
+/* =========================================================
+   NUMBER
+
+   SMALL / BALANCED
+========================================================= */
+
+.campus-number-item strong {
+  display:
+    block;
+
+
+  margin:
+    0;
+
+
+  color:
+    #ffffff;
+
+
+  font-size:
+    clamp(
+      40px,
+      3.5vw,
+      56px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    600;
+
+
+  line-height:
+    0.96;
+
+
+  letter-spacing:
+    -0.055em;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.campus-number-item span {
+  display:
+    block;
+
+
+  max-width:
+    165px;
+
+
+  margin-top:
+    clamp(
+      10px,
+      0.9vw,
+      14px
+    );
+
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.68
+    );
+
+
+  font-size:
+    clamp(
+      13px,
+      0.9vw,
+      16px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    400;
+
+
+  line-height:
+    1.35;
+
+
+  letter-spacing:
+    -0.012em;
+}
+
+
+/* =========================================================
+   SMALL ORANGE DETAIL
+========================================================= */
+
+.campus-number-item:nth-child(1)::after,
+.campus-number-item:nth-child(5)::after {
+  content:
+    "";
+
+
+  position:
+    absolute;
+
+
+  top:
+    0;
+
+
+  left:
+    -1px;
+
+
+  width:
+    2px;
+
+
+  height:
+    22px;
+
+
+  background:
+    var(--orange);
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (
+  min-width: 1500px
+) {
+
+  .campus-numbers {
+    --page-padding:
+      72px;
+  }
+
+
+  .campus-numbers-visual {
+    width:
+      100%;
+
+
+    height:
+      84svh;
+
+
+    min-height:
+      700px;
+
+
+    max-height:
+      940px;
+  }
+
+
+  .campus-numbers-visual-caption {
+    right:
+      72px;
+
+
+    width:
+      min(
+        620px,
+        42%
+      );
+
+
+    font-size:
+      62px;
+  }
+
+
+  .campus-numbers-heading p {
+    font-size:
+      62px;
+  }
+
+
+  .campus-number-item strong {
+    font-size:
+      54px;
+  }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media
+(
+  max-width: 1200px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .campus-numbers {
+    --page-padding:
+      42px;
+  }
+
+
+  .campus-numbers-visual {
+    width:
+      100%;
+
+
+    height:
+      82vh;
+
+    height:
+      82svh;
+
+
+    min-height:
+      600px;
+  }
+
+
+  .campus-numbers-visual-caption {
+    right:
+      42px;
+
+
+    bottom:
+      62px;
+
+
+    width:
+      45%;
+
+
+    font-size:
+      clamp(
+        38px,
+        4.5vw,
+        52px
+      );
+  }
+
+
+  .campus-numbers-stats {
+    padding:
+      82px
+      0
+      102px;
+  }
+
+
+  .campus-numbers-heading {
+    margin-bottom:
+      54px;
+  }
+
+
+  .campus-numbers-heading p {
+    font-size:
+      clamp(
+        40px,
+        4.7vw,
+        54px
+      );
+  }
+
+
+  .campus-numbers-grid {
+    column-gap:
+      22px;
+
+
+    row-gap:
+      48px;
+  }
+
+
+  .campus-number-item {
+    padding-left:
+      16px;
+  }
+
+
+  .campus-number-item strong {
+    font-size:
+      clamp(
+        36px,
+        4vw,
+        46px
+      );
+  }
+
+
+  .campus-number-item span {
+    font-size:
+      clamp(
+        12px,
+        1.3vw,
+        14px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(
+  max-width: 900px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .campus-numbers {
+    --page-padding:
+      30px;
+  }
+
+
+  .campus-numbers-visual-caption {
+    right:
+      30px;
+
+
+    width:
+      48%;
+  }
+
+
+  .campus-numbers-grid {
+    column-gap:
+      18px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .campus-numbers {
+    --page-padding:
+      20px;
+  }
+
+
+  /* =====================================================
+     FULL WIDTH MOBILE IMAGE
+  ===================================================== */
+
+  .campus-numbers-visual {
+    width:
+      100%;
+
+
+    height:
+      78vh;
+
+    height:
+      78svh;
+
+
+    min-height:
+      560px;
+
+
+    max-height:
+      760px;
+  }
+
+
+  .campus-numbers-image {
+    top:
+      0;
+
+
+    left:
+      0;
+
+
+    width:
+      100%;
+
+
+    height:
+      100%;
+
+
+    object-fit:
+      cover;
+
+
+    object-position:
+      center center;
+
+
+    transform:
+      scale(
+        1.025
+      );
+  }
+
+
+  /* =====================================================
+     MOBILE OVERLAY
+  ===================================================== */
+
+  .campus-numbers-overlay {
+    background:
+      linear-gradient(
+        180deg,
+
+        rgba(
+          7,
+          63,
+          50,
+          0.03
+        )
+        0%,
+
+        rgba(
+          7,
+          63,
+          50,
+          0
+        )
+        40%,
+
+        rgba(
+          7,
+          63,
+          50,
+          0.08
+        )
+        62%,
+
+        rgba(
+          7,
+          63,
+          50,
+          0.5
+        )
+        100%
+      );
+  }
+
+
+  /* =====================================================
+     MOBILE FEATURE TEXT
+  ===================================================== */
+
+  .campus-numbers-visual-caption {
+    left:
+      20px;
+
+
+    right:
+      auto;
+
+
+    bottom:
+      42px;
+
+
+    width:
+      calc(
+        100% -
+        40px
+      );
+
+
+    max-width:
+      520px;
+
+
+    font-size:
+      clamp(
+        34px,
+        8.8vw,
+        44px
+      );
+
+
+    font-weight:
+      550;
+
+
+    line-height:
+      1;
+
+
+    letter-spacing:
+      -0.055em;
+  }
+
+
+  /* =====================================================
+     STATS
+  ===================================================== */
+
+  .campus-numbers-stats {
+    padding:
+      68px
+      0
+      78px;
+  }
+
+
+  .campus-numbers-inner {
+    width:
+      calc(
+        100% -
+        40px
+      );
+  }
+
+
+  /* =====================================================
+     HEADING
+  ===================================================== */
+
+  .campus-numbers-heading {
+    margin-bottom:
+      42px;
+  }
+
+
+  .campus-numbers-heading p {
+    font-size:
+      clamp(
+        34px,
+        8.8vw,
+        44px
+      );
+
+
+    line-height:
+      1;
+
+
+    letter-spacing:
+      -0.055em;
+  }
+
+
+  /* =====================================================
+     GRID
+  ===================================================== */
+
+  .campus-numbers-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+
+
+    column-gap:
+      16px;
+
+
+    row-gap:
+      36px;
+  }
+
+
+  .campus-number-item {
+    padding:
+      4px
+      0
+      3px
+      13px;
+  }
+
+
+  .campus-number-item strong {
+    font-size:
+      clamp(
+        31px,
+        8vw,
+        39px
+      );
+
+
+    line-height:
+      0.98;
+
+
+    letter-spacing:
+      -0.05em;
+  }
+
+
+  .campus-number-item span {
+    max-width:
+      125px;
+
+
+    margin-top:
+      8px;
+
+
+    font-size:
+      clamp(
+        11px,
+        3vw,
+        13px
+      );
+  }
+
+
+  .campus-number-item:nth-child(1)::after,
+  .campus-number-item:nth-child(5)::after {
+    height:
+      17px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  .campus-numbers {
+    --page-padding:
+      17px;
+  }
+
+
+  .campus-numbers-visual {
+    width:
+      100%;
+
+
+    height:
+      75vh;
+
+    height:
+      75svh;
+
+
+    min-height:
+      530px;
+  }
+
+
+  .campus-numbers-visual-caption {
+    left:
+      17px;
+
+
+    bottom:
+      34px;
+
+
+    width:
+      calc(
+        100% -
+        34px
+      );
+
+
+    font-size:
+      clamp(
+        31px,
+        8.4vw,
+        39px
+      );
+  }
+
+
+  .campus-numbers-stats {
+    padding:
+      60px
+      0
+      68px;
+  }
+
+
+  .campus-numbers-inner {
+    width:
+      calc(
+        100% -
+        34px
+      );
+  }
+
+
+  .campus-numbers-heading {
+    margin-bottom:
+      36px;
+  }
+
+
+  .campus-numbers-heading p {
+    font-size:
+      clamp(
+        31px,
+        8.4vw,
+        39px
+      );
+  }
+
+
+  .campus-numbers-grid {
+    column-gap:
+      13px;
+
+
+    row-gap:
+      32px;
+  }
+
+
+  .campus-number-item {
+    padding-left:
+      11px;
+  }
+
+
+  .campus-number-item strong {
+    font-size:
+      clamp(
+        28px,
+        7.6vw,
+        35px
+      );
+  }
+
+
+  .campus-number-item span {
+    font-size:
+      11px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 360px
+) {
+
+  .campus-numbers-visual {
+    width:
+      100%;
+
+
+    min-height:
+      500px;
+  }
+
+
+  .campus-numbers-visual-caption {
+    font-size:
+      29px;
+  }
+
+
+  .campus-numbers-heading p {
+    font-size:
+      29px;
+  }
+
+
+  .campus-numbers-grid {
+    column-gap:
+      10px;
+
+
+    row-gap:
+      28px;
+  }
+
+
+  .campus-number-item {
+    padding-left:
+      9px;
+  }
+
+
+  .campus-number-item strong {
+    font-size:
+      27px;
+  }
+
+
+  .campus-number-item span {
+    font-size:
+      10.5px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE LANDSCAPE
+========================================================= */
+
+@media
+(
+  max-width: 900px
+)
+and
+(
+  max-height: 520px
+)
+and
+(
+  orientation: landscape
+) {
+
+  .campus-numbers-visual {
+    width:
+      100%;
+
+
+    height:
+      94svh;
+
+
+    min-height:
+      420px;
+  }
+
+
+  .campus-numbers-visual-caption {
+    left:
+      auto;
+
+
+    right:
+      30px;
+
+
+    bottom:
+      32px;
+
+
+    width:
+      43%;
+
+
+    font-size:
+      clamp(
+        28px,
+        4vw,
+        36px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+
+  .campus-numbers-image,
+  .campus-numbers-visual-caption,
+  .campus-numbers-heading,
+  .campus-number-item {
+    opacity:
+      1 !important;
+
+
+    transform:
+      none !important;
+  }
+
+}

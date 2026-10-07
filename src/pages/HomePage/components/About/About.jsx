@@ -943,6 +943,15 @@ const About = () => {
                 resilience and awareness needed to become
                 capable learners prepared for the world
                 beyond the classroom.
+ Our approach also creates opportunities for
+                children to reflect on what they learn,
+                understand their individual strengths and
+                apply their knowledge with confidence.
+                Through consistent guidance and purposeful
+                experiences, students develop the habits,
+                resilience and awareness needed to become
+                capable learners prepared for the world
+                beyond the classroom.
 
               </p>
 

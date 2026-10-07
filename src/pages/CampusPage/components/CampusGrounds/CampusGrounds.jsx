@@ -8,7 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./CampusGrounds.css";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -134,11 +133,10 @@ const campusImages = [
 
 
 /* =========================================================
-   CAMPUS GROUNDS
+   COMPONENT
 ========================================================= */
 
 const CampusGrounds = () => {
-
   const sectionRef =
     useRef(null);
 
@@ -156,11 +154,10 @@ const CampusGrounds = () => {
 
 
   /* =========================================================
-     ANIMATION
+     GSAP
   ========================================================= */
 
   useLayoutEffect(() => {
-
     const section =
       sectionRef.current;
 
@@ -191,9 +188,8 @@ const CampusGrounds = () => {
     const ctx =
       gsap.context(() => {
 
-
         /* =====================================================
-           WORD REVEAL
+           INTRO WORD REVEAL
         ===================================================== */
 
         const words =
@@ -206,7 +202,7 @@ const CampusGrounds = () => {
           words,
           {
             color:
-              "rgba(37, 32, 30, 0.18)",
+              "rgba(11, 130, 85, 0.14)",
           }
         );
 
@@ -215,88 +211,92 @@ const CampusGrounds = () => {
           words,
           {
             color:
-              "rgba(29, 27, 25, 0.97)",
+              "#0b8255",
 
             stagger: {
-              each: 0.014,
+              each:
+                0.011,
             },
 
             ease:
               "none",
 
             scrollTrigger: {
-
               trigger:
                 introSection,
 
               start:
-                "top 86%",
+                "top 76%",
 
               end:
-                "bottom 25%",
+                "bottom 34%",
 
               scrub:
-                0.72,
+                0.7,
 
               invalidateOnRefresh:
                 true,
-
             },
-
           }
         );
 
 
         /* =====================================================
-           TEXT PARALLAX
+           DESKTOP TEXT PARALLAX
         ===================================================== */
 
-        gsap.fromTo(
-          introTextElement,
+        mm.add(
+          "(min-width: 769px)",
 
-          {
-            y: 18,
-          },
+          () => {
+            gsap.fromTo(
+              introTextElement,
 
-          {
-            y: -7,
+              {
+                y:
+                  12,
+              },
 
-            ease:
-              "none",
+              {
+                y:
+                  -12,
 
-            scrollTrigger: {
+                ease:
+                  "none",
 
-              trigger:
-                introSection,
+                scrollTrigger: {
+                  trigger:
+                    introSection,
 
-              start:
-                "top bottom",
+                  start:
+                    "top bottom",
 
-              end:
-                "bottom top",
+                  end:
+                    "bottom top",
 
-              scrub:
-                0.8,
-
-            },
-
+                  scrub:
+                    0.8,
+                },
+              }
+            );
           }
         );
 
 
         /* =====================================================
-           INFINITE GROUNDS MARQUEE
+           MARQUEE
         ===================================================== */
 
         const marqueeTween =
           gsap.to(
             marqueeTrack,
+
             {
               xPercent:
                 -50,
 
               duration:
-                24,
+                30,
 
               repeat:
                 -1,
@@ -308,13 +308,13 @@ const CampusGrounds = () => {
 
 
         /* =====================================================
-           DESKTOP PHOTO REVEAL
+           DESKTOP PHOTO REVEALS
         ===================================================== */
 
         mm.add(
           "(min-width: 769px)",
-          () => {
 
+          () => {
             const photos =
               photoRefs.current.filter(
                 Boolean
@@ -326,7 +326,6 @@ const CampusGrounds = () => {
                 card,
                 index
               ) => {
-
                 const image =
                   card.querySelector(
                     "img"
@@ -335,17 +334,18 @@ const CampusGrounds = () => {
 
                 gsap.fromTo(
                   card,
+
                   {
                     opacity:
                       0,
 
                     y:
-                      52 +
+                      36 +
                       (
                         index %
                         3
                       ) *
-                        12,
+                        7,
                   },
 
                   {
@@ -359,7 +359,6 @@ const CampusGrounds = () => {
                       "none",
 
                     scrollTrigger: {
-
                       trigger:
                         card,
 
@@ -367,27 +366,27 @@ const CampusGrounds = () => {
                         "top 94%",
 
                       end:
-                        "top 70%",
+                        "top 72%",
 
                       scrub:
                         0.65,
-
                     },
-
                   }
                 );
 
 
-                if (image) {
-
+                if (
+                  image
+                ) {
                   gsap.fromTo(
                     image,
+
                     {
                       scale:
-                        1.07,
+                        1.05,
 
                       yPercent:
-                        -3,
+                        -2.5,
                     },
 
                     {
@@ -395,13 +394,12 @@ const CampusGrounds = () => {
                         1,
 
                       yPercent:
-                        3,
+                        2.5,
 
                       ease:
                         "none",
 
                       scrollTrigger: {
-
                         trigger:
                           card,
 
@@ -412,30 +410,25 @@ const CampusGrounds = () => {
                           "bottom top",
 
                         scrub:
-                          0.75,
-
+                          0.72,
                       },
-
                     }
                   );
-
                 }
-
               }
             );
-
           }
         );
 
 
         /* =====================================================
-           MOBILE PHOTO REVEAL
+           MOBILE PHOTO REVEALS
         ===================================================== */
 
         mm.add(
           "(max-width: 768px)",
-          () => {
 
+          () => {
             const photos =
               photoRefs.current.filter(
                 Boolean
@@ -444,9 +437,9 @@ const CampusGrounds = () => {
 
             photos.forEach(
               (
-                card
+                card,
+                index
               ) => {
-
                 const image =
                   card.querySelector(
                     "img"
@@ -455,12 +448,18 @@ const CampusGrounds = () => {
 
                 gsap.fromTo(
                   card,
+
                   {
                     opacity:
                       0,
 
                     y:
-                      28,
+                      20 +
+                      (
+                        index %
+                        2
+                      ) *
+                        4,
                   },
 
                   {
@@ -471,13 +470,12 @@ const CampusGrounds = () => {
                       0,
 
                     duration:
-                      0.72,
+                      0.68,
 
                     ease:
                       "power3.out",
 
                     scrollTrigger: {
-
                       trigger:
                         card,
 
@@ -486,20 +484,20 @@ const CampusGrounds = () => {
 
                       once:
                         true,
-
                     },
-
                   }
                 );
 
 
-                if (image) {
-
+                if (
+                  image
+                ) {
                   gsap.fromTo(
                     image,
+
                     {
                       scale:
-                        1.05,
+                        1.025,
                     },
 
                     {
@@ -510,7 +508,6 @@ const CampusGrounds = () => {
                         "none",
 
                       scrollTrigger: {
-
                         trigger:
                           card,
 
@@ -521,26 +518,19 @@ const CampusGrounds = () => {
                           "bottom top",
 
                         scrub:
-                          0.5,
-
+                          0.4,
                       },
-
                     }
                   );
-
                 }
-
               }
             );
-
           }
         );
 
 
         return () => {
-
           marqueeTween.kill();
-
         };
 
       }, section);
@@ -552,17 +542,35 @@ const CampusGrounds = () => {
 
     let resizeTimer;
 
+    let previousWidth =
+      window.innerWidth;
+
 
     const refresh =
       () => {
-
         ScrollTrigger.refresh();
-
       };
 
 
     const handleResize =
       () => {
+        const currentWidth =
+          window.innerWidth;
+
+
+        if (
+          Math.abs(
+            currentWidth -
+            previousWidth
+          ) < 3
+        ) {
+          return;
+        }
+
+
+        previousWidth =
+          currentWidth;
+
 
         clearTimeout(
           resizeTimer
@@ -572,9 +580,8 @@ const CampusGrounds = () => {
         resizeTimer =
           setTimeout(
             refresh,
-            120
+            150
           );
-
       };
 
 
@@ -585,70 +592,57 @@ const CampusGrounds = () => {
 
 
     images.forEach(
-      (
-        image
-      ) => {
-
+      (image) => {
         if (
           !image.complete
         ) {
-
           image.addEventListener(
             "load",
             refresh
           );
-
         }
-
       }
     );
 
 
-    if (
-      document.fonts?.ready
-    ) {
-
-      document.fonts.ready.then(
+    document.fonts
+      ?.ready
+      ?.then(
         refresh
       );
-
-    }
 
 
     window.addEventListener(
       "resize",
-      handleResize
+      handleResize,
+      {
+        passive:
+          true,
+      }
     );
 
 
     requestAnimationFrame(
       () => {
-
         requestAnimationFrame(
           refresh
         );
-
       }
     );
 
 
     return () => {
-
       clearTimeout(
         resizeTimer
       );
 
 
       images.forEach(
-        (
-          image
-        ) => {
-
+        (image) => {
           image.removeEventListener(
             "load",
             refresh
           );
-
         }
       );
 
@@ -662,7 +656,6 @@ const CampusGrounds = () => {
       mm.revert();
 
       ctx.revert();
-
     };
 
   }, []);
@@ -695,24 +688,16 @@ const CampusGrounds = () => {
           ) => (
 
             <div
-              key={
-                `${prefix}-${index}`
-              }
+              key={`${prefix}-${index}`}
 
               className="campus-grounds-marquee-item"
             >
 
-              <div
-                className="campus-marquee-thumb"
-              >
+              <div className="campus-marquee-thumb">
 
                 <img
-                  src={
-                    image
-                  }
-
+                  src={image}
                   alt=""
-
                   draggable="false"
                 />
 
@@ -738,31 +723,24 @@ const CampusGrounds = () => {
   ========================================================= */
 
   return (
-
     <section
       ref={sectionRef}
-
       className="campus-grounds"
     >
 
-
       {/* =====================================================
           INTRO
-      ====================================================== */}
+      ===================================================== */}
 
       <section
         ref={introSectionRef}
-
         className="campus-intro"
       >
 
-        <div
-          className="campus-intro-inner"
-        >
+        <div className="campus-intro-inner">
 
           <p
             ref={introTextRef}
-
             className="campus-intro-text"
           >
 
@@ -775,10 +753,7 @@ const CampusGrounds = () => {
                 ) => (
 
                   <span
-                    key={
-                      `${word}-${index}`
-                    }
-
+                    key={`${word}-${index}`}
                     className="campus-intro-word"
                   >
                     {word}{" "}
@@ -796,28 +771,20 @@ const CampusGrounds = () => {
 
       {/* =====================================================
           GROUNDS
-      ====================================================== */}
+      ===================================================== */}
 
-      <section
-        className="campus-grounds-main"
-      >
-
+      <section className="campus-grounds-main">
 
         {/* =================================================
             MARQUEE
         ================================================= */}
 
-        <div
-          className="campus-grounds-marquee-section"
-        >
+        <div className="campus-grounds-marquee-section">
 
-          <div
-            className="campus-grounds-marquee-shell"
-          >
+          <div className="campus-grounds-marquee-shell">
 
             <div
               ref={marqueeTrackRef}
-
               className="campus-grounds-marquee-track"
             >
 
@@ -839,32 +806,26 @@ const CampusGrounds = () => {
 
 
         {/* =================================================
-            DESCRIPTION
-
-            MADE MUCH BIGGER
+            SMALL DESCRIPTION
         ================================================= */}
 
-        <div
-          className="campus-grounds-caption"
-        >
+        <div className="campus-grounds-caption">
 
           <p>
-            Every outdoor space is a
-            learning space. The
-            architecture doesn't separate
-            sport from study. It refuses to.
+            Every outdoor space is a learning
+            space. The architecture doesn't
+            separate sport from study. It
+            refuses to.
           </p>
 
         </div>
 
 
         {/* =================================================
-            CAMPUS PHOTOS
+            PHOTO GRID
         ================================================= */}
 
-        <div
-          className="campus-photo-grid"
-        >
+        <div className="campus-photo-grid">
 
           {campusImages.map(
             (
@@ -873,20 +834,14 @@ const CampusGrounds = () => {
             ) => (
 
               <figure
-                key={
-                  image.id
-                }
+                key={image.id}
 
                 ref={
-                  (
-                    element
-                  ) => {
-
+                  (element) => {
                     photoRefs.current[
                       index
                     ] =
                       element;
-
                   }
                 }
 
@@ -897,19 +852,16 @@ const CampusGrounds = () => {
               >
 
                 <img
-                  src={
-                    image.src
-                  }
-
-                  alt={
-                    image.alt
-                  }
+                  src={image.src}
+                  alt={image.alt}
 
                   loading={
                     index < 3
                       ? "eager"
                       : "lazy"
                   }
+
+                  decoding="async"
 
                   draggable="false"
                 />
@@ -921,14 +873,10 @@ const CampusGrounds = () => {
 
         </div>
 
-
       </section>
 
-
     </section>
-
   );
-
 };
 
 

@@ -1,0 +1,568 @@
+/* =========================================================
+   VIDYA ACADEMY
+   ABOUT STATEMENT
+========================================================= */
+
+.about-statement {
+  --cream:
+    #f5f3e9;
+
+  --deep-green:
+    #0b563b;
+
+  --green:
+    #0b8255;
+
+  --bright-green:
+    #26b474;
+
+  --orange:
+    #f9a01b;
+
+  --page-padding:
+    clamp(
+      68px,
+      5vw,
+      100px
+    );
+
+
+  position:
+    relative;
+
+
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  width:
+    100%;
+
+
+  min-height:
+    92vh;
+
+  min-height:
+    92svh;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--cream);
+
+
+  color:
+    var(--green);
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   FONT
+========================================================= */
+
+.about-statement,
+.about-statement *,
+.about-statement *::before,
+.about-statement *::after {
+  box-sizing:
+    border-box;
+
+  font-family:
+    "Manrope",
+    sans-serif !important;
+}
+
+
+/* =========================================================
+   INNER
+========================================================= */
+
+.about-statement-inner {
+  width:
+    min(
+      calc(
+        100% -
+        (
+          var(--page-padding) *
+          2
+        )
+      ),
+      1580px
+    );
+
+
+  margin:
+    0 auto;
+
+
+  padding:
+    clamp(
+      110px,
+      10vw,
+      165px
+    )
+    0
+    clamp(
+      110px,
+      10vw,
+      165px
+    );
+}
+
+
+/* =========================================================
+   MAIN STATEMENT
+========================================================= */
+
+.about-statement-text {
+  width:
+    min(
+      1450px,
+      97%
+    );
+
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  color:
+    var(--green);
+
+
+  font-family:
+    "Manrope",
+    sans-serif !important;
+
+
+  font-size:
+    clamp(
+      47px,
+      4.5vw,
+      72px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    520;
+
+
+  line-height:
+    0.99;
+
+
+  letter-spacing:
+    -0.058em;
+
+
+  text-wrap:
+    pretty;
+
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   WORDS
+========================================================= */
+
+.about-statement-word {
+  display:
+    inline;
+
+
+  color:
+    rgba(
+      11,
+      130,
+      85,
+      0.14
+    );
+
+
+  font-family:
+    "Manrope",
+    sans-serif !important;
+
+
+  font-size:
+    inherit;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    inherit;
+
+
+  line-height:
+    inherit;
+
+
+  letter-spacing:
+    inherit;
+}
+
+
+/* =========================================================
+   FINAL PHRASE
+========================================================= */
+
+.about-statement-word--accent {
+  color:
+    rgba(
+      38,
+      180,
+      116,
+      0.15
+    );
+
+
+  font-family:
+    "Manrope",
+    sans-serif !important;
+
+
+  font-size:
+    inherit;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    inherit;
+
+
+  line-height:
+    inherit;
+
+
+  letter-spacing:
+    inherit;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (
+  min-width: 1500px
+) {
+
+  .about-statement {
+    min-height:
+      94svh;
+  }
+
+
+  .about-statement-inner {
+    max-width:
+      1620px;
+  }
+
+
+  .about-statement-text {
+    width:
+      min(
+        1510px,
+        97%
+      );
+
+
+    font-size:
+      clamp(
+        54px,
+        4vw,
+        74px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media
+(
+  max-width: 1200px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .about-statement {
+    --page-padding:
+      42px;
+
+
+    min-height:
+      86svh;
+  }
+
+
+  .about-statement-inner {
+    padding:
+      95px
+      0
+      110px;
+  }
+
+
+  .about-statement-text {
+    width:
+      100%;
+
+
+    font-size:
+      clamp(
+        40px,
+        4.5vw,
+        56px
+      );
+
+
+    line-height:
+      1.01;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(
+  max-width: 900px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .about-statement {
+    --page-padding:
+      30px;
+  }
+
+
+  .about-statement-text {
+    font-size:
+      clamp(
+        37px,
+        4.8vw,
+        46px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .about-statement {
+    --page-padding:
+      20px;
+
+
+    display:
+      block;
+
+
+    min-height:
+      auto;
+  }
+
+
+  .about-statement-inner {
+    width:
+      calc(
+        100% - 40px
+      );
+
+
+    padding:
+      78px
+      0
+      88px;
+  }
+
+
+  .about-statement-text {
+    width:
+      100%;
+
+
+    max-width:
+      620px;
+
+
+    font-size:
+      clamp(
+        37px,
+        9.5vw,
+        49px
+      );
+
+
+    font-weight:
+      520;
+
+
+    line-height:
+      1;
+
+
+    letter-spacing:
+      -0.055em;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  .about-statement {
+    --page-padding:
+      18px;
+  }
+
+
+  .about-statement-inner {
+    width:
+      calc(
+        100% - 36px
+      );
+
+
+    padding:
+      68px
+      0
+      76px;
+  }
+
+
+  .about-statement-text {
+    font-size:
+      clamp(
+        33px,
+        9vw,
+        42px
+      );
+
+
+    line-height:
+      1.02;
+
+
+    letter-spacing:
+      -0.052em;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 360px
+) {
+
+  .about-statement-inner {
+    width:
+      calc(
+        100% - 30px
+      );
+
+
+    padding:
+      60px
+      0
+      68px;
+  }
+
+
+  .about-statement-text {
+    font-size:
+      31px;
+
+
+    line-height:
+      1.03;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+
+  .about-statement-text {
+    transform:
+      none !important;
+  }
+
+
+  .about-statement-word {
+    color:
+      var(--green) !important;
+  }
+
+
+  .about-statement-word--accent {
+    color:
+      var(--bright-green) !important;
+  }
+
+}
