@@ -23,7 +23,7 @@ const aboutImages = [
     id: "01",
 
     src:
-      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2200&q=92",
+      "https://images.unsplash.com/photo-1692269725827-699e04a11cdf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGluZGlhbiUyMHNjaG9vbHxlbnwwfHwwfHx8MA%3D%3D",
 
     alt:
       "Learning at Vidya Academy",
@@ -33,7 +33,7 @@ const aboutImages = [
     id: "02",
 
     src:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=2200&q=92",
+      "https://images.unsplash.com/photo-1623863568368-69e4cbe6cc0b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzh8fGluZGlhbiUyMHNjaG9vbHxlbnwwfHwwfHx8MA%3D%3D",
 
     alt:
       "Students learning together",
@@ -43,7 +43,7 @@ const aboutImages = [
     id: "03",
 
     src:
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2800&q=94",
+      "https://images.unsplash.com/photo-1524069290683-0457abfe42c3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5kaWFuJTIwc2Nob29sfGVufDB8fDB8fHww",
 
     alt:
       "Students together at Vidya Academy",
@@ -56,7 +56,7 @@ const aboutImages = [
     id: "04",
 
     src:
-      "https://images.unsplash.com/photo-1504151932400-72d4384f04b3?auto=format&fit=crop&w=2200&q=92",
+      "https://images.unsplash.com/flagged/photo-1574097656146-0b43b7660cb6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aW5kaWFuJTIwc2Nob29sfGVufDB8fDB8fHww",
 
     alt:
       "School community at Vidya Academy",

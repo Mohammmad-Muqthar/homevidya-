@@ -13,25 +13,25 @@ const galleryImages = [
     id: "01",
     badge: "LEARN",
     image:
-      "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=1800&q=90",
+      "https://media.istockphoto.com/id/1343473005/photo/teacher-teaching-concepts-of-windmill-in-the-classroom-to-students.webp?a=1&b=1&s=612x612&w=0&k=20&c=5Fg8kxgI9HIz7TSA4I8L0adzprCs4uLXNq4T_EgvyJA=",
     alt:
-      "Indian school students in uniform studying and interacting in a classroom",
+      "Indian school students in traditional uniforms engaged in classroom learning",
   },
   {
     id: "02",
     badge: "EXPLORE",
     image:
-      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1800&q=90",
+      "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "Students exploring learning resources together in an educational setting",
+      "School building architecture with a classic open veranda and corridor",
   },
   {
     id: "03",
     badge: "GROW",
     image:
-      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1600792170156-7fdc12ed6733?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGluZGlhbiUyMHNjaG9vbHN8ZW58MHx8MHx8fDA%3D",
     alt:
-      "Vibrant school campus environment and learning space",
+      "Students playing and having fun on the school ground campus",
   },
 ];
 
