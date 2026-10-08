@@ -2,25 +2,17 @@
    VIDYA ACADEMY
    CAMPUS HERO
 
-   GAP / EMPTY AREA COLOR:
-   #F5F3E9
+   IMPORTANT FIX:
 
-   HERO TITLE:
-   MAIN TEXT       #FFFFFF
-   ACCENT TEXT     #8FE3B4
+   .campus-hero
+   MUST NOT HAVE:
+   height: 100vh;
+   height: 100svh;
 
-   DESKTOP:
-   FULLSCREEN CENTER IMAGE
-   -> SCROLL
-   -> 3 × 3 CAMPUS WALL
+   The parent needs AUTO height so ScrollTrigger's
+   pin-spacer can push the NEXT SECTION down normally.
 
-   MOBILE:
-   ONE FULLSCREEN CAMPUS IMAGE
-
-   IMPORTANT:
-   - NO WHITE SPACE BELOW HERO
-   - NO WHITE GRID GAPS
-   - CONSTANT LOOKING IMAGE GAP DURING SCROLL
+   Only .campus-hero-stage is full screen.
 ========================================================= */
 
 
@@ -29,57 +21,82 @@
 ========================================================= */
 
 .campus-hero {
-  --white: #ffffff;
+  --cream:
+    #f5f3e9;
 
-  --cream: #f5f3e9;
+  --green:
+    #0b8255;
 
-  --green: #0b8255;
+  --deep-green:
+    #0b563b;
 
-  --deep-green: #0b563b;
+  --light-green:
+    #8fe3b4;
 
-  --deep-green-2: #073f32;
-
-  --bright-green: #26b474;
-
-  --hero-light-green: #8fe3b4;
-
-  --orange: #f9a01b;
-
-
-  /* =====================================================
-     FINAL DESKTOP WALL GAP
-  ===================================================== */
+  --orange:
+    #f9a01b;
 
   --campus-gap:
     clamp(
       12px,
-      0.9vw,
-      17px
+      0.95vw,
+      18px
     );
 
-
-  --campus-edge-gap:
+  --campus-edge:
     clamp(
       8px,
-      0.65vw,
+      0.7vw,
       12px
     );
 
 
-  position: relative;
+  position:
+    relative;
 
-  width: 100%;
 
-  min-height: 100vh;
-  min-height: 100svh;
+  z-index:
+    1;
 
-  margin: 0;
 
-  padding: 0;
+  width:
+    100%;
 
-  overflow: visible;
 
-  background: var(--cream);
+  /*
+    CRITICAL FIX.
+
+    Let pinSpacing expand this section.
+
+    Do NOT lock this parent to 100vh.
+  */
+
+  height:
+    auto;
+
+
+  min-height:
+    100vh;
+
+  min-height:
+    100svh;
+
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  overflow:
+    visible;
+
+
+  background:
+    var(--deep-green);
+
 
   font-family:
     "Manrope",
@@ -95,7 +112,9 @@
 .campus-hero *,
 .campus-hero *::before,
 .campus-hero *::after {
-  box-sizing: border-box;
+  box-sizing:
+    border-box;
+
 
   font-family:
     "Manrope",
@@ -105,48 +124,163 @@
 
 /* =========================================================
    STAGE
+
+   THIS IS THE ONLY 100VH ELEMENT.
 ========================================================= */
 
 .campus-hero-stage {
-  position: relative;
+  position:
+    relative;
 
-  width: 100%;
 
-  height: 100vh;
-  height: 100svh;
+  z-index:
+    1;
 
-  min-height: 620px;
 
-  margin: 0;
+  width:
+    100%;
 
-  padding: 0;
 
-  overflow: hidden;
+  height:
+    100vh;
 
-  background: var(--cream);
+  height:
+    100svh;
 
-  isolation: isolate;
 
-  contain: none;
+  min-height:
+    0;
 
-  backface-visibility: hidden;
 
-  -webkit-backface-visibility: hidden;
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--deep-green);
+
+
+  isolation:
+    isolate;
+
+
+  contain:
+    paint;
 }
 
 
 /* =========================================================
-   IMAGE WALL
+   SAFETY BACKGROUND
+========================================================= */
+
+.campus-hero-safety {
+  position:
+    absolute;
+
+
+  z-index:
+    0;
+
+
+  inset:
+    -4px;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--deep-green);
+
+
+  pointer-events:
+    none;
+}
+
+
+.campus-hero-safety img {
+  position:
+    absolute;
+
+
+  inset:
+    0;
+
+
+  display:
+    block;
+
+
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
+  max-width:
+    none;
+
+
+  object-fit:
+    cover;
+
+
+  object-position:
+    center 52%;
+
+
+  transform:
+    scale(
+      1.02
+    );
+
+
+  pointer-events:
+    none;
+
+
+  user-select:
+    none;
+
+
+  -webkit-user-drag:
+    none;
+}
+
+
+/* =========================================================
+   COLLAGE WALL
+
+   ONLY THIS LARGE ELEMENT IS TRANSFORMED.
 ========================================================= */
 
 .campus-zoom-wall {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 1;
 
-  inset: 0;
+  z-index:
+    1;
 
-  display: grid;
+
+  inset:
+    -3px;
+
+
+  display:
+    grid;
+
 
   grid-template-columns:
     repeat(
@@ -157,6 +291,7 @@
       )
     );
 
+
   grid-template-rows:
     repeat(
       3,
@@ -166,122 +301,52 @@
       )
     );
 
+
   gap:
     var(--campus-gap);
 
-  width: 100%;
 
-  height: 100%;
+  width:
+    calc(
+      100% + 6px
+    );
+
+
+  height:
+    calc(
+      100% + 6px
+    );
+
+
+  margin:
+    0;
+
 
   padding:
-    var(--campus-edge-gap);
+    var(--campus-edge);
+
 
   background:
     var(--cream);
 
+
   transform:
     scale(
-      3.08
+      3.25
     );
+
 
   transform-origin:
     50% 50%;
 
-  will-change:
-    transform,
-    gap,
-    padding;
-
-  backface-visibility:
-    hidden;
-
-  -webkit-backface-visibility:
-    hidden;
-}
-
-
-/* =========================================================
-   CARD
-========================================================= */
-
-.campus-wall-card {
-  position: relative;
-
-  width: 100%;
-
-  height: 100%;
-
-  min-width: 0;
-
-  min-height: 0;
-
-  margin: 0;
-
-  padding: 0;
-
-  overflow: hidden;
-
-  border: 0;
-
-  border-radius: 0;
-
-  background:
-    var(--cream);
-
-  transform:
-    translateZ(
-      0
-    );
-
-  backface-visibility:
-    hidden;
-
-  -webkit-backface-visibility:
-    hidden;
-}
-
-
-/* =========================================================
-   IMAGE
-========================================================= */
-
-.campus-wall-image {
-  position: absolute;
-
-  inset: 0;
-
-  display: block;
-
-  width: 100%;
-
-  height: 100%;
-
-  max-width: none;
-
-  object-fit: cover;
-
-  object-position:
-    center;
-
-  transform:
-    scale(
-      1.025
-    );
-
-  transform-origin:
-    center center;
-
-  pointer-events: none;
-
-  user-select: none;
-
-  -webkit-user-drag: none;
 
   will-change:
     transform;
 
+
   backface-visibility:
     hidden;
+
 
   -webkit-backface-visibility:
     hidden;
@@ -289,137 +354,286 @@
 
 
 /* =========================================================
-   IMAGE CROPS
+   CARDS
 ========================================================= */
 
+.campus-wall-card {
+  position:
+    relative;
 
-/* 01 — BUILDING */
 
-.campus-wall-card-01
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
+  min-width:
+    0;
+
+
+  min-height:
+    0;
+
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  overflow:
+    hidden;
+
+
+  border:
+    0;
+
+
+  border-radius:
+    0;
+
+
+  background:
+    var(--cream);
+}
+
+
+/* =========================================================
+   WALL IMAGES
+========================================================= */
+
+.campus-wall-image {
+  position:
+    absolute;
+
+
+  inset:
+    0;
+
+
+  display:
+    block;
+
+
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
+  max-width:
+    none;
+
+
+  object-fit:
+    cover;
+
+
+  object-position:
+    center;
+
+
+  transform:
+    none;
+
+
+  pointer-events:
+    none;
+
+
+  user-select:
+    none;
+
+
+  -webkit-user-drag:
+    none;
+}
+
+
+/* =========================================================
+   INDIVIDUAL CROPS
+========================================================= */
+
+.campus-wall-card--01
+.campus-wall-image {
+  object-position:
+    center;
+}
+
+
+.campus-wall-card--02
 .campus-wall-image {
   object-position:
     center 52%;
 }
 
 
-/* 02 — GROUND */
-
-.campus-wall-card-02
+.campus-wall-card--03
 .campus-wall-image {
   object-position:
-    center 58%;
+    center 50%;
 }
 
 
-/* 03 — LIBRARY */
-
-.campus-wall-card-03
+.campus-wall-card--04
 .campus-wall-image {
   object-position:
     center;
 }
 
 
-/* 04 — VERANDA / COURTYARD */
-
-.campus-wall-card-04
+.campus-wall-card--05
 .campus-wall-image {
   object-position:
     center 52%;
 }
 
 
-/* 05 — MAIN CAMPUS */
-
-.campus-wall-card-05
+.campus-wall-card--06
 .campus-wall-image {
   object-position:
-    center 55%;
+    center 48%;
 }
 
 
-/* 06 — POOL */
-
-.campus-wall-card-06
+.campus-wall-card--07
 .campus-wall-image {
   object-position:
     center;
 }
 
 
-/* 07 — SPORTS */
-
-.campus-wall-card-07
+.campus-wall-card--08
 .campus-wall-image {
   object-position:
-    center;
+    center 50%;
 }
 
 
-/* 08 — PLAYGROUND */
-
-.campus-wall-card-08
+.campus-wall-card--09
 .campus-wall-image {
   object-position:
-    center 55%;
-}
-
-
-/* 09 — CAMPUS */
-
-.campus-wall-card-09
-.campus-wall-image {
-  object-position:
-    center 55%;
+    center 52%;
 }
 
 
 /* =========================================================
-   NO CARD OVERLAYS
+   SHADE
 ========================================================= */
 
-.campus-wall-card::before,
-.campus-wall-card::after {
-  content: none;
+.campus-hero-shade {
+  position:
+    absolute;
+
+
+  z-index:
+    3;
+
+
+  inset:
+    0;
+
+
+  background:
+    linear-gradient(
+      180deg,
+
+      rgba(
+        3,
+        30,
+        22,
+        0.16
+      )
+      0%,
+
+      rgba(
+        3,
+        30,
+        22,
+        0.08
+      )
+      36%,
+
+      rgba(
+        3,
+        30,
+        22,
+        0.69
+      )
+      100%
+    );
+
+
+  pointer-events:
+    none;
+
+
+  will-change:
+    opacity;
 }
 
 
 /* =========================================================
-   HERO CONTENT
+   CONTENT
 ========================================================= */
 
 .campus-hero-content {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 6;
+
+  z-index:
+    5;
+
 
   left:
     clamp(
       42px,
-      4vw,
-      72px
+      4.5vw,
+      78px
     );
+
 
   bottom:
     clamp(
-      88px,
+      78px,
       9vh,
-      120px
+      112px
     );
+
 
   width:
     min(
-      1040px,
+      1000px,
       calc(
         100% -
-        84px
+        160px
       )
     );
 
-  pointer-events: none;
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  color:
+    #ffffff;
+
 
   transform-origin:
-    left center;
+    left bottom;
+
 
   will-change:
     transform,
@@ -428,104 +642,124 @@
 
 
 /* =========================================================
+   KICKER
+========================================================= */
+
+.campus-hero-kicker {
+  display:
+    block;
+
+
+  margin:
+    0
+    0
+    18px;
+
+
+  color:
+    var(--orange);
+
+
+  font-size:
+    10px;
+
+
+  font-weight:
+    750;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.16em;
+
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
    TITLE
 ========================================================= */
 
 .campus-hero-title {
-  display: flex;
+  display:
+    flex;
 
-  flex-direction: column;
+
+  flex-direction:
+    column;
+
 
   align-items:
     flex-start;
 
-  width: 100%;
 
-  max-width: 1100px;
-
-  margin: 0;
-
-  padding: 0;
-
-  font-family:
-    "Manrope",
-    sans-serif;
-
-  font-size:
-    clamp(
-      66px,
-      7.7vw,
-      132px
-    );
-
-  font-style: normal;
-
-  font-weight: 600;
-
-  line-height: 0.9;
-
-  letter-spacing:
-    -0.065em;
-
-  text-rendering:
-    geometricPrecision;
-}
+  width:
+    100%;
 
 
-/* =========================================================
-   MAIN TITLE
+  margin:
+    0;
 
-   "A CAMPUS BUILT"
-
-   WHITE
-========================================================= */
-
-.campus-hero-title-main {
-  display: block;
-
-  margin: 0;
 
   color:
     #ffffff;
 
-  font: inherit;
 
-  font-style: normal;
+  font-size:
+    clamp(
+      60px,
+      6.4vw,
+      108px
+    );
 
-  font-weight: inherit;
 
-  line-height: inherit;
+  font-style:
+    normal;
 
-  letter-spacing: inherit;
+
+  font-weight:
+    600;
+
+
+  line-height:
+    0.92;
+
+
+  letter-spacing:
+    -0.06em;
 }
 
 
-/* =========================================================
-   ACCENT TITLE
+.campus-hero-title-main {
+  display:
+    block;
 
-   "WITH INTENTION."
 
-   LIGHT GREEN
-========================================================= */
+  color:
+    #ffffff;
+
+
+  font:
+    inherit;
+}
+
 
 .campus-hero-title-accent {
-  display: block;
+  display:
+    block;
 
-  margin-top:
-    0.015em;
 
   color:
     #8fe3b4;
 
-  font: inherit;
 
-  font-style: normal;
-
-  font-weight: inherit;
-
-  line-height: inherit;
-
-  letter-spacing: inherit;
+  font:
+    inherit;
 }
 
 
@@ -536,18 +770,20 @@
 .campus-hero-description {
   width:
     min(
-      500px,
+      530px,
       100%
     );
 
+
   margin:
     clamp(
-      24px,
-      2.4vw,
-      34px
+      21px,
+      2vw,
+      28px
     )
     0
     0;
+
 
   color:
     rgba(
@@ -557,19 +793,25 @@
       0.86
     );
 
+
   font-size:
     clamp(
-      17px,
-      1.2vw,
-      20px
+      16px,
+      1.15vw,
+      19px
     );
 
-  font-weight: 400;
 
-  line-height: 1.55;
+  font-weight:
+    400;
+
+
+  line-height:
+    1.52;
+
 
   letter-spacing:
-    -0.015em;
+    -0.014em;
 }
 
 
@@ -578,46 +820,70 @@
 ========================================================= */
 
 .campus-hero-scroll {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 6;
+
+  z-index:
+    5;
+
 
   right:
     clamp(
-      28px,
+      32px,
       4vw,
-      72px
+      68px
     );
 
-  bottom: 30px;
 
-  display: flex;
+  bottom:
+    28px;
 
-  align-items: center;
 
-  gap: 10px;
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  gap:
+    10px;
+
 
   color:
     rgba(
       255,
       255,
       255,
-      0.72
+      0.76
     );
 
-  font-size: 10px;
 
-  font-weight: 600;
+  font-size:
+    9px;
 
-  line-height: 1;
+
+  font-weight:
+    650;
+
+
+  line-height:
+    1;
+
 
   letter-spacing:
-    0.11em;
+    0.12em;
+
 
   text-transform:
     uppercase;
 
-  pointer-events: none;
+
+  pointer-events:
+    none;
+
 
   will-change:
     opacity,
@@ -625,20 +891,26 @@
 }
 
 
-/* =========================================================
-   SCROLL TRACK
-========================================================= */
-
 .campus-hero-scroll i {
-  position: relative;
+  position:
+    relative;
 
-  display: block;
 
-  width: 42px;
+  display:
+    block;
 
-  height: 1px;
 
-  overflow: hidden;
+  width:
+    42px;
+
+
+  height:
+    1px;
+
+
+  overflow:
+    hidden;
+
 
   background:
     rgba(
@@ -651,7 +923,9 @@
 
 
 .campus-hero-scroll i::after {
-  position: absolute;
+  position:
+    absolute;
+
 
   inset:
     0
@@ -659,35 +933,28 @@
     0
     0;
 
-  width: 50%;
+
+  width:
+    48%;
+
 
   background:
     var(--orange);
 
-  content: "";
+
+  content:
+    "";
+
 
   animation:
-    campusScrollLine
-    1.65s
+    campusHeroScrollLine
+    1.6s
     ease-in-out
     infinite;
 }
 
 
-/* =========================================================
-   MOBILE SHADE
-========================================================= */
-
-.campus-hero-mobile-shade {
-  display: none;
-}
-
-
-/* =========================================================
-   SCROLL ANIMATION
-========================================================= */
-
-@keyframes campusScrollLine {
+@keyframes campusHeroScrollLine {
 
   0% {
     transform:
@@ -700,7 +967,7 @@
   50% {
     transform:
       translateX(
-        90%
+        85%
       );
   }
 
@@ -709,52 +976,6 @@
     transform:
       translateX(
         230%
-      );
-  }
-
-}
-
-
-/* =========================================================
-   LARGE DESKTOP
-========================================================= */
-
-@media (
-  min-width: 1440px
-) {
-
-  .campus-hero {
-    --campus-gap:
-      17px;
-
-    --campus-edge-gap:
-      11px;
-  }
-
-
-  .campus-hero-content {
-    left:
-      clamp(
-        58px,
-        4vw,
-        76px
-      );
-
-    bottom:
-      clamp(
-        92px,
-        9vh,
-        122px
-      );
-  }
-
-
-  .campus-hero-title {
-    font-size:
-      clamp(
-        80px,
-        7.7vw,
-        132px
       );
   }
 
@@ -776,116 +997,26 @@ and
 
   .campus-hero {
     --campus-gap:
-      14px;
+      13px;
 
-    --campus-edge-gap:
-      9px;
-  }
-
-
-  .campus-hero-stage {
-    min-height:
-      580px;
-  }
-
-
-  .campus-hero-content {
-    left:
-      42px;
-
-    bottom:
-      72px;
-
-    width:
-      calc(
-        100% -
-        84px
-      );
-  }
-
-
-  .campus-hero-title {
-    max-width:
-      900px;
-
-    font-size:
-      clamp(
-        55px,
-        8vw,
-        88px
-      );
-
-    line-height:
-      0.92;
-
-    letter-spacing:
-      -0.06em;
-  }
-
-
-  .campus-hero-description {
-    max-width:
-      450px;
-
-    margin-top:
-      22px;
-
-    font-size:
-      clamp(
-        16px,
-        1.5vw,
-        18px
-      );
-  }
-
-
-  .campus-hero-scroll {
-    right:
-      42px;
-
-    bottom:
-      26px;
-
-    font-size:
-      9px;
-  }
-
-}
-
-
-/* =========================================================
-   TABLET LANDSCAPE
-========================================================= */
-
-@media
-(
-  max-width: 1000px
-)
-and
-(
-  min-width: 769px
-) {
-
-  .campus-hero {
-    --campus-gap:
-      12px;
-
-    --campus-edge-gap:
+    --campus-edge:
       8px;
   }
 
 
   .campus-hero-content {
     left:
-      34px;
+      38px;
+
 
     bottom:
-      66px;
+      64px;
+
 
     width:
       calc(
         100% -
-        68px
+        76px
       );
   }
 
@@ -893,18 +1024,112 @@ and
   .campus-hero-title {
     font-size:
       clamp(
-        52px,
-        8vw,
-        72px
+        48px,
+        6.6vw,
+        76px
+      );
+
+
+    line-height:
+      0.93;
+  }
+
+
+  .campus-hero-description {
+    width:
+      min(
+        470px,
+        100%
+      );
+
+
+    margin-top:
+      18px;
+
+
+    font-size:
+      clamp(
+        14px,
+        1.45vw,
+        17px
+      );
+  }
+
+
+  .campus-hero-scroll {
+    right:
+      36px;
+
+
+    bottom:
+      22px;
+  }
+
+}
+
+
+/* =========================================================
+   SHORT LAPTOP / BROWSER ZOOM
+========================================================= */
+
+@media
+(
+  min-width: 769px
+)
+and
+(
+  max-height: 700px
+) {
+
+  .campus-hero-content {
+    bottom:
+      48px;
+  }
+
+
+  .campus-hero-kicker {
+    margin-bottom:
+      11px;
+
+
+    font-size:
+      9px;
+  }
+
+
+  .campus-hero-title {
+    font-size:
+      clamp(
+        40px,
+        5.4vw,
+        64px
       );
   }
 
 
   .campus-hero-description {
-    max-width:
-      420px;
+    width:
+      min(
+        440px,
+        100%
+      );
+
+
+    margin-top:
+      13px;
+
 
     font-size:
+      14px;
+
+
+    line-height:
+      1.42;
+  }
+
+
+  .campus-hero-scroll {
+    bottom:
       16px;
   }
 
@@ -914,11 +1139,7 @@ and
 /* =========================================================
    MOBILE
 
-   ONE FULLSCREEN SCHOOL CAMPUS IMAGE
-
-   NO PIN
-   NO ZOOM
-   NO WALL
+   No zoom wall animation.
 ========================================================= */
 
 @media (
@@ -926,327 +1147,175 @@ and
 ) {
 
   .campus-hero {
-    width: 100%;
+    height:
+      auto;
 
-    height: 100svh;
 
     min-height:
       100svh;
 
-    margin: 0;
 
-    padding: 0;
-
-    overflow: hidden;
-
-    background:
-      var(--cream);
+    overflow:
+      hidden;
   }
 
 
   .campus-hero-stage {
-    position: relative;
+    height:
+      100svh;
 
-    width: 100%;
-
-    height: 100svh;
 
     min-height:
       100svh;
-
-    margin: 0;
-
-    overflow: hidden;
-
-    background:
-      var(--cream);
-
-    touch-action:
-      pan-y;
   }
 
-
-  /* =====================================================
-     WALL CONTAINER
-  ===================================================== */
 
   .campus-zoom-wall {
-    position: absolute;
-
-    inset: 0;
-
-    display: block;
-
-    width: 100%;
-
-    height: 100%;
-
-    padding: 0;
-
-    background:
-      var(--cream);
-
-    transform:
-      none !important;
-
-    will-change:
-      auto;
+    display:
+      none;
   }
 
 
-  /* =====================================================
-     HIDE ALL CARDS
-  ===================================================== */
-
-  .campus-wall-card {
-    display: none;
-
-    border: 0;
+  .campus-hero-safety {
+    inset:
+      0;
   }
 
 
-  /* =====================================================
-     ONLY CENTER CAMPUS IMAGE
-  ===================================================== */
-
-  .campus-wall-card-05 {
-    position: absolute;
-
-    inset: 0;
-
-    display: block;
-
-    width: 100%;
-
-    height: 100%;
-
-    min-height: 0;
-
-    margin: 0;
-
-    background:
-      var(--cream);
-
-    transform:
-      none !important;
-  }
-
-
-  .campus-wall-card-05
-  .campus-wall-image {
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
+  .campus-hero-safety img {
     object-position:
       center center;
 
-    transform:
-      none !important;
 
-    will-change:
-      auto;
+    transform:
+      none;
   }
 
 
-  /* =====================================================
-     MOBILE SHADE
-  ===================================================== */
+  .campus-hero-shade {
+    opacity:
+      1 !important;
 
-  .campus-hero-mobile-shade {
-    position: absolute;
-
-    z-index: 4;
-
-    inset: 0;
-
-    display: block;
 
     background:
       linear-gradient(
         180deg,
 
         rgba(
-          4,
-          15,
-          11,
-          0.04
+          3,
+          30,
+          22,
+          0.08
         )
         0%,
 
         rgba(
-          4,
-          15,
-          11,
-          0.08
+          3,
+          30,
+          22,
+          0.1
         )
-        38%,
+        42%,
 
         rgba(
-          4,
-          15,
-          11,
-          0.72
+          3,
+          30,
+          22,
+          0.78
         )
         100%
       );
-
-    pointer-events:
-      none;
   }
 
 
-  /* =====================================================
-     MOBILE CONTENT
-  ===================================================== */
-
   .campus-hero-content {
-    position: absolute;
+    right:
+      20px;
 
-    z-index: 6;
-
-    top: auto;
-
-    right: 20px;
 
     bottom:
       calc(
-        48px +
+        42px +
         env(
           safe-area-inset-bottom,
           0px
         )
       );
 
-    left: 20px;
 
-    width: auto;
+    left:
+      20px;
+
+
+    width:
+      auto;
+
 
     max-width:
-      560px;
+      600px;
 
-    margin: 0;
 
     opacity:
       1 !important;
 
+
     transform:
       none !important;
-
-    will-change:
-      auto;
   }
 
 
-  /* =====================================================
-     MOBILE TITLE
-  ===================================================== */
+  .campus-hero-kicker {
+    margin-bottom:
+      12px;
 
-  .campus-hero-title {
-    width: 100%;
-
-    max-width: 100%;
 
     font-size:
+      9px;
+  }
+
+
+  .campus-hero-title {
+    font-size:
       clamp(
-        42px,
-        11vw,
-        58px
+        40px,
+        10vw,
+        54px
       );
 
-    font-weight: 600;
 
     line-height:
-      0.94;
+      0.95;
+
 
     letter-spacing:
       -0.055em;
-
-    text-shadow:
-      0
-      3px
-      24px
-      rgba(
-        0,
-        0,
-        0,
-        0.3
-      );
   }
 
-
-  /* =====================================================
-     MOBILE MAIN
-
-     WHITE
-  ===================================================== */
-
-  .campus-hero-title-main {
-    color:
-      #ffffff;
-  }
-
-
-  /* =====================================================
-     MOBILE ACCENT
-
-     LIGHT GREEN
-  ===================================================== */
-
-  .campus-hero-title-accent {
-    margin-top:
-      3px;
-
-    color:
-      #8fe3b4;
-  }
-
-
-  /* =====================================================
-     DESCRIPTION
-  ===================================================== */
 
   .campus-hero-description {
     width:
       min(
-        340px,
+        450px,
         100%
       );
 
-    margin-top:
-      18px;
 
-    color:
-      rgba(
-        255,
-        255,
-        255,
-        0.88
-      );
+    margin-top:
+      16px;
+
 
     font-size:
-      15px;
+      14px;
+
 
     line-height:
-      1.5;
-
-    letter-spacing:
-      -0.012em;
+      1.48;
   }
 
 
-  /* =====================================================
-     MOBILE SCROLL HINT REMOVED
-  ===================================================== */
-
   .campus-hero-scroll {
-    display: none;
+    display:
+      none;
   }
 
 }
@@ -1262,55 +1331,37 @@ and
 
   .campus-hero-content {
     right:
-      18px;
+      17px;
+
 
     bottom:
       calc(
-        38px +
+        34px +
         env(
           safe-area-inset-bottom,
           0px
         )
       );
 
+
     left:
-      18px;
+      17px;
   }
 
 
   .campus-hero-title {
     font-size:
       clamp(
-        38px,
-        10.5vw,
-        48px
+        36px,
+        9.8vw,
+        46px
       );
-
-    line-height:
-      0.96;
   }
 
 
   .campus-hero-description {
-    max-width:
-      310px;
-
-    margin-top:
-      15px;
-
     font-size:
-      14px;
-
-    line-height:
-      1.48;
-  }
-
-
-  .campus-wall-card-05
-  .campus-wall-image {
-    object-position:
-      52%
-      center;
+      13px;
   }
 
 }
@@ -1328,14 +1379,6 @@ and
     right:
       15px;
 
-    bottom:
-      calc(
-        30px +
-        env(
-          safe-area-inset-bottom,
-          0px
-        )
-      );
 
     left:
       15px;
@@ -1344,111 +1387,13 @@ and
 
   .campus-hero-title {
     font-size:
-      36px;
+      34px;
   }
 
 
   .campus-hero-description {
-    max-width:
-      280px;
-
     font-size:
-      13px;
-  }
-
-}
-
-
-/* =========================================================
-   MOBILE LANDSCAPE
-========================================================= */
-
-@media
-(
-  max-width: 900px
-)
-and
-(
-  max-height: 520px
-)
-and
-(
-  orientation: landscape
-) {
-
-  .campus-hero,
-  .campus-hero-stage {
-    height:
-      100svh;
-
-    min-height:
-      100svh;
-  }
-
-
-  .campus-hero-content {
-    right:
-      auto;
-
-    bottom:
-      24px;
-
-    left:
-      24px;
-
-    width:
-      min(
-        520px,
-        58vw
-      );
-  }
-
-
-  .campus-hero-title {
-    font-size:
-      clamp(
-        32px,
-        5.5vw,
-        46px
-      );
-
-    line-height:
-      0.94;
-  }
-
-
-  .campus-hero-title-main {
-    color:
-      #ffffff;
-  }
-
-
-  .campus-hero-title-accent {
-    color:
-      #8fe3b4;
-  }
-
-
-  .campus-hero-description {
-    max-width:
-      340px;
-
-    margin-top:
-      11px;
-
-    font-size:
-      12px;
-
-    line-height:
-      1.4;
-  }
-
-
-  .campus-wall-card-05
-  .campus-wall-image {
-    object-position:
-      center
-      48%;
+      12.5px;
   }
 
 }
@@ -1463,24 +1408,43 @@ and
     reduce
 ) {
 
-  .campus-zoom-wall {
-    transform:
-      none !important;
+  .campus-hero {
+    height:
+      auto;
+
+
+    min-height:
+      100svh;
   }
 
 
-  .campus-hero-content {
+  .campus-hero-stage {
+    height:
+      100svh;
+  }
+
+
+  .campus-zoom-wall {
+    transform:
+      scale(
+        1
+      ) !important;
+
+
+    will-change:
+      auto;
+  }
+
+
+  .campus-hero-content,
+  .campus-hero-shade,
+  .campus-hero-scroll {
     opacity:
       1 !important;
 
+
     transform:
       none !important;
-  }
-
-
-  .campus-hero-scroll i::after {
-    animation:
-      none;
   }
 
 }

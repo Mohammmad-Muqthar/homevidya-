@@ -4,14 +4,13 @@
 
    STABLE VERSION
 
-   FIXES:
-   - SEPARATE IMAGE SCALE + PARALLAX TRANSFORMS
-   - NO MOBILE SCROLL SCRUB
-   - BROWSER ZOOM SAFE
-   - SHORT LAPTOP SAFE
-   - NO FIXED MIN-HEIGHT THAT BREAKS ZOOM
-   - NO WHITE GAP
-   - FULL SCREEN HERO
+   - NO SCROLL PARALLAX
+   - NO SCROLLTRIGGER
+   - NO MEDIA TRANSLATION DURING SCROLL
+   - NO FIRST-SCROLL WHITE GAP
+   - NO REPEATING WHITE GAP
+   - STABLE AT BROWSER ZOOM
+   - STATIC FULL-BLEED BACKGROUND
 ========================================================= */
 
 
@@ -43,28 +42,27 @@
     relative;
 
 
+  display:
+    block;
+
+
   width:
     100%;
 
 
-  /*
-    Use viewport fallback first,
-    then modern dynamic viewport.
+  max-width:
+    100%;
 
-    NO min-height: 100vh.
-    That was one of the reasons browser zoom
-    could make the layout overflow.
-  */
 
   height:
     100vh;
 
   height:
-    100dvh;
+    100svh;
 
 
   min-height:
-    0;
+    560px;
 
 
   margin:
@@ -104,6 +102,11 @@
     isolate;
 
 
+  /*
+    Keeps hero painting inside itself.
+    Prevents compositing seams.
+  */
+
   contain:
     paint;
 }
@@ -128,23 +131,29 @@
 
 
 /* =========================================================
-   NO ROOT DECORATION
+   REMOVE ROOT DECORATION
 ========================================================= */
 
 .motion-hero::before,
 .motion-hero::after {
+  display:
+    none;
+
+
   content:
     none;
 }
 
 
 /* =========================================================
-   MEDIA WRAPPER
+   MEDIA
 
-   THIS HANDLES PARALLAX.
+   IMPORTANT:
 
-   It is oversized so even when GSAP shifts it,
-   no blank strip can appear.
+   THIS ELEMENT NEVER MOVES.
+
+   It extends a few pixels beyond the hero to ensure
+   browser compositing can never reveal a white seam.
 ========================================================= */
 
 .motion-hero-media {
@@ -157,27 +166,19 @@
 
 
   top:
-    -3%;
+    -2px;
 
 
   right:
-    0;
+    -2px;
 
 
   bottom:
-    -3%;
+    -2px;
 
 
   left:
-    0;
-
-
-  width:
-    100%;
-
-
-  height:
-    106%;
+    -2px;
 
 
   overflow:
@@ -189,9 +190,7 @@
 
 
   transform:
-    translate3d(
-      0,
-      0,
+    translateZ(
       0
     );
 
@@ -204,18 +203,17 @@
     hidden;
 
 
-  will-change:
-    transform;
+  pointer-events:
+    none;
 }
 
 
 /* =========================================================
    IMAGE
 
-   IMPORTANT:
-   IMAGE NO LONGER DOES PARALLAX.
+   ONLY INITIAL LOAD ZOOM TOUCHES TRANSFORM.
 
-   ONLY INTRO SCALE IS APPLIED TO THIS ELEMENT.
+   AFTER INTRO COMPLETES IT REMAINS STATIC.
 ========================================================= */
 
 .motion-hero-image {
@@ -223,8 +221,20 @@
     absolute;
 
 
-  inset:
-    0;
+  top:
+    -1px;
+
+
+  right:
+    -1px;
+
+
+  bottom:
+    -1px;
+
+
+  left:
+    -1px;
 
 
   display:
@@ -232,11 +242,15 @@
 
 
   width:
-    100%;
+    calc(
+      100% + 2px
+    );
 
 
   height:
-    100%;
+    calc(
+      100% + 2px
+    );
 
 
   max-width:
@@ -253,7 +267,7 @@
 
   transform:
     scale(
-      1.065
+      1.055
     );
 
 
@@ -303,6 +317,14 @@
     0;
 
 
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
   background:
     linear-gradient(
       180deg,
@@ -347,7 +369,7 @@
 
 
 /* =========================================================
-   LEFT-SIDE DEPTH
+   LEFT DEPTH
 ========================================================= */
 
 .motion-hero-overlay::after {
@@ -461,12 +483,12 @@
     0;
 
 
+  padding:
+    0;
+
+
   color:
     #ffffff;
-
-
-  pointer-events:
-    auto;
 }
 
 
@@ -560,14 +582,6 @@
 
   letter-spacing:
     -0.062em;
-
-
-  overflow-wrap:
-    normal;
-
-
-  word-break:
-    normal;
 
 
   text-wrap:
@@ -1185,6 +1199,12 @@ and
   min-width: 769px
 ) {
 
+  .motion-hero {
+    min-height:
+      520px;
+  }
+
+
   .motion-hero-content {
     left:
       40px;
@@ -1260,11 +1280,6 @@ and
 
 /* =========================================================
    SHORT LAPTOP
-
-   IMPORTANT FOR:
-   - 1366 × 768
-   - browser zoom
-   - short-height notebook screens
 ========================================================= */
 
 @media
@@ -1275,6 +1290,12 @@ and
 (
   max-height: 720px
 ) {
+
+  .motion-hero {
+    min-height:
+      0;
+  }
+
 
   .motion-hero-content {
     bottom:
@@ -1299,10 +1320,6 @@ and
         4.3vw,
         56px
       );
-
-
-    line-height:
-      0.94;
   }
 
 
@@ -1479,55 +1496,41 @@ and
 ) {
 
   .motion-hero {
-    width:
-      100%;
-
-
-    height:
-      100vh;
-
     height:
       100svh;
 
 
     min-height:
       0;
-
-
-    contain:
-      paint;
   }
 
 
-  /* =====================================================
-     MEDIA
-
-     NO GSAP PARALLAX ON MOBILE.
-  ===================================================== */
+  /*
+    Keep exact static full-cover media.
+    No transforms are applied to this wrapper.
+  */
 
   .motion-hero-media {
     top:
-      -2%;
+      -2px;
+
+
+    right:
+      -2px;
 
 
     bottom:
-      -2%;
+      -2px;
 
 
-    width:
-      100%;
-
-
-    height:
-      104%;
+    left:
+      -2px;
 
 
     transform:
-      none !important;
-
-
-    will-change:
-      auto;
+      translateZ(
+        0
+      ) !important;
   }
 
 
@@ -2117,21 +2120,9 @@ and
     reduce
 ) {
 
-  .motion-hero-media {
-    transform:
-      none !important;
-
-
-    will-change:
-      auto;
-  }
-
-
   .motion-hero-image {
     transform:
-      scale(
-        1.015
-      ) !important;
+      none !important;
 
 
     will-change:

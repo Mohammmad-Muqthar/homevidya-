@@ -3,144 +3,102 @@ import {
   useRef,
 } from "react";
 
-import { gsap } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./CampusHero.css";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 
 /* =========================================================
-   FALLBACK IMAGE
-
-   If any campus image fails to load,
-   this image is used instead.
-========================================================= */
-
-const FALLBACK_CAMPUS_IMAGE =
-  "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2400&q=90";
-
-
-/* =========================================================
    CAMPUS IMAGES
-
-   CAMPUS-ONLY VISUAL DIRECTION:
-
-   01 — School building
-   02 — Sports ground
-   03 — Library
-   04 — Courtyard / veranda
-   05 — Main campus building
-   06 — Swimming pool
-   07 — Sports court
-   08 — Playground / open campus
-   09 — Green campus building
 ========================================================= */
 
 const campusImages = [
   {
     id: "01",
-
     src:
-      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2200&q=90",
-
+      "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "Modern school campus building",
+      "School learning space",
   },
 
   {
     id: "02",
-
     src:
-      "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=2200&q=90",
-
+      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "School sports ground and athletics area",
+      "School building",
   },
 
   {
     id: "03",
-
     src:
-      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=2200&q=90",
-
+      "https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "School library and learning space",
+      "School sports facility",
   },
 
   {
     id: "04",
-
     src:
-      "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=2200&q=90",
-
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "School campus veranda and courtyard",
+      "School corridor",
   },
 
   {
-    /* =====================================================
-       CENTER IMAGE
-       THIS IS THE INITIAL FULLSCREEN CAMPUS IMAGE
-    ===================================================== */
-
     id: "05",
-
     src:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=2600&q=92",
-
+      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2400&q=94",
     alt:
-      "Beautiful green school campus",
-
+      "Vidya Academy campus",
     center:
       true,
   },
 
   {
     id: "06",
-
     src:
-      "https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=2200&q=90",
-
+      "https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "Campus swimming pool",
+      "Swimming pool",
   },
 
   {
     id: "07",
-
     src:
-      "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=2200&q=90",
-
+      "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "School sports court",
+      "School sports ground",
   },
 
   {
     id: "08",
-
     src:
-      "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=2200&q=90",
-
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "School playground and outdoor learning area",
+      "Classroom learning",
   },
 
   {
     id: "09",
-
     src:
-      "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=2200&q=90",
-
+      "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "Green school campus building",
+      "Students on campus",
   },
 ];
 
 
+const FALLBACK_IMAGE =
+  "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2400&q=90";
+
+
 /* =========================================================
-   COMPONENT
+   CAMPUS HERO
 ========================================================= */
 
 const CampusHero = () => {
@@ -150,7 +108,7 @@ const CampusHero = () => {
   const stageRef =
     useRef(null);
 
-  const gridRef =
+  const wallRef =
     useRef(null);
 
   const centerCardRef =
@@ -159,7 +117,10 @@ const CampusHero = () => {
   const contentRef =
     useRef(null);
 
-  const scrollHintRef =
+  const shadeRef =
+    useRef(null);
+
+  const scrollRef =
     useRef(null);
 
 
@@ -167,34 +128,33 @@ const CampusHero = () => {
      IMAGE FALLBACK
   ========================================================= */
 
-  const handleImageError = (
-    event
-  ) => {
-    const image =
-      event.currentTarget;
+  const handleImageError =
+    (event) => {
+      const image =
+        event.currentTarget;
 
 
-    if (
+      if (
+        image.dataset
+          .fallbackApplied ===
+        "true"
+      ) {
+        return;
+      }
+
+
       image.dataset
-        .fallbackApplied ===
-      "true"
-    ) {
-      return;
-    }
+        .fallbackApplied =
+        "true";
 
 
-    image.dataset
-      .fallbackApplied =
-      "true";
-
-
-    image.src =
-      FALLBACK_CAMPUS_IMAGE;
-  };
+      image.src =
+        FALLBACK_IMAGE;
+    };
 
 
   /* =========================================================
-     ANIMATION
+     GSAP
   ========================================================= */
 
   useLayoutEffect(() => {
@@ -204,8 +164,8 @@ const CampusHero = () => {
     const stage =
       stageRef.current;
 
-    const grid =
-      gridRef.current;
+    const wall =
+      wallRef.current;
 
     const centerCard =
       centerCardRef.current;
@@ -213,16 +173,20 @@ const CampusHero = () => {
     const content =
       contentRef.current;
 
+    const shade =
+      shadeRef.current;
+
     const scrollHint =
-      scrollHintRef.current;
+      scrollRef.current;
 
 
     if (
       !section ||
       !stage ||
-      !grid ||
+      !wall ||
       !centerCard ||
-      !content
+      !content ||
+      !shade
     ) {
       return undefined;
     }
@@ -233,604 +197,515 @@ const CampusHero = () => {
 
 
     const ctx =
-      gsap.context(() => {
+      gsap.context(
+        () => {
 
-        /* =====================================================
-           INTRO
-        ===================================================== */
+          /* =================================================
+             DESKTOP / LAPTOP
+          ================================================= */
 
-        const introItems =
-          content.querySelectorAll(
-            [
-              ".campus-hero-title",
-              ".campus-hero-description",
-            ].join(",")
-          );
+          mm.add(
+            "(min-width: 769px)",
 
+            () => {
 
-        gsap.fromTo(
-          introItems,
+              /* =============================================
+                 START SCALE
+              ============================================= */
 
-          {
-            opacity:
-              0,
+              const getStartScale =
+                () => {
+                  const stageWidth =
+                    stage.clientWidth;
 
-            y:
-              24,
-          },
+                  const stageHeight =
+                    stage.clientHeight;
 
-          {
-            opacity:
-              1,
+                  const cardWidth =
+                    centerCard.offsetWidth;
 
-            y:
-              0,
-
-            duration:
-              0.9,
-
-            stagger:
-              0.07,
-
-            ease:
-              "power4.out",
-
-            delay:
-              0.08,
-          }
-        );
+                  const cardHeight =
+                    centerCard.offsetHeight;
 
 
-        /* =====================================================
-           DESKTOP / LAPTOP
-
-           FULLSCREEN CENTER IMAGE
-                     ↓
-              ZOOM OUT
-                     ↓
-               3 × 3 WALL
-        ===================================================== */
-
-        mm.add(
-          "(min-width: 769px)",
-          () => {
-
-            const images =
-              grid.querySelectorAll(
-                ".campus-wall-image"
-              );
+                  if (
+                    !stageWidth ||
+                    !stageHeight ||
+                    !cardWidth ||
+                    !cardHeight
+                  ) {
+                    return 3.25;
+                  }
 
 
-            /* =================================================
-               START SCALE
-            ================================================= */
-
-            const getStartScale =
-              () => {
-
-                const stageWidth =
-                  stage.clientWidth;
-
-                const stageHeight =
-                  stage.clientHeight;
-
-                const cardWidth =
-                  centerCard.offsetWidth;
-
-                const cardHeight =
-                  centerCard.offsetHeight;
+                  const scaleX =
+                    stageWidth /
+                    cardWidth;
 
 
-                if (
-                  !stageWidth ||
-                  !stageHeight ||
-                  !cardWidth ||
-                  !cardHeight
-                ) {
-                  return 3.08;
-                }
+                  const scaleY =
+                    stageHeight /
+                    cardHeight;
 
 
-                const scaleX =
-                  stageWidth /
-                  cardWidth;
+                  /*
+                    Slight overscan prevents any tiny
+                    blank edge while fully zoomed in.
+                  */
 
-
-                const scaleY =
-                  stageHeight /
-                  cardHeight;
-
-
-                return (
-                  Math.max(
-                    scaleX,
-                    scaleY
-                  ) *
-                  1.02
-                );
-              };
-
-
-            /* =================================================
-               FINAL GAP
-
-               This is the actual visible gap we want.
-
-               We compensate for wall scale so the gap
-               does NOT become huge/small during zoom.
-            ================================================= */
-
-            const styles =
-              window.getComputedStyle(
-                grid
-              );
-
-
-            const finalGap =
-              parseFloat(
-                styles.columnGap
-              ) || 16;
-
-
-            const finalPadding =
-              parseFloat(
-                styles.paddingLeft
-              ) || 10;
-
-
-            const startScale =
-              getStartScale();
-
-
-            const wallState = {
-              scale:
-                startScale,
-            };
-
-
-            /* =================================================
-               CONSTANT VISUAL GAP
-
-               Actual CSS gap becomes:
-
-               target gap / current scale
-
-               Because the entire wall itself is scaled,
-               the gap visually remains almost identical.
-            ================================================= */
-
-            const syncWall =
-              () => {
-
-                const scale =
-                  Math.max(
-                    wallState.scale,
-                    0.001
+                  return (
+                    Math.max(
+                      scaleX,
+                      scaleY
+                    ) *
+                    1.045
                   );
+                };
 
 
+              /* =============================================
+                 INITIAL STATES
+              ============================================= */
+
+              gsap.set(
+                wall,
+
+                {
+                  x: 0,
+                  y: 0,
+
+                  xPercent: 0,
+                  yPercent: 0,
+
+                  scale:
+                    getStartScale,
+
+                  rotation: 0,
+
+                  transformOrigin:
+                    "50% 50%",
+
+                  force3D: true,
+                }
+              );
+
+
+              gsap.set(
+                content,
+
+                {
+                  opacity: 1,
+
+                  x: 0,
+                  y: 0,
+
+                  scale: 1,
+                }
+              );
+
+
+              gsap.set(
+                shade,
+
+                {
+                  opacity: 1,
+                }
+              );
+
+
+              if (scrollHint) {
                 gsap.set(
-                  grid,
+                  scrollHint,
 
                   {
-                    scale:
-                      scale,
-
-                    gap:
-                      `${
-                        finalGap /
-                        scale
-                      }px`,
-
-                    padding:
-                      `${
-                        finalPadding /
-                        scale
-                      }px`,
-
-                    xPercent:
-                      0,
-
-                    yPercent:
-                      0,
-
-                    transformOrigin:
-                      "50% 50%",
-
-                    force3D:
-                      true,
+                    opacity: 1,
+                    y: 0,
                   }
                 );
-              };
-
-
-            syncWall();
-
-
-            /* =================================================
-               IMAGE RESET
-            ================================================= */
-
-            gsap.set(
-              images,
-
-              {
-                scale:
-                  1.025,
-
-                xPercent:
-                  0,
-
-                yPercent:
-                  0,
-
-                transformOrigin:
-                  "center center",
-
-                force3D:
-                  true,
               }
-            );
 
 
-            /* =================================================
-               COPY RESET
-            ================================================= */
+              /* =============================================
+                 MASTER TIMELINE
 
-            gsap.set(
-              content,
+                 PIN THE STAGE.
 
-              {
-                opacity:
-                  1,
+                 IMPORTANT:
+                 Parent section has AUTO height in CSS.
 
-                y:
-                  0,
+                 Therefore pinSpacing can expand the
+                 section normally and the next section
+                 cannot slide over the Campus hero.
+              ============================================= */
 
-                scale:
-                  1,
+              const timeline =
+                gsap.timeline({
 
-                force3D:
-                  true,
-              }
-            );
+                  defaults: {
+                    ease: "none",
+                  },
+
+                  scrollTrigger: {
+                    trigger:
+                      section,
+
+                    start:
+                      "top top",
+
+                    /*
+                      A controlled zoom duration.
+
+                      No manual 200vh CSS track.
+                    */
+
+                    end:
+                      () =>
+                        `+=${
+                          Math.round(
+                            Math.max(
+                              stage.clientHeight *
+                              1.15,
+                              680
+                            )
+                          )
+                        }`,
+
+                    scrub: 0.9,
+
+                    pin:
+                      stage,
+
+                    /*
+                      THIS MUST STAY TRUE.
+
+                      ScrollTrigger creates real document
+                      space below the pinned stage.
+                    */
+
+                    pinSpacing:
+                      true,
+
+                    anticipatePin:
+                      1,
+
+                    invalidateOnRefresh:
+                      true,
+
+                    fastScrollEnd:
+                      false,
+
+                    refreshPriority:
+                      1,
+                  },
+                });
 
 
-            /* =================================================
-               SCROLL HINT RESET
-            ================================================= */
+              /* =============================================
+                 SMALL START HOLD
+              ============================================= */
 
-            if (scrollHint) {
-              gsap.set(
-                scrollHint,
-
+              timeline.to(
+                {},
                 {
-                  opacity:
-                    1,
-
-                  y:
-                    0,
+                  duration: 0.05,
                 }
               );
-            }
 
 
-            /* =================================================
-               TIMELINE
-            ================================================= */
+              /* =============================================
+                 CONTENT OUT
+              ============================================= */
 
-            const timeline =
-              gsap.timeline({
-
-                defaults: {
-                  ease:
-                    "none",
-                },
-
-                scrollTrigger: {
-                  trigger:
-                    stage,
-
-                  start:
-                    "top top",
-
-                  end:
-                    () =>
-                      `+=${
-                        stage.clientHeight *
-                        1.35
-                      }`,
-
-                  scrub:
-                    0.95,
-
-                  pin:
-                    true,
-
-                  pinSpacing:
-                    true,
-
-                  pinReparent:
-                    true,
-
-                  anticipatePin:
-                    1,
-
-                  invalidateOnRefresh:
-                    true,
-
-                  fastScrollEnd:
-                    false,
-                },
-              });
-
-
-            /* =================================================
-               INITIAL HOLD
-            ================================================= */
-
-            timeline.to(
-              {},
-
-              {
-                duration:
-                  0.08,
-              }
-            );
-
-
-            /* =================================================
-               CONTENT LEAVES
-            ================================================= */
-
-            timeline.to(
-              content,
-
-              {
-                opacity:
-                  0,
-
-                y:
-                  -34,
-
-                scale:
-                  0.992,
-
-                duration:
-                  0.18,
-
-                ease:
-                  "power1.inOut",
-              },
-
-              0.06
-            );
-
-
-            /* =================================================
-               SCROLL HINT LEAVES
-            ================================================= */
-
-            if (scrollHint) {
               timeline.to(
-                scrollHint,
+                content,
 
                 {
-                  opacity:
-                    0,
+                  opacity: 0,
 
-                  y:
-                    8,
+                  y: -30,
 
-                  duration:
-                    0.14,
+                  scale: 0.992,
+
+                  duration: 0.2,
+
+                  ease: "power1.out",
+                },
+
+                0.05
+              );
+
+
+              /* =============================================
+                 SCROLL HINT OUT
+              ============================================= */
+
+              if (scrollHint) {
+
+                timeline.to(
+                  scrollHint,
+
+                  {
+                    opacity: 0,
+
+                    y: 8,
+
+                    duration: 0.15,
+                  },
+
+                  0.05
+                );
+
+              }
+
+
+              /* =============================================
+                 SHADE OUT
+              ============================================= */
+
+              timeline.to(
+                shade,
+
+                {
+                  opacity: 0,
+
+                  duration: 0.3,
+
+                  ease: "power1.out",
                 },
 
                 0.06
               );
+
+
+              /* =============================================
+                 WALL ZOOM OUT
+              ============================================= */
+
+              timeline.to(
+                wall,
+
+                {
+                  scale: 1,
+
+                  x: 0,
+                  y: 0,
+
+                  xPercent: 0,
+                  yPercent: 0,
+
+                  duration: 0.83,
+
+                  ease: "power2.inOut",
+
+                  force3D: true,
+                },
+
+                0.08
+              );
+
+
+              /* =============================================
+                 VERY SMALL FINAL HOLD
+
+                 Enough to see the finished collage,
+                 but not enough to feel like empty space.
+              ============================================= */
+
+              timeline.to(
+                {},
+                {
+                  duration: 0.06,
+                }
+              );
+
+
+              return () => {
+                timeline
+                  .scrollTrigger
+                  ?.kill();
+
+
+                timeline.kill();
+              };
+
             }
+          );
 
 
-            /* =================================================
-               WALL ZOOMS OUT
+          /* =================================================
+             MOBILE
 
-               Instead of tweening grid scale directly,
-               we tween wallState.scale and update
-               the gap every frame.
-            ================================================= */
+             SIMPLE STATIC HERO.
+          ================================================= */
 
-            timeline.to(
-              wallState,
+          mm.add(
+            "(max-width: 768px)",
 
-              {
-                scale:
-                  1,
+            () => {
 
-                duration:
-                  0.76,
-
-                ease:
-                  "power2.inOut",
-
-                onUpdate:
-                  syncWall,
-              },
-
-              0.08
-            );
-
-
-            /* =================================================
-               IMAGE SCALE SETTLES
-            ================================================= */
-
-            timeline.to(
-              images,
-
-              {
-                scale:
-                  1,
-
-                xPercent:
-                  0,
-
-                yPercent:
-                  0,
-
-                duration:
-                  0.68,
-
-                ease:
-                  "power2.out",
-              },
-
-              0.1
-            );
-
-
-            /* =================================================
-               FINAL HOLD
-            ================================================= */
-
-            timeline.to(
-              {},
-
-              {
-                duration:
-                  0.28,
-              }
-            );
-
-
-            return () => {
-
-              timeline
-                .scrollTrigger
-                ?.kill();
-
-
-              timeline.kill();
-
-            };
-          }
-        );
-
-
-        /* =====================================================
-           MOBILE
-
-           SIMPLE AND STABLE.
-
-           ONE CAMPUS IMAGE.
-           NO PIN.
-           NO ZOOM WALL.
-        ===================================================== */
-
-        mm.add(
-          "(max-width: 768px)",
-          () => {
-
-            gsap.set(
-              grid,
-
-              {
-                clearProps:
-                  "transform,gap,padding",
-              }
-            );
-
-
-            gsap.set(
-              content,
-
-              {
-                clearProps:
-                  "transform,opacity",
-              }
-            );
-
-
-            if (scrollHint) {
               gsap.set(
-                scrollHint,
+                wall,
+
+                {
+                  clearProps:
+                    "transform",
+                }
+              );
+
+
+              gsap.set(
+                [
+                  content,
+                  shade,
+                  scrollHint,
+                ].filter(Boolean),
 
                 {
                   clearProps:
                     "transform,opacity",
                 }
               );
+
+
+              return () => {};
+
             }
+          );
 
-          }
-        );
+        },
 
-      }, section);
+        section
+      );
 
 
-    /* =====================================================
-       RESIZE
-    ===================================================== */
+    /* =========================================================
+       REFRESH HANDLING
+    ========================================================= */
 
-    let resizeTimer;
+    let refreshTimer;
+
 
     let previousWidth =
-      window.innerWidth;
+      document
+        .documentElement
+        .clientWidth;
+
+
+    let previousHeight =
+      document
+        .documentElement
+        .clientHeight;
+
+
+    let previousDpr =
+      window.devicePixelRatio;
 
 
     const refresh =
-      () => {
-        ScrollTrigger.refresh();
+      (
+        delay = 110
+      ) => {
+
+        clearTimeout(
+          refreshTimer
+        );
+
+
+        refreshTimer =
+          window.setTimeout(
+            () => {
+
+              ScrollTrigger.refresh(
+                true
+              );
+
+
+              ScrollTrigger.update();
+
+            },
+            delay
+          );
+
       };
 
 
     const handleResize =
       () => {
 
-        const currentWidth =
-          window.innerWidth;
+        const width =
+          document
+            .documentElement
+            .clientWidth;
 
 
-        /*
-          Ignore mobile URL bar / toolbar
-          height changes.
+        const height =
+          document
+            .documentElement
+            .clientHeight;
 
-          Only refresh when WIDTH changes.
-        */
+
+        const dpr =
+          window.devicePixelRatio;
+
+
+        const widthChanged =
+          Math.abs(
+            width -
+            previousWidth
+          ) >= 2;
+
+
+        const heightChanged =
+          Math.abs(
+            height -
+            previousHeight
+          ) >= 4;
+
+
+        const dprChanged =
+          Math.abs(
+            dpr -
+            previousDpr
+          ) >= 0.01;
+
+
+        const isDesktop =
+          width >
+          768;
+
 
         if (
-          Math.abs(
-            currentWidth -
-            previousWidth
-          ) < 3
+          !widthChanged &&
+          !dprChanged &&
+          !(
+            isDesktop &&
+            heightChanged
+          )
         ) {
           return;
         }
 
 
         previousWidth =
-          currentWidth;
+          width;
 
 
-        clearTimeout(
-          resizeTimer
-        );
+        previousHeight =
+          height;
 
 
-        resizeTimer =
-          setTimeout(
-            refresh,
-            160
-          );
+        previousDpr =
+          dpr;
+
+
+        refresh();
+
       };
 
 
-    /* =====================================================
-       WAIT FOR ALL IMAGES
-
-       Important:
-       everything is eager loaded now, so the wall
-       does not reveal blank cards during zoom-out.
-    ===================================================== */
+    /* =========================================================
+       WAIT FOR IMAGES
+    ========================================================= */
 
     const images =
       Array.from(
@@ -840,14 +715,32 @@ const CampusHero = () => {
       );
 
 
-    Promise.all(
+    const imagePromises =
       images.map(
         (image) => {
 
           if (
-            image.complete
+            image.complete &&
+            image.naturalWidth >
+              0
           ) {
+
+            if (
+              typeof image.decode ===
+              "function"
+            ) {
+
+              return image
+                .decode()
+                .catch(
+                  () => {}
+                );
+
+            }
+
+
             return Promise.resolve();
+
           }
 
 
@@ -864,8 +757,7 @@ const CampusHero = () => {
                 "load",
                 done,
                 {
-                  once:
-                    true,
+                  once: true,
                 }
               );
 
@@ -874,24 +766,34 @@ const CampusHero = () => {
                 "error",
                 done,
                 {
-                  once:
-                    true,
+                  once: true,
                 }
               );
 
             }
           );
+
         }
+      );
+
+
+    Promise
+      .allSettled(
+        imagePromises
       )
-    ).then(
-      refresh
-    );
+      .then(
+        () => {
+          refresh(20);
+        }
+      );
 
 
     document.fonts
       ?.ready
       ?.then(
-        refresh
+        () => {
+          refresh(20);
+        }
       );
 
 
@@ -899,8 +801,7 @@ const CampusHero = () => {
       "resize",
       handleResize,
       {
-        passive:
-          true,
+        passive: true,
       }
     );
 
@@ -909,21 +810,23 @@ const CampusHero = () => {
       () => {
 
         requestAnimationFrame(
-          refresh
+          () => {
+
+            ScrollTrigger.refresh(
+              true
+            );
+
+          }
         );
 
       }
     );
 
 
-    /* =====================================================
-       CLEANUP
-    ===================================================== */
-
     return () => {
 
       clearTimeout(
-        resizeTimer
+        refreshTimer
       );
 
 
@@ -936,6 +839,7 @@ const CampusHero = () => {
       mm.revert();
 
       ctx.revert();
+
     };
 
   }, []);
@@ -957,30 +861,52 @@ const CampusHero = () => {
         className="campus-hero-stage"
       >
 
-        {/* =========================================
-            CAMPUS IMAGE WALL
-        ========================================= */}
+        {/* =================================================
+            PERMANENT BACKGROUND
+
+            Prevents blank flashes while Chrome
+            recomposites the collage.
+        ================================================= */}
 
         <div
-          ref={gridRef}
+          className="campus-hero-safety"
+          aria-hidden="true"
+        >
+
+          <img
+            src={campusImages[4].src}
+            alt=""
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            draggable="false"
+            onError={
+              handleImageError
+            }
+          />
+
+        </div>
+
+
+        {/* =================================================
+            3 × 3 WALL
+        ================================================= */}
+
+        <div
+          ref={wallRef}
           className="campus-zoom-wall"
         >
 
           {campusImages.map(
-            (
-              image,
-              index
-            ) => {
+            (image) => {
 
               const isCenter =
-                index === 4;
+                image.center;
 
 
               return (
                 <figure
-                  key={
-                    image.id
-                  }
+                  key={image.id}
 
                   ref={
                     isCenter
@@ -990,45 +916,27 @@ const CampusHero = () => {
 
                   className={`
                     campus-wall-card
-                    campus-wall-card-${image.id}
+                    campus-wall-card--${image.id}
                     ${
                       isCenter
-                        ? "is-center"
+                        ? "campus-wall-card--center"
                         : ""
                     }
                   `}
                 >
 
                   <img
-                    src={
-                      image.src
-                    }
-
-                    alt={
-                      image.alt
-                    }
-
+                    src={image.src}
+                    alt={image.alt}
                     className="campus-wall-image"
-
-                    /*
-                      Load all 9 immediately.
-
-                      Prevents first / edge cards
-                      showing empty during zoom.
-                    */
-
                     loading="eager"
-
                     fetchPriority={
                       isCenter
                         ? "high"
                         : "auto"
                     }
-
                     decoding="async"
-
                     draggable="false"
-
                     onError={
                       handleImageError
                     }
@@ -1036,27 +944,37 @@ const CampusHero = () => {
 
                 </figure>
               );
+
             }
           )}
 
         </div>
 
 
-        {/* =========================================
-            MOBILE SHADE
-        ========================================= */}
+        {/* =================================================
+            SHADE
+        ================================================= */}
 
-        <div className="campus-hero-mobile-shade" />
+        <div
+          ref={shadeRef}
+          className="campus-hero-shade"
+          aria-hidden="true"
+        />
 
 
-        {/* =========================================
+        {/* =================================================
             CONTENT
-        ========================================= */}
+        ================================================= */}
 
         <div
           ref={contentRef}
           className="campus-hero-content"
         >
+
+          <span className="campus-hero-kicker">
+            CAMPUS AS CHARACTER
+          </span>
+
 
           <h1 className="campus-hero-title">
 
@@ -1073,27 +991,28 @@ const CampusHero = () => {
 
 
           <p className="campus-hero-description">
-            Every space is designed to invite
-            curiosity, movement, collaboration
-            and meaningful learning.
+
+            Every space is designed to invite curiosity,
+            movement, collaboration and meaningful
+            learning.
+
           </p>
 
         </div>
 
 
-        {/* =========================================
-            SCROLL INDICATOR
-        ========================================= */}
+        {/* =================================================
+            SCROLL HINT
+        ================================================= */}
 
         <div
-          ref={scrollHintRef}
+          ref={scrollRef}
           className="campus-hero-scroll"
         >
 
           <span>
-            SCROLL TO EXPLORE
+            Scroll to explore
           </span>
-
 
           <i />
 

@@ -8,45 +8,32 @@ import "./About.css";
 const FALLBACK_IMAGE =
   "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=88";
 
-
 const galleryImages = [
   {
     id: "01",
-
     badge: "LEARN",
-
     image:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=90",
-
+      "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "Students learning together in a classroom",
+      "Indian school students in uniform studying and interacting in a classroom",
   },
-
   {
     id: "02",
-
     badge: "EXPLORE",
-
     image:
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=90",
-
+      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "Students exploring ideas together",
+      "Students exploring learning resources together in an educational setting",
   },
-
   {
     id: "03",
-
     badge: "GROW",
-
     image:
-      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2000&q=90",
-
+      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2000&q=90",
     alt:
-      "School campus learning environment",
+      "Vibrant school campus environment and learning space",
   },
 ];
-
 
 /* =========================================================
    CURVE DATA
