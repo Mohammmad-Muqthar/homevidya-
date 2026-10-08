@@ -23,10 +23,6 @@ import {
 import "./Navbar.css";
 
 
-/* =========================================================
-   MOTION LINK
-========================================================= */
-
 const MotionLink =
   motion.create(Link);
 
@@ -38,72 +34,40 @@ const MotionLink =
 const navbarData = {
   logo: {
     src: "/images/logo.png",
-
-    alt:
-      "Vidya Academy",
-
-    to:
-      "/",
+    alt: "Vidya Academy",
+    to: "/",
   },
-
 
   links: [
     {
-      label:
-        "HOME",
-
-      to:
-        "/",
+      label: "HOME",
+      to: "/",
     },
 
     {
-      label:
-        "CAMPUS",
-
-      to:
-        "/campus",
+      label: "CAMPUS",
+      to: "/campus",
     },
 
     {
-      label:
-        "MOTION-IN",
-
-      to:
-        "/motion",
+      label: "MOTION-IN",
+      to: "/motion",
     },
 
     {
-      label:
-        "PROGRAMS",
-
-      to:
-        "/learning-pathways",
+      label: "PROGRAMS",
+      to: "/learning-pathways",
     },
 
     {
-      label:
-        "ABOUT",
-
-      to:
-        "/about",
+      label: "ABOUT",
+      to: "/about",
     },
   ],
 
-
-  /* =====================================================
-     IMPORTANT
-
-     Use an existing React route + hash.
-
-     This avoids navigating to a missing /admissions route.
-  ===================================================== */
-
   cta: {
-    label:
-      "ENQUIRE",
-
-    to:
-      "/#enquire",
+    label: "ENQUIRE",
+    to: "/#enquire",
   },
 };
 
@@ -155,7 +119,6 @@ const Navbar = () => {
 
   const getCurrentHero =
     () => {
-
       const customHero =
         document.querySelector(
           "[data-navbar-hero]"
@@ -205,6 +168,50 @@ const Navbar = () => {
 
 
   /* =========================================================
+     CLOSE MENU
+  ========================================================= */
+
+  const closeMenu =
+    () => {
+      setMenuOpen(false);
+    };
+
+
+  /* =========================================================
+     ACTIVE ROUTE
+  ========================================================= */
+
+  const isActiveRoute =
+    (to) => {
+      if (
+        to.includes("#")
+      ) {
+        return (
+          location.pathname +
+          location.hash
+        ) === to;
+      }
+
+
+      if (
+        to === "/"
+      ) {
+        return (
+          location.pathname === "/"
+        );
+      }
+
+
+      return (
+        location.pathname === to ||
+        location.pathname.startsWith(
+          `${to}/`
+        )
+      );
+    };
+
+
+  /* =========================================================
      ROUTE CHANGE
   ========================================================= */
 
@@ -216,47 +223,43 @@ const Navbar = () => {
     setHeroScrolled(false);
 
 
-    /* =====================================================
-       HASH LINK
-    ===================================================== */
-
-    if (location.hash) {
-      requestAnimationFrame(
-        () => {
-
-          const element =
-            document.querySelector(
-              location.hash
-            );
+    if (
+      location.hash
+    ) {
+      const timer =
+        window.setTimeout(
+          () => {
+            const element =
+              document.querySelector(
+                location.hash
+              );
 
 
-          if (element) {
-            element.scrollIntoView({
-              behavior:
-                "smooth",
+            if (element) {
+              element.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          },
+          80
+        );
 
-              block:
-                "start",
-            });
-          }
-        }
-      );
 
-      return;
+      return () => {
+        window.clearTimeout(timer);
+      };
     }
 
 
     window.scrollTo({
-      top:
-        0,
-
-      left:
-        0,
-
-      behavior:
-        "auto",
+      top: 0,
+      left: 0,
+      behavior: "auto",
     });
 
+
+    return undefined;
   }, [
     location.pathname,
     location.hash,
@@ -264,13 +267,16 @@ const Navbar = () => {
 
 
   /* =========================================================
-     SCROLL LOGIC
+     NAVBAR SCROLL
   ========================================================= */
 
   useEffect(() => {
+    let frameId =
+      null;
+
+
     const updateNavbar =
       () => {
-
         const currentY =
           window.scrollY;
 
@@ -299,11 +305,13 @@ const Navbar = () => {
         );
 
 
-        /* =====================================================
+        /* =================================================
            INSIDE HERO
-        ===================================================== */
+        ================================================= */
 
-        if (isInsideHero) {
+        if (
+          isInsideHero
+        ) {
           const heroRect =
             hero.getBoundingClientRect();
 
@@ -315,19 +323,13 @@ const Navbar = () => {
             );
 
 
-          const hasScrolledHero =
-            heroScrolledAmount >
-            38;
-
-
           setHeroScrolled(
-            hasScrolledHero
+            heroScrolledAmount >
+            38
           );
 
 
-          setVisible(
-            true
-          );
+          setVisible(true);
 
 
           lastScrollY.current =
@@ -342,13 +344,11 @@ const Navbar = () => {
         }
 
 
-        /* =====================================================
+        /* =================================================
            OUTSIDE HERO
-        ===================================================== */
+        ================================================= */
 
-        setHeroScrolled(
-          false
-        );
+        setHeroScrolled(false);
 
 
         const delta =
@@ -357,9 +357,8 @@ const Navbar = () => {
 
 
         if (
-          Math.abs(
-            delta
-          ) < 6
+          Math.abs(delta) <
+          6
         ) {
           ticking.current =
             false;
@@ -370,11 +369,11 @@ const Navbar = () => {
 
         if (
           delta >
-          0
+            0 &&
+          currentY >
+            90
         ) {
-          setVisible(
-            false
-          );
+          setVisible(false);
         }
 
 
@@ -382,9 +381,7 @@ const Navbar = () => {
           delta <
           0
         ) {
-          setVisible(
-            true
-          );
+          setVisible(true);
         }
 
 
@@ -392,9 +389,7 @@ const Navbar = () => {
           currentY <=
           5
         ) {
-          setVisible(
-            true
-          );
+          setVisible(true);
         }
 
 
@@ -409,7 +404,6 @@ const Navbar = () => {
 
     const handleScroll =
       () => {
-
         if (
           ticking.current
         ) {
@@ -421,25 +415,32 @@ const Navbar = () => {
           true;
 
 
-        requestAnimationFrame(
-          updateNavbar
-        );
+        frameId =
+          requestAnimationFrame(
+            updateNavbar
+          );
       };
 
 
     const handleResize =
       () => {
+        if (frameId) {
+          cancelAnimationFrame(
+            frameId
+          );
+        }
 
-        requestAnimationFrame(
-          updateNavbar
-        );
+
+        frameId =
+          requestAnimationFrame(
+            updateNavbar
+          );
       };
 
 
     const initialFrame =
       requestAnimationFrame(
         () => {
-
           lastScrollY.current =
             window.scrollY;
 
@@ -453,8 +454,7 @@ const Navbar = () => {
       "scroll",
       handleScroll,
       {
-        passive:
-          true,
+        passive: true,
       }
     );
 
@@ -466,10 +466,16 @@ const Navbar = () => {
 
 
     return () => {
-
       cancelAnimationFrame(
         initialFrame
       );
+
+
+      if (frameId) {
+        cancelAnimationFrame(
+          frameId
+        );
+      }
 
 
       window.removeEventListener(
@@ -483,7 +489,6 @@ const Navbar = () => {
         handleResize
       );
     };
-
   }, [
     location.pathname,
   ]);
@@ -494,40 +499,33 @@ const Navbar = () => {
   ========================================================= */
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow =
-        "hidden";
-    } else {
-      document.body.style.overflow =
-        "";
-    }
+    document.body.style.overflow =
+      menuOpen
+        ? "hidden"
+        : "";
 
 
     return () => {
       document.body.style.overflow =
         "";
     };
-
   }, [
     menuOpen,
   ]);
 
 
   /* =========================================================
-     ESC KEY
+     ESCAPE
   ========================================================= */
 
   useEffect(() => {
     const handleKeyDown =
       (event) => {
-
         if (
           event.key ===
           "Escape"
         ) {
-          setMenuOpen(
-            false
-          );
+          setMenuOpen(false);
         }
       };
 
@@ -544,7 +542,6 @@ const Navbar = () => {
         handleKeyDown
       );
     };
-
   }, []);
 
 
@@ -555,14 +552,11 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize =
       () => {
-
         if (
           window.innerWidth >
           1080
         ) {
-          setMenuOpen(
-            false
-          );
+          setMenuOpen(false);
         }
       };
 
@@ -579,67 +573,15 @@ const Navbar = () => {
         handleResize
       );
     };
-
   }, []);
 
 
   /* =========================================================
-     CLOSE MENU
-  ========================================================= */
-
-  const closeMenu =
-    () => {
-      setMenuOpen(
-        false
-      );
-    };
-
-
-  /* =========================================================
-     ACTIVE ROUTE
-  ========================================================= */
-
-  const isActiveRoute = (
-    to
-  ) => {
-
-    if (
-      to.includes("#")
-    ) {
-      return (
-        location.pathname +
-        location.hash
-      ) === to;
-    }
-
-
-    if (
-      to === "/"
-    ) {
-      return (
-        location.pathname ===
-        "/"
-      );
-    }
-
-
-    return (
-      location.pathname ===
-        to ||
-      location.pathname.startsWith(
-        `${to}/`
-      )
-    );
-  };
-
-
-  /* =========================================================
-     RETURN
+     JSX
   ========================================================= */
 
   return (
     <>
-
       <header
         className={`
           vidya-nav
@@ -672,19 +614,18 @@ const Navbar = () => {
 
         <div className="vidya-nav-inner">
 
-          {/* LOGO */}
+          {/* =================================================
+              LOGO
+          ================================================= */}
 
           <Link
             to={
               navbarData.logo.to
             }
-
             className="vidya-nav-brand"
-
             onClick={
               closeMenu
             }
-
             aria-label="Vidya Academy home"
           >
 
@@ -692,28 +633,26 @@ const Navbar = () => {
               src={
                 navbarData.logo.src
               }
-
               alt={
                 navbarData.logo.alt
               }
-
               className="vidya-nav-logo"
             />
 
           </Link>
 
 
-          {/* DESKTOP LINKS */}
+          {/* =================================================
+              DESKTOP LINKS
+          ================================================= */}
 
           <nav
             className="vidya-nav-links"
-
             aria-label="Main navigation"
           >
 
             {navbarData.links.map(
               (link) => {
-
                 const active =
                   isActiveRoute(
                     link.to
@@ -725,11 +664,9 @@ const Navbar = () => {
                     key={
                       link.label
                     }
-
                     to={
                       link.to
                     }
-
                     className={`
                       vidya-nav-link
 
@@ -755,24 +692,17 @@ const Navbar = () => {
           </nav>
 
 
-          {/* ACTIONS */}
+          {/* =================================================
+              ACTIONS
+          ================================================= */}
 
           <div className="vidya-nav-actions">
-
-            {/* =========================================
-                ENQUIRE
-
-                REACT ROUTER LINK
-                NO ARROW
-            ========================================= */}
 
             <Link
               to={
                 navbarData.cta.to
               }
-
               className="vidya-nav-cta"
-
               onClick={
                 closeMenu
               }
@@ -787,27 +717,24 @@ const Navbar = () => {
             </Link>
 
 
-            {/* MOBILE TOGGLE */}
+            {/* =================================================
+                MOBILE TOGGLE
+            ================================================= */}
 
             <button
               type="button"
-
               className="vidya-nav-mobile-toggle"
-
               onClick={
                 () =>
                   setMenuOpen(
-                    (
-                      value
-                    ) =>
+                    (value) =>
                       !value
                   )
               }
-
               aria-expanded={
                 menuOpen
               }
-
+              aria-controls="vidya-mobile-navigation"
               aria-label={
                 menuOpen
                   ? "Close navigation"
@@ -817,55 +744,33 @@ const Navbar = () => {
 
               <AnimatePresence
                 mode="wait"
-
-                initial={
-                  false
-                }
+                initial={false}
               >
 
                 {menuOpen ? (
 
                   <motion.span
                     key="close"
-
                     initial={{
-                      opacity:
-                        0,
-
-                      rotate:
-                        -20,
+                      opacity: 0,
+                      rotate: -20,
                     }}
-
                     animate={{
-                      opacity:
-                        1,
-
-                      rotate:
-                        0,
+                      opacity: 1,
+                      rotate: 0,
                     }}
-
                     exit={{
-                      opacity:
-                        0,
-
-                      rotate:
-                        20,
+                      opacity: 0,
+                      rotate: 20,
                     }}
-
                     transition={{
-                      duration:
-                        0.18,
+                      duration: 0.18,
                     }}
                   >
 
                     <X
-                      size={
-                        20
-                      }
-
-                      strokeWidth={
-                        1.8
-                      }
+                      size={20}
+                      strokeWidth={1.8}
                     />
 
                   </motion.span>
@@ -874,36 +779,23 @@ const Navbar = () => {
 
                   <motion.span
                     key="menu"
-
                     initial={{
-                      opacity:
-                        0,
+                      opacity: 0,
                     }}
-
                     animate={{
-                      opacity:
-                        1,
+                      opacity: 1,
                     }}
-
                     exit={{
-                      opacity:
-                        0,
+                      opacity: 0,
                     }}
-
                     transition={{
-                      duration:
-                        0.18,
+                      duration: 0.18,
                     }}
                   >
 
                     <Menu
-                      size={
-                        21
-                      }
-
-                      strokeWidth={
-                        1.8
-                      }
+                      size={21}
+                      strokeWidth={1.8}
                     />
 
                   </motion.span>
@@ -923,36 +815,27 @@ const Navbar = () => {
 
       {/* =====================================================
           MOBILE MENU
-      ====================================================== */}
+      ===================================================== */}
 
       <AnimatePresence>
 
         {menuOpen && (
 
           <motion.div
+            id="vidya-mobile-navigation"
             className="vidya-mobile-menu"
-
             initial={{
-              opacity:
-                0,
+              opacity: 0,
             }}
-
             animate={{
-              opacity:
-                1,
+              opacity: 1,
             }}
-
             exit={{
-              opacity:
-                0,
+              opacity: 0,
             }}
-
             transition={{
-              duration:
-                0.25,
-
-              ease:
-                "easeOut",
+              duration: 0.24,
+              ease: "easeOut",
             }}
           >
 
@@ -960,7 +843,6 @@ const Navbar = () => {
 
               <nav
                 className="vidya-mobile-menu-links"
-
                 aria-label="Mobile navigation"
               >
 
@@ -969,7 +851,6 @@ const Navbar = () => {
                     link,
                     index
                   ) => {
-
                     const active =
                       isActiveRoute(
                         link.to
@@ -981,40 +862,27 @@ const Navbar = () => {
                         key={
                           link.label
                         }
-
                         to={
                           link.to
                         }
-
                         onClick={
                           closeMenu
                         }
-
                         className={
                           active
                             ? "is-active"
                             : ""
                         }
-
                         initial={{
-                          opacity:
-                            0,
-
-                          y:
-                            10,
+                          opacity: 0,
+                          y: 10,
                         }}
-
                         animate={{
-                          opacity:
-                            1,
-
-                          y:
-                            0,
+                          opacity: 1,
+                          y: 0,
                         }}
-
                         transition={{
-                          duration:
-                            0.3,
+                          duration: 0.3,
 
                           delay:
                             index *
@@ -1037,13 +905,8 @@ const Navbar = () => {
 
 
                         <ArrowUpRight
-                          size={
-                            16
-                          }
-
-                          strokeWidth={
-                            1.6
-                          }
+                          size={16}
+                          strokeWidth={1.6}
                         />
 
                       </MotionLink>
@@ -1056,29 +919,17 @@ const Navbar = () => {
 
               <motion.div
                 className="vidya-mobile-menu-footer"
-
                 initial={{
-                  opacity:
-                    0,
-
-                  y:
-                    8,
+                  opacity: 0,
+                  y: 8,
                 }}
-
                 animate={{
-                  opacity:
-                    1,
-
-                  y:
-                    0,
+                  opacity: 1,
+                  y: 0,
                 }}
-
                 transition={{
-                  duration:
-                    0.3,
-
-                  delay:
-                    0.12,
+                  duration: 0.3,
+                  delay: 0.12,
                 }}
               >
 
@@ -1088,21 +939,13 @@ const Navbar = () => {
                 </p>
 
 
-                {/* =========================================
-                    MOBILE ENQUIRE
-                    ALSO LINK
-                    NO ARROW
-                ========================================= */}
-
                 <Link
                   to={
                     navbarData.cta.to
                   }
-
                   onClick={
                     closeMenu
                   }
-
                   className="vidya-mobile-menu-cta"
                 >
 
@@ -1123,7 +966,6 @@ const Navbar = () => {
         )}
 
       </AnimatePresence>
-
     </>
   );
 };

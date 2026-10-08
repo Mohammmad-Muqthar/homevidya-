@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 ========================================================= */
 
 const campusFeatureImage =
-  "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=2600&q=92";
+  "https://images.unsplash.com/photo-1780844824566-2fb198a6b93c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzA0fHxjbGFzcyUyMHJvb21zfGVufDB8fDB8fHww";
 
 
 /* =========================================================

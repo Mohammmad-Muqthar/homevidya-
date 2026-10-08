@@ -38,7 +38,7 @@ const lifeCards = [
       "Thoughtful classrooms encourage students to question, explore and understand ideas with confidence.",
 
     image:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=90",
+      "https://plus.unsplash.com/premium_photo-1661963297627-92799f5658fd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTYyfHxzY2hvb2xzfGVufDB8fDB8fHww",
   },
 
   {
@@ -54,7 +54,7 @@ const lifeCards = [
       "Movement, teamwork and healthy competition help students build resilience and confidence.",
 
     image:
-      "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1800&q=90",
+      "https://images.unsplash.com/photo-1771257807779-a72e74deaa11?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHNwb3J0cyUyMHNjaG9vbHN8ZW58MHx8MHx8fDA%3D",
   },
 
   {
@@ -70,7 +70,7 @@ const lifeCards = [
       "Art gives students room to express ideas, experiment freely and discover their creative voice.",
 
     image:
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1800&q=90",
+      "https://images.unsplash.com/photo-1770096679844-57ca92c2b64b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fGFydHMlMjBpbiUyMHNjaG9vbHxlbnwwfHwwfHx8MA%3D%3D",
   },
 
   {
@@ -86,7 +86,7 @@ const lifeCards = [
       "School life is shaped by friendships, collaboration and the feeling of belonging to a community.",
 
     image:
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=90",
+      "https://images.unsplash.com/photo-1761039807514-292d7d33059f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzB8fGNvbW11bml0eSUyMCclMjBzY2hvb2x8ZW58MHx8MHx8fDA%3D",
   },
 
   {
@@ -102,7 +102,7 @@ const lifeCards = [
       "Students are encouraged to experiment, solve problems and turn curiosity into meaningful ideas.",
 
     image:
-      "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1800&q=90",
+      "https://plus.unsplash.com/premium_photo-1682124399858-022a1cf3aa71?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzd8fGlubm92YXRpb24lMjBzY2hvb2x8ZW58MHx8MHx8fDA%3D",
   },
 
   {
@@ -118,7 +118,7 @@ const lifeCards = [
       "The everyday moments between lessons often become some of the most meaningful parts of school.",
 
     image:
-      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2000&q=90",
+      "https://plus.unsplash.com/premium_photo-1770505495978-51e36b2f8040?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fGV2ZXJ5ZGF5aW4lMjBzY2hvb2wlMjBsaWZlJTIwc2Nob29sJTIwd2l0aCUyMGNhbXB1c3xlbnwwfHwwfHx8MA%3D%3D",
   },
 ];
 

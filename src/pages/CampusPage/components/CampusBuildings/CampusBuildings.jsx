@@ -107,7 +107,7 @@ const buildingImages = [
       "04",
 
     src:
-      "https://images.unsplash.com/photo-1560948192-2249a51756ad?auto=format&fit=crop&w=2200&q=92",
+      "https://images.unsplash.com/photo-1675747158934-5f82097d2c21?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c2Nob29sJTIwYnVpbGRpbmdzfGVufDB8fDB8fHww",
 
     alt:
       "School hallway and corridor",

@@ -29,7 +29,7 @@ const wayItems = [
       "We encourage children to ask questions, explore ideas and discover the joy of learning for themselves.",
 
     image:
-      "https://images.pexels.com/photos/8471830/pexels-photo-8471830.jpeg?auto=compress&cs=tinysrgb&w=1800&q=90",
+      "https://images.unsplash.com/photo-1758685733726-4c9a728afeb5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzV8fGN1cmlvc2l0eSUyMHNjaG9vbHxlbnwwfHwwfHx8MA%3D%3D",
 
     reverse:
       false,
@@ -45,7 +45,7 @@ const wayItems = [
       "Children learn to express themselves, take initiative and believe in their ability to move forward.",
 
     image:
-      "https://images.pexels.com/photos/8613314/pexels-photo-8613314.jpeg?auto=compress&cs=tinysrgb&w=1800&q=90",
+      "https://images.unsplash.com/photo-1692269726060-9c604e06f63b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTM0fHxjb25maWRlbmNlJTIwaW4lMjBzY2hvb2x8ZW58MHx8MHx8fDA%3D",
 
     reverse:
       true,
