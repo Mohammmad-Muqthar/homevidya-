@@ -8,7 +8,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./MotionHero.css";
 
-gsap.registerPlugin(ScrollTrigger);
+
+gsap.registerPlugin(
+  ScrollTrigger
+);
 
 
 /* =========================================================
@@ -16,11 +19,14 @@ gsap.registerPlugin(ScrollTrigger);
 ========================================================= */
 
 const heroEvent = {
-  month: "Oct",
+  month:
+    "Oct",
 
-  day: "10",
+  day:
+    "10",
 
-  year: "2026",
+  year:
+    "2026",
 
   category:
     "Academic",
@@ -42,6 +48,14 @@ const heroEvent = {
 
 
 /* =========================================================
+   FALLBACK IMAGE
+========================================================= */
+
+const FALLBACK_IMAGE =
+  "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=2400&q=90";
+
+
+/* =========================================================
    ARROW
 ========================================================= */
 
@@ -52,12 +66,14 @@ function ArrowIcon() {
       fill="none"
       aria-hidden="true"
     >
+
       <path
         d="M5 12H18"
         stroke="currentColor"
         strokeWidth="1.6"
         strokeLinecap="round"
       />
+
 
       <path
         d="M14 8L18 12L14 16"
@@ -66,6 +82,7 @@ function ArrowIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+
     </svg>
   );
 }
@@ -79,6 +96,9 @@ const MotionHero = () => {
   const sectionRef =
     useRef(null);
 
+  const mediaRef =
+    useRef(null);
+
   const imageRef =
     useRef(null);
 
@@ -90,12 +110,46 @@ const MotionHero = () => {
 
 
   /* =========================================================
+     IMAGE FALLBACK
+  ========================================================= */
+
+  const handleImageError =
+    (
+      event
+    ) => {
+      const image =
+        event.currentTarget;
+
+
+      if (
+        image.dataset
+          .fallbackApplied ===
+        "true"
+      ) {
+        return;
+      }
+
+
+      image.dataset
+        .fallbackApplied =
+        "true";
+
+
+      image.src =
+        FALLBACK_IMAGE;
+    };
+
+
+  /* =========================================================
      GSAP
   ========================================================= */
 
   useLayoutEffect(() => {
     const section =
       sectionRef.current;
+
+    const media =
+      mediaRef.current;
 
     const image =
       imageRef.current;
@@ -109,6 +163,7 @@ const MotionHero = () => {
 
     if (
       !section ||
+      !media ||
       !image ||
       !content
     ) {
@@ -121,255 +176,616 @@ const MotionHero = () => {
 
 
     const ctx =
-      gsap.context(() => {
+      gsap.context(
+        () => {
 
-        /* =====================================================
-           HERO IMAGE INTRO
-        ===================================================== */
+          /* =================================================
+             INITIAL STATES
 
-        gsap.fromTo(
-          image,
-          {
-            scale: 1.07,
-          },
-          {
-            scale: 1.035,
+             IMPORTANT:
+             image scale and media translation are now
+             completely separate.
+          ================================================= */
 
-            duration: 1.4,
+          gsap.set(
+            media,
 
-            ease:
-              "power3.out",
-          }
-        );
-
-
-        /* =====================================================
-           CONTENT INTRO
-        ===================================================== */
-
-        gsap.fromTo(
-          content.children,
-          {
-            opacity: 0,
-            y: 24,
-          },
-          {
-            opacity: 1,
-            y: 0,
-
-            duration: 0.82,
-
-            stagger: 0.07,
-
-            delay: 0.12,
-
-            ease:
-              "power3.out",
-          }
-        );
-
-
-        /* =====================================================
-           DATE
-        ===================================================== */
-
-        if (date) {
-          gsap.fromTo(
-            date,
             {
-              opacity: 0,
-              y: -14,
-            },
+              x:
+                0,
+
+              y:
+                0,
+
+              xPercent:
+                0,
+
+              yPercent:
+                0,
+
+              force3D:
+                true,
+            }
+          );
+
+
+          gsap.set(
+            image,
+
             {
-              opacity: 1,
-              y: 0,
+              scale:
+                1.065,
 
-              duration: 0.75,
+              transformOrigin:
+                "50% 50%",
 
-              delay: 0.28,
+              force3D:
+                true,
+            }
+          );
+
+
+          gsap.set(
+            content.children,
+
+            {
+              opacity:
+                0,
+
+              y:
+                24,
+            }
+          );
+
+
+          if (
+            date
+          ) {
+            gsap.set(
+              date,
+
+              {
+                opacity:
+                  0,
+
+                y:
+                  -14,
+              }
+            );
+          }
+
+
+          /* =================================================
+             INTRO TIMELINE
+          ================================================= */
+
+          const introTimeline =
+            gsap.timeline({
+
+              defaults: {
+                overwrite:
+                  "auto",
+              },
+
+            });
+
+
+          /* IMAGE INTRO */
+
+          introTimeline.to(
+            image,
+
+            {
+              scale:
+                1.015,
+
+              duration:
+                1.35,
 
               ease:
                 "power3.out",
+            },
+
+            0
+          );
+
+
+          /* CONTENT INTRO */
+
+          introTimeline.to(
+            content.children,
+
+            {
+              opacity:
+                1,
+
+              y:
+                0,
+
+              duration:
+                0.82,
+
+              stagger:
+                0.065,
+
+              ease:
+                "power3.out",
+            },
+
+            0.12
+          );
+
+
+          /* DATE INTRO */
+
+          if (
+            date
+          ) {
+            introTimeline.to(
+              date,
+
+              {
+                opacity:
+                  1,
+
+                y:
+                  0,
+
+                duration:
+                  0.75,
+
+                ease:
+                  "power3.out",
+              },
+
+              0.28
+            );
+          }
+
+
+          /* =================================================
+             DESKTOP PARALLAX
+
+             ONLY THE WRAPPER MOVES.
+             IMAGE SCALE IS NOT TOUCHED.
+          ================================================= */
+
+          mm.add(
+            "(min-width: 769px)",
+
+            () => {
+
+              gsap.set(
+                media,
+
+                {
+                  yPercent:
+                    -1.6,
+                }
+              );
+
+
+              const parallaxTween =
+                gsap.to(
+                  media,
+
+                  {
+                    yPercent:
+                      1.6,
+
+                    ease:
+                      "none",
+
+                    force3D:
+                      true,
+
+                    scrollTrigger: {
+                      trigger:
+                        section,
+
+                      start:
+                        "top top",
+
+                      end:
+                        "bottom top",
+
+                      scrub:
+                        0.8,
+
+                      invalidateOnRefresh:
+                        true,
+
+                      fastScrollEnd:
+                        true,
+                    },
+                  }
+                );
+
+
+              return () => {
+                parallaxTween
+                  .scrollTrigger
+                  ?.kill();
+
+
+                parallaxTween.kill();
+
+
+                gsap.set(
+                  media,
+
+                  {
+                    clearProps:
+                      "transform",
+                  }
+                );
+              };
+
             }
           );
-        }
 
 
-        /* =====================================================
-           DESKTOP PARALLAX
-        ===================================================== */
+          /* =================================================
+             MOBILE
 
-        mm.add(
-          "(min-width: 769px)",
-          () => {
-            gsap.fromTo(
-              image,
-              {
-                yPercent: -2,
-              },
-              {
-                yPercent: 4,
+             NO SCRUBBING.
 
-                ease: "none",
+             This intentionally removes mobile ScrollTrigger
+             movement because browser toolbars frequently
+             change viewport height and make hero effects
+             unstable.
 
-                scrollTrigger: {
-                  trigger: section,
+             Mobile still gets the intro zoom.
+          ================================================= */
 
-                  start:
-                    "top top",
+          mm.add(
+            "(max-width: 768px)",
 
-                  end:
-                    "bottom top",
+            () => {
 
-                  scrub: 0.9,
+              gsap.set(
+                media,
 
-                  invalidateOnRefresh:
-                    true,
-                },
-              }
-            );
-          }
-        );
+                {
+                  clearProps:
+                    "transform",
+                }
+              );
 
 
-        /* =====================================================
-           MOBILE
-        ===================================================== */
+              return () => {};
 
-        mm.add(
-          "(max-width: 768px)",
-          () => {
-            gsap.fromTo(
-              image,
-              {
-                scale: 1.04,
-              },
-              {
-                scale: 1,
+            }
+          );
 
-                ease: "none",
+        },
 
-                scrollTrigger: {
-                  trigger: section,
-
-                  start:
-                    "top top",
-
-                  end:
-                    "bottom top",
-
-                  scrub: 0.45,
-
-                  invalidateOnRefresh:
-                    true,
-                },
-              }
-            );
-          }
-        );
-
-      }, section);
+        section
+      );
 
 
     /* =====================================================
-       REFRESH
+       ROBUST REFRESH SYSTEM
+
+       Handles:
+       - browser zoom
+       - breakpoint changes
+       - DPR changes
+       - VisualViewport scaling
+       - image loading
+       - font loading
+
+       Pure mobile address-bar height changes are ignored.
     ===================================================== */
 
-    let resizeTimer;
+    let refreshTimer;
+
 
     let previousWidth =
-      window.innerWidth;
+      document
+        .documentElement
+        .clientWidth;
+
+
+    let previousVisualWidth =
+      window.visualViewport
+        ?.width ??
+      previousWidth;
+
+
+    let previousScale =
+      window.visualViewport
+        ?.scale ??
+      1;
+
+
+    let previousDpr =
+      window.devicePixelRatio;
 
 
     const refresh =
-      () => {
-        ScrollTrigger.refresh();
+      (
+        delay = 80
+      ) => {
+
+        clearTimeout(
+          refreshTimer
+        );
+
+
+        refreshTimer =
+          window.setTimeout(
+            () => {
+
+              ScrollTrigger.refresh(
+                true
+              );
+
+
+              ScrollTrigger.update();
+
+            },
+            delay
+          );
+
       };
 
 
-    const handleResize =
+    const handleViewportChange =
       () => {
-        const currentWidth =
-          window.innerWidth;
 
+        const width =
+          document
+            .documentElement
+            .clientWidth;
+
+
+        const visualWidth =
+          window.visualViewport
+            ?.width ??
+          width;
+
+
+        const scale =
+          window.visualViewport
+            ?.scale ??
+          1;
+
+
+        const dpr =
+          window.devicePixelRatio;
+
+
+        const widthChanged =
+          Math.abs(
+            width -
+            previousWidth
+          ) >=
+          2;
+
+
+        const visualWidthChanged =
+          Math.abs(
+            visualWidth -
+            previousVisualWidth
+          ) >=
+          2;
+
+
+        const scaleChanged =
+          Math.abs(
+            scale -
+            previousScale
+          ) >=
+          0.01;
+
+
+        const dprChanged =
+          Math.abs(
+            dpr -
+            previousDpr
+          ) >=
+          0.01;
+
+
+        /*
+          Ignore viewport-height-only changes.
+          This prevents mobile address bars from causing
+          constant ScrollTrigger rebuilding.
+        */
 
         if (
-          Math.abs(
-            currentWidth -
-            previousWidth
-          ) < 3
+          !widthChanged &&
+          !visualWidthChanged &&
+          !scaleChanged &&
+          !dprChanged
         ) {
           return;
         }
 
 
         previousWidth =
-          currentWidth;
+          width;
 
 
-        clearTimeout(
-          resizeTimer
+        previousVisualWidth =
+          visualWidth;
+
+
+        previousScale =
+          scale;
+
+
+        previousDpr =
+          dpr;
+
+
+        refresh(
+          110
         );
 
-
-        resizeTimer =
-          setTimeout(
-            refresh,
-            140
-          );
       };
 
 
-    if (!image.complete) {
+    /* =====================================================
+       IMAGE READY
+    ===================================================== */
+
+    const handleImageReady =
+      () => {
+
+        refresh(
+          20
+        );
+
+      };
+
+
+    if (
+      image.complete &&
+      image.naturalWidth >
+        0
+    ) {
+
+      if (
+        typeof image.decode ===
+        "function"
+      ) {
+
+        image
+          .decode()
+          .catch(
+            () => {}
+          )
+          .finally(
+            handleImageReady
+          );
+
+      } else {
+
+        handleImageReady();
+
+      }
+
+    } else {
+
       image.addEventListener(
         "load",
-        refresh
+        handleImageReady
       );
+
+
+      image.addEventListener(
+        "error",
+        handleImageReady
+      );
+
     }
 
 
+    /* =====================================================
+       FONT READY
+    ===================================================== */
+
     document.fonts
       ?.ready
-      ?.then(refresh);
+      ?.then(
+        () => {
 
+          refresh(
+            20
+          );
+
+        }
+      );
+
+
+    /* =====================================================
+       EVENTS
+    ===================================================== */
 
     window.addEventListener(
       "resize",
-      handleResize,
+      handleViewportChange,
       {
-        passive: true,
+        passive:
+          true,
       }
     );
 
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(
-        refresh
+    window.visualViewport
+      ?.addEventListener(
+        "resize",
+        handleViewportChange,
+        {
+          passive:
+            true,
+        }
       );
-    });
 
+
+    /* =====================================================
+       INITIAL REFRESH
+    ===================================================== */
+
+    requestAnimationFrame(
+      () => {
+
+        requestAnimationFrame(
+          () => {
+
+            ScrollTrigger.refresh(
+              true
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       CLEANUP
+    ===================================================== */
 
     return () => {
+
       clearTimeout(
-        resizeTimer
+        refreshTimer
       );
 
 
       image.removeEventListener(
         "load",
-        refresh
+        handleImageReady
+      );
+
+
+      image.removeEventListener(
+        "error",
+        handleImageReady
       );
 
 
       window.removeEventListener(
         "resize",
-        handleResize
+        handleViewportChange
       );
+
+
+      window.visualViewport
+        ?.removeEventListener(
+          "resize",
+          handleViewportChange
+        );
 
 
       mm.revert();
 
       ctx.revert();
+
     };
 
   }, []);
@@ -387,26 +803,39 @@ const MotionHero = () => {
     >
 
       {/* =====================================================
-          FULL HERO IMAGE
+          MEDIA
 
-          Navbar sits transparently above this image.
+          Wrapper:
+          handles desktop parallax.
+
+          Image:
+          handles intro zoom only.
       ===================================================== */}
 
-      <img
-        ref={imageRef}
-        src={heroEvent.image}
-        alt={heroEvent.title}
-        className="motion-hero-image"
-        loading="eager"
-        decoding="async"
-        draggable="false"
-      />
+      <div
+        ref={mediaRef}
+        className="motion-hero-media"
+      >
+
+        <img
+          ref={imageRef}
+          src={heroEvent.image}
+          alt={heroEvent.title}
+          className="motion-hero-image"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          draggable="false"
+          onError={
+            handleImageError
+          }
+        />
+
+      </div>
 
 
       {/* =====================================================
-          DARK OVERLAY
-
-          Keeps navbar + hero copy readable.
+          OVERLAY
       ===================================================== */}
 
       <div
@@ -474,10 +903,12 @@ const MotionHero = () => {
               >
 
                 {index !== 0 && (
+
                   <span
                     className="motion-hero-meta-dot"
                     aria-hidden="true"
                   />
+
                 )}
 
 

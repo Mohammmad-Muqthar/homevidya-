@@ -2,8 +2,16 @@
    VIDYA ACADEMY
    MOTION HERO
 
-   FULL SCREEN HERO
-   TRANSPARENT NAVBAR OVER IMAGE
+   STABLE VERSION
+
+   FIXES:
+   - SEPARATE IMAGE SCALE + PARALLAX TRANSFORMS
+   - NO MOBILE SCROLL SCRUB
+   - BROWSER ZOOM SAFE
+   - SHORT LAPTOP SAFE
+   - NO FIXED MIN-HEIGHT THAT BREAKS ZOOM
+   - NO WHITE GAP
+   - FULL SCREEN HERO
 ========================================================= */
 
 
@@ -12,43 +20,92 @@
 ========================================================= */
 
 .motion-hero {
-  --cream: #f5f3e9;
-  --green: #0b8255;
-  --deep-green: #0b563b;
-  --bright-green: #26b474;
-  --orange: #f9a01b;
-  --white: #ffffff;
+  --cream:
+    #f5f3e9;
 
-  position: relative;
+  --green:
+    #0b8255;
 
-  width: 100%;
+  --deep-green:
+    #0b563b;
+
+  --bright-green:
+    #26b474;
+
+  --orange:
+    #f9a01b;
+
+  --white:
+    #ffffff;
+
+
+  position:
+    relative;
+
+
+  width:
+    100%;
+
 
   /*
-    FULL SCREEN HEIGHT
+    Use viewport fallback first,
+    then modern dynamic viewport.
+
+    NO min-height: 100vh.
+    That was one of the reasons browser zoom
+    could make the layout overflow.
   */
-  height: 100vh;
-  height: 100svh;
 
-  min-height: 100vh;
-  min-height: 100svh;
+  height:
+    100vh;
 
-  max-height: none;
+  height:
+    100dvh;
 
-  margin: 0;
-  padding: 0;
 
-  overflow: hidden;
+  min-height:
+    0;
 
-  background: var(--deep-green);
 
-  border: 0;
-  outline: 0;
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--deep-green);
+
+
+  border:
+    0;
+
+
+  outline:
+    0;
+
+
+  color:
+    #ffffff;
+
 
   font-family:
     "Manrope",
     sans-serif;
 
-  isolation: isolate;
+
+  isolation:
+    isolate;
+
+
+  contain:
+    paint;
 }
 
 
@@ -60,7 +117,9 @@
 .motion-hero *,
 .motion-hero *::before,
 .motion-hero *::after {
-  box-sizing: border-box;
+  box-sizing:
+    border-box;
+
 
   font-family:
     "Manrope",
@@ -69,55 +128,161 @@
 
 
 /* =========================================================
-   REMOVE EXTRA DECORATION
+   NO ROOT DECORATION
 ========================================================= */
 
 .motion-hero::before,
 .motion-hero::after {
-  content: none;
+  content:
+    none;
 }
 
 
 /* =========================================================
-   FULL SCREEN IMAGE
+   MEDIA WRAPPER
 
-   Image is slightly taller than hero so
-   GSAP parallax never exposes empty space.
+   THIS HANDLES PARALLAX.
+
+   It is oversized so even when GSAP shifts it,
+   no blank strip can appear.
+========================================================= */
+
+.motion-hero-media {
+  position:
+    absolute;
+
+
+  z-index:
+    1;
+
+
+  top:
+    -3%;
+
+
+  right:
+    0;
+
+
+  bottom:
+    -3%;
+
+
+  left:
+    0;
+
+
+  width:
+    100%;
+
+
+  height:
+    106%;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    var(--deep-green);
+
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+
+  backface-visibility:
+    hidden;
+
+
+  -webkit-backface-visibility:
+    hidden;
+
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   IMAGE
+
+   IMPORTANT:
+   IMAGE NO LONGER DOES PARALLAX.
+
+   ONLY INTRO SCALE IS APPLIED TO THIS ELEMENT.
 ========================================================= */
 
 .motion-hero-image {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 1;
 
-  top: -4%;
-  left: 0;
+  inset:
+    0;
 
-  display: block;
 
-  width: 100%;
-  height: 108%;
+  display:
+    block;
 
-  max-width: none;
 
-  object-fit: cover;
+  width:
+    100%;
 
-  object-position: center center;
 
-  transform: scale(1.065);
+  height:
+    100%;
 
-  transform-origin: center center;
 
-  pointer-events: none;
+  max-width:
+    none;
 
-  user-select: none;
 
-  -webkit-user-drag: none;
+  object-fit:
+    cover;
 
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 
-  will-change: transform;
+  object-position:
+    center center;
+
+
+  transform:
+    scale(
+      1.065
+    );
+
+
+  transform-origin:
+    50% 50%;
+
+
+  pointer-events:
+    none;
+
+
+  user-select:
+    none;
+
+
+  -webkit-user-drag:
+    none;
+
+
+  backface-visibility:
+    hidden;
+
+
+  -webkit-backface-visibility:
+    hidden;
+
+
+  will-change:
+    transform;
 }
 
 
@@ -126,50 +291,110 @@
 ========================================================= */
 
 .motion-hero-overlay {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 2;
 
-  inset: 0;
+  z-index:
+    2;
+
+
+  inset:
+    0;
+
 
   background:
     linear-gradient(
       180deg,
 
-      rgba(4, 27, 20, 0.42) 0%,
+      rgba(
+        4,
+        27,
+        20,
+        0.42
+      )
+      0%,
 
-      rgba(4, 27, 20, 0.12) 30%,
+      rgba(
+        4,
+        27,
+        20,
+        0.1
+      )
+      30%,
 
-      rgba(4, 27, 20, 0.15) 52%,
+      rgba(
+        4,
+        27,
+        20,
+        0.15
+      )
+      53%,
 
-      rgba(4, 27, 20, 0.68) 100%
+      rgba(
+        4,
+        27,
+        20,
+        0.72
+      )
+      100%
     );
 
-  pointer-events: none;
+
+  pointer-events:
+    none;
 }
 
 
 /* =========================================================
-   LEFT SIDE DEPTH
+   LEFT-SIDE DEPTH
 ========================================================= */
 
 .motion-hero-overlay::after {
-  content: "";
+  position:
+    absolute;
 
-  position: absolute;
 
-  inset: 0;
+  inset:
+    0;
+
 
   background:
     linear-gradient(
       90deg,
 
-      rgba(3, 25, 18, 0.34) 0%,
+      rgba(
+        3,
+        25,
+        18,
+        0.34
+      )
+      0%,
 
-      rgba(3, 25, 18, 0.14) 38%,
+      rgba(
+        3,
+        25,
+        18,
+        0.14
+      )
+      38%,
 
-      rgba(3, 25, 18, 0) 72%
+      rgba(
+        3,
+        25,
+        18,
+        0
+      )
+      72%
     );
+
+
+  content:
+    "";
+
+
+  pointer-events:
+    none;
 }
 
 
@@ -178,9 +403,13 @@
 ========================================================= */
 
 .motion-hero-content {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 5;
+
+  z-index:
+    5;
+
 
   left:
     clamp(
@@ -189,26 +418,55 @@
       96px
     );
 
+
   bottom:
     clamp(
-      58px,
+      52px,
       7vh,
-      96px
+      90px
     );
 
-  display: flex;
 
-  flex-direction: column;
+  display:
+    flex;
 
-  align-items: flex-start;
+
+  flex-direction:
+    column;
+
+
+  align-items:
+    flex-start;
+
 
   width:
     min(
       700px,
-      52%
+      calc(
+        100% -
+        340px
+      )
     );
 
-  color: #ffffff;
+
+  max-width:
+    700px;
+
+
+  min-width:
+    0;
+
+
+  margin:
+    0;
+
+
+  color:
+    #ffffff;
+
+
+  pointer-events:
+    auto;
 }
 
 
@@ -217,27 +475,46 @@
 ========================================================= */
 
 .motion-hero-category {
-  display: inline-flex;
+  display:
+    inline-flex;
 
-  align-items: center;
+
+  align-items:
+    center;
+
 
   margin:
     0
     0
-    17px;
+    16px;
+
 
   color:
     var(--bright-green);
 
-  font-size: 11px;
 
-  font-weight: 700;
+  font-size:
+    11px;
 
-  line-height: 1;
 
-  letter-spacing: 0.15em;
+  font-style:
+    normal;
 
-  text-transform: uppercase;
+
+  font-weight:
+    700;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.15em;
+
+
+  text-transform:
+    uppercase;
 }
 
 
@@ -252,9 +529,14 @@
       100%
     );
 
-  margin: 0;
 
-  color: #ffffff;
+  margin:
+    0;
+
+
+  color:
+    #ffffff;
+
 
   font-size:
     clamp(
@@ -263,13 +545,33 @@
       82px
     );
 
-  font-weight: 550;
 
-  line-height: 0.94;
+  font-style:
+    normal;
 
-  letter-spacing: -0.062em;
 
-  text-wrap: balance;
+  font-weight:
+    550;
+
+
+  line-height:
+    0.94;
+
+
+  letter-spacing:
+    -0.062em;
+
+
+  overflow-wrap:
+    normal;
+
+
+  word-break:
+    normal;
+
+
+  text-wrap:
+    balance;
 }
 
 
@@ -278,32 +580,52 @@
 ========================================================= */
 
 .motion-hero-meta {
-  display: flex;
+  display:
+    flex;
 
-  align-items: center;
 
-  flex-wrap: wrap;
+  align-items:
+    center;
 
-  gap: 10px;
 
-  margin-top: 19px;
+  flex-wrap:
+    wrap;
+
+
+  gap:
+    10px;
+
+
+  width:
+    100%;
+
+
+  margin-top:
+    18px;
+
 
   color:
     rgba(
       255,
       255,
       255,
-      0.78
+      0.8
     );
 }
 
 
 .motion-hero-meta-item {
-  display: inline-flex;
+  display:
+    inline-flex;
 
-  align-items: center;
 
-  gap: 10px;
+  align-items:
+    center;
+
+
+  gap:
+    10px;
+
 
   font-size:
     clamp(
@@ -312,22 +634,38 @@
       14px
     );
 
-  font-weight: 450;
 
-  line-height: 1.4;
+  font-style:
+    normal;
+
+
+  font-weight:
+    450;
+
+
+  line-height:
+    1.4;
 }
 
 
 .motion-hero-meta-dot {
-  width: 4px;
-  height: 4px;
+  width:
+    4px;
+
+
+  height:
+    4px;
+
 
   flex:
     0
     0
     4px;
 
-  border-radius: 50%;
+
+  border-radius:
+    50%;
+
 
   background:
     var(--orange);
@@ -345,18 +683,21 @@
       100%
     );
 
+
   margin:
-    22px
+    20px
     0
     0;
+
 
   color:
     rgba(
       255,
       255,
       255,
-      0.74
+      0.76
     );
+
 
   font-size:
     clamp(
@@ -365,22 +706,40 @@
       17px
     );
 
-  font-weight: 400;
 
-  line-height: 1.58;
+  font-style:
+    normal;
 
-  letter-spacing: -0.014em;
+
+  font-weight:
+    400;
+
+
+  line-height:
+    1.56;
+
+
+  letter-spacing:
+    -0.014em;
+
+
+  text-wrap:
+    pretty;
 }
 
 
 /* =========================================================
-   DATE BOX
+   DATE
 ========================================================= */
 
 .motion-hero-date {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 5;
+
+  z-index:
+    5;
+
 
   right:
     clamp(
@@ -389,20 +748,30 @@
       90px
     );
 
+
   bottom:
     clamp(
-      62px,
+      56px,
       7vh,
-      98px
+      92px
     );
 
-  display: flex;
 
-  flex-direction: column;
+  display:
+    flex;
 
-  align-items: center;
 
-  justify-content: center;
+  flex-direction:
+    column;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    center;
+
 
   width:
     clamp(
@@ -411,6 +780,7 @@
       122px
     );
 
+
   height:
     clamp(
       108px,
@@ -418,22 +788,31 @@
       132px
     );
 
-  padding: 10px;
+
+  padding:
+    10px;
+
 
   background:
     var(--cream);
 
+
   color:
     var(--deep-green);
 
-  border: 0;
+
+  border:
+    0;
+
 
   border-top:
     3px
     solid
     var(--orange);
 
-  text-align: center;
+
+  text-align:
+    center;
 }
 
 
@@ -445,11 +824,17 @@
   color:
     var(--green);
 
-  font-size: 12px;
 
-  font-weight: 600;
+  font-size:
+    12px;
 
-  line-height: 1;
+
+  font-weight:
+    600;
+
+
+  line-height:
+    1;
 }
 
 
@@ -458,15 +843,19 @@
 ========================================================= */
 
 .motion-hero-date-day {
-  display: block;
+  display:
+    block;
+
 
   margin:
     7px
     0
     5px;
 
+
   color:
     var(--deep-green);
+
 
   font-size:
     clamp(
@@ -475,9 +864,18 @@
       44px
     );
 
-  font-weight: 550;
 
-  line-height: 0.9;
+  font-style:
+    normal;
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    0.9;
+
 
   letter-spacing:
     -0.055em;
@@ -497,11 +895,17 @@
       0.72
     );
 
-  font-size: 11px;
 
-  font-weight: 500;
+  font-size:
+    11px;
 
-  line-height: 1;
+
+  font-weight:
+    500;
+
+
+  line-height:
+    1;
 }
 
 
@@ -510,21 +914,37 @@
 ========================================================= */
 
 .motion-hero-button {
-  position: relative;
+  position:
+    relative;
 
-  display: inline-flex;
 
-  align-items: center;
+  display:
+    inline-flex;
 
-  justify-content: space-between;
 
-  gap: 32px;
+  align-items:
+    center;
 
-  min-width: 180px;
 
-  height: 49px;
+  justify-content:
+    space-between;
 
-  margin-top: 28px;
+
+  gap:
+    32px;
+
+
+  min-width:
+    180px;
+
+
+  height:
+    49px;
+
+
+  margin-top:
+    26px;
+
 
   padding:
     0
@@ -532,7 +952,10 @@
     0
     19px;
 
-  overflow: hidden;
+
+  overflow:
+    hidden;
+
 
   border:
     1px
@@ -541,20 +964,37 @@
       255,
       255,
       255,
-      0.55
+      0.58
     );
 
-  border-radius: 0;
 
-  background: transparent;
+  border-radius:
+    0;
 
-  color: #ffffff;
 
-  text-decoration: none;
+  background:
+    transparent;
+
+
+  color:
+    #ffffff;
+
+
+  text-decoration:
+    none;
+
+
+  cursor:
+    pointer;
+
 
   transition:
-    color 0.35s ease,
-    border-color 0.35s ease;
+    color
+    0.35s
+    ease,
+    border-color
+    0.35s
+    ease;
 }
 
 
@@ -563,59 +1003,95 @@
 ========================================================= */
 
 .motion-hero-button::before {
-  content: "";
+  position:
+    absolute;
 
-  position: absolute;
 
-  z-index: 0;
+  z-index:
+    0;
 
-  inset: 0;
 
-  background: #ffffff;
+  inset:
+    0;
+
+
+  background:
+    #ffffff;
+
+
+  content:
+    "";
+
 
   transform:
     translateY(
       102%
     );
 
+
   transition:
     transform
-      0.4s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      );
+    0.4s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
 }
 
 
 .motion-hero-button > * {
-  position: relative;
+  position:
+    relative;
 
-  z-index: 2;
+
+  z-index:
+    2;
 }
 
 
 .motion-hero-button span {
-  font-size: 10px;
+  font-size:
+    10px;
 
-  font-weight: 700;
 
-  line-height: 1;
+  font-weight:
+    700;
 
-  letter-spacing: 0.11em;
 
-  text-transform: uppercase;
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.11em;
+
+
+  text-transform:
+    uppercase;
 }
 
 
 .motion-hero-button svg {
-  width: 17px;
-  height: 17px;
+  width:
+    17px;
+
+
+  height:
+    17px;
+
+
+  flex:
+    0
+    0
+    17px;
+
 
   transition:
-    transform 0.3s ease;
+    transform
+    0.3s
+    ease;
 }
 
 
@@ -623,24 +1099,36 @@
    BUTTON HOVER
 ========================================================= */
 
-.motion-hero-button:hover {
-  color:
-    var(--deep-green);
+@media (
+  hover: hover
+) {
 
-  border-color:
-    #ffffff;
-}
-
-
-.motion-hero-button:hover::before {
-  transform:
-    translateY(0);
-}
+  .motion-hero-button:hover {
+    color:
+      var(--deep-green);
 
 
-.motion-hero-button:hover svg {
-  transform:
-    translateX(3px);
+    border-color:
+      #ffffff;
+  }
+
+
+  .motion-hero-button:hover::before {
+    transform:
+      translateY(
+        0
+      );
+  }
+
+
+  .motion-hero-button:hover
+  svg {
+    transform:
+      translateX(
+        3px
+      );
+  }
+
 }
 
 
@@ -648,19 +1136,37 @@
    LARGE DESKTOP
 ========================================================= */
 
-@media (min-width: 1600px) {
+@media (
+  min-width: 1600px
+) {
 
   .motion-hero-content {
-    left: 92px;
+    left:
+      92px;
 
-    bottom: 88px;
+
+    bottom:
+      84px;
+
+
+    width:
+      min(
+        720px,
+        calc(
+          100% -
+          370px
+        )
+      );
   }
 
 
   .motion-hero-date {
-    right: 88px;
+    right:
+      88px;
 
-    bottom: 88px;
+
+    bottom:
+      84px;
   }
 
 }
@@ -679,23 +1185,22 @@ and
   min-width: 769px
 ) {
 
-  .motion-hero {
-    height: 100vh;
-    height: 100svh;
-
-    min-height: 100svh;
-  }
-
-
   .motion-hero-content {
-    left: 42px;
+    left:
+      40px;
 
-    bottom: 52px;
+
+    bottom:
+      44px;
+
 
     width:
       min(
-        610px,
-        58%
+        600px,
+        calc(
+          100% -
+          260px
+        )
       );
   }
 
@@ -703,17 +1208,263 @@ and
   .motion-hero-title {
     font-size:
       clamp(
-        43px,
+        42px,
         5vw,
-        65px
+        64px
+      );
+  }
+
+
+  .motion-hero-description {
+    width:
+      min(
+        540px,
+        100%
+      );
+
+
+    font-size:
+      clamp(
+        13px,
+        1.1vw,
+        16px
       );
   }
 
 
   .motion-hero-date {
-    right: 40px;
+    right:
+      38px;
 
-    bottom: 52px;
+
+    bottom:
+      44px;
+
+
+    width:
+      94px;
+
+
+    height:
+      105px;
+  }
+
+
+  .motion-hero-date-day {
+    font-size:
+      34px;
+  }
+
+}
+
+
+/* =========================================================
+   SHORT LAPTOP
+
+   IMPORTANT FOR:
+   - 1366 × 768
+   - browser zoom
+   - short-height notebook screens
+========================================================= */
+
+@media
+(
+  min-width: 769px
+)
+and
+(
+  max-height: 720px
+) {
+
+  .motion-hero-content {
+    bottom:
+      24px;
+  }
+
+
+  .motion-hero-category {
+    margin-bottom:
+      10px;
+
+
+    font-size:
+      9px;
+  }
+
+
+  .motion-hero-title {
+    font-size:
+      clamp(
+        38px,
+        4.3vw,
+        56px
+      );
+
+
+    line-height:
+      0.94;
+  }
+
+
+  .motion-hero-meta {
+    margin-top:
+      11px;
+  }
+
+
+  .motion-hero-description {
+    width:
+      min(
+        520px,
+        100%
+      );
+
+
+    margin-top:
+      12px;
+
+
+    font-size:
+      clamp(
+        12.5px,
+        1vw,
+        14px
+      );
+
+
+    line-height:
+      1.45;
+  }
+
+
+  .motion-hero-button {
+    height:
+      43px;
+
+
+    margin-top:
+      14px;
+  }
+
+
+  .motion-hero-date {
+    bottom:
+      24px;
+
+
+    width:
+      88px;
+
+
+    height:
+      98px;
+  }
+
+
+  .motion-hero-date-month {
+    font-size:
+      10px;
+  }
+
+
+  .motion-hero-date-day {
+    margin:
+      5px
+      0
+      3px;
+
+
+    font-size:
+      31px;
+  }
+
+
+  .motion-hero-date-year {
+    font-size:
+      9px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SHORT DESKTOP / HIGH ZOOM
+========================================================= */
+
+@media
+(
+  min-width: 769px
+)
+and
+(
+  max-height: 590px
+) {
+
+  .motion-hero-content {
+    bottom:
+      16px;
+  }
+
+
+  .motion-hero-title {
+    font-size:
+      clamp(
+        34px,
+        4vw,
+        48px
+      );
+  }
+
+
+  .motion-hero-description {
+    max-width:
+      480px;
+
+
+    margin-top:
+      9px;
+
+
+    font-size:
+      12px;
+
+
+    line-height:
+      1.38;
+  }
+
+
+  .motion-hero-button {
+    height:
+      39px;
+
+
+    min-width:
+      158px;
+
+
+    margin-top:
+      10px;
+  }
+
+
+  .motion-hero-date {
+    bottom:
+      16px;
+
+
+    width:
+      76px;
+
+
+    height:
+      86px;
+  }
+
+
+  .motion-hero-date-day {
+    font-size:
+      27px;
   }
 
 }
@@ -723,39 +1474,72 @@ and
    MOBILE
 ========================================================= */
 
-@media (max-width: 768px) {
+@media (
+  max-width: 768px
+) {
 
   .motion-hero {
-    width: 100%;
+    width:
+      100%;
 
-    height: 100vh;
-    height: 100svh;
 
-    min-height: 100svh;
+    height:
+      100vh;
 
-    max-height: none;
+    height:
+      100svh;
+
+
+    min-height:
+      0;
+
+
+    contain:
+      paint;
   }
 
 
   /* =====================================================
-     FULL MOBILE IMAGE
+     MEDIA
+
+     NO GSAP PARALLAX ON MOBILE.
   ===================================================== */
 
-  .motion-hero-image {
-    top: -2%;
+  .motion-hero-media {
+    top:
+      -2%;
 
-    width: 100%;
 
-    height: 104%;
+    bottom:
+      -2%;
 
-    object-fit: cover;
 
-    object-position: center center;
+    width:
+      100%;
+
+
+    height:
+      104%;
+
 
     transform:
-      scale(1.04);
+      none !important;
+
+
+    will-change:
+      auto;
   }
 
+
+  .motion-hero-image {
+    object-position:
+      center center;
+  }
+
+
+  /* =====================================================
+     OVERLAY
+  ===================================================== */
 
   .motion-hero-overlay {
     background:
@@ -766,7 +1550,7 @@ and
           4,
           27,
           20,
-          0.42
+          0.43
         )
         0%,
 
@@ -790,7 +1574,7 @@ and
           4,
           27,
           20,
-          0.86
+          0.88
         )
         100%
       );
@@ -798,7 +1582,8 @@ and
 
 
   .motion-hero-overlay::after {
-    display: none;
+    display:
+      none;
   }
 
 
@@ -807,20 +1592,40 @@ and
   ===================================================== */
 
   .motion-hero-content {
-    left: 20px;
+    right:
+      20px;
 
-    right: 20px;
 
-    bottom: 32px;
+    bottom:
+      calc(
+        28px +
+        env(
+          safe-area-inset-bottom,
+          0px
+        )
+      );
 
-    width: auto;
+
+    left:
+      20px;
+
+
+    width:
+      auto;
+
+
+    max-width:
+      none;
   }
 
 
   .motion-hero-category {
-    margin-bottom: 12px;
+    margin-bottom:
+      11px;
 
-    font-size: 9px;
+
+    font-size:
+      9px;
   }
 
 
@@ -831,6 +1636,7 @@ and
         100%
       );
 
+
     font-size:
       clamp(
         39px,
@@ -838,37 +1644,60 @@ and
         54px
       );
 
-    line-height: 0.95;
+
+    line-height:
+      0.95;
+
+
+    letter-spacing:
+      -0.058em;
   }
 
 
   .motion-hero-meta {
-    margin-top: 14px;
+    margin-top:
+      13px;
   }
 
 
   .motion-hero-meta-item {
-    font-size: 11px;
+    font-size:
+      11px;
   }
 
 
   .motion-hero-description {
-    max-width: 470px;
+    width:
+      min(
+        470px,
+        100%
+      );
 
-    margin-top: 16px;
 
-    font-size: 13px;
+    margin-top:
+      15px;
 
-    line-height: 1.52;
+
+    font-size:
+      13px;
+
+
+    line-height:
+      1.48;
   }
 
 
   .motion-hero-button {
-    min-width: 160px;
+    min-width:
+      160px;
 
-    height: 45px;
 
-    margin-top: 20px;
+    height:
+      44px;
+
+
+    margin-top:
+      18px;
   }
 
 
@@ -877,22 +1706,44 @@ and
   ===================================================== */
 
   .motion-hero-date {
-    top: 92px;
+    top:
+      calc(
+        86px +
+        env(
+          safe-area-inset-top,
+          0px
+        )
+      );
 
-    right: 16px;
 
-    bottom: auto;
+    right:
+      16px;
 
-    width: 72px;
 
-    height: 82px;
+    bottom:
+      auto;
 
-    border-top-width: 2px;
+
+    width:
+      72px;
+
+
+    height:
+      82px;
+
+
+    padding:
+      7px;
+
+
+    border-top-width:
+      2px;
   }
 
 
   .motion-hero-date-month {
-    font-size: 9px;
+    font-size:
+      9px;
   }
 
 
@@ -902,12 +1753,15 @@ and
       0
       3px;
 
-    font-size: 27px;
+
+    font-size:
+      27px;
   }
 
 
   .motion-hero-date-year {
-    font-size: 9px;
+    font-size:
+      9px;
   }
 
 }
@@ -917,22 +1771,27 @@ and
    SMALL MOBILE
 ========================================================= */
 
-@media (max-width: 480px) {
-
-  .motion-hero {
-    height: 100vh;
-    height: 100svh;
-
-    min-height: 100svh;
-  }
-
+@media (
+  max-width: 480px
+) {
 
   .motion-hero-content {
-    left: 17px;
+    right:
+      17px;
 
-    right: 17px;
 
-    bottom: 25px;
+    bottom:
+      calc(
+        22px +
+        env(
+          safe-area-inset-bottom,
+          0px
+        )
+      );
+
+
+    left:
+      17px;
   }
 
 
@@ -947,33 +1806,58 @@ and
 
 
   .motion-hero-description {
-    font-size: 12.5px;
+    margin-top:
+      13px;
+
+
+    font-size:
+      12.5px;
+  }
+
+
+  .motion-hero-button {
+    height:
+      42px;
+
+
+    margin-top:
+      16px;
   }
 
 
   .motion-hero-date {
-    top: 82px;
+    top:
+      calc(
+        78px +
+        env(
+          safe-area-inset-top,
+          0px
+        )
+      );
 
-    right: 12px;
 
-    width: 68px;
+    right:
+      12px;
 
-    height: 77px;
+
+    width:
+      68px;
+
+
+    height:
+      77px;
   }
 
 }
 
 
 /* =========================================================
-   SHORT LAPTOP SCREENS
-
-   Keeps all hero copy visible without
-   reducing the full-screen image.
+   SHORT MOBILE
 ========================================================= */
 
 @media
 (
-  min-width: 769px
+  max-width: 768px
 )
 and
 (
@@ -981,34 +1865,244 @@ and
 ) {
 
   .motion-hero-content {
-    bottom: 34px;
+    bottom:
+      calc(
+        16px +
+        env(
+          safe-area-inset-bottom,
+          0px
+        )
+      );
+  }
+
+
+  .motion-hero-category {
+    margin-bottom:
+      8px;
   }
 
 
   .motion-hero-title {
     font-size:
       clamp(
-        42px,
-        4.5vw,
-        62px
+        32px,
+        8.6vw,
+        42px
       );
   }
 
 
-  .motion-hero-description {
-    margin-top: 15px;
+  .motion-hero-meta {
+    margin-top:
+      9px;
+  }
 
-    font-size: 14px;
+
+  .motion-hero-description {
+    margin-top:
+      10px;
+
+
+    font-size:
+      11.5px;
+
+
+    line-height:
+      1.4;
   }
 
 
   .motion-hero-button {
-    margin-top: 18px;
+    height:
+      38px;
+
+
+    margin-top:
+      11px;
   }
 
 
   .motion-hero-date {
-    bottom: 34px;
+    top:
+      calc(
+        72px +
+        env(
+          safe-area-inset-top,
+          0px
+        )
+      );
+
+
+    width:
+      63px;
+
+
+    height:
+      70px;
+  }
+
+
+  .motion-hero-date-day {
+    font-size:
+      23px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 360px
+) {
+
+  .motion-hero-content {
+    right:
+      14px;
+
+
+    left:
+      14px;
+  }
+
+
+  .motion-hero-title {
+    font-size:
+      33px;
+  }
+
+
+  .motion-hero-description {
+    font-size:
+      11px;
+  }
+
+
+  .motion-hero-date {
+    right:
+      10px;
+
+
+    width:
+      60px;
+
+
+    height:
+      68px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE LANDSCAPE
+========================================================= */
+
+@media
+(
+  max-width: 900px
+)
+and
+(
+  max-height: 520px
+)
+and
+(
+  orientation: landscape
+) {
+
+  .motion-hero-content {
+    right:
+      auto;
+
+
+    bottom:
+      18px;
+
+
+    left:
+      24px;
+
+
+    width:
+      min(
+        610px,
+        66%
+      );
+  }
+
+
+  .motion-hero-category {
+    margin-bottom:
+      7px;
+
+
+    font-size:
+      8px;
+  }
+
+
+  .motion-hero-title {
+    font-size:
+      clamp(
+        30px,
+        5vw,
+        43px
+      );
+  }
+
+
+  .motion-hero-meta {
+    margin-top:
+      7px;
+  }
+
+
+  .motion-hero-description {
+    margin-top:
+      7px;
+
+
+    font-size:
+      11px;
+
+
+    line-height:
+      1.35;
+  }
+
+
+  .motion-hero-button {
+    height:
+      36px;
+
+
+    margin-top:
+      8px;
+  }
+
+
+  .motion-hero-date {
+    top:
+      auto;
+
+
+    right:
+      22px;
+
+
+    bottom:
+      18px;
+
+
+    width:
+      68px;
+
+
+    height:
+      76px;
   }
 
 }
@@ -1023,11 +2117,33 @@ and
     reduce
 ) {
 
-  .motion-hero-image,
+  .motion-hero-media {
+    transform:
+      none !important;
+
+
+    will-change:
+      auto;
+  }
+
+
+  .motion-hero-image {
+    transform:
+      scale(
+        1.015
+      ) !important;
+
+
+    will-change:
+      auto;
+  }
+
+
   .motion-hero-content > *,
   .motion-hero-date {
     opacity:
       1 !important;
+
 
     transform:
       none !important;

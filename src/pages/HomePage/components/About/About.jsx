@@ -1,52 +1,55 @@
-import { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 import "./About.css";
 
-gsap.registerPlugin(ScrollTrigger);
 
 /* =========================================================
-   GALLERY DATA
+   GALLERY
 ========================================================= */
+
+const FALLBACK_IMAGE =
+  "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=88";
+
 
 const galleryImages = [
   {
     id: "01",
+
     badge: "LEARN",
+
     image:
-      "https://volzero.com/volzero/public/img/article/102576_44670.jpg",
-    fallback:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1800&q=90",
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=90",
+
     alt:
-      "Indian school open veranda and corridor overlooking a landscaped courtyard",
+      "Students learning together in a classroom",
   },
 
   {
     id: "02",
+
     badge: "EXPLORE",
+
     image:
-      "https://vivekanandschooldharuhera.com/upload/gallery_images/697b375d83c61-1aeeb0ee-bf26-45ba-bd0e-5166197a1be7.jpg",
-    fallback:
-      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=90",
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=90",
+
     alt:
-      "Indian school covered veranda opening into a green landscaped courtyard",
+      "Students exploring ideas together",
   },
 
   {
     id: "03",
+
     badge: "GROW",
+
     image:
-      "https://static.wixstatic.com/media/78b34a_a65467ed0859454ab347cb9e98d774f0~mv2.jpg/v1/fill/w_1200%2Ch_746%2Cq_90/78b34a_a65467ed0859454ab347cb9e98d774f0~mv2.jpg",
-    fallback:
-      "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=1800&q=90",
+      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2000&q=90",
+
     alt:
-      "Indian school campus corridor with columns, courtyard and greenery",
+      "School campus learning environment",
   },
 ];
 
+
 /* =========================================================
-   CURVES
+   CURVE DATA
 ========================================================= */
 
 const curveLevels = [
@@ -79,21 +82,48 @@ const curveLevels = [
   { inset: 678, apex: 722 },
 ];
 
-const buildReverseUPath = (inset, apex) => {
-  const left = inset;
-  const right = 1600 - inset;
-  const center = 800;
-  const bottom = 1000;
 
-  const shoulder = Math.min(
-    850,
-    Math.max(apex + 185, 220)
-  );
+/* =========================================================
+   CURVE PATH
+========================================================= */
 
-  const innerControl = Math.max(
-    80,
-    (right - left) * 0.19
-  );
+const buildReverseUPath = (
+  inset,
+  apex
+) => {
+  const left =
+    inset;
+
+  const right =
+    1600 - inset;
+
+  const center =
+    800;
+
+  const bottom =
+    1000;
+
+
+  const shoulder =
+    Math.min(
+      850,
+      Math.max(
+        apex + 185,
+        220
+      )
+    );
+
+
+  const innerControl =
+    Math.max(
+      80,
+      (
+        right -
+        left
+      ) *
+        0.19
+    );
+
 
   return `
     M ${left} ${bottom}
@@ -120,22 +150,49 @@ const buildReverseUPath = (inset, apex) => {
   `;
 };
 
-const secondaryCurveLevels = curveLevels
-  .slice(0, -1)
-  .map((current, index) => {
-    const next = curveLevels[index + 1];
-
-    return {
-      inset:
-        (current.inset + next.inset) / 2,
-
-      apex:
-        (current.apex + next.apex) / 2,
-    };
-  });
 
 /* =========================================================
-   CURVE COMPONENT
+   SECONDARY CURVES
+========================================================= */
+
+const secondaryCurveLevels =
+  curveLevels
+    .slice(
+      0,
+      -1
+    )
+    .map(
+      (
+        current,
+        index
+      ) => {
+        const next =
+          curveLevels[
+            index + 1
+          ];
+
+
+        return {
+          inset:
+            (
+              current.inset +
+              next.inset
+            ) /
+            2,
+
+          apex:
+            (
+              current.apex +
+              next.apex
+            ) /
+            2,
+        };
+      }
+    );
+
+
+/* =========================================================
+   CURVE SVG
 ========================================================= */
 
 function AboutCurveLines() {
@@ -146,419 +203,324 @@ function AboutCurveLines() {
       preserveAspectRatio="none"
       aria-hidden="true"
     >
-      <g className="vidya-about-curves-main">
-        {curveLevels.map((curve, index) => (
-          <path
-            key={`main-${index}`}
-            d={buildReverseUPath(
-              curve.inset,
-              curve.apex
-            )}
-          />
-        ))}
-      </g>
 
-      <g className="vidya-about-curves-secondary">
-        {secondaryCurveLevels.map(
-          (curve, index) => (
+      <g className="vidya-about-curves-main">
+
+        {curveLevels.map(
+          (
+            curve,
+            index
+          ) => (
+
             <path
-              key={`secondary-${index}`}
-              d={buildReverseUPath(
-                curve.inset,
-                curve.apex
-              )}
+              key={`main-${index}`}
+              d={
+                buildReverseUPath(
+                  curve.inset,
+                  curve.apex
+                )
+              }
             />
+
           )
         )}
+
       </g>
+
+
+      <g className="vidya-about-curves-secondary">
+
+        {secondaryCurveLevels.map(
+          (
+            curve,
+            index
+          ) => (
+
+            <path
+              key={`secondary-${index}`}
+              d={
+                buildReverseUPath(
+                  curve.inset,
+                  curve.apex
+                )
+              }
+            />
+
+          )
+        )}
+
+      </g>
+
     </svg>
   );
 }
+
 
 /* =========================================================
    ABOUT
 ========================================================= */
 
 const About = () => {
-  const sectionRef = useRef(null);
-  const storyRef = useRef(null);
 
-  useLayoutEffect(() => {
-    const section = sectionRef.current;
-    const story = storyRef.current;
-
-    if (!section || !story) return;
-
-    const ctx = gsap.context(() => {
-      /* =====================================================
-         INTRO CONTENT REVEAL
-      ===================================================== */
-
-      const introItems =
-        section.querySelectorAll(
-          [
-            ".vidya-about-intro-title",
-            ".vidya-about-intro-divider",
-            ".vidya-about-intro-copy",
-            ".vidya-about-intro-values",
-          ].join(",")
-        );
-
-      gsap.fromTo(
-        introItems,
-        {
-          y: 35,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.08,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 78%",
-            once: true,
-          },
-        }
-      );
-
-      /* =====================================================
-         GALLERY SLIDE OVER EFFECT
-         
-         The GREEN gallery block rises over the cream
-         philosophy section.
-      ===================================================== */
-
-      gsap.fromTo(
-        story,
-        {
-          y: 130,
-        },
-        {
-          y: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: story,
-            start: "top bottom",
-            end: "top 55%",
-            scrub: 1,
-          },
-        }
-      );
-
-      /* =====================================================
-         IMAGE PARALLAX
-
-         IMPORTANT:
-         Only the IMAGE moves.
-         The card does NOT move.
-
-         Small movement prevents the image from disappearing.
-      ===================================================== */
-
-      const cards =
-        story.querySelectorAll(
-          ".vidya-about-gallery-card"
-        );
-
-      cards.forEach((card) => {
-        const image =
-          card.querySelector(
-            ".vidya-about-gallery-image"
-          );
-
-        const badge =
-          card.querySelector(
-            ".vidya-about-gallery-badge"
-          );
-
-        if (!image) return;
-
-        gsap.fromTo(
-          image,
-          {
-            yPercent: -5,
-            scale: 1.055,
-          },
-          {
-            yPercent: 5,
-            scale: 1.035,
-            ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.4,
-              invalidateOnRefresh: true,
-            },
-          }
-        );
-
-        /* Badge has a very small independent movement */
-
-        if (badge) {
-          gsap.fromTo(
-            badge,
-            {
-              y: -6,
-            },
-            {
-              y: 8,
-              ease: "none",
-              scrollTrigger: {
-                trigger: card,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1.3,
-                invalidateOnRefresh: true,
-              },
-            }
-          );
-        }
-      });
-
-      /* =====================================================
-         CURVE PARALLAX
-      ===================================================== */
-
-      const curves =
-        story.querySelector(
-          ".vidya-about-curves"
-        );
-
-      if (curves) {
-        gsap.fromTo(
-          curves,
-          {
-            yPercent: 3,
-          },
-          {
-            yPercent: -3,
-            ease: "none",
-            scrollTrigger: {
-              trigger: story,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-            },
-          }
-        );
-      }
-    }, section);
-
-    const refresh = () => {
-      ScrollTrigger.refresh();
-    };
-
-    window.addEventListener(
-      "resize",
-      refresh
-    );
-
-    requestAnimationFrame(refresh);
-
-    return () => {
-      window.removeEventListener(
-        "resize",
-        refresh
-      );
-
-      ctx.revert();
-    };
-  }, []);
 
   /* =========================================================
      IMAGE FALLBACK
   ========================================================= */
 
-  const handleImageError = (
-    event,
-    fallback
-  ) => {
-    const image = event.currentTarget;
+  const handleImageError =
+    (
+      event
+    ) => {
+      const image =
+        event.currentTarget;
 
-    if (
-      image.dataset.fallbackUsed === "true"
-    ) {
-      image.style.display = "none";
-      return;
-    }
 
-    image.dataset.fallbackUsed = "true";
+      if (
+        image.dataset.fallbackApplied ===
+        "true"
+      ) {
+        return;
+      }
 
-    image.src = fallback;
-  };
+
+      image.dataset.fallbackApplied =
+        "true";
+
+
+      image.src =
+        FALLBACK_IMAGE;
+    };
+
 
   return (
     <section
-      ref={sectionRef}
       className="vidya-about"
       id="about"
     >
-      <div className="vidya-about-stage">
 
-        {/* =================================================
-            PHILOSOPHY
-        ================================================= */}
+      {/* =====================================================
+          WHITE CONTENT SECTION
+      ===================================================== */}
 
-        <div className="vidya-about-intro">
+      <section className="vidya-about-intro">
 
-          <div className="vidya-about-intro-inner">
+        <div className="vidya-about-intro-inner">
 
-            {/* LEFT */}
-            <div className="vidya-about-intro-heading">
+          {/* ===============================================
+              TITLE
+          =============================================== */}
 
-              <h2 className="vidya-about-intro-title">
+          <h2 className="vidya-about-intro-title">
 
-                <span className="vidya-about-title-dark">
-                  Our Learning
-                </span>
+            <span className="vidya-about-title-dark">
+              Our Learning
+            </span>
 
-                <span className="vidya-about-title-light">
-                  Philosophy.
-                </span>
+            {" "}
 
-              </h2>
+            <span className="vidya-about-title-light">
+              Philosophy.
+            </span>
 
-              <div className="vidya-about-intro-divider" />
+          </h2>
 
-            </div>
 
-            {/* RIGHT */}
-            <div className="vidya-about-intro-content">
+          {/* ===============================================
+              DIVIDER
+          =============================================== */}
 
-              <div className="vidya-about-intro-copy">
+          <div className="vidya-about-intro-divider" />
 
-                <p className="vidya-about-copy-lead">
-                  At Vidya Academy, learning goes beyond
-                  the classroom. Every child is encouraged
-                  to explore ideas with curiosity and
-                  confidence through meaningful discussions,
-                  practical activities, creative experiences
-                  and collaborative learning.
-                </p>
 
-                <p className="vidya-about-intro-extra">
-                  We believe children learn best when they
-                  are actively involved in the process.
-                  Our learning environment encourages
-                  students to ask questions, communicate
-                  their ideas, work with others and discover
-                  different ways of approaching a challenge.
-                </p>
+          {/* ===============================================
+              CONTENT
+          =============================================== */}
 
-                <p className="vidya-about-intro-extra">
-                  Alongside academic learning, students are
-                  encouraged to become thoughtful,
-                  independent and confident learners.
-                  Each experience helps them connect
-                  knowledge with everyday life, develop
-                  their own perspective and continue
-                  growing with purpose.
-                </p>
+          <div className="vidya-about-copy-grid">
 
-                <p className="vidya-about-desktop-extra">
-                  Our approach also creates opportunities for
-                  children to reflect on what they learn,
-                  understand their individual strengths and
-                  apply their knowledge with confidence.
-                  Through consistent guidance and purposeful
-                  experiences, students develop the habits,
-                  resilience and awareness needed to become
-                  capable learners prepared for the world
-                  beyond the classroom.
-                </p>
+            <p>
+              At Vidya Academy, learning goes beyond
+              the classroom. Every child is encouraged
+              to explore ideas with curiosity and
+              confidence through meaningful discussions,
+              practical activities, creative experiences
+              and collaborative learning.
+            </p>
 
-              </div>
 
-              <div className="vidya-about-intro-values">
+            <p>
+              We believe children learn best when they
+              are actively involved in the process.
+              Our learning environment encourages
+              students to ask questions, communicate
+              their ideas, work with others and discover
+              different ways of approaching a challenge.
+            </p>
 
-                <span>LEARN</span>
 
-                <i />
+            <p>
+              Alongside academic learning, students are
+              encouraged to become thoughtful,
+              independent and confident learners.
+              Each experience helps them connect
+              knowledge with everyday life, develop
+              their own perspective and continue
+              growing with purpose.
+            </p>
 
-                <span>EXPLORE</span>
 
-                <i />
+            <p>
+              Our approach creates opportunities for
+              children to reflect on what they learn,
+              understand their individual strengths and
+              apply their knowledge with confidence.
+              Through purposeful experiences, students
+              build resilience, awareness and the habits
+              needed for life beyond the classroom.
+            </p>
 
-                <span>GROW</span>
-
-              </div>
-
-            </div>
           </div>
+
+
+          {/* ===============================================
+              CLOSING COPY
+          =============================================== */}
+
+          <p className="vidya-about-intro-closing">
+
+            Learning becomes meaningful when children
+            have the freedom to question, connect,
+            create and apply what they know.
+
+          </p>
+
+
+          {/* ===============================================
+              VALUES
+          =============================================== */}
+
+          <div className="vidya-about-intro-values">
+
+            <span>
+              LEARN
+            </span>
+
+            <i />
+
+            <span>
+              EXPLORE
+            </span>
+
+            <i />
+
+            <span>
+              GROW
+            </span>
+
+          </div>
+
         </div>
 
-        {/* =================================================
-            GALLERY THAT SLIDES OVER THE ABOVE SECTION
-        ================================================= */}
+      </section>
+
+
+      {/* =====================================================
+          GREEN IMAGE SECTION
+
+          NORMAL FLOW.
+          NO PARALLAX.
+          NO STICKY.
+          NO PIN.
+          NO FAKE SCROLL HEIGHT.
+      ===================================================== */}
+
+      <section className="vidya-about-story">
+
+        {/* ===============================================
+            CURVED LINE BACKGROUND
+        =============================================== */}
 
         <div
-          ref={storyRef}
-          className="vidya-about-story"
+          className="vidya-about-green-lines"
+          aria-hidden="true"
         >
 
-          <div
-            className="vidya-about-green-lines"
-            aria-hidden="true"
-          >
-            <AboutCurveLines />
-          </div>
+          <AboutCurveLines />
 
-          <div className="vidya-about-gallery">
-
-            {galleryImages.map(
-              (item, index) => (
-                <article
-                  key={item.id}
-                  className={`
-                    vidya-about-gallery-card
-                    vidya-about-gallery-card--${index + 1}
-                  `}
-                >
-
-                  <div className="vidya-about-gallery-image-wrap">
-
-                    <img
-                      className="vidya-about-gallery-image"
-                      src={item.image}
-                      alt={item.alt}
-                      loading={
-                        index === 0
-                          ? "eager"
-                          : "lazy"
-                      }
-                      decoding="async"
-                      onError={(event) =>
-                        handleImageError(
-                          event,
-                          item.fallback
-                        )
-                      }
-                    />
-
-                  </div>
-
-                  <div className="vidya-about-gallery-overlay" />
-
-                  <div className="vidya-about-gallery-badge">
-                    <span>
-                      {item.badge}
-                    </span>
-                  </div>
-
-                </article>
-              )
-            )}
-
-          </div>
         </div>
 
-      </div>
+
+        {/* ===============================================
+            IMAGE GRID
+        =============================================== */}
+
+        <div className="vidya-about-gallery">
+
+          {galleryImages.map(
+            (
+              item,
+              index
+            ) => (
+
+              <article
+                key={
+                  item.id
+                }
+
+                className={`
+                  vidya-about-gallery-card
+                  vidya-about-gallery-card--${
+                    index + 1
+                  }
+                `}
+              >
+
+                <img
+                  src={
+                    item.image
+                  }
+
+                  alt={
+                    item.alt
+                  }
+
+                  loading="lazy"
+
+                  decoding="async"
+
+                  draggable="false"
+
+                  onError={
+                    handleImageError
+                  }
+                />
+
+
+                <div className="vidya-about-gallery-overlay" />
+
+
+                <div className="vidya-about-gallery-badge">
+
+                  <span>
+                    {
+                      item.badge
+                    }
+                  </span>
+
+                </div>
+
+              </article>
+
+            )
+          )}
+
+        </div>
+
+      </section>
+
     </section>
   );
 };
+
 
 export default About;
