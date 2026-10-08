@@ -2,12 +2,10 @@
    VIDYA ACADEMY
    CAMPUS BUILDINGS
 
-   HOMEPAGE + ABOUT PAGE SYSTEM
-
-   SPACING PATCH
-   - tighter marquee
-   - tighter description
-   - photos begin earlier
+   - SAME EXISTING COLLAGE
+   - SAME MARQUEE
+   - SAME RESPONSIVE STRUCTURE
+   - SAME COLOR FOR COMPLETE DESCRIPTION
 ========================================================= */
 
 
@@ -101,7 +99,7 @@
 
 
 /* =========================================================
-   NO DECORATIVE GLOW
+   NO DECORATIVE ROOT GLOW
 ========================================================= */
 
 .campus-buildings::before,
@@ -113,9 +111,6 @@
 
 /* =========================================================
    MARQUEE SECTION
-
-   PATCH:
-   MUCH LESS VERTICAL EMPTY SPACE
 ========================================================= */
 
 .campus-buildings-marquee-section {
@@ -179,7 +174,7 @@
 
 
 /* =========================================================
-   TRACK
+   MARQUEE TRACK
 ========================================================= */
 
 .campus-buildings-marquee-track {
@@ -201,7 +196,7 @@
 
 
 /* =========================================================
-   GROUP
+   MARQUEE GROUP
 ========================================================= */
 
 .campus-buildings-marquee-group {
@@ -219,7 +214,7 @@
 
 
 /* =========================================================
-   ITEM
+   MARQUEE ITEM
 ========================================================= */
 
 .campus-buildings-marquee-item {
@@ -253,7 +248,7 @@
 
 
 /* =========================================================
-   THE BUILDINGS
+   "THE BUILDINGS"
 ========================================================= */
 
 .campus-buildings-marquee-item > span {
@@ -291,7 +286,7 @@
 
 
 /* =========================================================
-   THUMB
+   MARQUEE THUMB
 ========================================================= */
 
 .campus-buildings-thumb {
@@ -329,14 +324,10 @@
 
 
 /* =========================================================
-   SUBTLE IMAGE DEPTH
+   THUMB SHADE
 ========================================================= */
 
 .campus-buildings-thumb::after {
-  content:
-    "";
-
-
   position:
     absolute;
 
@@ -364,6 +355,10 @@
       )
       100%
     );
+
+
+  content:
+    "";
 
 
   pointer-events:
@@ -425,11 +420,6 @@
 
 /* =========================================================
    DESCRIPTION
-
-   PATCH:
-   VERY SMALL SPACE AFTER MARQUEE
-   +
-   SMALLER SPACE BEFORE PHOTOS
 ========================================================= */
 
 .campus-buildings-caption {
@@ -480,6 +470,8 @@
 
 /* =========================================================
    DESCRIPTION TEXT
+
+   COMPLETE SENTENCE USES ONE COLOR
 ========================================================= */
 
 .campus-buildings-caption p {
@@ -488,12 +480,7 @@
 
 
   color:
-    rgba(
-      11,
-      86,
-      59,
-      0.74
-    );
+    var(--deep-green);
 
 
   font-size:
@@ -527,11 +514,13 @@
 
 /* =========================================================
    DESCRIPTION ACCENT
+
+   SAME COLOR AS REST OF SENTENCE
 ========================================================= */
 
 .campus-buildings-caption-accent {
   color:
-    var(--bright-green);
+    inherit;
 
 
   font-size:
@@ -759,14 +748,10 @@
 
 
 /* =========================================================
-   SUBTLE IMAGE SHADE
+   IMAGE SHADE
 ========================================================= */
 
 .campus-building-photo::after {
-  content:
-    "";
-
-
   position:
     absolute;
 
@@ -794,6 +779,10 @@
       )
       100%
     );
+
+
+  content:
+    "";
 
 
   pointer-events:
@@ -1233,8 +1222,6 @@ and
 
   /* =====================================================
      MOBILE DESCRIPTION
-
-     TIGHTER TOP AND BOTTOM SPACING
   ===================================================== */
 
   .campus-buildings-caption {
@@ -1261,6 +1248,10 @@ and
 
 
   .campus-buildings-caption p {
+    color:
+      var(--deep-green);
+
+
     font-size:
       15px;
 
@@ -1275,6 +1266,12 @@ and
 
     text-wrap:
       pretty;
+  }
+
+
+  .campus-buildings-caption-accent {
+    color:
+      inherit;
   }
 
 
@@ -1512,8 +1509,18 @@ and
 
 
   .campus-buildings-caption p {
+    color:
+      var(--deep-green);
+
+
     font-size:
       14px;
+  }
+
+
+  .campus-buildings-caption-accent {
+    color:
+      inherit;
   }
 
 
@@ -1595,8 +1602,18 @@ and
 
 
   .campus-buildings-caption p {
+    color:
+      var(--deep-green);
+
+
     font-size:
       13.5px;
+  }
+
+
+  .campus-buildings-caption-accent {
+    color:
+      inherit;
   }
 
 

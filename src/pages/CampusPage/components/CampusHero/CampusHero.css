@@ -2,14 +2,25 @@
    VIDYA ACADEMY
    CAMPUS HERO
 
-   FIXED VERSION
+   GAP / EMPTY AREA COLOR:
+   #F5F3E9
+
+   HERO TITLE:
+   MAIN TEXT       #FFFFFF
+   ACCENT TEXT     #8FE3B4
+
+   DESKTOP:
+   FULLSCREEN CENTER IMAGE
+   -> SCROLL
+   -> 3 × 3 CAMPUS WALL
+
+   MOBILE:
+   ONE FULLSCREEN CAMPUS IMAGE
 
    IMPORTANT:
-   - NO 225SVH MANUAL WRAPPER
-   - NO CSS STICKY
-   - GSAP HANDLES PINNING
-   - NO EMPTY WHITE SCREEN
-   - SAME FULLSCREEN -> WALL EFFECT
+   - NO WHITE SPACE BELOW HERO
+   - NO WHITE GRID GAPS
+   - CONSTANT LOOKING IMAGE GAP DURING SCROLL
 ========================================================= */
 
 
@@ -18,77 +29,57 @@
 ========================================================= */
 
 .campus-hero {
-  --white:
-    #ffffff;
+  --white: #ffffff;
 
-  --cream:
-    #f5f3e9;
+  --cream: #f5f3e9;
 
-  --green:
-    #0b8255;
+  --green: #0b8255;
 
-  --deep-green:
-    #0b563b;
+  --deep-green: #0b563b;
 
-  --deep-green-2:
-    #073f32;
+  --deep-green-2: #073f32;
 
-  --bright-green:
-    #26b474;
+  --bright-green: #26b474;
 
-  --orange:
-    #f9a01b;
+  --hero-light-green: #8fe3b4;
+
+  --orange: #f9a01b;
+
+
+  /* =====================================================
+     FINAL DESKTOP WALL GAP
+  ===================================================== */
 
   --campus-gap:
     clamp(
-      8px,
-      0.82vw,
-      16px
+      12px,
+      0.9vw,
+      17px
     );
 
 
-  position:
-    relative;
+  --campus-edge-gap:
+    clamp(
+      8px,
+      0.65vw,
+      12px
+    );
 
 
-  width:
-    100%;
+  position: relative;
 
+  width: 100%;
 
-  /*
-    IMPORTANT:
+  min-height: 100vh;
+  min-height: 100svh;
 
-    Do not create the scroll distance here.
+  margin: 0;
 
-    ScrollTrigger pinSpacing now creates
-    exactly the space needed.
-  */
-  height:
-    auto;
+  padding: 0;
 
+  overflow: visible;
 
-  min-height:
-    100vh;
-
-  min-height:
-    100svh;
-
-
-  margin:
-    0;
-
-
-  padding:
-    0;
-
-
-  overflow:
-    visible;
-
-
-  background:
-    var(--white);
-
+  background: var(--cream);
 
   font-family:
     "Manrope",
@@ -104,86 +95,43 @@
 .campus-hero *,
 .campus-hero *::before,
 .campus-hero *::after {
-  box-sizing:
-    border-box;
-
+  box-sizing: border-box;
 
   font-family:
     "Manrope",
-    sans-serif !important;
+    sans-serif;
 }
 
 
 /* =========================================================
-   FULL-SCREEN STAGE
-
-   IMPORTANT:
-
-   THIS IS NO LONGER CSS STICKY.
-
-   GSAP ScrollTrigger pins it.
+   STAGE
 ========================================================= */
 
 .campus-hero-stage {
-  position:
-    relative;
+  position: relative;
 
+  width: 100%;
 
-  top:
-    auto;
+  height: 100vh;
+  height: 100svh;
 
+  min-height: 620px;
 
-  width:
-    100%;
+  margin: 0;
 
+  padding: 0;
 
-  height:
-    100vh;
+  overflow: hidden;
 
-  height:
-    100svh;
+  background: var(--cream);
 
+  isolation: isolate;
 
-  min-height:
-    620px;
+  contain: none;
 
+  backface-visibility: hidden;
 
-  margin:
-    0;
-
-
-  padding:
-    0;
-
-
-  overflow:
-    hidden;
-
-
-  background:
-    var(--white);
-
-
-  isolation:
-    isolate;
-
-
-  /*
-    Do not use contain: paint here.
-
-    It can interfere with transformed/pinned
-    descendants in some browser layouts.
-  */
-  contain:
-    none;
-
-
-  backface-visibility:
-    hidden;
-
-
-  -webkit-backface-visibility:
-    hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 
@@ -192,21 +140,13 @@
 ========================================================= */
 
 .campus-zoom-wall {
-  position:
-    absolute;
+  position: absolute;
 
+  z-index: 1;
 
-  z-index:
-    1;
+  inset: 0;
 
-
-  inset:
-    0;
-
-
-  display:
-    grid;
-
+  display: grid;
 
   grid-template-columns:
     repeat(
@@ -217,7 +157,6 @@
       )
     );
 
-
   grid-template-rows:
     repeat(
       3,
@@ -227,42 +166,34 @@
       )
     );
 
-
   gap:
     var(--campus-gap);
 
+  width: 100%;
 
-  width:
-    100%;
+  height: 100%;
 
-
-  height:
-    100%;
-
+  padding:
+    var(--campus-edge-gap);
 
   background:
-    var(--white);
+    var(--cream);
 
-
-  /*
-    JS replaces this using the exact
-    calculated fullscreen scale.
-  */
   transform:
-    scale(3.05);
-
+    scale(
+      3.08
+    );
 
   transform-origin:
     50% 50%;
 
-
   will-change:
-    transform;
-
+    transform,
+    gap,
+    padding;
 
   backface-visibility:
     hidden;
-
 
   -webkit-backface-visibility:
     hidden;
@@ -270,61 +201,40 @@
 
 
 /* =========================================================
-   WALL CARD
+   CARD
 ========================================================= */
 
 .campus-wall-card {
-  position:
-    relative;
+  position: relative;
 
+  width: 100%;
 
-  width:
-    100%;
+  height: 100%;
 
+  min-width: 0;
 
-  height:
-    100%;
+  min-height: 0;
 
+  margin: 0;
 
-  min-width:
-    0;
+  padding: 0;
 
+  overflow: hidden;
 
-  min-height:
-    0;
+  border: 0;
 
-
-  margin:
-    0;
-
-
-  padding:
-    0;
-
-
-  overflow:
-    hidden;
-
-
-  border:
-    0;
-
-
-  border-radius:
-    0;
-
+  border-radius: 0;
 
   background:
-    #eef2f0;
-
+    var(--cream);
 
   transform:
-    translateZ(0);
-
+    translateZ(
+      0
+    );
 
   backface-visibility:
     hidden;
-
 
   -webkit-backface-visibility:
     hidden;
@@ -336,65 +246,42 @@
 ========================================================= */
 
 .campus-wall-image {
-  position:
-    absolute;
+  position: absolute;
 
+  inset: 0;
 
-  inset:
-    0;
+  display: block;
 
+  width: 100%;
 
-  display:
-    block;
+  height: 100%;
 
+  max-width: none;
 
-  width:
-    100%;
-
-
-  height:
-    100%;
-
-
-  max-width:
-    none;
-
-
-  object-fit:
-    cover;
-
+  object-fit: cover;
 
   object-position:
     center;
 
-
   transform:
-    scale(1.018);
-
+    scale(
+      1.025
+    );
 
   transform-origin:
     center center;
 
+  pointer-events: none;
 
-  pointer-events:
-    none;
+  user-select: none;
 
-
-  user-select:
-    none;
-
-
-  -webkit-user-drag:
-    none;
-
+  -webkit-user-drag: none;
 
   will-change:
     transform;
 
-
   backface-visibility:
     hidden;
-
 
   -webkit-backface-visibility:
     hidden;
@@ -402,13 +289,98 @@
 
 
 /* =========================================================
-   NO OVERLAY
+   IMAGE CROPS
+========================================================= */
+
+
+/* 01 — BUILDING */
+
+.campus-wall-card-01
+.campus-wall-image {
+  object-position:
+    center 52%;
+}
+
+
+/* 02 — GROUND */
+
+.campus-wall-card-02
+.campus-wall-image {
+  object-position:
+    center 58%;
+}
+
+
+/* 03 — LIBRARY */
+
+.campus-wall-card-03
+.campus-wall-image {
+  object-position:
+    center;
+}
+
+
+/* 04 — VERANDA / COURTYARD */
+
+.campus-wall-card-04
+.campus-wall-image {
+  object-position:
+    center 52%;
+}
+
+
+/* 05 — MAIN CAMPUS */
+
+.campus-wall-card-05
+.campus-wall-image {
+  object-position:
+    center 55%;
+}
+
+
+/* 06 — POOL */
+
+.campus-wall-card-06
+.campus-wall-image {
+  object-position:
+    center;
+}
+
+
+/* 07 — SPORTS */
+
+.campus-wall-card-07
+.campus-wall-image {
+  object-position:
+    center;
+}
+
+
+/* 08 — PLAYGROUND */
+
+.campus-wall-card-08
+.campus-wall-image {
+  object-position:
+    center 55%;
+}
+
+
+/* 09 — CAMPUS */
+
+.campus-wall-card-09
+.campus-wall-image {
+  object-position:
+    center 55%;
+}
+
+
+/* =========================================================
+   NO CARD OVERLAYS
 ========================================================= */
 
 .campus-wall-card::before,
 .campus-wall-card::after {
-  content:
-    none;
+  content: none;
 }
 
 
@@ -417,13 +389,9 @@
 ========================================================= */
 
 .campus-hero-content {
-  position:
-    absolute;
+  position: absolute;
 
-
-  z-index:
-    6;
-
+  z-index: 6;
 
   left:
     clamp(
@@ -432,7 +400,6 @@
       72px
     );
 
-
   bottom:
     clamp(
       88px,
@@ -440,23 +407,19 @@
       120px
     );
 
-
   width:
     min(
       1040px,
       calc(
-        100% - 84px
+        100% -
+        84px
       )
     );
 
-
-  pointer-events:
-    none;
-
+  pointer-events: none;
 
   transform-origin:
     left center;
-
 
   will-change:
     transform,
@@ -465,37 +428,28 @@
 
 
 /* =========================================================
-   HERO TITLE
+   TITLE
 ========================================================= */
 
 .campus-hero-title {
-  display:
-    flex;
+  display: flex;
 
-
-  flex-direction:
-    column;
-
+  flex-direction: column;
 
   align-items:
     flex-start;
 
+  width: 100%;
 
-  width:
-    100%;
+  max-width: 1100px;
 
+  margin: 0;
 
-  max-width:
-    1100px;
+  padding: 0;
 
-
-  margin:
-    0;
-
-
-  padding:
-    0;
-
+  font-family:
+    "Manrope",
+    sans-serif;
 
   font-size:
     clamp(
@@ -504,22 +458,14 @@
       132px
     );
 
+  font-style: normal;
 
-  font-style:
-    normal;
+  font-weight: 600;
 
-
-  font-weight:
-    600;
-
-
-  line-height:
-    0.9;
-
+  line-height: 0.9;
 
   letter-spacing:
     -0.065em;
-
 
   text-rendering:
     geometricPrecision;
@@ -528,77 +474,58 @@
 
 /* =========================================================
    MAIN TITLE
+
+   "A CAMPUS BUILT"
+
+   WHITE
 ========================================================= */
 
 .campus-hero-title-main {
-  display:
-    block;
+  display: block;
 
-
-  margin:
-    0;
-
+  margin: 0;
 
   color:
     #ffffff;
 
+  font: inherit;
 
-  font-size:
-    inherit;
+  font-style: normal;
 
+  font-weight: inherit;
 
-  font-style:
-    normal;
+  line-height: inherit;
 
-
-  font-weight:
-    inherit;
-
-
-  line-height:
-    inherit;
-
-
-  letter-spacing:
-    inherit;
+  letter-spacing: inherit;
 }
 
 
 /* =========================================================
-   ACCENT
+   ACCENT TITLE
+
+   "WITH INTENTION."
+
+   LIGHT GREEN
 ========================================================= */
 
 .campus-hero-title-accent {
-  display:
-    block;
-
+  display: block;
 
   margin-top:
     0.015em;
 
-
   color:
-    var(--bright-green);
+    #8fe3b4;
 
+  font: inherit;
 
-  font-size:
-    inherit;
+  font-style: normal;
 
+  font-weight: inherit;
 
-  font-style:
-    normal;
+  line-height: inherit;
 
-
-  font-weight:
-    inherit;
-
-
-  line-height:
-    inherit;
-
-
-  letter-spacing:
-    inherit;
+  letter-spacing: inherit;
 }
 
 
@@ -613,7 +540,6 @@
       100%
     );
 
-
   margin:
     clamp(
       24px,
@@ -623,15 +549,13 @@
     0
     0;
 
-
   color:
     rgba(
       255,
       255,
       255,
-      0.84
+      0.86
     );
-
 
   font-size:
     clamp(
@@ -640,14 +564,9 @@
       20px
     );
 
+  font-weight: 400;
 
-  font-weight:
-    400;
-
-
-  line-height:
-    1.55;
-
+  line-height: 1.55;
 
   letter-spacing:
     -0.015em;
@@ -655,17 +574,13 @@
 
 
 /* =========================================================
-   SCROLL INDICATOR
+   SCROLL HINT
 ========================================================= */
 
 .campus-hero-scroll {
-  position:
-    absolute;
+  position: absolute;
 
-
-  z-index:
-    6;
-
+  z-index: 6;
 
   right:
     clamp(
@@ -674,55 +589,35 @@
       72px
     );
 
+  bottom: 30px;
 
-  bottom:
-    30px;
+  display: flex;
 
+  align-items: center;
 
-  display:
-    flex;
-
-
-  align-items:
-    center;
-
-
-  gap:
-    10px;
-
+  gap: 10px;
 
   color:
     rgba(
       255,
       255,
       255,
-      0.68
+      0.72
     );
 
+  font-size: 10px;
 
-  font-size:
-    10px;
+  font-weight: 600;
 
-
-  font-weight:
-    600;
-
-
-  line-height:
-    1;
-
+  line-height: 1;
 
   letter-spacing:
     0.11em;
 
-
   text-transform:
     uppercase;
 
-
-  pointer-events:
-    none;
-
+  pointer-events: none;
 
   will-change:
     opacity,
@@ -735,60 +630,41 @@
 ========================================================= */
 
 .campus-hero-scroll i {
-  position:
-    relative;
+  position: relative;
 
+  display: block;
 
-  display:
-    block;
+  width: 42px;
 
+  height: 1px;
 
-  width:
-    42px;
-
-
-  height:
-    1px;
-
-
-  overflow:
-    hidden;
-
+  overflow: hidden;
 
   background:
     rgba(
       255,
       255,
       255,
-      0.28
+      0.3
     );
 }
 
 
-/* =========================================================
-   ORANGE LINE
-========================================================= */
-
 .campus-hero-scroll i::after {
-  content:
-    "";
-
-
-  position:
-    absolute;
-
+  position: absolute;
 
   inset:
-    0 auto 0 0;
+    0
+    auto
+    0
+    0;
 
-
-  width:
-    50%;
-
+  width: 50%;
 
   background:
     var(--orange);
 
+  content: "";
 
   animation:
     campusScrollLine
@@ -799,7 +675,16 @@
 
 
 /* =========================================================
-   SCROLL LINE
+   MOBILE SHADE
+========================================================= */
+
+.campus-hero-mobile-shade {
+  display: none;
+}
+
+
+/* =========================================================
+   SCROLL ANIMATION
 ========================================================= */
 
 @keyframes campusScrollLine {
@@ -838,6 +723,15 @@
   min-width: 1440px
 ) {
 
+  .campus-hero {
+    --campus-gap:
+      17px;
+
+    --campus-edge-gap:
+      11px;
+  }
+
+
   .campus-hero-content {
     left:
       clamp(
@@ -845,7 +739,6 @@
         4vw,
         76px
       );
-
 
     bottom:
       clamp(
@@ -883,7 +776,10 @@ and
 
   .campus-hero {
     --campus-gap:
-      10px;
+      14px;
+
+    --campus-edge-gap:
+      9px;
   }
 
 
@@ -897,14 +793,13 @@ and
     left:
       42px;
 
-
     bottom:
       72px;
 
-
     width:
       calc(
-        100% - 84px
+        100% -
+        84px
       );
   }
 
@@ -913,7 +808,6 @@ and
     max-width:
       900px;
 
-
     font-size:
       clamp(
         55px,
@@ -921,10 +815,8 @@ and
         88px
       );
 
-
     line-height:
       0.92;
-
 
     letter-spacing:
       -0.06em;
@@ -935,10 +827,8 @@ and
     max-width:
       450px;
 
-
     margin-top:
       22px;
-
 
     font-size:
       clamp(
@@ -953,10 +843,8 @@ and
     right:
       42px;
 
-
     bottom:
       26px;
-
 
     font-size:
       9px;
@@ -966,7 +854,7 @@ and
 
 
 /* =========================================================
-   TABLET
+   TABLET LANDSCAPE
 ========================================================= */
 
 @media
@@ -978,18 +866,26 @@ and
   min-width: 769px
 ) {
 
+  .campus-hero {
+    --campus-gap:
+      12px;
+
+    --campus-edge-gap:
+      8px;
+  }
+
+
   .campus-hero-content {
     left:
       34px;
 
-
     bottom:
       66px;
 
-
     width:
       calc(
-        100% - 68px
+        100% -
+        68px
       );
   }
 
@@ -1008,7 +904,6 @@ and
     max-width:
       420px;
 
-
     font-size:
       16px;
   }
@@ -1018,6 +913,12 @@ and
 
 /* =========================================================
    MOBILE
+
+   ONE FULLSCREEN SCHOOL CAMPUS IMAGE
+
+   NO PIN
+   NO ZOOM
+   NO WALL
 ========================================================= */
 
 @media (
@@ -1025,38 +926,40 @@ and
 ) {
 
   .campus-hero {
-    --campus-gap:
-      4px;
+    width: 100%;
 
+    height: 100svh;
 
     min-height:
       100svh;
+
+    margin: 0;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    background:
+      var(--cream);
   }
 
 
   .campus-hero-stage {
-    width:
-      100%;
+    position: relative;
 
+    width: 100%;
 
-    height:
-      100vh;
-
-    height:
-      100svh;
-
+    height: 100svh;
 
     min-height:
-      0;
+      100svh;
 
+    margin: 0;
 
-    overflow:
-      hidden;
-
+    overflow: hidden;
 
     background:
-      var(--white);
-
+      var(--cream);
 
     touch-action:
       pan-y;
@@ -1064,171 +967,191 @@ and
 
 
   /* =====================================================
-     MOBILE WALL
-
-     3 VERTICAL CELLS
+     WALL CONTAINER
   ===================================================== */
 
   .campus-zoom-wall {
-    display:
-      grid;
+    position: absolute;
 
+    inset: 0;
 
-    grid-template-columns:
-      minmax(
-        0,
-        1fr
-      );
+    display: block;
 
+    width: 100%;
 
-    grid-template-rows:
-      repeat(
-        3,
-        minmax(
-          0,
-          1fr
-        )
-      );
+    height: 100%;
 
-
-    width:
-      100%;
-
-
-    height:
-      100%;
-
-
-    gap:
-      var(--campus-gap);
-
+    padding: 0;
 
     background:
-      var(--white);
-
+      var(--cream);
 
     transform:
-      scale(3);
+      none !important;
 
-
-    transform-origin:
-      50% 50%;
+    will-change:
+      auto;
   }
 
 
   /* =====================================================
-     ONLY 3 MOBILE IMAGES
+     HIDE ALL CARDS
   ===================================================== */
 
   .campus-wall-card {
-    display:
-      none;
-  }
+    display: none;
 
-
-  .campus-wall-card.is-mobile-visible {
-    display:
-      block;
-
-
-    width:
-      100%;
-
-
-    height:
-      100%;
-
-
-    min-width:
-      0;
-
-
-    min-height:
-      0;
+    border: 0;
   }
 
 
   /* =====================================================
-     MOBILE IMAGE
+     ONLY CENTER CAMPUS IMAGE
   ===================================================== */
 
-  .campus-wall-image {
-    inset:
-      0;
+  .campus-wall-card-05 {
+    position: absolute;
 
+    inset: 0;
 
-    width:
-      100%;
+    display: block;
 
+    width: 100%;
 
-    height:
-      100%;
+    height: 100%;
 
+    min-height: 0;
 
-    object-fit:
-      cover;
+    margin: 0;
 
-
-    object-position:
-      center;
-
+    background:
+      var(--cream);
 
     transform:
-      scale(
-        1.012
-      );
-
-
-    transform-origin:
-      center;
+      none !important;
   }
 
 
   .campus-wall-card-05
   .campus-wall-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
     object-position:
-      center;
+      center center;
+
+    transform:
+      none !important;
+
+    will-change:
+      auto;
   }
 
 
   /* =====================================================
-     CONTENT
+     MOBILE SHADE
   ===================================================== */
 
-  .campus-hero-content {
-    left:
-      20px;
+  .campus-hero-mobile-shade {
+    position: absolute;
 
+    z-index: 4;
 
-    right:
-      20px;
+    inset: 0;
 
+    display: block;
 
-    bottom:
-      clamp(
-        72px,
-        10svh,
-        92px
+    background:
+      linear-gradient(
+        180deg,
+
+        rgba(
+          4,
+          15,
+          11,
+          0.04
+        )
+        0%,
+
+        rgba(
+          4,
+          15,
+          11,
+          0.08
+        )
+        38%,
+
+        rgba(
+          4,
+          15,
+          11,
+          0.72
+        )
+        100%
       );
 
-
-    width:
-      auto;
-
-
-    max-width:
-      520px;
+    pointer-events:
+      none;
   }
 
 
-  .campus-hero-title {
-    width:
-      100%;
+  /* =====================================================
+     MOBILE CONTENT
+  ===================================================== */
 
+  .campus-hero-content {
+    position: absolute;
+
+    z-index: 6;
+
+    top: auto;
+
+    right: 20px;
+
+    bottom:
+      calc(
+        48px +
+        env(
+          safe-area-inset-bottom,
+          0px
+        )
+      );
+
+    left: 20px;
+
+    width: auto;
 
     max-width:
-      520px;
+      560px;
 
+    margin: 0;
+
+    opacity:
+      1 !important;
+
+    transform:
+      none !important;
+
+    will-change:
+      auto;
+  }
+
+
+  /* =====================================================
+     MOBILE TITLE
+  ===================================================== */
+
+  .campus-hero-title {
+    width: 100%;
+
+    max-width: 100%;
 
     font-size:
       clamp(
@@ -1237,19 +1160,32 @@ and
         58px
       );
 
-
-    font-weight:
-      600;
-
+    font-weight: 600;
 
     line-height:
       0.94;
 
-
     letter-spacing:
       -0.055em;
+
+    text-shadow:
+      0
+      3px
+      24px
+      rgba(
+        0,
+        0,
+        0,
+        0.3
+      );
   }
 
+
+  /* =====================================================
+     MOBILE MAIN
+
+     WHITE
+  ===================================================== */
 
   .campus-hero-title-main {
     color:
@@ -1257,80 +1193,60 @@ and
   }
 
 
+  /* =====================================================
+     MOBILE ACCENT
+
+     LIGHT GREEN
+  ===================================================== */
+
   .campus-hero-title-accent {
     margin-top:
       3px;
 
-
     color:
-      var(--bright-green);
+      #8fe3b4;
   }
 
+
+  /* =====================================================
+     DESCRIPTION
+  ===================================================== */
 
   .campus-hero-description {
     width:
       min(
-        335px,
+        340px,
         100%
       );
 
-
     margin-top:
-      17px;
-
+      18px;
 
     color:
       rgba(
         255,
         255,
         255,
-        0.84
+        0.88
       );
-
 
     font-size:
       15px;
 
-
     line-height:
       1.5;
-
 
     letter-spacing:
       -0.012em;
   }
 
 
+  /* =====================================================
+     MOBILE SCROLL HINT REMOVED
+  ===================================================== */
+
   .campus-hero-scroll {
-    right:
-      auto;
-
-
-    left:
-      20px;
-
-
-    bottom:
-      max(
-        18px,
-        env(
-          safe-area-inset-bottom
-        )
-      );
-
-
-    gap:
-      8px;
-
-
-    font-size:
-      8px;
-  }
-
-
-  .campus-hero-scroll i {
-    width:
-      28px;
+    display: none;
   }
 
 }
@@ -1344,27 +1260,21 @@ and
   max-width: 480px
 ) {
 
-  .campus-hero {
-    --campus-gap:
-      3px;
-  }
-
-
   .campus-hero-content {
-    left:
-      17px;
-
-
     right:
-      17px;
-
+      18px;
 
     bottom:
-      clamp(
-        66px,
-        9svh,
-        80px
+      calc(
+        38px +
+        env(
+          safe-area-inset-bottom,
+          0px
+        )
       );
+
+    left:
+      18px;
   }
 
 
@@ -1376,48 +1286,38 @@ and
         48px
       );
 
-
     line-height:
       0.96;
-
-
-    letter-spacing:
-      -0.05em;
   }
 
 
   .campus-hero-description {
     max-width:
-      300px;
-
+      310px;
 
     margin-top:
       15px;
 
-
     font-size:
       14px;
-
 
     line-height:
       1.48;
   }
 
 
-  .campus-hero-scroll {
-    left:
-      17px;
-
-
-    font-size:
-      7.5px;
+  .campus-wall-card-05
+  .campus-wall-image {
+    object-position:
+      52%
+      center;
   }
 
 }
 
 
 /* =========================================================
-   VERY SMALL
+   VERY SMALL MOBILE
 ========================================================= */
 
 @media (
@@ -1425,16 +1325,20 @@ and
 ) {
 
   .campus-hero-content {
-    left:
-      15px;
-
-
     right:
       15px;
 
-
     bottom:
-      60px;
+      calc(
+        30px +
+        env(
+          safe-area-inset-bottom,
+          0px
+        )
+      );
+
+    left:
+      15px;
   }
 
 
@@ -1446,80 +1350,10 @@ and
 
   .campus-hero-description {
     max-width:
-      275px;
-
-
-    font-size:
-      13px;
-  }
-
-
-  .campus-hero-scroll {
-    left:
-      15px;
-
-
-    font-size:
-      7px;
-  }
-
-}
-
-
-/* =========================================================
-   SHORT PHONE
-========================================================= */
-
-@media
-(
-  max-width: 768px
-)
-and
-(
-  max-height: 700px
-) {
-
-  .campus-hero-content {
-    bottom:
-      50px;
-  }
-
-
-  .campus-hero-title {
-    font-size:
-      clamp(
-        36px,
-        9.5vw,
-        44px
-      );
-
-
-    line-height:
-      0.95;
-  }
-
-
-  .campus-hero-description {
-    max-width:
-      285px;
-
-
-    margin-top:
-      11px;
-
+      280px;
 
     font-size:
       13px;
-
-
-    line-height:
-      1.45;
-  }
-
-
-  .campus-hero-scroll {
-    display:
-      none;
   }
 
 }
@@ -1542,19 +1376,30 @@ and
   orientation: landscape
 ) {
 
-  .campus-hero-content {
-    left:
-      24px;
+  .campus-hero,
+  .campus-hero-stage {
+    height:
+      100svh;
 
+    min-height:
+      100svh;
+  }
+
+
+  .campus-hero-content {
+    right:
+      auto;
 
     bottom:
-      26px;
+      24px;
 
+    left:
+      24px;
 
     width:
       min(
         520px,
-        60vw
+        58vw
       );
   }
 
@@ -1563,37 +1408,47 @@ and
     font-size:
       clamp(
         32px,
-        6vw,
+        5.5vw,
         46px
       );
 
-
     line-height:
-      0.93;
+      0.94;
+  }
+
+
+  .campus-hero-title-main {
+    color:
+      #ffffff;
+  }
+
+
+  .campus-hero-title-accent {
+    color:
+      #8fe3b4;
   }
 
 
   .campus-hero-description {
     max-width:
-      350px;
-
+      340px;
 
     margin-top:
-      10px;
-
+      11px;
 
     font-size:
       12px;
-
 
     line-height:
       1.4;
   }
 
 
-  .campus-hero-scroll {
-    display:
-      none;
+  .campus-wall-card-05
+  .campus-wall-image {
+    object-position:
+      center
+      48%;
   }
 
 }
@@ -1608,32 +1463,15 @@ and
     reduce
 ) {
 
-  .campus-hero {
-    min-height:
-      100svh;
-  }
-
-
-  .campus-hero-stage {
-    position:
-      relative !important;
-
-
-    transform:
-      none !important;
-  }
-
-
   .campus-zoom-wall {
     transform:
-      scale(3) !important;
+      none !important;
   }
 
 
   .campus-hero-content {
     opacity:
       1 !important;
-
 
     transform:
       none !important;

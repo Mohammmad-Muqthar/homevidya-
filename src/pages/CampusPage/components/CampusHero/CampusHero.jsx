@@ -12,7 +12,30 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 /* =========================================================
+   FALLBACK IMAGE
+
+   If any campus image fails to load,
+   this image is used instead.
+========================================================= */
+
+const FALLBACK_CAMPUS_IMAGE =
+  "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2400&q=90";
+
+
+/* =========================================================
    CAMPUS IMAGES
+
+   CAMPUS-ONLY VISUAL DIRECTION:
+
+   01 — School building
+   02 — Sports ground
+   03 — Library
+   04 — Courtyard / veranda
+   05 — Main campus building
+   06 — Swimming pool
+   07 — Sports court
+   08 — Playground / open campus
+   09 — Green campus building
 ========================================================= */
 
 const campusImages = [
@@ -20,90 +43,98 @@ const campusImages = [
     id: "01",
 
     src:
-      "https://images.unsplash.com/photo-1770146605185-1e4034fc2d76?auto=format&fit=crop&w=2000&q=88",
+      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2200&q=90",
 
     alt:
-      "Modern educational building",
+      "Modern school campus building",
   },
 
   {
     id: "02",
 
     src:
-      "https://images.unsplash.com/photo-1744982588041-8488ed9d8c17?auto=format&fit=crop&w=2000&q=88",
+      "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=2200&q=90",
 
     alt:
-      "Modern campus building",
+      "School sports ground and athletics area",
   },
 
   {
     id: "03",
 
     src:
-      "https://images.unsplash.com/photo-1775933802859-27889463db79?auto=format&fit=crop&w=2000&q=88",
+      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=2200&q=90",
 
     alt:
-      "Educational building at night",
+      "School library and learning space",
   },
 
   {
     id: "04",
 
     src:
-      "https://images.unsplash.com/photo-1774600787310-6f9559d9bdac?auto=format&fit=crop&w=2000&q=88",
+      "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=2200&q=90",
 
     alt:
-      "University campus architecture",
+      "School campus veranda and courtyard",
   },
 
   {
+    /* =====================================================
+       CENTER IMAGE
+       THIS IS THE INITIAL FULLSCREEN CAMPUS IMAGE
+    ===================================================== */
+
     id: "05",
 
     src:
-      "https://images.unsplash.com/photo-1708304025151-c168a86a874f?auto=format&fit=crop&w=2400&q=90",
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=2600&q=92",
 
     alt:
-      "Aerial school campus",
+      "Beautiful green school campus",
+
+    center:
+      true,
   },
 
   {
     id: "06",
 
     src:
-      "https://images.unsplash.com/photo-1774600787271-86f8f714c410?auto=format&fit=crop&w=2000&q=88",
+      "https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=2200&q=90",
 
     alt:
-      "Contemporary university campus",
+      "Campus swimming pool",
   },
 
   {
     id: "07",
 
     src:
-      "https://images.unsplash.com/photo-1769430886896-dc30842be5a3?auto=format&fit=crop&w=2000&q=88",
+      "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=2200&q=90",
 
     alt:
-      "Academic campus building",
+      "School sports court",
   },
 
   {
     id: "08",
 
     src:
-      "https://images.unsplash.com/photo-1759643740737-9ba5a2e62332?auto=format&fit=crop&w=2000&q=88",
+      "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=2200&q=90",
 
     alt:
-      "School building and playground",
+      "School playground and outdoor learning area",
   },
 
   {
     id: "09",
 
     src:
-      "https://images.unsplash.com/photo-1729799959058-bda08177a84c?auto=format&fit=crop&w=2000&q=88",
+      "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=2200&q=90",
 
     alt:
-      "Traditional school building",
+      "Green school campus building",
   },
 ];
 
@@ -133,16 +164,37 @@ const CampusHero = () => {
 
 
   /* =========================================================
-     HERO ANIMATION
+     IMAGE FALLBACK
+  ========================================================= */
 
-     IMPORTANT:
+  const handleImageError = (
+    event
+  ) => {
+    const image =
+      event.currentTarget;
 
-     NO LOCAL LENIS.
 
-     NO CSS STICKY.
+    if (
+      image.dataset
+        .fallbackApplied ===
+      "true"
+    ) {
+      return;
+    }
 
-     SCROLLTRIGGER ITSELF PINS
-     THE FULL-SCREEN STAGE.
+
+    image.dataset
+      .fallbackApplied =
+      "true";
+
+
+    image.src =
+      FALLBACK_CAMPUS_IMAGE;
+  };
+
+
+  /* =========================================================
+     ANIMATION
   ========================================================= */
 
   useLayoutEffect(() => {
@@ -198,36 +250,50 @@ const CampusHero = () => {
 
         gsap.fromTo(
           introItems,
-          {
-            opacity: 0,
 
-            y: 24,
+          {
+            opacity:
+              0,
+
+            y:
+              24,
           },
+
           {
-            opacity: 1,
+            opacity:
+              1,
 
-            y: 0,
+            y:
+              0,
 
-            duration: 0.9,
+            duration:
+              0.9,
 
-            stagger: 0.07,
+            stagger:
+              0.07,
 
             ease:
               "power4.out",
 
-            delay: 0.08,
+            delay:
+              0.08,
           }
         );
 
 
         /* =====================================================
-           ANIMATION BUILDER
+           DESKTOP / LAPTOP
+
+           FULLSCREEN CENTER IMAGE
+                     ↓
+              ZOOM OUT
+                     ↓
+               3 × 3 WALL
         ===================================================== */
 
-        const createAnimation =
-          (
-            isMobile
-          ) => {
+        mm.add(
+          "(min-width: 769px)",
+          () => {
 
             const images =
               grid.querySelectorAll(
@@ -236,14 +302,12 @@ const CampusHero = () => {
 
 
             /* =================================================
-               INITIAL SCALE
-
-               CENTER CARD MUST COMPLETELY
-               COVER THE VIEWPORT.
+               START SCALE
             ================================================= */
 
             const getStartScale =
               () => {
+
                 const stageWidth =
                   stage.clientWidth;
 
@@ -263,15 +327,14 @@ const CampusHero = () => {
                   !cardWidth ||
                   !cardHeight
                 ) {
-                  return isMobile
-                    ? 3
-                    : 3.05;
+                  return 3.08;
                 }
 
 
                 const scaleX =
                   stageWidth /
                   cardWidth;
+
 
                 const scaleY =
                   stageHeight /
@@ -283,127 +346,185 @@ const CampusHero = () => {
                     scaleX,
                     scaleY
                   ) *
-                  (
-                    isMobile
-                      ? 1.01
-                      : 1.015
-                  )
+                  1.02
                 );
               };
 
 
             /* =================================================
-               RESET
+               FINAL GAP
+
+               This is the actual visible gap we want.
+
+               We compensate for wall scale so the gap
+               does NOT become huge/small during zoom.
+            ================================================= */
+
+            const styles =
+              window.getComputedStyle(
+                grid
+              );
+
+
+            const finalGap =
+              parseFloat(
+                styles.columnGap
+              ) || 16;
+
+
+            const finalPadding =
+              parseFloat(
+                styles.paddingLeft
+              ) || 10;
+
+
+            const startScale =
+              getStartScale();
+
+
+            const wallState = {
+              scale:
+                startScale,
+            };
+
+
+            /* =================================================
+               CONSTANT VISUAL GAP
+
+               Actual CSS gap becomes:
+
+               target gap / current scale
+
+               Because the entire wall itself is scaled,
+               the gap visually remains almost identical.
+            ================================================= */
+
+            const syncWall =
+              () => {
+
+                const scale =
+                  Math.max(
+                    wallState.scale,
+                    0.001
+                  );
+
+
+                gsap.set(
+                  grid,
+
+                  {
+                    scale:
+                      scale,
+
+                    gap:
+                      `${
+                        finalGap /
+                        scale
+                      }px`,
+
+                    padding:
+                      `${
+                        finalPadding /
+                        scale
+                      }px`,
+
+                    xPercent:
+                      0,
+
+                    yPercent:
+                      0,
+
+                    transformOrigin:
+                      "50% 50%",
+
+                    force3D:
+                      true,
+                  }
+                );
+              };
+
+
+            syncWall();
+
+
+            /* =================================================
+               IMAGE RESET
             ================================================= */
 
             gsap.set(
-              grid,
-              {
-                scale:
-                  getStartScale(),
-
-                xPercent: 0,
-
-                yPercent: 0,
-
-                transformOrigin:
-                  "50% 50%",
-
-                force3D: true,
-              }
-            );
-
-
-            gsap.set(
               images,
+
               {
                 scale:
-                  isMobile
-                    ? 1.012
-                    : 1.018,
+                  1.025,
 
-                xPercent: 0,
+                xPercent:
+                  0,
 
-                yPercent: 0,
+                yPercent:
+                  0,
 
                 transformOrigin:
                   "center center",
 
-                force3D: true,
+                force3D:
+                  true,
               }
             );
 
+
+            /* =================================================
+               COPY RESET
+            ================================================= */
 
             gsap.set(
               content,
+
               {
-                opacity: 1,
+                opacity:
+                  1,
 
-                y: 0,
+                y:
+                  0,
 
-                scale: 1,
+                scale:
+                  1,
 
-                force3D: true,
+                force3D:
+                  true,
               }
             );
 
+
+            /* =================================================
+               SCROLL HINT RESET
+            ================================================= */
 
             if (scrollHint) {
               gsap.set(
                 scrollHint,
-                {
-                  opacity: 1,
 
-                  y: 0,
+                {
+                  opacity:
+                    1,
+
+                  y:
+                    0,
                 }
               );
             }
 
 
             /* =================================================
-               SCROLL DISTANCE
-
-               Old version:
-
-               Hero = 225svh
-               Stage = 100svh
-
-               Effective scrolling distance ≈ 125svh.
-
-               We recreate that here WITHOUT
-               leaving a blank 125svh wrapper.
-            ================================================= */
-
-            const getScrollDistance =
-              () => {
-                return (
-                  stage.clientHeight *
-                  (
-                    isMobile
-                      ? 1
-                      : 1.25
-                  )
-                );
-              };
-
-
-            /* =================================================
-               TIMELINE + PIN
-
-               THE FIX:
-
-               ScrollTrigger handles the pin spacing.
-
-               When this pin ends, the NEXT section
-               begins immediately.
-
-               No blank white CampusHero area remains.
+               TIMELINE
             ================================================= */
 
             const timeline =
               gsap.timeline({
+
                 defaults: {
-                  ease: "none",
+                  ease:
+                    "none",
                 },
 
                 scrollTrigger: {
@@ -415,12 +536,13 @@ const CampusHero = () => {
 
                   end:
                     () =>
-                      `+=${getScrollDistance()}`,
+                      `+=${
+                        stage.clientHeight *
+                        1.35
+                      }`,
 
                   scrub:
-                    isMobile
-                      ? 0.78
-                      : 0.98,
+                    0.95,
 
                   pin:
                     true,
@@ -428,10 +550,6 @@ const CampusHero = () => {
                   pinSpacing:
                     true,
 
-                  /*
-                    Makes this much safer if a parent
-                    ever receives transform/overflow.
-                  */
                   pinReparent:
                     true,
 
@@ -448,14 +566,15 @@ const CampusHero = () => {
 
 
             /* =================================================
-               SMALL INITIAL HOLD
+               INITIAL HOLD
             ================================================= */
 
             timeline.to(
               {},
+
               {
                 duration:
-                  0.07,
+                  0.08,
               }
             );
 
@@ -466,24 +585,25 @@ const CampusHero = () => {
 
             timeline.to(
               content,
+
               {
-                opacity: 0,
+                opacity:
+                  0,
 
                 y:
-                  isMobile
-                    ? -22
-                    : -34,
+                  -34,
 
                 scale:
-                  isMobile
-                    ? 0.994
-                    : 0.992,
+                  0.992,
 
                 duration:
-                  0.17,
+                  0.18,
+
+                ease:
+                  "power1.inOut",
               },
 
-              0.055
+              0.06
             );
 
 
@@ -494,16 +614,19 @@ const CampusHero = () => {
             if (scrollHint) {
               timeline.to(
                 scrollHint,
-                {
-                  opacity: 0,
 
-                  y: 8,
+                {
+                  opacity:
+                    0,
+
+                  y:
+                    8,
 
                   duration:
-                    0.12,
+                    0.14,
                 },
 
-                0.055
+                0.06
               );
             }
 
@@ -511,97 +634,83 @@ const CampusHero = () => {
             /* =================================================
                WALL ZOOMS OUT
 
-               FULLSCREEN CENTER IMAGE
-                      ↓
-               3 × 3 CAMPUS WALL
+               Instead of tweening grid scale directly,
+               we tween wallState.scale and update
+               the gap every frame.
             ================================================= */
 
             timeline.to(
-              grid,
+              wallState,
+
               {
-                scale: 1,
-
-                xPercent: 0,
-
-                yPercent: 0,
+                scale:
+                  1,
 
                 duration:
-                  0.72,
+                  0.76,
 
                 ease:
                   "power2.inOut",
+
+                onUpdate:
+                  syncWall,
               },
 
-              0.07
+              0.08
             );
 
 
             /* =================================================
-               INNER IMAGE SCALE SETTLES
+               IMAGE SCALE SETTLES
             ================================================= */
 
             timeline.to(
               images,
+
               {
-                scale: 1,
+                scale:
+                  1,
 
-                xPercent: 0,
+                xPercent:
+                  0,
 
-                yPercent: 0,
+                yPercent:
+                  0,
 
                 duration:
-                  0.64,
+                  0.68,
 
                 ease:
                   "power2.out",
               },
 
-              0.095
+              0.1
             );
 
 
             /* =================================================
-               FINAL WALL HOLD
-
-               VERY IMPORTANT.
-
-               After the wall finishes zooming out,
-               NOTHING moves.
-
-               The complete image wall stays covering
-               the full viewport until pin release.
-
-               This prevents the white blank frame.
+               FINAL HOLD
             ================================================= */
 
             timeline.to(
               {},
+
               {
                 duration:
-                  0.25,
+                  0.28,
               }
             );
 
 
-            return timeline;
-          };
-
-
-        /* =====================================================
-           DESKTOP
-        ===================================================== */
-
-        mm.add(
-          "(min-width: 769px)",
-          () => {
-            const timeline =
-              createAnimation(
-                false
-              );
-
-
             return () => {
+
+              timeline
+                .scrollTrigger
+                ?.kill();
+
+
               timeline.kill();
+
             };
           }
         );
@@ -609,20 +718,49 @@ const CampusHero = () => {
 
         /* =====================================================
            MOBILE
+
+           SIMPLE AND STABLE.
+
+           ONE CAMPUS IMAGE.
+           NO PIN.
+           NO ZOOM WALL.
         ===================================================== */
 
         mm.add(
           "(max-width: 768px)",
           () => {
-            const timeline =
-              createAnimation(
-                true
+
+            gsap.set(
+              grid,
+
+              {
+                clearProps:
+                  "transform,gap,padding",
+              }
+            );
+
+
+            gsap.set(
+              content,
+
+              {
+                clearProps:
+                  "transform,opacity",
+              }
+            );
+
+
+            if (scrollHint) {
+              gsap.set(
+                scrollHint,
+
+                {
+                  clearProps:
+                    "transform,opacity",
+                }
               );
+            }
 
-
-            return () => {
-              timeline.kill();
-            };
           }
         );
 
@@ -630,7 +768,7 @@ const CampusHero = () => {
 
 
     /* =====================================================
-       REFRESH
+       RESIZE
     ===================================================== */
 
     let resizeTimer;
@@ -647,9 +785,17 @@ const CampusHero = () => {
 
     const handleResize =
       () => {
+
         const currentWidth =
           window.innerWidth;
 
+
+        /*
+          Ignore mobile URL bar / toolbar
+          height changes.
+
+          Only refresh when WIDTH changes.
+        */
 
         if (
           Math.abs(
@@ -673,16 +819,17 @@ const CampusHero = () => {
         resizeTimer =
           setTimeout(
             refresh,
-            150
+            160
           );
       };
 
 
     /* =====================================================
-       WAIT FOR IMAGES
+       WAIT FOR ALL IMAGES
 
-       Critical because the initial wall scale
-       depends on the center card dimensions.
+       Important:
+       everything is eager loaded now, so the wall
+       does not reveal blank cards during zoom-out.
     ===================================================== */
 
     const images =
@@ -696,6 +843,7 @@ const CampusHero = () => {
     Promise.all(
       images.map(
         (image) => {
+
           if (
             image.complete
           ) {
@@ -705,6 +853,7 @@ const CampusHero = () => {
 
           return new Promise(
             (resolve) => {
+
               const done =
                 () => {
                   resolve();
@@ -715,7 +864,8 @@ const CampusHero = () => {
                 "load",
                 done,
                 {
-                  once: true,
+                  once:
+                    true,
                 }
               );
 
@@ -724,9 +874,11 @@ const CampusHero = () => {
                 "error",
                 done,
                 {
-                  once: true,
+                  once:
+                    true,
                 }
               );
+
             }
           );
         }
@@ -747,16 +899,19 @@ const CampusHero = () => {
       "resize",
       handleResize,
       {
-        passive: true,
+        passive:
+          true,
       }
     );
 
 
     requestAnimationFrame(
       () => {
+
         requestAnimationFrame(
           refresh
         );
+
       }
     );
 
@@ -766,6 +921,7 @@ const CampusHero = () => {
     ===================================================== */
 
     return () => {
+
       clearTimeout(
         resizeTimer
       );
@@ -801,9 +957,9 @@ const CampusHero = () => {
         className="campus-hero-stage"
       >
 
-        {/* =================================================
-            IMAGE WALL
-        ================================================= */}
+        {/* =========================================
+            CAMPUS IMAGE WALL
+        ========================================= */}
 
         <div
           ref={gridRef}
@@ -815,29 +971,16 @@ const CampusHero = () => {
               image,
               index
             ) => {
+
               const isCenter =
                 index === 4;
 
 
-              /*
-                Mobile keeps:
-
-                01
-                05
-                09
-              */
-
-              const mobileVisible =
-                (
-                  index === 0 ||
-                  index === 4 ||
-                  index === 8
-                );
-
-
               return (
                 <figure
-                  key={image.id}
+                  key={
+                    image.id
+                  }
 
                   ref={
                     isCenter
@@ -848,33 +991,33 @@ const CampusHero = () => {
                   className={`
                     campus-wall-card
                     campus-wall-card-${image.id}
-
                     ${
                       isCenter
                         ? "is-center"
-                        : ""
-                    }
-
-                    ${
-                      mobileVisible
-                        ? "is-mobile-visible"
                         : ""
                     }
                   `}
                 >
 
                   <img
-                    src={image.src}
+                    src={
+                      image.src
+                    }
 
-                    alt={image.alt}
+                    alt={
+                      image.alt
+                    }
 
                     className="campus-wall-image"
 
-                    loading={
-                      isCenter
-                        ? "eager"
-                        : "lazy"
-                    }
+                    /*
+                      Load all 9 immediately.
+
+                      Prevents first / edge cards
+                      showing empty during zoom.
+                    */
+
+                    loading="eager"
 
                     fetchPriority={
                       isCenter
@@ -885,6 +1028,10 @@ const CampusHero = () => {
                     decoding="async"
 
                     draggable="false"
+
+                    onError={
+                      handleImageError
+                    }
                   />
 
                 </figure>
@@ -895,9 +1042,16 @@ const CampusHero = () => {
         </div>
 
 
-        {/* =================================================
-            HERO CONTENT
-        ================================================= */}
+        {/* =========================================
+            MOBILE SHADE
+        ========================================= */}
+
+        <div className="campus-hero-mobile-shade" />
+
+
+        {/* =========================================
+            CONTENT
+        ========================================= */}
 
         <div
           ref={contentRef}
@@ -927,9 +1081,9 @@ const CampusHero = () => {
         </div>
 
 
-        {/* =================================================
+        {/* =========================================
             SCROLL INDICATOR
-        ================================================= */}
+        ========================================= */}
 
         <div
           ref={scrollHintRef}
@@ -939,6 +1093,7 @@ const CampusHero = () => {
           <span>
             SCROLL TO EXPLORE
           </span>
+
 
           <i />
 

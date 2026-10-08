@@ -1,0 +1,959 @@
+/* =========================================================
+   VIDYA ACADEMY
+   LEARNING CONTINUUM
+
+   BACKGROUND:
+   #1D1D1D
+
+   FONT:
+   MANROPE
+
+   BOTTOM CIRCLES:
+   YELLOW
+   GREEN
+   WHITE
+   LIGHT YELLOW
+========================================================= */
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.continuum-section {
+  --vidya-green:
+    #0b8255;
+
+  --vidya-green-deep:
+    #0b563b;
+
+  --vidya-green-bright:
+    #26b474;
+
+  --vidya-orange:
+    #f9a01b;
+
+  --vidya-white:
+    #ffffff;
+
+  --vidya-light-yellow:
+    #f6d77a;
+
+  --vidya-black:
+    #1d1d1d;
+
+
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  padding:
+    clamp(
+      110px,
+      9vw,
+      170px
+    )
+    var(
+      --page-gutter,
+      clamp(
+        42px,
+        5vw,
+        86px
+      )
+    )
+    clamp(
+      100px,
+      8vw,
+      150px
+    );
+
+
+  background:
+    var(--vidya-black);
+
+
+  color:
+    var(--vidya-white);
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+.continuum-section,
+.continuum-section *,
+.continuum-section *::before,
+.continuum-section *::after {
+  box-sizing:
+    border-box;
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   INNER
+========================================================= */
+
+.continuum-section__inner {
+  width:
+    100%;
+
+
+  max-width:
+    1700px;
+
+
+  margin:
+    0
+    auto;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.continuum-section__title {
+  max-width:
+    1000px;
+
+
+  margin:
+    0
+    auto
+    clamp(
+      90px,
+      8vw,
+      140px
+    );
+
+
+  color:
+    var(--vidya-white);
+
+
+  text-align:
+    center;
+
+
+  font-size:
+    clamp(
+      50px,
+      4.5vw,
+      74px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    0.98;
+
+
+  letter-spacing:
+    -0.058em;
+}
+
+
+/* =========================================================
+   TITLE HIGHLIGHT
+========================================================= */
+
+.continuum-section__title span {
+  color:
+    var(--vidya-green-bright);
+
+
+  font:
+    inherit;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    inherit;
+
+
+  line-height:
+    inherit;
+
+
+  letter-spacing:
+    inherit;
+}
+
+
+/* =========================================================
+   CONTINUUM LINE
+========================================================= */
+
+.continuum-section__line {
+  display:
+    grid;
+
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+
+  width:
+    100%;
+
+
+  border-top:
+    1px
+    solid
+    rgba(
+      255,
+      255,
+      255,
+      0.3
+    );
+}
+
+
+/* =========================================================
+   ITEM
+========================================================= */
+
+.continuum-section__item {
+  position:
+    relative;
+
+
+  padding:
+    40px
+    34px
+    0;
+
+
+  text-align:
+    center;
+}
+
+
+/* =========================================================
+   DOT
+========================================================= */
+
+.continuum-section__dot {
+  position:
+    absolute;
+
+
+  top:
+    -10px;
+
+
+  left:
+    calc(
+      50% - 10px
+    );
+
+
+  width:
+    20px;
+
+
+  height:
+    20px;
+
+
+  border:
+    4px
+    solid
+    var(--vidya-black);
+
+
+  border-radius:
+    50%;
+
+
+  background:
+    var(--vidya-green-bright);
+
+
+  box-shadow:
+    0
+    0
+    0
+    1px
+    rgba(
+      255,
+      255,
+      255,
+      0.15
+    );
+}
+
+
+/* =========================================================
+   DOT COLORS
+========================================================= */
+
+.continuum-section__item--1
+.continuum-section__dot {
+  background:
+    var(--vidya-green-bright);
+}
+
+
+.continuum-section__item--2
+.continuum-section__dot {
+  background:
+    var(--vidya-orange);
+}
+
+
+.continuum-section__item--3
+.continuum-section__dot {
+  background:
+    var(--vidya-green);
+}
+
+
+/* =========================================================
+   MAIN LABEL
+========================================================= */
+
+.continuum-section__item strong {
+  display:
+    block;
+
+
+  color:
+    var(--vidya-white);
+
+
+  font-size:
+    clamp(
+      42px,
+      3.6vw,
+      62px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    550;
+
+
+  line-height:
+    0.98;
+
+
+  letter-spacing:
+    -0.058em;
+}
+
+
+/* =========================================================
+   AGES
+========================================================= */
+
+.continuum-section__ages {
+  display:
+    block;
+
+
+  margin-top:
+    18px;
+
+
+  color:
+    var(--vidya-orange);
+
+
+  font-size:
+    10px;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    800;
+
+
+  line-height:
+    1;
+
+
+  letter-spacing:
+    0.15em;
+
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.continuum-section__item p {
+  max-width:
+    390px;
+
+
+  margin:
+    20px
+    auto
+    0;
+
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.7
+    );
+
+
+  font-size:
+    clamp(
+      15px,
+      1vw,
+      17px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    500;
+
+
+  line-height:
+    1.55;
+
+
+  letter-spacing:
+    -0.022em;
+}
+
+
+/* =========================================================
+   CLOSING
+========================================================= */
+
+.continuum-section__closing {
+  max-width:
+    760px;
+
+
+  margin:
+    clamp(
+      75px,
+      7vw,
+      105px
+    )
+    auto
+    0;
+
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.62
+    );
+
+
+  text-align:
+    center;
+
+
+  font-size:
+    clamp(
+      16px,
+      1.15vw,
+      19px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    500;
+
+
+  line-height:
+    1.55;
+
+
+  letter-spacing:
+    -0.024em;
+}
+
+
+/* =========================================================
+   BOTTOM SYMBOL
+========================================================= */
+
+.continuum-section__symbol {
+  display:
+    flex;
+
+
+  align-items:
+    center;
+
+
+  justify-content:
+    center;
+
+
+  margin-top:
+    48px;
+}
+
+
+/* =========================================================
+   BOTTOM CIRCLES
+========================================================= */
+
+.continuum-section__symbol span {
+  width:
+    54px;
+
+
+  height:
+    54px;
+
+
+  margin-left:
+    -13px;
+
+
+  border:
+    3px
+    solid
+    var(--vidya-black);
+
+
+  border-radius:
+    50%;
+
+
+  box-shadow:
+    0
+    4px
+    12px
+    rgba(
+      0,
+      0,
+      0,
+      0.12
+    );
+}
+
+
+/* =========================================================
+   1 — YELLOW
+========================================================= */
+
+.continuum-section__symbol span:first-child {
+  margin-left:
+    0;
+
+
+  background:
+    var(--vidya-orange);
+}
+
+
+/* =========================================================
+   2 — GREEN
+========================================================= */
+
+.continuum-section__symbol span:nth-child(2) {
+  background:
+    var(--vidya-green-bright);
+}
+
+
+/* =========================================================
+   3 — WHITE
+========================================================= */
+
+.continuum-section__symbol span:nth-child(3) {
+  background:
+    var(--vidya-white);
+}
+
+
+/* =========================================================
+   4 — LIGHT YELLOW
+========================================================= */
+
+.continuum-section__symbol span:nth-child(4) {
+  background:
+    var(--vidya-light-yellow);
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media
+(
+  max-width: 1100px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .continuum-section {
+    padding:
+      100px
+      36px
+      100px;
+  }
+
+
+  .continuum-section__title {
+    margin-bottom:
+      100px;
+
+
+    font-size:
+      clamp(
+        46px,
+        5vw,
+        64px
+      );
+  }
+
+
+  .continuum-section__item {
+    padding-right:
+      22px;
+
+
+    padding-left:
+      22px;
+  }
+
+
+  .continuum-section__item strong {
+    font-size:
+      clamp(
+        36px,
+        4vw,
+        50px
+      );
+  }
+
+
+  .continuum-section__item p {
+    font-size:
+      15px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .continuum-section {
+    padding:
+      82px
+      20px
+      76px;
+  }
+
+
+  /* TITLE */
+
+  .continuum-section__title {
+    max-width:
+      520px;
+
+
+    margin:
+      0
+      0
+      70px;
+
+
+    text-align:
+      left;
+
+
+    font-size:
+      clamp(
+        37px,
+        9.5vw,
+        49px
+      );
+
+
+    line-height:
+      1;
+  }
+
+
+  /* VERTICAL LINE */
+
+  .continuum-section__line {
+    grid-template-columns:
+      1fr;
+
+
+    border-top:
+      0;
+  }
+
+
+  /* ITEM */
+
+  .continuum-section__item {
+    padding:
+      26px
+      0
+      52px
+      34px;
+
+
+    border-left:
+      1px
+      solid
+      rgba(
+        255,
+        255,
+        255,
+        0.26
+      );
+
+
+    text-align:
+      left;
+  }
+
+
+  /* DOT */
+
+  .continuum-section__dot {
+    top:
+      34px;
+
+
+    left:
+      -10px;
+  }
+
+
+  /* TITLE */
+
+  .continuum-section__item strong {
+    font-size:
+      clamp(
+        39px,
+        10vw,
+        50px
+      );
+  }
+
+
+  /* AGES */
+
+  .continuum-section__ages {
+    margin-top:
+      14px;
+
+
+    font-size:
+      9px;
+  }
+
+
+  /* COPY */
+
+  .continuum-section__item p {
+    max-width:
+      520px;
+
+
+    margin:
+      17px
+      0
+      0;
+
+
+    font-size:
+      15px;
+  }
+
+
+  /* CLOSING */
+
+  .continuum-section__closing {
+    max-width:
+      560px;
+
+
+    margin:
+      34px
+      0
+      0;
+
+
+    text-align:
+      left;
+
+
+    font-size:
+      16px;
+  }
+
+
+  /* SYMBOL */
+
+  .continuum-section__symbol {
+    justify-content:
+      flex-start;
+
+
+    margin-top:
+      40px;
+  }
+
+
+  .continuum-section__symbol span {
+    width:
+      46px;
+
+
+    height:
+      46px;
+
+
+    margin-left:
+      -11px;
+  }
+
+
+  .continuum-section__symbol span:first-child {
+    margin-left:
+      0;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  .continuum-section {
+    padding:
+      72px
+      18px
+      68px;
+  }
+
+
+  .continuum-section__title {
+    margin-bottom:
+      60px;
+
+
+    font-size:
+      clamp(
+        35px,
+        9.3vw,
+        44px
+      );
+  }
+
+
+  .continuum-section__item {
+    padding-left:
+      30px;
+  }
+
+
+  .continuum-section__item strong {
+    font-size:
+      40px;
+  }
+
+
+  .continuum-section__item p {
+    font-size:
+      14px;
+  }
+
+
+  .continuum-section__closing {
+    font-size:
+      15px;
+  }
+
+
+  .continuum-section__symbol span {
+    width:
+      42px;
+
+
+    height:
+      42px;
+
+
+    margin-left:
+      -10px;
+  }
+
+}

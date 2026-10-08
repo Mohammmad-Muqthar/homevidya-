@@ -2,15 +2,29 @@
    VIDYA ACADEMY
    ABOUT HERO
 
-   CURRENT VERSION
+   SAME HERO TYPOGRAPHY AS HOME
 
-   - SMALL GAPS
-   - ALL IMAGES SLIGHTLY TALLER
-   - IMAGE 03 TALLEST / MOST DOMINANT
-   - IMAGE 03 SLIGHTLY HIGHER
-   - DESKTOP = 4 IMAGES
-   - MOBILE = 3 IMAGES
-   - ZOOM LOGIC STAYS THE SAME
+   MAIN TEXT:
+   #FFFFFF
+
+   ACCENT:
+   "confidence."
+   #8FE3B4
+
+   DESKTOP:
+   60px -> 108px
+
+   TABLET / SMALL LAPTOP:
+   50px -> 78px
+
+   MOBILE:
+   40px -> 54px
+
+   SMALL MOBILE:
+   36px -> 44px
+
+   VERY SMALL:
+   34px
 ========================================================= */
 
 
@@ -19,10 +33,20 @@
 ========================================================= */
 
 .about-hero {
-  --deep-green: #0b563b;
-  --deep-green-2: #073f32;
-  --bright-green: #26b474;
-  --orange: #f9a01b;
+  --deep-green:
+    #0b563b;
+
+  --deep-green-2:
+    #073f32;
+
+  --bright-green:
+    #26b474;
+
+  --hero-light-green:
+    #8fe3b4;
+
+  --orange:
+    #f9a01b;
 
   --page-padding:
     clamp(
@@ -31,23 +55,41 @@
       86px
     );
 
-  position: relative;
 
-  width: 100%;
+  position:
+    relative;
 
-  min-height: 100vh;
-  min-height: 100svh;
 
-  margin: 0;
-  padding: 0;
+  width:
+    100%;
 
-  overflow: visible;
+
+  min-height:
+    100vh;
+
+  min-height:
+    100svh;
+
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  overflow:
+    visible;
+
 
   background:
     var(--deep-green);
 
+
   color:
     #ffffff;
+
 
   font-family:
     "Manrope",
@@ -56,7 +98,7 @@
 
 
 /* =========================================================
-   RESET
+   GLOBAL
 ========================================================= */
 
 .about-hero,
@@ -65,6 +107,7 @@
 .about-hero *::after {
   box-sizing:
     border-box;
+
 
   font-family:
     "Manrope",
@@ -77,22 +120,40 @@
 ========================================================= */
 
 .about-hero-stage {
-  position: relative;
+  position:
+    relative;
 
-  width: 100%;
 
-  height: 100vh;
-  height: 100svh;
+  width:
+    100%;
 
-  min-height: 620px;
 
-  margin: 0;
-  padding: 0;
+  height:
+    100vh;
 
-  overflow: hidden;
+  height:
+    100svh;
+
+
+  min-height:
+    620px;
+
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  overflow:
+    hidden;
+
 
   background:
     var(--deep-green);
+
 
   isolation:
     isolate;
@@ -101,26 +162,35 @@
 
 /* =========================================================
    COPY
+
+   WIDER THAN BEFORE SO THE LARGER
+   HOME-SIZED TITLE DOES NOT WRAP BADLY.
 ========================================================= */
 
 .about-hero-copy {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 200;
+
+  z-index:
+    200;
+
 
   top:
     clamp(
-      135px,
-      15vh,
-      165px
+      130px,
+      14vh,
+      160px
     );
+
 
   left:
     var(--page-padding);
 
+
   width:
     min(
-      940px,
+      1180px,
       calc(
         100% -
         (
@@ -130,10 +200,18 @@
       )
     );
 
-  margin: 0;
-  padding: 0;
 
-  pointer-events: none;
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  pointer-events:
+    none;
+
 
   will-change:
     transform;
@@ -141,104 +219,155 @@
 
 
 /* =========================================================
-   EYEBROW
+   TITLE
+
+   EXACT HOME HERO SIZE SYSTEM
+
+   DESKTOP:
+   60PX -> 108PX
 ========================================================= */
 
-.about-hero-eyebrow {
-  display: block;
+.about-hero-title {
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  align-items:
+    flex-start;
+
+
+  width:
+    100%;
+
+
+  max-width:
+    1100px;
+
 
   margin:
-    0
-    0
-    26px;
+    0;
+
+
+  padding:
+    0;
+
 
   color:
-    var(--orange);
+    #ffffff;
 
-  font-size: 11px;
 
-  font-weight: 700;
+  font-family:
+    "Manrope",
+    sans-serif;
 
-  line-height: 1;
+
+  font-size:
+    clamp(
+      60px,
+      6.4vw,
+      108px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    600;
+
+
+  line-height:
+    0.92;
+
 
   letter-spacing:
-    0.15em;
+    -0.06em;
 
-  text-transform:
-    uppercase;
+
+  text-rendering:
+    geometricPrecision;
 }
 
 
 /* =========================================================
-   TITLE
+   TITLE LINES
+
+   WHITE
 ========================================================= */
 
-.about-hero-title {
-  display: flex;
+.about-hero-title-line {
+  display:
+    block;
 
-  flex-direction: column;
 
-  align-items: flex-start;
+  width:
+    fit-content;
 
-  width: 100%;
 
-  margin: 0;
-  padding: 0;
+  max-width:
+    100%;
 
-  color: #ffffff;
 
-  font-size:
-    clamp(
-      46px,
-      4.4vw,
-      72px
-    );
+  color:
+    #ffffff;
 
-  font-style: normal;
 
-  font-weight: 550;
+  font:
+    inherit;
 
-  line-height: 0.97;
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    inherit;
+
+
+  line-height:
+    inherit;
+
 
   letter-spacing:
-    -0.058em;
+    inherit;
 }
 
 
-.about-hero-title-line {
-  display: block;
+/* =========================================================
+   ACCENT
 
-  width: fit-content;
-
-  max-width: 100%;
-
-  color: inherit;
-
-  font-size: inherit;
-
-  font-style: normal;
-
-  font-weight: inherit;
-
-  line-height: inherit;
-
-  letter-spacing: inherit;
-}
-
+   ONLY:
+   "confidence."
+========================================================= */
 
 .about-hero-accent {
   color:
-    var(--bright-green);
+    #8fe3b4;
 
-  font-size: inherit;
 
-  font-style: normal;
+  font:
+    inherit;
 
-  font-weight: inherit;
 
-  line-height: inherit;
+  font-style:
+    normal;
 
-  letter-spacing: inherit;
+
+  font-weight:
+    inherit;
+
+
+  line-height:
+    inherit;
+
+
+  letter-spacing:
+    inherit;
 }
 
 
@@ -247,16 +376,28 @@
 ========================================================= */
 
 .about-hero-gallery {
-  position: absolute;
+  position:
+    absolute;
 
-  z-index: 10;
 
-  inset: 0;
+  z-index:
+    10;
 
-  width: 100%;
-  height: 100%;
 
-  pointer-events: none;
+  inset:
+    0;
+
+
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
+  pointer-events:
+    none;
 }
 
 
@@ -265,18 +406,33 @@
 ========================================================= */
 
 .about-hero-card {
-  position: absolute;
+  position:
+    absolute;
 
-  margin: 0;
-  padding: 0;
 
-  overflow: hidden;
+  margin:
+    0;
 
-  border: 0;
-  border-radius: 0;
+
+  padding:
+    0;
+
+
+  overflow:
+    hidden;
+
+
+  border:
+    0;
+
+
+  border-radius:
+    0;
+
 
   background:
     var(--deep-green-2);
+
 
   transform:
     translate3d(
@@ -284,6 +440,7 @@
       0,
       0
     );
+
 
   will-change:
     transform,
@@ -293,8 +450,10 @@
     bottom,
     opacity;
 
+
   backface-visibility:
     hidden;
+
 
   -webkit-backface-visibility:
     hidden;
@@ -302,143 +461,171 @@
 
 
 /* =========================================================
-   DESKTOP ARRANGEMENT
-
-   SMALL GAPS
-========================================================= */
-
-
-/* =========================================================
-   IMAGE 01
+   DESKTOP CARDS
 ========================================================= */
 
 .about-hero-card--01 {
-  left: 1%;
+  left:
+    1%;
 
-  bottom: -29vh;
 
-  width: 18.5%;
+  bottom:
+    -35vh;
 
-  height: 63vh;
 
-  min-height: 420px;
+  width:
+    18.5%;
 
-  z-index: 10;
 
-  transform-origin:
-    center center;
+  height:
+    69vh;
+
+
+  min-height:
+    450px;
+
+
+  z-index:
+    10;
 }
 
-
-/* =========================================================
-   IMAGE 02
-========================================================= */
 
 .about-hero-card--02 {
-  left: 20.5%;
+  left:
+    20.5%;
 
-  bottom: -25vh;
 
-  width: 20.5%;
+  bottom:
+    -31vh;
 
-  height: 55vh;
 
-  min-height: 365px;
+  width:
+    20.5%;
 
-  z-index: 20;
 
-  transform-origin:
-    center center;
+  height:
+    61vh;
+
+
+  min-height:
+    400px;
+
+
+  z-index:
+    20;
 }
 
-
-/* =========================================================
-   IMAGE 03
-
-   MAIN FOCUS IMAGE
-
-   Taller than the others.
-========================================================= */
 
 .about-hero-card--03 {
-  left: 42%;
+  left:
+    42%;
 
-  bottom: -30vh;
 
-  width: 43%;
+  bottom:
+    -37vh;
 
-  height: 65vh;
 
-  min-height: 450px;
+  width:
+    43%;
 
-  z-index: 100;
+
+  height:
+    72vh;
+
+
+  min-height:
+    480px;
+
+
+  z-index:
+    100;
+
 
   transform-origin:
     0% 0%;
 }
 
-
-/* =========================================================
-   IMAGE 04
-========================================================= */
 
 .about-hero-card--04 {
-  left: 86%;
+  left:
+    86%;
 
-  bottom: -29vh;
 
-  width: 13%;
+  bottom:
+    -35vh;
 
-  height: 63vh;
 
-  min-height: 415px;
+  width:
+    13%;
 
-  z-index: 20;
 
-  transform-origin:
-    center center;
+  height:
+    69vh;
+
+
+  min-height:
+    445px;
+
+
+  z-index:
+    20;
 }
 
-
-/* =========================================================
-   FOCUS
-========================================================= */
 
 .about-hero-card--focus {
-  z-index: 100;
-
-  transform-origin:
-    0% 0%;
+  z-index:
+    100;
 }
 
 
 /* =========================================================
-   IMAGE ELEMENT
+   IMAGES
 ========================================================= */
 
 .about-hero-card img {
-  position: absolute;
+  position:
+    absolute;
 
-  inset: 0;
 
-  display: block;
+  inset:
+    0;
 
-  width: 100%;
-  height: 100%;
 
-  max-width: none;
+  display:
+    block;
 
-  object-fit: cover;
+
+  width:
+    100%;
+
+
+  height:
+    100%;
+
+
+  max-width:
+    none;
+
+
+  object-fit:
+    cover;
+
 
   object-position:
-    center center;
+    center;
+
 
   transform:
     none !important;
 
-  pointer-events: none;
 
-  user-select: none;
+  pointer-events:
+    none;
+
+
+  user-select:
+    none;
+
 
   -webkit-user-drag:
     none;
@@ -447,6 +634,9 @@
 
 /* =========================================================
    LARGE DESKTOP
+
+   STILL SAME HOME MAX:
+   108PX
 ========================================================= */
 
 @media (
@@ -456,62 +646,61 @@
   .about-hero-copy {
     top:
       clamp(
-        140px,
-        15vh,
-        175px
+        135px,
+        14vh,
+        170px
+      );
+
+
+    width:
+      min(
+        1240px,
+        calc(
+          100% -
+          (
+            var(--page-padding) *
+            2
+          )
+        )
+      );
+  }
+
+
+  .about-hero-title {
+    max-width:
+      1180px;
+
+
+    font-size:
+      clamp(
+        60px,
+        6.4vw,
+        108px
       );
   }
 
 
   .about-hero-card--01 {
-    left: 1%;
-
-    bottom: -29vh;
-
-    width: 18.5%;
-
-    height: 65vh;
-
-    min-height: 440px;
+    height:
+      71vh;
   }
 
 
   .about-hero-card--02 {
-    left: 20.5%;
-
-    bottom: -25vh;
-
-    width: 20.5%;
-
-    height: 57vh;
-
-    min-height: 385px;
+    height:
+      63vh;
   }
 
 
   .about-hero-card--03 {
-    left: 42%;
-
-    bottom: -31vh;
-
-    width: 43%;
-
-    height: 67vh;
-
-    min-height: 480px;
+    height:
+      74vh;
   }
 
 
   .about-hero-card--04 {
-    left: 86%;
-
-    bottom: -29vh;
-
-    width: 13%;
-
-    height: 65vh;
-
-    min-height: 435px;
+    height:
+      71vh;
   }
 
 }
@@ -519,6 +708,8 @@
 
 /* =========================================================
    LAPTOP
+
+   KEEP DESKTOP HOME FORMULA UNTIL 1000PX
 ========================================================= */
 
 @media
@@ -545,80 +736,87 @@ and
   .about-hero-copy {
     top:
       clamp(
-        108px,
-        13.5vh,
-        135px
+        105px,
+        13vh,
+        130px
       );
+
 
     left:
       36px;
 
+
     width:
       calc(
-        100% - 72px
+        100% -
+        72px
       );
   }
 
 
   .about-hero-title {
-    font-size:
-      clamp(
-        42px,
-        5vw,
-        58px
-      );
+    max-width:
+      1000px;
   }
 
 
   .about-hero-card--01 {
-    left: 1%;
-
-    bottom: -28vh;
-
-    width: 18.5%;
-
-    height: 61vh;
-
-    min-height: 365px;
+    height:
+      67vh;
   }
 
 
   .about-hero-card--02 {
-    left: 20.5%;
-
-    bottom: -24vh;
-
-    width: 20.5%;
-
-    height: 53vh;
-
-    min-height: 315px;
+    height:
+      59vh;
   }
 
 
   .about-hero-card--03 {
-    left: 42%;
-
-    bottom: -29vh;
-
-    width: 43%;
-
-    height: 63vh;
-
-    min-height: 385px;
+    height:
+      70vh;
   }
 
 
   .about-hero-card--04 {
-    left: 86%;
+    height:
+      67vh;
+  }
 
-    bottom: -28vh;
+}
 
-    width: 13%;
 
-    height: 61vh;
+/* =========================================================
+   TABLET / SMALL LAPTOP
 
-    min-height: 360px;
+   EXACT HOME HERO:
+   50PX -> 78PX
+========================================================= */
+
+@media
+(
+  max-width: 1000px
+)
+and
+(
+  min-width: 769px
+) {
+
+  .about-hero-title {
+    font-size:
+      clamp(
+        50px,
+        7.5vw,
+        78px
+      );
+
+
+    line-height:
+      0.93;
+
+
+    letter-spacing:
+      -0.058em;
   }
 
 }
@@ -626,7 +824,12 @@ and
 
 /* =========================================================
    MOBILE
-   3 IMAGES ONLY
+
+   SIMPLE HERO:
+   ONE IMAGE + TEXT
+
+   EXACT HOME HERO:
+   40PX -> 54PX
 ========================================================= */
 
 @media (
@@ -637,141 +840,331 @@ and
     --page-padding:
       20px;
 
+
+    height:
+      100svh;
+
+
     min-height:
       100svh;
+
+
+    overflow:
+      hidden;
+
+
+    background:
+      #0b563b;
   }
 
 
   .about-hero-stage {
+    position:
+      relative;
+
+
+    width:
+      100%;
+
+
     height:
       100svh;
 
-    min-height:
-      0;
 
-    touch-action:
-      pan-y;
+    min-height:
+      100svh;
+
+
+    overflow:
+      hidden;
+
+
+    background:
+      #0b563b;
   }
 
 
   /* =====================================================
-     COPY
+     HIDE UNUSED IMAGES
+  ===================================================== */
+
+  .about-hero-card--01,
+  .about-hero-card--02,
+  .about-hero-card--04 {
+    display:
+      none !important;
+  }
+
+
+  /* =====================================================
+     SINGLE BACKGROUND IMAGE
+  ===================================================== */
+
+  .about-hero-card--03 {
+    position:
+      absolute !important;
+
+
+    z-index:
+      1;
+
+
+    inset:
+      0 !important;
+
+
+    width:
+      100% !important;
+
+
+    height:
+      100% !important;
+
+
+    min-height:
+      0 !important;
+
+
+    opacity:
+      1 !important;
+
+
+    transform:
+      none !important;
+  }
+
+
+  .about-hero-card--03 img {
+    position:
+      absolute;
+
+
+    inset:
+      0;
+
+
+    width:
+      100%;
+
+
+    height:
+      100%;
+
+
+    object-fit:
+      cover;
+
+
+    object-position:
+      53% center;
+
+
+    transform:
+      none !important;
+  }
+
+
+  /* =====================================================
+     READABILITY OVERLAY
+  ===================================================== */
+
+  .about-hero-stage::after {
+    position:
+      absolute;
+
+
+    z-index:
+      4;
+
+
+    inset:
+      0;
+
+
+    background:
+      linear-gradient(
+        180deg,
+
+        rgba(
+          3,
+          14,
+          10,
+          0.08
+        )
+        0%,
+
+        rgba(
+          3,
+          14,
+          10,
+          0.12
+        )
+        35%,
+
+        rgba(
+          3,
+          14,
+          10,
+          0.7
+        )
+        100%
+      );
+
+
+    content:
+      "";
+
+
+    pointer-events:
+      none;
+  }
+
+
+  /* =====================================================
+     TEXT
   ===================================================== */
 
   .about-hero-copy {
+    position:
+      absolute;
+
+
+    z-index:
+      20;
+
+
     top:
-      clamp(
-        88px,
-        11.5svh,
-        110px
+      auto;
+
+
+    right:
+      var(--page-padding);
+
+
+    bottom:
+      calc(
+        50px +
+        env(
+          safe-area-inset-bottom,
+          0px
+        )
       );
+
 
     left:
-      20px;
+      var(--page-padding);
+
 
     width:
-      calc(
-        100% - 40px
-      );
-  }
+      auto;
 
-
-  .about-hero-eyebrow {
-    margin-bottom:
-      17px;
-
-    font-size:
-      8px;
-  }
-
-
-  .about-hero-title {
-    width: 100%;
 
     max-width:
-      520px;
+      620px;
+
+
+    margin:
+      0;
+
+
+    padding:
+      0;
+
+
+    opacity:
+      1 !important;
+
+
+    transform:
+      none !important;
+
+
+    will-change:
+      auto;
+  }
+
+
+  /* =====================================================
+     MOBILE TITLE
+
+     SAME AS HOME
+  ===================================================== */
+
+  .about-hero-title {
+    width:
+      100%;
+
+
+    max-width:
+      560px;
+
 
     font-size:
       clamp(
-        35px,
-        9.3vw,
-        47px
+        40px,
+        10vw,
+        54px
       );
 
+
+    font-style:
+      normal;
+
+
+    font-weight:
+      600;
+
+
     line-height:
-      0.98;
+      0.95;
+
+
+    letter-spacing:
+      -0.055em;
+
+
+    text-shadow:
+      0
+      3px
+      22px
+      rgba(
+        0,
+        0,
+        0,
+        0.32
+      );
   }
 
 
   .about-hero-title-line {
+    display:
+      block;
+
+
     width:
       100%;
+
+
+    max-width:
+      100%;
+
+
+    color:
+      #ffffff;
   }
 
 
-  /* =====================================================
-     HIDE IMAGE 02
-  ===================================================== */
-
-  .about-hero-card--02 {
-    display: none;
-  }
+  .about-hero-accent {
+    color:
+      #8fe3b4;
 
 
-  /* =====================================================
-     MOBILE IMAGE 01
-  ===================================================== */
-
-  .about-hero-card--01 {
-    left: 2%;
-
-    bottom: -27svh;
-
-    width: 22%;
-
-    height: 55svh;
-
-    min-height: 330px;
-
-    z-index: 10;
-  }
+    font:
+      inherit;
 
 
-  /* =====================================================
-     MOBILE IMAGE 03
-  ===================================================== */
-
-  .about-hero-card--03 {
-    left: 25.5%;
-
-    bottom: -29svh;
-
-    width: 49%;
-
-    height: 62svh;
-
-    min-height: 370px;
-
-    z-index: 100;
-  }
-
-
-  /* =====================================================
-     MOBILE IMAGE 04
-  ===================================================== */
-
-  .about-hero-card--04 {
-    left: 76%;
-
-    bottom: -27svh;
-
-    width: 22%;
-
-    height: 55svh;
-
-    min-height: 330px;
-
-    z-index: 20;
+    font-style:
+      normal;
   }
 
 }
@@ -779,6 +1172,9 @@ and
 
 /* =========================================================
    SMALL MOBILE
+
+   EXACT HOME HERO:
+   36PX -> 44PX
 ========================================================= */
 
 @media (
@@ -787,20 +1183,18 @@ and
 
   .about-hero {
     --page-padding:
-      17px;
+      18px;
   }
 
 
   .about-hero-copy {
-    top:
-      80px;
-
-    left:
-      17px;
-
-    width:
+    bottom:
       calc(
-        100% - 34px
+        38px +
+        env(
+          safe-area-inset-bottom,
+          0px
+        )
       );
   }
 
@@ -808,49 +1202,18 @@ and
   .about-hero-title {
     font-size:
       clamp(
-        33px,
-        9.4vw,
-        42px
+        36px,
+        9.6vw,
+        44px
       );
-  }
 
 
-  .about-hero-card--01 {
-    left: 2%;
-
-    bottom: -25svh;
-
-    width: 21%;
-
-    height: 52svh;
-
-    min-height: 300px;
-  }
+    line-height:
+      0.96;
 
 
-  .about-hero-card--03 {
-    left: 24.5%;
-
-    bottom: -28svh;
-
-    width: 51%;
-
-    height: 60svh;
-
-    min-height: 335px;
-  }
-
-
-  .about-hero-card--04 {
-    left: 77%;
-
-    bottom: -25svh;
-
-    width: 21%;
-
-    height: 52svh;
-
-    min-height: 300px;
+    letter-spacing:
+      -0.05em;
   }
 
 }
@@ -858,121 +1221,36 @@ and
 
 /* =========================================================
    VERY SMALL MOBILE
+
+   EXACT HOME HERO:
+   34PX
 ========================================================= */
 
 @media (
   max-width: 360px
 ) {
 
-  .about-hero-copy {
-    top:
-      76px;
-
-    left:
-      15px;
-
-    width:
-      calc(
-        100% - 30px
-      );
-  }
-
-
-  .about-hero-title {
-    font-size:
-      32px;
-  }
-
-
-  .about-hero-card--01,
-  .about-hero-card--04 {
-    height:
-      50svh;
-
-    min-height:
-      280px;
-  }
-
-
-  .about-hero-card--03 {
-    height:
-      58svh;
-
-    min-height:
-      315px;
-  }
-
-}
-
-
-/* =========================================================
-   SHORT DESKTOP
-========================================================= */
-
-@media
-(
-  min-width: 769px
-)
-and
-(
-  max-height: 700px
-) {
-
-  .about-hero-copy {
-    top:
-      90px;
-  }
-
-
-  .about-hero-eyebrow {
-    margin-bottom:
+  .about-hero {
+    --page-padding:
       16px;
   }
 
 
-  .about-hero-title {
-    font-size:
-      clamp(
-        39px,
-        4vw,
-        54px
+  .about-hero-copy {
+    bottom:
+      calc(
+        30px +
+        env(
+          safe-area-inset-bottom,
+          0px
+        )
       );
   }
 
 
-  .about-hero-card--01 {
-    height:
-      60vh;
-
-    min-height:
-      0;
-  }
-
-
-  .about-hero-card--02 {
-    height:
-      52vh;
-
-    min-height:
-      0;
-  }
-
-
-  .about-hero-card--03 {
-    height:
-      64vh;
-
-    min-height:
-      0;
-  }
-
-
-  .about-hero-card--04 {
-    height:
-      60vh;
-
-    min-height:
-      0;
+  .about-hero-title {
+    font-size:
+      34px;
   }
 
 }
@@ -995,76 +1273,52 @@ and
   orientation: landscape
 ) {
 
+  .about-hero,
+  .about-hero-stage {
+    height:
+      100svh;
+
+
+    min-height:
+      100svh;
+  }
+
+
   .about-hero-copy {
-    top:
-      48px;
+    right:
+      auto;
+
+
+    bottom:
+      24px;
+
 
     left:
-      28px;
+      24px;
+
 
     width:
-      58%;
-  }
-
-
-  .about-hero-title {
-    font-size:
-      clamp(
-        28px,
-        4.5vw,
-        40px
+      min(
+        720px,
+        72%
       );
-  }
 
 
-  .about-hero-card--02 {
-    display:
+    max-width:
       none;
   }
 
 
-  .about-hero-card--01 {
-    left:
-      2%;
-
-    width:
-      21%;
-
-    height:
-      61vh;
-
-    min-height:
-      0;
-  }
+  /*
+    Keep the same base Home hero typography logic.
+    At landscape widths above mobile this will remain
+    large but still fit because the copy area is wider.
+  */
 
 
-  .about-hero-card--03 {
-    left:
-      24.5%;
-
-    width:
-      51%;
-
-    height:
-      68vh;
-
-    min-height:
-      0;
-  }
-
-
-  .about-hero-card--04 {
-    left:
-      77%;
-
-    width:
-      21%;
-
-    height:
-      61vh;
-
-    min-height:
-      0;
+  .about-hero-card--03 img {
+    object-position:
+      center 45%;
   }
 
 }
@@ -1079,16 +1333,11 @@ and
     reduce
 ) {
 
-  .about-hero-stage {
-    position:
-      relative !important;
-  }
-
-
   .about-hero-copy,
   .about-hero-card {
     opacity:
       1 !important;
+
 
     transform:
       none !important;

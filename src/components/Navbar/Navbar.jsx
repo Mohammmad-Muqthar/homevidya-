@@ -27,7 +27,8 @@ import "./Navbar.css";
    MOTION LINK
 ========================================================= */
 
-const MotionLink = motion.create(Link);
+const MotionLink =
+  motion.create(Link);
 
 
 /* =========================================================
@@ -37,38 +38,72 @@ const MotionLink = motion.create(Link);
 const navbarData = {
   logo: {
     src: "/images/logo.png",
-    alt: "Vidya Academy",
-    to: "/",
+
+    alt:
+      "Vidya Academy",
+
+    to:
+      "/",
   },
+
 
   links: [
     {
-      label: "HOME",
-      to: "/",
+      label:
+        "HOME",
+
+      to:
+        "/",
     },
+
     {
-      label: "CAMPUS",
-      to: "/campus",
+      label:
+        "CAMPUS",
+
+      to:
+        "/campus",
     },
+
     {
-      label: "MOTION-IN",
-      to: "/motion",
+      label:
+        "MOTION-IN",
+
+      to:
+        "/motion",
     },
+
     {
-      label: "PROGRAMS",
-      to: "/life-at-school",
+      label:
+        "PROGRAMS",
+
+      to:
+        "/learning-pathways",
     },
+
     {
-      label: "ABOUT",
-      to: "/about",
+      label:
+        "ABOUT",
+
+      to:
+        "/about",
     },
-    
-    
   ],
 
+
+  /* =====================================================
+     IMPORTANT
+
+     Use an existing React route + hash.
+
+     This avoids navigating to a missing /admissions route.
+  ===================================================== */
+
   cta: {
-    label: "Enquire",
-    to: "/admissions",
+    label:
+      "ENQUIRE",
+
+    to:
+      "/#enquire",
   },
 };
 
@@ -78,82 +113,95 @@ const navbarData = {
 ========================================================= */
 
 const Navbar = () => {
-  const location = useLocation();
+  const location =
+    useLocation();
+
 
   const [
     insideHero,
     setInsideHero,
   ] = useState(true);
 
+
   const [
     heroScrolled,
     setHeroScrolled,
   ] = useState(false);
+
 
   const [
     visible,
     setVisible,
   ] = useState(true);
 
+
   const [
     menuOpen,
     setMenuOpen,
   ] = useState(false);
 
+
   const lastScrollY =
     useRef(0);
+
 
   const ticking =
     useRef(false);
 
 
   /* =========================================================
-     FIND CURRENT PAGE HERO
+     FIND CURRENT HERO
   ========================================================= */
 
-  const getCurrentHero = () => {
-    const customHero =
-      document.querySelector(
-        "[data-navbar-hero]"
-      );
+  const getCurrentHero =
+    () => {
 
-    if (customHero) {
-      return customHero;
-    }
+      const customHero =
+        document.querySelector(
+          "[data-navbar-hero]"
+        );
 
 
-    const homeHero =
-      document.getElementById(
-        "home"
-      );
-
-    if (homeHero) {
-      return homeHero;
-    }
+      if (customHero) {
+        return customHero;
+      }
 
 
-    const campusHero =
-      document.querySelector(
-        ".campus-hero"
-      );
-
-    if (campusHero) {
-      return campusHero;
-    }
+      const homeHero =
+        document.getElementById(
+          "home"
+        );
 
 
-    const pageHero =
-      document.querySelector(
-        ".page-hero"
-      );
-
-    if (pageHero) {
-      return pageHero;
-    }
+      if (homeHero) {
+        return homeHero;
+      }
 
 
-    return null;
-  };
+      const campusHero =
+        document.querySelector(
+          ".campus-hero"
+        );
+
+
+      if (campusHero) {
+        return campusHero;
+      }
+
+
+      const pageHero =
+        document.querySelector(
+          ".page-hero"
+        );
+
+
+      if (pageHero) {
+        return pageHero;
+      }
+
+
+      return null;
+    };
 
 
   /* =========================================================
@@ -168,18 +216,27 @@ const Navbar = () => {
     setHeroScrolled(false);
 
 
+    /* =====================================================
+       HASH LINK
+    ===================================================== */
+
     if (location.hash) {
       requestAnimationFrame(
         () => {
+
           const element =
             document.querySelector(
               location.hash
             );
 
+
           if (element) {
             element.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
+              behavior:
+                "smooth",
+
+              block:
+                "start",
             });
           }
         }
@@ -190,10 +247,16 @@ const Navbar = () => {
 
 
     window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "auto",
+      top:
+        0,
+
+      left:
+        0,
+
+      behavior:
+        "auto",
     });
+
   }, [
     location.pathname,
     location.hash,
@@ -205,121 +268,148 @@ const Navbar = () => {
   ========================================================= */
 
   useEffect(() => {
-    const updateNavbar = () => {
-      const currentY =
-        window.scrollY;
+    const updateNavbar =
+      () => {
 
-      const hero =
-        getCurrentHero();
-
-      let isInsideHero =
-        false;
+        const currentY =
+          window.scrollY;
 
 
-      if (hero) {
-        const heroRect =
-          hero.getBoundingClientRect();
-
-        isInsideHero =
-          heroRect.bottom > 80;
-      }
+        const hero =
+          getCurrentHero();
 
 
-      setInsideHero(
-        isInsideHero
-      );
+        let isInsideHero =
+          false;
 
 
-      /* =====================================================
-         INSIDE HERO
-      ===================================================== */
-
-      if (isInsideHero) {
-        const heroRect =
-          hero.getBoundingClientRect();
-
-        const heroScrolledAmount =
-          Math.max(
-            0,
-            -heroRect.top
-          );
-
-        const hasScrolledHero =
-          heroScrolledAmount >
-          38;
+        if (hero) {
+          const heroRect =
+            hero.getBoundingClientRect();
 
 
-        setHeroScrolled(
-          hasScrolledHero
+          isInsideHero =
+            heroRect.bottom >
+            80;
+        }
+
+
+        setInsideHero(
+          isInsideHero
         );
 
-        setVisible(true);
+
+        /* =====================================================
+           INSIDE HERO
+        ===================================================== */
+
+        if (isInsideHero) {
+          const heroRect =
+            hero.getBoundingClientRect();
+
+
+          const heroScrolledAmount =
+            Math.max(
+              0,
+              -heroRect.top
+            );
+
+
+          const hasScrolledHero =
+            heroScrolledAmount >
+            38;
+
+
+          setHeroScrolled(
+            hasScrolledHero
+          );
+
+
+          setVisible(
+            true
+          );
+
+
+          lastScrollY.current =
+            currentY;
+
+
+          ticking.current =
+            false;
+
+
+          return;
+        }
+
+
+        /* =====================================================
+           OUTSIDE HERO
+        ===================================================== */
+
+        setHeroScrolled(
+          false
+        );
+
+
+        const delta =
+          currentY -
+          lastScrollY.current;
+
+
+        if (
+          Math.abs(
+            delta
+          ) < 6
+        ) {
+          ticking.current =
+            false;
+
+          return;
+        }
+
+
+        if (
+          delta >
+          0
+        ) {
+          setVisible(
+            false
+          );
+        }
+
+
+        if (
+          delta <
+          0
+        ) {
+          setVisible(
+            true
+          );
+        }
+
+
+        if (
+          currentY <=
+          5
+        ) {
+          setVisible(
+            true
+          );
+        }
+
 
         lastScrollY.current =
           currentY;
 
+
         ticking.current =
           false;
-
-        return;
-      }
-
-
-      /* =====================================================
-         OUTSIDE HERO
-      ===================================================== */
-
-      setHeroScrolled(false);
-
-
-      const delta =
-        currentY -
-        lastScrollY.current;
-
-
-      /* MICRO SCROLL */
-
-      if (
-        Math.abs(delta) < 6
-      ) {
-        ticking.current =
-          false;
-
-        return;
-      }
-
-
-      /* SCROLL DOWN */
-
-      if (delta > 0) {
-        setVisible(false);
-      }
-
-
-      /* SCROLL UP */
-
-      if (delta < 0) {
-        setVisible(true);
-      }
-
-
-      /* VERY TOP */
-
-      if (currentY <= 5) {
-        setVisible(true);
-      }
-
-
-      lastScrollY.current =
-        currentY;
-
-      ticking.current =
-        false;
-    };
+      };
 
 
     const handleScroll =
       () => {
+
         if (
           ticking.current
         ) {
@@ -339,6 +429,7 @@ const Navbar = () => {
 
     const handleResize =
       () => {
+
         requestAnimationFrame(
           updateNavbar
         );
@@ -348,8 +439,10 @@ const Navbar = () => {
     const initialFrame =
       requestAnimationFrame(
         () => {
+
           lastScrollY.current =
             window.scrollY;
+
 
           updateNavbar();
         }
@@ -360,7 +453,8 @@ const Navbar = () => {
       "scroll",
       handleScroll,
       {
-        passive: true,
+        passive:
+          true,
       }
     );
 
@@ -372,27 +466,31 @@ const Navbar = () => {
 
 
     return () => {
+
       cancelAnimationFrame(
         initialFrame
       );
+
 
       window.removeEventListener(
         "scroll",
         handleScroll
       );
 
+
       window.removeEventListener(
         "resize",
         handleResize
       );
     };
+
   }, [
     location.pathname,
   ]);
 
 
   /* =========================================================
-     BODY LOCK WHEN MOBILE MENU OPEN
+     BODY LOCK
   ========================================================= */
 
   useEffect(() => {
@@ -409,23 +507,27 @@ const Navbar = () => {
       document.body.style.overflow =
         "";
     };
+
   }, [
     menuOpen,
   ]);
 
 
   /* =========================================================
-     ESCAPE KEY
+     ESC KEY
   ========================================================= */
 
   useEffect(() => {
     const handleKeyDown =
       (event) => {
+
         if (
           event.key ===
           "Escape"
         ) {
-          setMenuOpen(false);
+          setMenuOpen(
+            false
+          );
         }
       };
 
@@ -442,6 +544,7 @@ const Navbar = () => {
         handleKeyDown
       );
     };
+
   }, []);
 
 
@@ -452,11 +555,14 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize =
       () => {
+
         if (
           window.innerWidth >
           1080
         ) {
-          setMenuOpen(false);
+          setMenuOpen(
+            false
+          );
         }
       };
 
@@ -473,16 +579,20 @@ const Navbar = () => {
         handleResize
       );
     };
+
   }, []);
 
 
   /* =========================================================
-     CLOSE MOBILE MENU
+     CLOSE MENU
   ========================================================= */
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  const closeMenu =
+    () => {
+      setMenuOpen(
+        false
+      );
+    };
 
 
   /* =========================================================
@@ -492,6 +602,7 @@ const Navbar = () => {
   const isActiveRoute = (
     to
   ) => {
+
     if (
       to.includes("#")
     ) {
@@ -528,28 +639,29 @@ const Navbar = () => {
 
   return (
     <>
-      {/* =====================================================
-          NAVBAR
-      ====================================================== */}
 
       <header
         className={`
           vidya-nav
+
           ${
             insideHero
               ? "is-hero"
               : "is-page"
           }
+
           ${
             heroScrolled
               ? "is-hero-scrolled"
               : ""
           }
+
           ${
             visible
               ? "is-visible"
               : "is-hidden"
           }
+
           ${
             menuOpen
               ? "is-menu-open"
@@ -557,44 +669,51 @@ const Navbar = () => {
           }
         `}
       >
+
         <div className="vidya-nav-inner">
 
-          {/* =================================================
-              LOGO
-          ================================================= */}
+          {/* LOGO */}
 
           <Link
             to={
               navbarData.logo.to
             }
+
             className="vidya-nav-brand"
+
             onClick={
               closeMenu
             }
+
             aria-label="Vidya Academy home"
           >
+
             <img
               src={
                 navbarData.logo.src
               }
+
               alt={
                 navbarData.logo.alt
               }
+
               className="vidya-nav-logo"
             />
+
           </Link>
 
 
-          {/* =================================================
-              DESKTOP LINKS
-          ================================================= */}
+          {/* DESKTOP LINKS */}
 
           <nav
             className="vidya-nav-links"
+
             aria-label="Main navigation"
           >
+
             {navbarData.links.map(
               (link) => {
+
                 const active =
                   isActiveRoute(
                     link.to
@@ -606,11 +725,14 @@ const Navbar = () => {
                     key={
                       link.label
                     }
+
                     to={
                       link.to
                     }
+
                     className={`
                       vidya-nav-link
+
                       ${
                         active
                           ? "is-active"
@@ -618,121 +740,184 @@ const Navbar = () => {
                       }
                     `}
                   >
+
                     <span>
-                      {link.label}
+                      {
+                        link.label
+                      }
                     </span>
+
                   </Link>
                 );
               }
             )}
+
           </nav>
 
 
-          {/* =================================================
-              RIGHT ACTIONS
-          ================================================= */}
+          {/* ACTIONS */}
 
           <div className="vidya-nav-actions">
 
-            {/* DESKTOP ENQUIRE */}
+            {/* =========================================
+                ENQUIRE
+
+                REACT ROUTER LINK
+                NO ARROW
+            ========================================= */}
 
             <Link
               to={
                 navbarData.cta.to
               }
+
               className="vidya-nav-cta"
+
               onClick={
                 closeMenu
               }
             >
-              {
-                navbarData.cta.label
-              }
+
+              <span>
+                {
+                  navbarData.cta.label
+                }
+              </span>
+
             </Link>
 
 
-            {/* MOBILE MENU */}
+            {/* MOBILE TOGGLE */}
 
             <button
               type="button"
+
               className="vidya-nav-mobile-toggle"
-              onClick={() =>
-                setMenuOpen(
-                  (value) =>
-                    !value
-                )
+
+              onClick={
+                () =>
+                  setMenuOpen(
+                    (
+                      value
+                    ) =>
+                      !value
+                  )
               }
+
               aria-expanded={
                 menuOpen
               }
+
               aria-label={
                 menuOpen
                   ? "Close navigation"
                   : "Open navigation"
               }
             >
+
               <AnimatePresence
                 mode="wait"
-                initial={false}
+
+                initial={
+                  false
+                }
               >
+
                 {menuOpen ? (
+
                   <motion.span
                     key="close"
+
                     initial={{
-                      opacity: 0,
-                      rotate: -20,
+                      opacity:
+                        0,
+
+                      rotate:
+                        -20,
                     }}
+
                     animate={{
-                      opacity: 1,
-                      rotate: 0,
+                      opacity:
+                        1,
+
+                      rotate:
+                        0,
                     }}
+
                     exit={{
-                      opacity: 0,
-                      rotate: 20,
+                      opacity:
+                        0,
+
+                      rotate:
+                        20,
                     }}
+
                     transition={{
                       duration:
                         0.18,
                     }}
                   >
+
                     <X
-                      size={20}
+                      size={
+                        20
+                      }
+
                       strokeWidth={
                         1.8
                       }
                     />
+
                   </motion.span>
+
                 ) : (
+
                   <motion.span
                     key="menu"
+
                     initial={{
-                      opacity: 0,
+                      opacity:
+                        0,
                     }}
+
                     animate={{
-                      opacity: 1,
+                      opacity:
+                        1,
                     }}
+
                     exit={{
-                      opacity: 0,
+                      opacity:
+                        0,
                     }}
+
                     transition={{
                       duration:
                         0.18,
                     }}
                   >
+
                     <Menu
-                      size={21}
+                      size={
+                        21
+                      }
+
                       strokeWidth={
                         1.8
                       }
                     />
+
                   </motion.span>
+
                 )}
+
               </AnimatePresence>
+
             </button>
 
           </div>
 
         </div>
+
       </header>
 
 
@@ -741,36 +926,50 @@ const Navbar = () => {
       ====================================================== */}
 
       <AnimatePresence>
+
         {menuOpen && (
+
           <motion.div
             className="vidya-mobile-menu"
+
             initial={{
-              opacity: 0,
+              opacity:
+                0,
             }}
+
             animate={{
-              opacity: 1,
+              opacity:
+                1,
             }}
+
             exit={{
-              opacity: 0,
+              opacity:
+                0,
             }}
+
             transition={{
-              duration: 0.25,
-              ease: "easeOut",
+              duration:
+                0.25,
+
+              ease:
+                "easeOut",
             }}
           >
-            <div className="vidya-mobile-menu-inner">
 
-              {/* MOBILE LINKS */}
+            <div className="vidya-mobile-menu-inner">
 
               <nav
                 className="vidya-mobile-menu-links"
+
                 aria-label="Mobile navigation"
               >
+
                 {navbarData.links.map(
                   (
                     link,
                     index
                   ) => {
+
                     const active =
                       isActiveRoute(
                         link.to
@@ -782,25 +981,37 @@ const Navbar = () => {
                         key={
                           link.label
                         }
+
                         to={
                           link.to
                         }
+
                         onClick={
                           closeMenu
                         }
+
                         className={
                           active
                             ? "is-active"
                             : ""
                         }
+
                         initial={{
-                          opacity: 0,
-                          y: 10,
+                          opacity:
+                            0,
+
+                          y:
+                            10,
                         }}
+
                         animate={{
-                          opacity: 1,
-                          y: 0,
+                          opacity:
+                            1,
+
+                          y:
+                            0,
                         }}
+
                         transition={{
                           duration:
                             0.3,
@@ -817,77 +1028,102 @@ const Navbar = () => {
                           ],
                         }}
                       >
+
                         <span>
                           {
                             link.label
                           }
                         </span>
 
+
                         <ArrowUpRight
-                          size={16}
+                          size={
+                            16
+                          }
+
                           strokeWidth={
                             1.6
                           }
                         />
+
                       </MotionLink>
                     );
                   }
                 )}
+
               </nav>
 
 
-              {/* MOBILE FOOTER */}
-
               <motion.div
                 className="vidya-mobile-menu-footer"
+
                 initial={{
-                  opacity: 0,
-                  y: 8,
+                  opacity:
+                    0,
+
+                  y:
+                    8,
                 }}
+
                 animate={{
-                  opacity: 1,
-                  y: 0,
+                  opacity:
+                    1,
+
+                  y:
+                    0,
                 }}
+
                 transition={{
-                  duration: 0.3,
-                  delay: 0.12,
+                  duration:
+                    0.3,
+
+                  delay:
+                    0.12,
                 }}
               >
+
                 <p>
                   Discover more about
                   Vidya Academy.
                 </p>
 
 
+                {/* =========================================
+                    MOBILE ENQUIRE
+                    ALSO LINK
+                    NO ARROW
+                ========================================= */}
+
                 <Link
                   to={
                     navbarData.cta.to
                   }
+
                   onClick={
                     closeMenu
                   }
+
                   className="vidya-mobile-menu-cta"
                 >
+
                   <span>
                     {
                       navbarData.cta.label
                     }
                   </span>
 
-                  <ArrowUpRight
-                    size={16}
-                    strokeWidth={
-                      1.7
-                    }
-                  />
                 </Link>
 
               </motion.div>
 
             </div>
+
           </motion.div>
+
         )}
+
       </AnimatePresence>
+
     </>
   );
 };

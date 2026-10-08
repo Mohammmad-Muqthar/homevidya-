@@ -8,7 +8,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./CampusGrounds.css";
 
-gsap.registerPlugin(ScrollTrigger);
+
+gsap.registerPlugin(
+  ScrollTrigger
+);
 
 
 /* =========================================================
@@ -21,21 +24,37 @@ const introText =
 
 /* =========================================================
    MARQUEE IMAGES
+
+   ALL IMAGES NOW MATCH:
+   "THE GROUNDS"
+
+   - SCHOOL GROUND
+   - CRICKET FIELD
+   - PLAYGROUND
+   - SPORTS COURT
 ========================================================= */
 
 const marqueeImages = [
-  "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1200&q=90",
+  "https://images.unsplash.com/photo-1771909712619-54b241d2f8ff?auto=format&fit=crop&w=1400&q=90",
 
-  "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=90",
+  "https://images.unsplash.com/photo-1566938089211-5821c49b3548?auto=format&fit=crop&w=1400&q=90",
 
-  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=90",
+  "https://images.unsplash.com/photo-1710845423770-dafc183dbc4b?auto=format&fit=crop&w=1400&q=90",
 
-  "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=90",
+  "https://images.unsplash.com/photo-1771909712463-b1c7b542f845?auto=format&fit=crop&w=1400&q=90",
 ];
 
 
 /* =========================================================
-   CAMPUS PHOTOS
+   CAMPUS GROUNDS PHOTO GRID
+
+   01 — SCHOOL CRICKET GROUND
+   02 — STUDENTS ON SCHOOL FIELD
+   03 — CAMPUS SPORTS COMPLEX
+   04 — INDIAN SCHOOL FOOTBALL GROUND
+   05 — SCHOOL PLAYGROUND
+   06 — OUTDOOR SPORTS COURT
+   07 — SCHOOL BASKETBALL COURT
 ========================================================= */
 
 const campusImages = [
@@ -43,88 +62,94 @@ const campusImages = [
     id: "01",
 
     src:
-      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1771909712619-54b241d2f8ff?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "School campus exterior",
+      "Indian school cricket ground with school buildings",
 
     className:
       "campus-photo--01",
   },
 
+
   {
     id: "02",
 
     src:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1771909713995-d793a0c93660?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "Educational campus grounds",
+      "Students on an Indian school sports ground",
 
     className:
       "campus-photo--02",
   },
 
+
   {
     id: "03",
 
     src:
-      "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1771909712463-b1c7b542f845?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "Academic campus building",
+      "Indian school outdoor sports complex",
 
     className:
       "campus-photo--03",
   },
 
+
   {
     id: "04",
 
     src:
-      "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1710845423770-dafc183dbc4b?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "Modern educational building",
+      "Indian school football ground and school building",
 
     className:
       "campus-photo--04",
   },
 
+
   {
     id: "05",
 
     src:
-      "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1566938089211-5821c49b3548?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "School learning environment",
+      "Indian school children enjoying the playground",
 
     className:
       "campus-photo--05",
   },
 
+
   {
     id: "06",
 
     src:
-      "https://images.unsplash.com/photo-1560582861-45078880e48e?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1771909713629-c261826a9f9f?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "Modern campus architecture",
+      "Outdoor sports court on an Indian school campus",
 
     className:
       "campus-photo--06",
   },
 
+
   {
     id: "07",
 
     src:
-      "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1720281107529-78f478e7d240?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "Educational campus building",
+      "School basketball and sports court",
 
     className:
       "campus-photo--07",
@@ -177,7 +202,7 @@ const CampusGrounds = () => {
       !introTextElement ||
       !marqueeTrack
     ) {
-      return;
+      return undefined;
     }
 
 
@@ -200,6 +225,7 @@ const CampusGrounds = () => {
 
         gsap.set(
           words,
+
           {
             color:
               "rgba(11, 130, 85, 0.14)",
@@ -209,6 +235,7 @@ const CampusGrounds = () => {
 
         gsap.to(
           words,
+
           {
             color:
               "#0b8255",
@@ -276,6 +303,9 @@ const CampusGrounds = () => {
 
                   scrub:
                     0.8,
+
+                  invalidateOnRefresh:
+                    true,
                 },
               }
             );
@@ -332,6 +362,10 @@ const CampusGrounds = () => {
                   );
 
 
+                /* =============================================
+                   CARD REVEAL
+                ============================================= */
+
                 gsap.fromTo(
                   card,
 
@@ -345,7 +379,7 @@ const CampusGrounds = () => {
                         index %
                         3
                       ) *
-                        7,
+                      7,
                   },
 
                   {
@@ -370,14 +404,19 @@ const CampusGrounds = () => {
 
                       scrub:
                         0.65,
+
+                      invalidateOnRefresh:
+                        true,
                     },
                   }
                 );
 
 
-                if (
-                  image
-                ) {
+                /* =============================================
+                   IMAGE PARALLAX
+                ============================================= */
+
+                if (image) {
                   gsap.fromTo(
                     image,
 
@@ -411,6 +450,9 @@ const CampusGrounds = () => {
 
                         scrub:
                           0.72,
+
+                        invalidateOnRefresh:
+                          true,
                       },
                     }
                   );
@@ -459,7 +501,7 @@ const CampusGrounds = () => {
                         index %
                         2
                       ) *
-                        4,
+                      4,
                   },
 
                   {
@@ -489,9 +531,7 @@ const CampusGrounds = () => {
                 );
 
 
-                if (
-                  image
-                ) {
+                if (image) {
                   gsap.fromTo(
                     image,
 
@@ -519,6 +559,9 @@ const CampusGrounds = () => {
 
                         scrub:
                           0.4,
+
+                        invalidateOnRefresh:
+                          true,
                       },
                     }
                   );
@@ -541,6 +584,7 @@ const CampusGrounds = () => {
     ===================================================== */
 
     let resizeTimer;
+
 
     let previousWidth =
       window.innerWidth;
@@ -689,7 +733,6 @@ const CampusGrounds = () => {
 
             <div
               key={`${prefix}-${index}`}
-
               className="campus-grounds-marquee-item"
             >
 
@@ -698,6 +741,8 @@ const CampusGrounds = () => {
                 <img
                   src={image}
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                   draggable="false"
                 />
 
@@ -806,7 +851,7 @@ const CampusGrounds = () => {
 
 
         {/* =================================================
-            SMALL DESCRIPTION
+            DESCRIPTION
         ================================================= */}
 
         <div className="campus-grounds-caption">

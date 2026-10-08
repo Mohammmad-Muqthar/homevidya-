@@ -9,7 +9,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import CampusPage from "./pages/CampusPage/CampusPage";
 import MotionPage from "./pages/MotionPage/MotionPage";
-
+import LearningPathwaysPage from "./pages/VidyaLearningPathwaysPage";
 
 import CommunityPage from "./pages/MotionPage/CommunityPage";
 import AcademicPage from "./pages/MotionPage/AcademicPage";
@@ -44,6 +44,10 @@ function App() {
           path="/motion"
           element={<MotionPage />}
         />
+        <Route
+  path="/learning-pathways"
+  element={<LearningPathwaysPage />}
+/>
 
 
 

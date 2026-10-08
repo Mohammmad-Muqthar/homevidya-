@@ -1,0 +1,792 @@
+/* =========================================================
+   REUSABLE LEARNING STAGE SECTIONS
+
+   NO CURVED BACKGROUND LINES.
+========================================================= */
+
+.learning-stage {
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  padding:
+    clamp(
+      100px,
+      8vw,
+      150px
+    )
+    var(--page-gutter)
+    clamp(
+      90px,
+      7vw,
+      130px
+    );
+}
+
+
+/* =========================================================
+   THEMES
+========================================================= */
+
+.learning-stage--cream {
+  background:
+    var(--vidya-cream-soft);
+
+  color:
+    var(--vidya-text);
+}
+
+
+.learning-stage--green {
+  background:
+    var(--vidya-green);
+
+  color:
+    var(--vidya-white);
+}
+
+
+.learning-stage--deep {
+  background:
+    var(--vidya-green-deep);
+
+  color:
+    var(--vidya-white);
+}
+
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.learning-stage__main,
+.learning-stage__lower {
+  position:
+    relative;
+
+  z-index:
+    1;
+
+  max-width:
+    1700px;
+
+  margin:
+    0
+    auto;
+}
+
+
+.learning-stage__main {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      0.96fr
+    )
+    minmax(
+      0,
+      1.04fr
+    );
+
+  gap:
+    clamp(
+      58px,
+      7vw,
+      128px
+    );
+
+  align-items:
+    start;
+}
+
+
+.learning-stage__main--reverse
+  .learning-stage__copy {
+  order:
+    2;
+}
+
+
+.learning-stage__main--reverse
+  .learning-stage__media {
+  order:
+    1;
+}
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+.learning-stage__grade {
+  display:
+    block;
+
+  margin-bottom:
+    32px;
+
+  color:
+    var(--vidya-orange);
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.16em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.learning-stage--green
+  .learning-stage__grade,
+.learning-stage--deep
+  .learning-stage__grade {
+  color:
+    var(--vidya-orange);
+}
+
+
+.learning-stage__title {
+  max-width:
+    840px;
+
+  margin:
+    0
+    0
+    38px;
+
+  color:
+    var(--vidya-green);
+
+  font-size:
+    clamp(
+      45px,
+      4.15vw,
+      72px
+    );
+
+  font-style:
+    normal;
+
+  font-weight:
+    550;
+
+  line-height:
+    0.99;
+
+  letter-spacing:
+    -0.058em;
+}
+
+
+.learning-stage--green
+  .learning-stage__title,
+.learning-stage--deep
+  .learning-stage__title {
+  color:
+    var(--vidya-white);
+}
+
+
+.learning-stage__body {
+  max-width:
+    760px;
+}
+
+
+.learning-stage__body p {
+  margin:
+    0
+    0
+    22px;
+
+  color:
+    var(--vidya-muted);
+
+  font-size:
+    clamp(
+      16px,
+      1.1vw,
+      20px
+    );
+
+  line-height:
+    1.56;
+
+  letter-spacing:
+    -0.026em;
+}
+
+
+.learning-stage--green
+  .learning-stage__body p,
+.learning-stage--deep
+  .learning-stage__body p {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.82
+    );
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.learning-stage__tags {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    8px;
+
+  margin-top:
+    32px;
+}
+
+
+.learning-stage__tags span {
+  padding:
+    10px
+    14px;
+
+  border:
+    1px
+    solid
+    rgba(
+      11,
+      86,
+      59,
+      0.18
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.42
+    );
+
+  color:
+    var(--vidya-green);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.09em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.learning-stage--green
+  .learning-stage__tags span,
+.learning-stage--deep
+  .learning-stage__tags span {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.18
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+
+  color:
+    var(--vidya-white);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.learning-stage__media {
+  position:
+    sticky;
+
+  top:
+    108px;
+
+  min-height:
+    620px;
+
+  margin:
+    0;
+
+  background:
+    var(--vidya-green-deep);
+}
+
+
+.learning-stage__media img {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    620px;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+}
+
+
+/* =========================================================
+   LOWER CONTENT
+========================================================= */
+
+.learning-stage__lower {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      0.8fr
+    )
+    minmax(
+      0,
+      1.2fr
+    );
+
+  gap:
+    clamp(
+      48px,
+      7vw,
+      120px
+    );
+
+  align-items:
+    end;
+
+  margin-top:
+    clamp(
+      70px,
+      7vw,
+      118px
+    );
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.learning-stage__quote {
+  position:
+    relative;
+
+  margin:
+    0;
+
+  padding:
+    34px
+    38px;
+
+  border:
+    1px
+    solid
+    rgba(
+      11,
+      86,
+      59,
+      0.22
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.34
+    );
+}
+
+
+.learning-stage--green
+  .learning-stage__quote,
+.learning-stage--deep
+  .learning-stage__quote {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.2
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.06
+    );
+}
+
+
+.learning-stage__quote-mark {
+  display:
+    block;
+
+  margin-bottom:
+    14px;
+
+  color:
+    var(--vidya-orange);
+
+  font-size:
+    48px;
+
+  font-weight:
+    700;
+
+  line-height:
+    0.8;
+}
+
+
+.learning-stage__quote p {
+  margin:
+    0;
+
+  color:
+    inherit;
+
+  font-size:
+    clamp(
+      19px,
+      1.45vw,
+      25px
+    );
+
+  line-height:
+    1.48;
+
+  letter-spacing:
+    -0.032em;
+}
+
+
+.learning-stage__quote footer {
+  margin-top:
+    24px;
+
+  color:
+    var(--vidya-muted);
+
+  font-size:
+    12px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.1em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.learning-stage--green
+  .learning-stage__quote footer,
+.learning-stage--deep
+  .learning-stage__quote footer {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.64
+    );
+}
+
+
+/* =========================================================
+   HIGHLIGHTS
+========================================================= */
+
+.learning-stage__highlights {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  border-top:
+    1px
+    solid
+    rgba(
+      11,
+      86,
+      59,
+      0.2
+    );
+}
+
+
+.learning-stage--green
+  .learning-stage__highlights,
+.learning-stage--deep
+  .learning-stage__highlights {
+  border-top-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.2
+    );
+}
+
+
+.learning-stage__highlight {
+  min-height:
+    130px;
+
+  padding:
+    24px
+    26px;
+
+  border-left:
+    1px
+    solid
+    rgba(
+      11,
+      86,
+      59,
+      0.16
+    );
+}
+
+
+.learning-stage--green
+  .learning-stage__highlight,
+.learning-stage--deep
+  .learning-stage__highlight {
+  border-left-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.16
+    );
+}
+
+
+.learning-stage__highlight span {
+  display:
+    block;
+
+  margin-bottom:
+    22px;
+
+  color:
+    var(--vidya-orange);
+
+  font-size:
+    11px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.12em;
+}
+
+
+.learning-stage__highlight strong {
+  color:
+    inherit;
+
+  font-size:
+    clamp(
+      25px,
+      2vw,
+      34px
+    );
+
+  font-weight:
+    550;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    -0.045em;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 980px
+) {
+
+  .learning-stage {
+    padding:
+      82px
+      20px
+      76px;
+  }
+
+
+  .learning-stage__main,
+  .learning-stage__main--reverse {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      40px;
+  }
+
+
+  .learning-stage__main--reverse
+    .learning-stage__copy,
+  .learning-stage__main--reverse
+    .learning-stage__media {
+    order:
+      initial;
+  }
+
+
+  .learning-stage__grade {
+    margin-bottom:
+      22px;
+
+    font-size:
+      9px;
+  }
+
+
+  .learning-stage__title {
+    margin-bottom:
+      26px;
+
+    font-size:
+      clamp(
+        37px,
+        10vw,
+        52px
+      );
+  }
+
+
+  .learning-stage__media {
+    position:
+      relative;
+
+    top:
+      auto;
+
+    min-height:
+      0;
+
+    aspect-ratio:
+      4 / 5;
+  }
+
+
+  .learning-stage__media img {
+    min-height:
+      0;
+
+    height:
+      100%;
+  }
+
+
+  .learning-stage__lower {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      42px;
+
+    margin-top:
+      46px;
+  }
+
+
+  .learning-stage__quote {
+    padding:
+      28px
+      24px;
+  }
+
+
+  .learning-stage__highlights {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .learning-stage__highlight {
+    min-height:
+      0;
+
+    padding:
+      24px
+      0;
+
+    border-top:
+      1px
+      solid
+      currentColor;
+
+    border-left:
+      0;
+
+    opacity:
+      0.92;
+  }
+
+
+  .learning-stage__highlight span {
+    margin-bottom:
+      9px;
+  }
+
+}

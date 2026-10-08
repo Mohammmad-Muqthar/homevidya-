@@ -10,7 +10,6 @@ import {
 } from "motion/react";
 
 import {
-  ArrowDown,
   Play,
   X,
 } from "lucide-react";
@@ -33,7 +32,6 @@ const Hero = ({
   onVideoReady,
   showContent = true,
 }) => {
-
   /* =========================================================
      REFS
   ========================================================= */
@@ -71,16 +69,10 @@ const Hero = ({
 
 
   /* =========================================================
-     VIDEO
-
-     Runs immediately.
-
-     Hero video stays underneath
-     the VIDYA intro.
+     VIDEO ANIMATION
   ========================================================= */
 
   useLayoutEffect(() => {
-
     const section =
       sectionRef.current;
 
@@ -92,35 +84,37 @@ const Hero = ({
       !section ||
       !video
     ) {
-      return;
+      return undefined;
     }
 
 
     const ctx =
       gsap.context(() => {
-
-        /* -----------------------------------------------
+        /* =====================================================
            VIDEO START
-        ------------------------------------------------ */
+        ===================================================== */
 
         gsap.set(
           video,
           {
-            scale: 1.065,
+            scale:
+              1.065,
           }
         );
 
 
-        /* -----------------------------------------------
-           VIDEO INTRO MOTION
-        ------------------------------------------------ */
+        /* =====================================================
+           VIDEO INTRO
+        ===================================================== */
 
         gsap.to(
           video,
           {
-            scale: 1.02,
+            scale:
+              1.02,
 
-            duration: 1.8,
+            duration:
+              1.8,
 
             ease:
               "power4.out",
@@ -128,28 +122,32 @@ const Hero = ({
         );
 
 
-        /* -----------------------------------------------
+        /* =====================================================
            VIDEO PARALLAX
-        ------------------------------------------------ */
+        ===================================================== */
 
         gsap.fromTo(
           video,
 
           {
-            yPercent: -3,
+            yPercent:
+              -3,
 
-            scale: 1.02,
+            scale:
+              1.02,
           },
 
           {
-            yPercent: 8,
+            yPercent:
+              8,
 
-            scale: 1.1,
+            scale:
+              1.1,
 
-            ease: "none",
+            ease:
+              "none",
 
             scrollTrigger: {
-
               trigger:
                 section,
 
@@ -164,37 +162,25 @@ const Hero = ({
 
               invalidateOnRefresh:
                 true,
-
             },
-
           }
         );
-
       }, section);
 
 
     return () => {
-
       ctx.revert();
-
     };
-
   }, []);
 
 
   /* =========================================================
-     HERO CONTENT REVEAL
-
-     MUCH FASTER NOW.
-
-     Content begins immediately when
-     showContent becomes true.
+     CONTENT REVEAL
   ========================================================= */
 
   useLayoutEffect(() => {
-
     if (!showContent) {
-      return;
+      return undefined;
     }
 
 
@@ -224,26 +210,24 @@ const Hero = ({
       !paragraph ||
       !buttons
     ) {
-      return;
+      return undefined;
     }
 
 
     const ctx =
       gsap.context(() => {
-
-        /* -----------------------------------------------
-           INITIAL STATE
-
-           Smaller movement means it appears
-           noticeably faster.
-        ------------------------------------------------ */
+        /* =====================================================
+           INITIAL STATES
+        ===================================================== */
 
         gsap.set(
           title,
           {
-            opacity: 0,
+            opacity:
+              0,
 
-            y: 34,
+            y:
+              34,
           }
         );
 
@@ -251,9 +235,11 @@ const Hero = ({
         gsap.set(
           paragraph,
           {
-            opacity: 0,
+            opacity:
+              0,
 
-            y: 18,
+            y:
+              18,
           }
         );
 
@@ -261,47 +247,39 @@ const Hero = ({
         gsap.set(
           buttons,
           {
-            opacity: 0,
+            opacity:
+              0,
 
-            y: 16,
+            y:
+              16,
           }
         );
 
 
         if (bottom) {
-
           gsap.set(
             bottom,
             {
-              opacity: 0,
+              opacity:
+                0,
 
-              y: 10,
+              y:
+                10,
             }
           );
-
         }
 
 
-        /* -----------------------------------------------
-           FAST HERO REVEAL
-
-           Starts immediately.
-
-           Title = almost instant
-           Description = follows immediately
-           Buttons = follows immediately
-        ------------------------------------------------ */
+        /* =====================================================
+           FAST REVEAL
+        ===================================================== */
 
         const reveal =
           gsap.timeline({
-
             defaults: {
-
               ease:
                 "power3.out",
-
             },
-
           });
 
 
@@ -310,9 +288,11 @@ const Hero = ({
         reveal.to(
           title,
           {
-            opacity: 1,
+            opacity:
+              1,
 
-            y: 0,
+            y:
+              0,
 
             duration:
               0.36,
@@ -326,9 +306,11 @@ const Hero = ({
         reveal.to(
           paragraph,
           {
-            opacity: 1,
+            opacity:
+              1,
 
-            y: 0,
+            y:
+              0,
 
             duration:
               0.34,
@@ -342,9 +324,11 @@ const Hero = ({
         reveal.to(
           buttons,
           {
-            opacity: 1,
+            opacity:
+              1,
 
-            y: 0,
+            y:
+              0,
 
             duration:
               0.34,
@@ -353,41 +337,43 @@ const Hero = ({
         );
 
 
-        /* BOTTOM CUE */
+        /* BOTTOM */
 
         if (bottom) {
-
           reveal.to(
             bottom,
             {
-              opacity: 1,
+              opacity:
+                1,
 
-              y: 0,
+              y:
+                0,
 
               duration:
                 0.3,
             },
             0.1
           );
-
         }
 
 
-        /* -----------------------------------------------
+        /* =====================================================
            CONTENT PARALLAX
-        ------------------------------------------------ */
+        ===================================================== */
 
         gsap.to(
           content,
           {
-            y: -70,
+            y:
+              -70,
 
-            opacity: 0.15,
+            opacity:
+              0.15,
 
-            ease: "none",
+            ease:
+              "none",
 
             scrollTrigger: {
-
               trigger:
                 section,
 
@@ -397,55 +383,52 @@ const Hero = ({
               end:
                 "bottom top",
 
-              scrub: 1,
+              scrub:
+                1,
 
               invalidateOnRefresh:
                 true,
-
             },
-
           }
         );
 
 
         ScrollTrigger.refresh();
-
       }, section);
 
 
     return () => {
-
       ctx.revert();
-
     };
-
   }, [
     showContent,
   ]);
 
 
   /* =========================================================
-     MODAL
+     VIDEO MODAL
   ========================================================= */
 
-  const openVideo = () => {
+  const openVideo =
+    () => {
+      setVideoModal(
+        true
+      );
 
-    setVideoModal(true);
-
-    document.body.style.overflow =
-      "hidden";
-
-  };
+      document.body.style.overflow =
+        "hidden";
+    };
 
 
-  const closeVideo = () => {
+  const closeVideo =
+    () => {
+      setVideoModal(
+        false
+      );
 
-    setVideoModal(false);
-
-    document.body.style.overflow =
-      "";
-
-  };
+      document.body.style.overflow =
+        "";
+    };
 
 
   /* =========================================================
@@ -492,19 +475,16 @@ const Hero = ({
           </video>
 
 
-          <div
-            className="raya-hero-overlay"
-          />
+          <div className="raya-hero-overlay" />
 
         </div>
 
 
         {/* =================================================
-            HERO CONTENT
+            CONTENT
         ================================================= */}
 
         {showContent && (
-
           <>
 
             <div className="raya-hero-container">
@@ -514,26 +494,43 @@ const Hero = ({
                 className="raya-hero-content"
               >
 
-                {/* TITLE */}
+                {/* =========================================
+                    TITLE
+
+                    WHITE:
+                    Learning that
+                    moves
+
+                    LIGHT GREEN:
+                    with them.
+                ========================================= */}
 
                 <h1
                   ref={titleRef}
                   className="raya-hero-title"
                 >
 
-                  <span className="raya-title-main">
+                  <span className="raya-title-line">
                     Learning that
                   </span>
 
 
-                  <span className="raya-title-accent">
-                    moves with them.
+                  <span className="raya-title-line">
+
+                    moves{" "}
+
+                    <span className="raya-title-accent">
+                      with them.
+                    </span>
+
                   </span>
 
                 </h1>
 
 
-                {/* DESCRIPTION */}
+                {/* =========================================
+                    DESCRIPTION
+                ========================================= */}
 
                 <p
                   ref={paragraphRef}
@@ -545,7 +542,9 @@ const Hero = ({
                 </p>
 
 
-                {/* ACTIONS */}
+                {/* =========================================
+                    ACTIONS
+                ========================================= */}
 
                 <div
                   ref={buttonsRef}
@@ -595,26 +594,15 @@ const Hero = ({
 
 
             {/* =============================================
-                BOTTOM CUE
+                BOTTOM
             ============================================= */}
 
             <div
               ref={bottomRef}
               className="raya-hero-bottom"
-            >
-
-              {/* <span>
-                Discover Vidya
-              </span> */}
-
-              {/* <ArrowDown
-                size={17}
-              /> */}
-
-            </div>
+            />
 
           </>
-
         )}
 
       </section>
@@ -632,19 +620,23 @@ const Hero = ({
             className="raya-video-modal"
 
             initial={{
-              opacity: 0,
+              opacity:
+                0,
             }}
 
             animate={{
-              opacity: 1,
+              opacity:
+                1,
             }}
 
             exit={{
-              opacity: 0,
+              opacity:
+                0,
             }}
 
             transition={{
-              duration: 0.45,
+              duration:
+                0.45,
             }}
           >
 
@@ -652,22 +644,30 @@ const Hero = ({
               className="raya-video-modal-inner"
 
               initial={{
-                scale: 0.94,
-                opacity: 0,
+                scale:
+                  0.94,
+
+                opacity:
+                  0,
               }}
 
               animate={{
-                scale: 1,
-                opacity: 1,
+                scale:
+                  1,
+
+                opacity:
+                  1,
               }}
 
               exit={{
-                scale: 0.96,
-                opacity: 0,
+                scale:
+                  0.96,
+
+                opacity:
+                  0,
               }}
 
               transition={{
-
                 duration:
                   0.6,
 
@@ -677,7 +677,6 @@ const Hero = ({
                   0.36,
                   1,
                 ],
-
               }}
             >
 
@@ -700,13 +699,10 @@ const Hero = ({
 
             <button
               type="button"
-
               className="raya-video-close"
-
               onClick={
                 closeVideo
               }
-
               aria-label="Close video"
             >
 

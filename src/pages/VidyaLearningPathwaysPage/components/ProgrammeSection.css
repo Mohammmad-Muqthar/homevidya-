@@ -1,0 +1,1380 @@
+/* =========================================================
+   VIDYA ACADEMY
+   PROGRAMME SECTION
+
+   1 = CREAM
+   2 = WHITE
+   3 = VIDYA GREEN
+
+   - MANROPE
+   - NO CURVED LINES
+   - IMAGE HEIGHT MATCHES CONTENT
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+.programme-detail {
+  --vidya-cream:
+    #f3f0e6;
+
+  --vidya-cream-light:
+    #f5f3e9;
+
+  --vidya-green:
+    #0b8255;
+
+  --vidya-green-deep:
+    #0b563b;
+
+  --vidya-green-dark:
+    #073f32;
+
+  --vidya-green-bright:
+    #26b474;
+
+  --vidya-orange:
+    #f9a01b;
+
+  --vidya-white:
+    #ffffff;
+
+  --vidya-text:
+    #1d1d1b;
+
+  --vidya-muted:
+    #666862;
+
+  --vidya-grey:
+    #a5a7a3;
+
+
+  position:
+    relative;
+
+  width:
+    100%;
+
+  overflow:
+    hidden;
+
+  padding:
+    clamp(
+      105px,
+      8vw,
+      150px
+    )
+    var(
+      --page-gutter,
+      clamp(
+        42px,
+        5vw,
+        86px
+      )
+    )
+    clamp(
+      95px,
+      7vw,
+      130px
+    );
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+.programme-detail,
+.programme-detail *,
+.programme-detail *::before,
+.programme-detail *::after {
+  box-sizing:
+    border-box;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   REMOVE CURVED LINES
+========================================================= */
+
+.programme-detail::before,
+.programme-detail::after {
+  display:
+    none !important;
+
+  content:
+    none !important;
+}
+
+
+/* =========================================================
+   THEMES
+========================================================= */
+
+.programme-detail--cream {
+  background:
+    var(--vidya-cream);
+
+  color:
+    var(--vidya-text);
+}
+
+
+.programme-detail--rose {
+  background:
+    var(--vidya-white);
+
+  color:
+    var(--vidya-text);
+}
+
+
+.programme-detail--dark {
+  background:
+    var(--vidya-green-deep);
+
+  color:
+    var(--vidya-white);
+}
+
+
+/* =========================================================
+   THIRD SECTION
+========================================================= */
+
+.programme-detail--dp {
+  background:
+    var(--vidya-green-deep);
+
+  color:
+    var(--vidya-white);
+}
+
+
+/* =========================================================
+   CONTAINERS
+========================================================= */
+
+.programme-detail__main,
+.programme-detail__stats-wrap {
+  position:
+    relative;
+
+  z-index:
+    1;
+
+  width:
+    100%;
+
+  max-width:
+    1700px;
+
+  margin:
+    0
+    auto;
+}
+
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.programme-detail__main {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      0.94fr
+    )
+    minmax(
+      0,
+      1.06fr
+    );
+
+  gap:
+    clamp(
+      62px,
+      7vw,
+      128px
+    );
+
+  align-items:
+    start;
+}
+
+
+/* =========================================================
+   SECOND SECTION REVERSE
+========================================================= */
+
+.programme-detail__main--reverse {
+  grid-template-columns:
+    minmax(
+      0,
+      1.06fr
+    )
+    minmax(
+      0,
+      0.94fr
+    );
+}
+
+
+.programme-detail__main--reverse
+.programme-detail__copy {
+  order:
+    2;
+}
+
+
+.programme-detail__main--reverse
+.programme-detail__media {
+  order:
+    1;
+}
+
+
+/* =========================================================
+   SECOND + THIRD SECTION
+
+   IMAGE AND CONTENT SAME HEIGHT
+========================================================= */
+
+.programme-detail--rose
+.programme-detail__main,
+.programme-detail--dp
+.programme-detail__main {
+  align-items:
+    stretch;
+}
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+.programme-detail__copy {
+  width:
+    100%;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.programme-detail__title {
+  width:
+    100%;
+
+  max-width:
+    830px;
+
+  margin:
+    0
+    0
+    42px;
+
+  color:
+    var(--vidya-green-deep);
+
+  font-size:
+    clamp(
+      50px,
+      4.4vw,
+      74px
+    );
+
+  font-style:
+    normal;
+
+  font-weight:
+    550;
+
+  line-height:
+    0.98;
+
+  letter-spacing:
+    -0.058em;
+}
+
+
+.programme-detail--rose
+.programme-detail__title {
+  color:
+    var(--vidya-green-deep);
+}
+
+
+.programme-detail--dark
+.programme-detail__title,
+.programme-detail--dp
+.programme-detail__title {
+  color:
+    var(--vidya-white);
+}
+
+
+/* =========================================================
+   GREY TITLE WORDS
+
+   "not an answer."
+   "opens doors."
+
+   FONT DOES NOT CHANGE.
+========================================================= */
+
+.programme-detail__title-muted {
+  color:
+    var(--vidya-grey);
+
+  font:
+    inherit;
+
+  font-style:
+    normal;
+
+  font-weight:
+    inherit;
+
+  line-height:
+    inherit;
+
+  letter-spacing:
+    inherit;
+}
+
+
+/* On green background */
+
+.programme-detail--dark
+.programme-detail__title-muted,
+.programme-detail--dp
+.programme-detail__title-muted {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.48
+    );
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.programme-detail__body {
+  width:
+    100%;
+
+  max-width:
+    720px;
+}
+
+
+.programme-detail__body p {
+  margin:
+    0
+    0
+    22px;
+
+  color:
+    var(--vidya-muted);
+
+  font-size:
+    clamp(
+      16px,
+      1.08vw,
+      19px
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.58;
+
+  letter-spacing:
+    -0.025em;
+}
+
+
+.programme-detail--rose
+.programme-detail__body p {
+  color:
+    var(--vidya-muted);
+}
+
+
+.programme-detail--dark
+.programme-detail__body p,
+.programme-detail--dp
+.programme-detail__body p {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.78
+    );
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.programme-detail__tags {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    8px;
+
+  margin-top:
+    32px;
+}
+
+
+.programme-detail__tags span {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  min-height:
+    33px;
+
+  padding:
+    0
+    13px;
+
+  border:
+    1px
+    solid
+    rgba(
+      11,
+      86,
+      59,
+      0.2
+    );
+
+  background:
+    transparent;
+
+  color:
+    var(--vidya-green-deep);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.09em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.programme-detail--dark
+.programme-detail__tags span,
+.programme-detail--dp
+.programme-detail__tags span {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.22
+    );
+
+  color:
+    var(--vidya-white);
+}
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.programme-detail__links {
+  display:
+    grid;
+
+  gap:
+    10px;
+
+  margin-top:
+    30px;
+}
+
+
+.programme-detail__links a {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  width:
+    fit-content;
+
+  color:
+    var(--vidya-green-deep);
+
+  font-size:
+    14px;
+
+  font-weight:
+    650;
+
+  text-decoration:
+    none;
+}
+
+
+.programme-detail--dark
+.programme-detail__links a,
+.programme-detail--dp
+.programme-detail__links a {
+  color:
+    var(--vidya-white);
+}
+
+
+.programme-detail__link-arrow {
+  color:
+    var(--vidya-orange);
+
+  transition:
+    transform
+    250ms
+    ease;
+}
+
+
+.programme-detail__links a:hover
+.programme-detail__link-arrow {
+  transform:
+    translate(
+      3px,
+      -3px
+    );
+}
+
+
+/* =========================================================
+   DEFAULT IMAGE
+========================================================= */
+
+.programme-detail__media {
+  position:
+    sticky;
+
+  top:
+    110px;
+
+  width:
+    100%;
+
+  min-height:
+    680px;
+
+  margin:
+    0;
+
+  overflow:
+    hidden;
+
+  background:
+    var(--vidya-green-dark);
+}
+
+
+.programme-detail__media img {
+  display:
+    block;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    680px;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+
+  will-change:
+    transform;
+}
+
+
+/* =========================================================
+   SECOND SECTION IMAGE
+
+   MATCHES CONTENT HEIGHT
+========================================================= */
+
+.programme-detail--rose
+.programme-detail__media {
+  position:
+    relative;
+
+  top:
+    auto;
+
+  align-self:
+    stretch;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    0;
+}
+
+
+.programme-detail--rose
+.programme-detail__media img {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    0;
+
+  object-fit:
+    cover;
+}
+
+
+/* =========================================================
+   THIRD GREEN SECTION IMAGE
+
+   SAME FULL HEIGHT AS LEFT CONTENT
+========================================================= */
+
+.programme-detail--dp
+.programme-detail__media {
+  position:
+    relative;
+
+  top:
+    auto;
+
+  align-self:
+    stretch;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    0;
+
+  margin:
+    0;
+}
+
+
+.programme-detail--dp
+.programme-detail__media img {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    0;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center;
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.programme-detail__quote {
+  width:
+    100%;
+
+  margin:
+    clamp(
+      54px,
+      5vw,
+      78px
+    )
+    0
+    0;
+
+  padding:
+    38px
+    40px;
+
+  border:
+    1px
+    solid
+    rgba(
+      11,
+      86,
+      59,
+      0.24
+    );
+
+  border-radius:
+    0;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.2
+    );
+
+  color:
+    inherit;
+}
+
+
+.programme-detail--rose
+.programme-detail__quote {
+  border-color:
+    rgba(
+      11,
+      86,
+      59,
+      0.18
+    );
+
+  background:
+    var(--vidya-cream-light);
+
+  color:
+    var(--vidya-text);
+}
+
+
+.programme-detail--dark
+.programme-detail__quote,
+.programme-detail--dp
+.programme-detail__quote {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.22
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.055
+    );
+
+  color:
+    var(--vidya-white);
+}
+
+
+/* =========================================================
+   QUOTE LABEL
+========================================================= */
+
+.programme-detail__quote-label {
+  display:
+    block;
+
+  margin-bottom:
+    27px;
+
+  color:
+    var(--vidya-orange);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.15em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   QUOTE TEXT
+========================================================= */
+
+.programme-detail__quote p {
+  margin:
+    0;
+
+  color:
+    inherit;
+
+  font-size:
+    clamp(
+      21px,
+      1.6vw,
+      28px
+    );
+
+  font-weight:
+    550;
+
+  line-height:
+    1.48;
+
+  letter-spacing:
+    -0.035em;
+}
+
+
+/* =========================================================
+   QUOTE FOOTER
+========================================================= */
+
+.programme-detail__quote footer {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    15px;
+
+  margin-top:
+    30px;
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.programme-detail__avatar {
+  display:
+    grid;
+
+  width:
+    48px;
+
+  height:
+    48px;
+
+  place-items:
+    center;
+
+  flex:
+    0
+    0
+    48px;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--vidya-orange);
+
+  color:
+    var(--vidya-green-dark);
+
+  font-size:
+    11px;
+
+  font-weight:
+    800;
+}
+
+
+.programme-detail__quote-person {
+  display:
+    grid;
+}
+
+
+.programme-detail__quote strong {
+  color:
+    inherit;
+
+  font-size:
+    15px;
+
+  font-weight:
+    700;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.programme-detail__stats-wrap {
+  margin-top:
+    clamp(
+      80px,
+      8vw,
+      130px
+    );
+}
+
+
+.programme-detail__stats {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    clamp(
+      30px,
+      4vw,
+      72px
+    );
+
+  width:
+    100%;
+}
+
+
+.programme-detail__stat {
+  min-width:
+    0;
+
+  padding:
+    0;
+
+  border:
+    0;
+
+  background:
+    transparent;
+}
+
+
+/* =========================================================
+   STAT NUMBER
+========================================================= */
+
+.programme-detail__stat strong {
+  display:
+    block;
+
+  margin:
+    0
+    0
+    12px;
+
+  color:
+    var(--vidya-green-deep);
+
+  font-size:
+    clamp(
+      56px,
+      5vw,
+      82px
+    );
+
+  font-weight:
+    550;
+
+  line-height:
+    0.9;
+
+  letter-spacing:
+    -0.06em;
+}
+
+
+.programme-detail--dark
+.programme-detail__stat strong,
+.programme-detail--dp
+.programme-detail__stat strong {
+  color:
+    var(--vidya-white);
+}
+
+
+/* =========================================================
+   STAT LABEL
+========================================================= */
+
+.programme-detail__stat span {
+  display:
+    block;
+
+  max-width:
+    230px;
+
+  color:
+    var(--vidya-muted);
+
+  font-size:
+    clamp(
+      14px,
+      1vw,
+      17px
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.4;
+
+  letter-spacing:
+    -0.02em;
+}
+
+
+.programme-detail--dark
+.programme-detail__stat span,
+.programme-detail--dp
+.programme-detail__stat span {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.66
+    );
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (
+  max-width: 980px
+) {
+
+  .programme-detail {
+    padding:
+      84px
+      20px
+      78px;
+  }
+
+
+  .programme-detail__main,
+  .programme-detail__main--reverse,
+  .programme-detail--dp
+  .programme-detail__main {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      42px;
+
+    align-items:
+      start;
+  }
+
+
+  .programme-detail__main--reverse
+  .programme-detail__copy,
+  .programme-detail__main--reverse
+  .programme-detail__media {
+    order:
+      initial;
+  }
+
+
+  .programme-detail__title {
+    max-width:
+      680px;
+
+    margin-bottom:
+      28px;
+
+    font-size:
+      clamp(
+        39px,
+        9.5vw,
+        52px
+      );
+  }
+
+
+  .programme-detail__body {
+    max-width:
+      620px;
+  }
+
+
+  .programme-detail__body p {
+    font-size:
+      15px;
+  }
+
+
+  /* =====================================================
+     NORMAL MOBILE IMAGE FLOW
+  ===================================================== */
+
+  .programme-detail__media,
+  .programme-detail--rose
+  .programme-detail__media,
+  .programme-detail--dp
+  .programme-detail__media {
+    position:
+      relative;
+
+    top:
+      auto;
+
+    width:
+      100%;
+
+    height:
+      auto;
+
+    min-height:
+      0;
+
+    aspect-ratio:
+      4 / 5;
+  }
+
+
+  .programme-detail__media img,
+  .programme-detail--rose
+  .programme-detail__media img,
+  .programme-detail--dp
+  .programme-detail__media img {
+    position:
+      relative;
+
+    inset:
+      auto;
+
+    width:
+      100%;
+
+    height:
+      100%;
+
+    min-height:
+      0;
+
+    object-fit:
+      cover;
+  }
+
+
+  .programme-detail__quote {
+    margin-top:
+      46px;
+
+    padding:
+      30px
+      26px;
+  }
+
+
+  .programme-detail__stats-wrap {
+    margin-top:
+      64px;
+  }
+
+
+  .programme-detail__stats {
+    gap:
+      24px;
+  }
+
+
+  .programme-detail__stat strong {
+    font-size:
+      clamp(
+        42px,
+        8vw,
+        58px
+      );
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 650px
+) {
+
+  .programme-detail {
+    padding:
+      72px
+      18px
+      68px;
+  }
+
+
+  .programme-detail__title {
+    font-size:
+      clamp(
+        36px,
+        9.4vw,
+        46px
+      );
+  }
+
+
+  .programme-detail__body p {
+    margin-bottom:
+      19px;
+
+    font-size:
+      14px;
+  }
+
+
+  .programme-detail__quote {
+    margin-top:
+      38px;
+
+    padding:
+      27px
+      22px;
+  }
+
+
+  .programme-detail__quote-label {
+    margin-bottom:
+      22px;
+
+    font-size:
+      9px;
+  }
+
+
+  .programme-detail__quote p {
+    font-size:
+      19px;
+  }
+
+
+  .programme-detail__avatar {
+    width:
+      44px;
+
+    height:
+      44px;
+
+    flex-basis:
+      44px;
+  }
+
+
+  .programme-detail__stats-wrap {
+    margin-top:
+      54px;
+  }
+
+
+  .programme-detail__stats {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      38px;
+  }
+
+
+  .programme-detail__stat strong {
+    margin-bottom:
+      8px;
+
+    font-size:
+      52px;
+  }
+
+
+  .programme-detail__stat span {
+    max-width:
+      100%;
+
+    font-size:
+      14px;
+  }
+
+}

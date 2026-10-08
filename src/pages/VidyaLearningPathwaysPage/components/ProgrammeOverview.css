@@ -1,0 +1,961 @@
+/* =========================================================
+   VIDYA ACADEMY
+   PROGRAMME OVERVIEW
+
+   - SAME CARD HEIGHT
+   - WHITE CARD HOVER
+   - SMALL MOTION STYLE CTA
+   - MANROPE
+   - VIDYA COLORS
+========================================================= */
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.programme-overview {
+  --vidya-cream:
+    #f3f0e6;
+
+  --vidya-green:
+    #0b8255;
+
+  --vidya-green-deep:
+    #0b563b;
+
+  --vidya-green-dark:
+    #073f32;
+
+  --vidya-green-bright:
+    #26b474;
+
+  --vidya-orange:
+    #f9a01b;
+
+  --vidya-white:
+    #ffffff;
+
+  --vidya-text:
+    #1d1d1b;
+
+  --vidya-muted:
+    #62645f;
+
+  --vidya-line:
+    rgba(
+      11,
+      86,
+      59,
+      0.18
+    );
+
+
+  position:
+    relative;
+
+  width:
+    100%;
+
+  padding:
+    78px
+    var(
+      --page-gutter,
+      clamp(
+        42px,
+        5vw,
+        86px
+      )
+    )
+    105px;
+
+  background:
+    var(--vidya-cream);
+
+  color:
+    var(--vidya-text);
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+.programme-overview,
+.programme-overview *,
+.programme-overview *::before,
+.programme-overview *::after {
+  box-sizing:
+    border-box;
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.programme-overview__grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  align-items:
+    stretch;
+
+  width:
+    100%;
+
+  max-width:
+    1700px;
+
+  margin:
+    0
+    auto;
+
+  border-top:
+    1px
+    solid
+    var(--vidya-line);
+
+  border-bottom:
+    1px
+    solid
+    var(--vidya-line);
+}
+
+
+/* =========================================================
+   CARD
+
+   EXACT SAME HEIGHT
+========================================================= */
+
+.programme-overview__card {
+  position:
+    relative;
+
+  display:
+    flex;
+
+  height:
+    490px;
+
+  min-width:
+    0;
+
+  flex-direction:
+    column;
+
+  padding:
+    48px
+    42px
+    40px;
+
+  border-right:
+    1px
+    solid
+    var(--vidya-line);
+
+  background:
+    transparent;
+
+  transition:
+    background-color
+      320ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    transform
+      320ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    box-shadow
+      320ms
+      ease;
+}
+
+
+.programme-overview__card:first-child {
+  border-left:
+    1px
+    solid
+    var(--vidya-line);
+}
+
+
+/* =========================================================
+   CARD HOVER
+
+   CREAM → WHITE
+========================================================= */
+
+.programme-overview__card:hover {
+  z-index:
+    3;
+
+  background:
+    var(--vidya-white);
+
+  transform:
+    translateY(
+      -7px
+    );
+
+  box-shadow:
+    0
+    22px
+    52px
+    rgba(
+      7,
+      63,
+      50,
+      0.08
+    );
+}
+
+
+/* =========================================================
+   GRADE RANGE
+========================================================= */
+
+.programme-overview__range {
+  display:
+    block;
+
+  margin-bottom:
+    20px;
+
+  color:
+    var(--vidya-orange);
+
+  font-size:
+    11px;
+
+  font-style:
+    normal;
+
+  font-weight:
+    800;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.15em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.programme-overview__name {
+  width:
+    100%;
+
+  max-width:
+    440px;
+
+  margin:
+    0;
+
+  color:
+    var(--vidya-green-deep);
+
+  font-size:
+    clamp(
+      42px,
+      3.3vw,
+      57px
+    );
+
+  font-style:
+    normal;
+
+  font-weight:
+    550;
+
+  line-height:
+    0.98;
+
+  letter-spacing:
+    -0.058em;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.programme-overview__divider {
+  width:
+    100%;
+
+  height:
+    1px;
+
+  margin:
+    36px
+    0
+    27px;
+
+  background:
+    rgba(
+      11,
+      86,
+      59,
+      0.22
+    );
+
+  transition:
+    background-color
+    260ms
+    ease;
+}
+
+
+.programme-overview__card:hover
+.programme-overview__divider {
+  background:
+    rgba(
+      11,
+      86,
+      59,
+      0.36
+    );
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.programme-overview__summary {
+  width:
+    100%;
+
+  max-width:
+    420px;
+
+  margin:
+    0;
+
+  color:
+    var(--vidya-muted);
+
+  font-size:
+    clamp(
+      16px,
+      1.04vw,
+      18px
+    );
+
+  font-style:
+    normal;
+
+  font-weight:
+    500;
+
+  line-height:
+    1.55;
+
+  letter-spacing:
+    -0.024em;
+}
+
+
+/* =========================================================
+   SMALL MOTION STYLE CTA
+========================================================= */
+
+.programme-overview__link {
+  position:
+    relative;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    18px;
+
+  width:
+    fit-content;
+
+  min-width:
+    116px;
+
+  min-height:
+    40px;
+
+  margin-top:
+    auto;
+
+  padding:
+    0
+    14px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px
+    solid
+    var(--vidya-green-deep);
+
+  border-radius:
+    0;
+
+  background:
+    transparent;
+
+  color:
+    var(--vidya-green-deep);
+
+  font-size:
+    10px;
+
+  font-style:
+    normal;
+
+  font-weight:
+    700;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.11em;
+
+  text-decoration:
+    none;
+
+  text-transform:
+    uppercase;
+
+  isolation:
+    isolate;
+
+  transition:
+    color
+    300ms
+    ease;
+}
+
+
+/* =========================================================
+   CTA FILL
+========================================================= */
+
+.programme-overview__link::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  z-index:
+    -1;
+
+  inset:
+    0;
+
+  background:
+    var(--vidya-green-deep);
+
+  transform:
+    translateY(
+      102%
+    );
+
+  transition:
+    transform
+    340ms
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+/* =========================================================
+   CTA TEXT
+========================================================= */
+
+.programme-overview__link-text {
+  position:
+    relative;
+
+  z-index:
+    1;
+}
+
+
+/* =========================================================
+   CTA ARROW
+========================================================= */
+
+.programme-overview__arrow {
+  position:
+    relative;
+
+  z-index:
+    1;
+
+  display:
+    block;
+
+  width:
+    15px;
+
+  height:
+    15px;
+
+  flex:
+    0
+    0
+    15px;
+
+  transition:
+    transform
+    300ms
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+
+/* =========================================================
+   CTA HOVER
+========================================================= */
+
+.programme-overview__link:hover {
+  color:
+    var(--vidya-white);
+}
+
+
+.programme-overview__link:hover::before {
+  transform:
+    translateY(
+      0
+    );
+}
+
+
+.programme-overview__link:hover
+.programme-overview__arrow {
+  transform:
+    translateX(
+      3px
+    );
+}
+
+
+/* =========================================================
+   CARD HOVER — SMALL CTA CHANGE
+========================================================= */
+
+.programme-overview__card:hover
+.programme-overview__link {
+  border-color:
+    var(--vidya-green-deep);
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (
+  min-width: 1500px
+) {
+
+  .programme-overview {
+    padding-top:
+      86px;
+
+    padding-bottom:
+      112px;
+  }
+
+
+  .programme-overview__card {
+    height:
+      510px;
+
+    padding:
+      52px
+      46px
+      43px;
+  }
+
+
+  .programme-overview__name {
+    font-size:
+      58px;
+  }
+
+
+  .programme-overview__summary {
+    font-size:
+      18px;
+  }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media
+(
+  max-width: 1200px
+)
+and
+(
+  min-width: 901px
+) {
+
+  .programme-overview {
+    padding:
+      64px
+      36px
+      88px;
+  }
+
+
+  .programme-overview__card {
+    height:
+      450px;
+
+    padding:
+      40px
+      30px
+      35px;
+  }
+
+
+  .programme-overview__range {
+    margin-bottom:
+      17px;
+  }
+
+
+  .programme-overview__name {
+    font-size:
+      clamp(
+        35px,
+        3.4vw,
+        46px
+      );
+  }
+
+
+  .programme-overview__divider {
+    margin:
+      30px
+      0
+      23px;
+  }
+
+
+  .programme-overview__summary {
+    font-size:
+      15px;
+  }
+
+
+  .programme-overview__link {
+    min-width:
+      108px;
+
+    min-height:
+      38px;
+
+    padding:
+      0
+      13px;
+
+    font-size:
+      9px;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET + MOBILE
+========================================================= */
+
+@media (
+  max-width: 900px
+) {
+
+  .programme-overview {
+    padding:
+      52px
+      20px
+      76px;
+  }
+
+
+  .programme-overview__grid {
+    grid-template-columns:
+      1fr;
+
+    border-bottom:
+      0;
+  }
+
+
+  .programme-overview__card,
+  .programme-overview__card:first-child {
+    height:
+      420px;
+
+    padding:
+      40px
+      28px
+      36px;
+
+    border-right:
+      1px
+      solid
+      var(--vidya-line);
+
+    border-bottom:
+      1px
+      solid
+      var(--vidya-line);
+
+    border-left:
+      1px
+      solid
+      var(--vidya-line);
+  }
+
+
+  .programme-overview__card:hover {
+    transform:
+      translateY(
+        -4px
+      );
+  }
+
+
+  .programme-overview__range {
+    margin-bottom:
+      16px;
+
+    font-size:
+      9px;
+  }
+
+
+  .programme-overview__name {
+    max-width:
+      530px;
+
+    font-size:
+      clamp(
+        39px,
+        9.5vw,
+        49px
+      );
+  }
+
+
+  .programme-overview__divider {
+    margin:
+      28px
+      0
+      22px;
+  }
+
+
+  .programme-overview__summary {
+    max-width:
+      520px;
+
+    font-size:
+      15px;
+  }
+
+
+  .programme-overview__link {
+    min-width:
+      110px;
+
+    min-height:
+      39px;
+
+    padding:
+      0
+      13px;
+
+    font-size:
+      9px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  .programme-overview {
+    padding:
+      46px
+      18px
+      66px;
+  }
+
+
+  .programme-overview__card,
+  .programme-overview__card:first-child {
+    height:
+      390px;
+
+    padding:
+      34px
+      24px
+      30px;
+  }
+
+
+  .programme-overview__name {
+    font-size:
+      clamp(
+        36px,
+        9.4vw,
+        44px
+      );
+  }
+
+
+  .programme-overview__summary {
+    font-size:
+      14px;
+  }
+
+
+  .programme-overview__link {
+    min-width:
+      104px;
+
+    min-height:
+      37px;
+
+    padding:
+      0
+      12px;
+  }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (
+  hover: none
+) {
+
+  .programme-overview__card:hover {
+    background:
+      transparent;
+
+    transform:
+      none;
+
+    box-shadow:
+      none;
+  }
+
+
+  .programme-overview__link:hover {
+    color:
+      var(--vidya-green-deep);
+  }
+
+
+  .programme-overview__link:hover::before {
+    transform:
+      translateY(
+        102%
+      );
+  }
+
+
+  .programme-overview__link:hover
+  .programme-overview__arrow {
+    transform:
+      none;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+
+  .programme-overview__card,
+  .programme-overview__divider,
+  .programme-overview__link,
+  .programme-overview__link::before,
+  .programme-overview__arrow {
+    transition:
+      none;
+  }
+
+}

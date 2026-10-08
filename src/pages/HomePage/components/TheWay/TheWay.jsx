@@ -29,7 +29,7 @@ const wayItems = [
       "We encourage children to ask questions, explore ideas and discover the joy of learning for themselves.",
 
     image:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=90",
+      "https://images.pexels.com/photos/8471830/pexels-photo-8471830.jpeg?auto=compress&cs=tinysrgb&w=1800&q=90",
 
     reverse:
       false,
@@ -45,7 +45,7 @@ const wayItems = [
       "Children learn to express themselves, take initiative and believe in their ability to move forward.",
 
     image:
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=90",
+      "https://images.pexels.com/photos/8613314/pexels-photo-8613314.jpeg?auto=compress&cs=tinysrgb&w=1800&q=90",
 
     reverse:
       true,
@@ -61,7 +61,7 @@ const wayItems = [
       "Respect, responsibility and empathy shape everyday experiences and help students grow into thoughtful individuals.",
 
     image:
-      "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1600&q=90",
+      "https://images.pexels.com/photos/8535215/pexels-photo-8535215.jpeg?auto=compress&cs=tinysrgb&w=1800&q=90",
 
     reverse:
       false,
@@ -77,7 +77,7 @@ const wayItems = [
       "Students are given room to imagine, experiment and turn their ideas into something meaningful.",
 
     image:
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1600&q=90",
+      "https://images.pexels.com/photos/8613094/pexels-photo-8613094.jpeg?auto=compress&cs=tinysrgb&w=1800&q=90",
 
     reverse:
       true,

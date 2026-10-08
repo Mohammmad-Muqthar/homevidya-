@@ -35,7 +35,6 @@ gsap.registerPlugin(
 /* =========================================================
    PROGRAM DATA
 ========================================================= */
-
 const programs = [
   {
     id: 1,
@@ -44,10 +43,10 @@ const programs = [
       "Early Years",
 
     age:
-      "Ages 3 — 5",
+      "LKG — UKG",
 
     image:
-      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1800&q=90",
+      "https://velammalnexus.edu.in/assets/images/mogappair-west-kids-home/kids-west-about.jpg",
   },
 
   {
@@ -60,7 +59,7 @@ const programs = [
       "Grades 1 — 5",
 
     image:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=90",
+      "https://azimpremjiuniversity.edu.in/imager/photos/Communication/Outdoor-Pics/1490951/6-2.f1729879149_4b32b63c5c28c858e051e9d1a2a717a1.JPG",
   },
 
   {
@@ -73,7 +72,7 @@ const programs = [
       "Grades 6 — 8",
 
     image:
-      "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1800&q=90",
+      "https://www.nmajs.edu.in/sites/nmajs/files/2025-01/myp-sec1.webp",
   },
 
   {
@@ -86,10 +85,9 @@ const programs = [
       "Grades 9 — 12",
 
     image:
-      "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1800&q=90",
+      "https://svssac.in/uploads/colleges/banner_1780574578_63917903.jpg",
   },
 ];
-
 
 /* =========================================================
    PROGRAM CARD

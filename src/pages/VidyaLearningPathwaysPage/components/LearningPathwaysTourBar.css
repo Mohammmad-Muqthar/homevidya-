@@ -1,0 +1,229 @@
+/* =========================================================
+   VIDYA ACADEMY
+   LEARNING PATHWAYS BOTTOM BAR
+
+   - WHITE BACKGROUND
+   - NO BOOK A TOUR BUTTON
+   - MANROPE
+   - VIDYA GREEN TYPOGRAPHY
+========================================================= */
+
+
+.pathways-tourbar {
+  --vidya-green:
+    #0b8255;
+
+  --vidya-green-deep:
+    #0b563b;
+
+  --vidya-green-dark:
+    #073f32;
+
+  --vidya-green-bright:
+    #26b474;
+
+  --vidya-orange:
+    #f9a01b;
+
+  --vidya-white:
+    #ffffff;
+
+
+  position:
+    sticky;
+
+  z-index:
+    120;
+
+  bottom:
+    0;
+
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+
+  width:
+    100%;
+
+  min-height:
+    58px;
+
+
+  padding:
+    14px
+    24px;
+
+
+  border-top:
+    1px
+    solid
+    rgba(
+      11,
+      86,
+      59,
+      0.12
+    );
+
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.96
+    );
+
+
+  color:
+    var(--vidya-green-deep);
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+
+  backdrop-filter:
+    blur(
+      12px
+    );
+
+  -webkit-backdrop-filter:
+    blur(
+      12px
+    );
+
+
+  box-shadow:
+    0
+    -8px
+    28px
+    rgba(
+      7,
+      63,
+      50,
+      0.045
+    );
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.pathways-tourbar__text {
+  color:
+    var(--vidya-green-deep);
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+
+  font-size:
+    13px;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    650;
+
+
+  line-height:
+    1.4;
+
+
+  letter-spacing:
+    -0.015em;
+
+
+  text-align:
+    center;
+}
+
+
+/* =========================================================
+   SMALL GREEN DETAIL
+========================================================= */
+
+.pathways-tourbar__text::before {
+  display:
+    inline-block;
+
+
+  width:
+    7px;
+
+  height:
+    7px;
+
+
+  margin-right:
+    10px;
+
+
+  border-radius:
+    50%;
+
+
+  background:
+    var(--vidya-green-bright);
+
+
+  content:
+    "";
+
+
+  vertical-align:
+    1px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 600px
+) {
+
+  .pathways-tourbar {
+    min-height:
+      54px;
+
+
+    padding:
+      12px
+      18px;
+  }
+
+
+  .pathways-tourbar__text {
+    font-size:
+      11px;
+  }
+
+
+  .pathways-tourbar__text::before {
+    width:
+      6px;
+
+    height:
+      6px;
+
+    margin-right:
+      8px;
+  }
+
+}

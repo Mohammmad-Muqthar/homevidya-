@@ -1,0 +1,1172 @@
+/* =========================================================
+   VIDYA ACADEMY
+   LEARNING PATHWAYS HERO
+
+   IMAGE:
+   INDIAN SCHOOL CLASSROOM
+
+   MAIN TITLE:
+   #FFFFFF
+
+   ACCENT:
+   #8FE3B4
+
+   TITLE SIZE:
+   SAME SYSTEM AS HOME HERO
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+.pathways-hero {
+  --vidya-white:
+    #ffffff;
+
+  --vidya-light-green:
+    #8fe3b4;
+
+  --vidya-green:
+    #0b563b;
+
+  --vidya-green-deep:
+    #073f32;
+
+  --vidya-green-bright:
+    #26b474;
+
+  --vidya-orange:
+    #f9a01b;
+
+  --hero-gutter:
+    clamp(
+      42px,
+      5vw,
+      86px
+    );
+
+
+  position:
+    relative;
+
+
+  width:
+    100%;
+
+
+  height:
+    100vh;
+
+  height:
+    100svh;
+
+
+  min-height:
+    620px;
+
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  overflow:
+    hidden;
+
+
+  background:
+    #111111;
+
+
+  color:
+    var(--vidya-white);
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+
+  isolation:
+    isolate;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+.pathways-hero,
+.pathways-hero *,
+.pathways-hero *::before,
+.pathways-hero *::after {
+  box-sizing:
+    border-box;
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+}
+
+
+/* =========================================================
+   BACKGROUND IMAGE
+========================================================= */
+
+.pathways-hero__media {
+  position:
+    absolute;
+
+
+  z-index:
+    0;
+
+
+  top:
+    -3%;
+
+
+  left:
+    -3%;
+
+
+  width:
+    106%;
+
+
+  height:
+    106%;
+
+
+  max-width:
+    none;
+
+
+  object-fit:
+    cover;
+
+
+  /*
+    Keeps students visible while
+    leaving useful space behind title.
+  */
+
+  object-position:
+    center 48%;
+
+
+  transform:
+    scale(
+      1.02
+    );
+
+
+  transform-origin:
+    center center;
+
+
+  pointer-events:
+    none;
+
+
+  user-select:
+    none;
+
+
+  will-change:
+    transform;
+
+
+  backface-visibility:
+    hidden;
+
+
+  -webkit-backface-visibility:
+    hidden;
+}
+
+
+/* =========================================================
+   READABILITY OVERLAY
+
+   Neutral dark overlay only.
+   No green tint.
+========================================================= */
+
+.pathways-hero::after {
+  position:
+    absolute;
+
+
+  z-index:
+    1;
+
+
+  inset:
+    0;
+
+
+  content:
+    "";
+
+
+  background:
+    linear-gradient(
+      90deg,
+
+      rgba(
+        0,
+        0,
+        0,
+        0.62
+      )
+      0%,
+
+      rgba(
+        0,
+        0,
+        0,
+        0.46
+      )
+      30%,
+
+      rgba(
+        0,
+        0,
+        0,
+        0.2
+      )
+      58%,
+
+      rgba(
+        0,
+        0,
+        0,
+        0.06
+      )
+      100%
+    );
+
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   BOTTOM DEPTH
+========================================================= */
+
+.pathways-hero::before {
+  position:
+    absolute;
+
+
+  z-index:
+    1;
+
+
+  inset:
+    0;
+
+
+  content:
+    "";
+
+
+  background:
+    linear-gradient(
+      0deg,
+
+      rgba(
+        0,
+        0,
+        0,
+        0.34
+      )
+      0%,
+
+      rgba(
+        0,
+        0,
+        0,
+        0.08
+      )
+      38%,
+
+      transparent
+      64%
+    );
+
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.pathways-hero__content {
+  position:
+    relative;
+
+
+  z-index:
+    3;
+
+
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  justify-content:
+    center;
+
+
+  width:
+    min(
+      1180px,
+      calc(
+        100% -
+        (
+          var(--hero-gutter) *
+          2
+        )
+      )
+    );
+
+
+  min-height:
+    100vh;
+
+  min-height:
+    100svh;
+
+
+  margin-left:
+    var(--hero-gutter);
+
+
+  padding-top:
+    10vh;
+
+
+  padding-bottom:
+    8vh;
+
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =========================================================
+   TITLE
+
+   SAME SYSTEM AS HOME HERO
+
+   DESKTOP:
+   60PX -> 108PX
+========================================================= */
+
+.pathways-hero__title {
+  display:
+    flex;
+
+
+  flex-direction:
+    column;
+
+
+  align-items:
+    flex-start;
+
+
+  width:
+    100%;
+
+
+  max-width:
+    1100px;
+
+
+  margin:
+    0;
+
+
+  padding:
+    0;
+
+
+  color:
+    #ffffff;
+
+
+  font-family:
+    "Manrope",
+    sans-serif;
+
+
+  font-size:
+    clamp(
+      60px,
+      6.4vw,
+      108px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    600;
+
+
+  line-height:
+    0.92;
+
+
+  letter-spacing:
+    -0.06em;
+
+
+  text-shadow:
+    0
+    3px
+    24px
+    rgba(
+      0,
+      0,
+      0,
+      0.3
+    );
+}
+
+
+/* =========================================================
+   NORMAL TITLE
+
+   WHITE
+========================================================= */
+
+.pathways-hero__line {
+  display:
+    block;
+
+
+  width:
+    fit-content;
+
+
+  max-width:
+    100%;
+
+
+  margin:
+    0;
+
+
+  color:
+    #ffffff;
+
+
+  font:
+    inherit;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    inherit;
+
+
+  line-height:
+    inherit;
+
+
+  letter-spacing:
+    inherit;
+}
+
+
+/* =========================================================
+   ACCENT
+
+   "OF THINKING."
+
+   LIGHT GREEN
+========================================================= */
+
+.pathways-hero__accent {
+  display:
+    inline;
+
+
+  width:
+    auto;
+
+
+  color:
+    #8fe3b4;
+
+
+  font:
+    inherit;
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    inherit;
+
+
+  line-height:
+    inherit;
+
+
+  letter-spacing:
+    inherit;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.pathways-hero__intro {
+  width:
+    min(
+      620px,
+      100%
+    );
+
+
+  margin:
+    30px
+    0
+    0;
+
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.9
+    );
+
+
+  font-size:
+    clamp(
+      17px,
+      1.2vw,
+      20px
+    );
+
+
+  font-style:
+    normal;
+
+
+  font-weight:
+    400;
+
+
+  line-height:
+    1.55;
+
+
+  letter-spacing:
+    -0.015em;
+
+
+  text-shadow:
+    0
+    2px
+    14px
+    rgba(
+      0,
+      0,
+      0,
+      0.4
+    );
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (
+  min-width: 1500px
+) {
+
+  .pathways-hero__content {
+    width:
+      min(
+        1240px,
+        calc(
+          100% -
+          (
+            var(--hero-gutter) *
+            2
+          )
+        )
+      );
+  }
+
+
+  .pathways-hero__media {
+    object-position:
+      center 48%;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+
+   SAME AS HOME HERO:
+   50PX -> 78PX
+========================================================= */
+
+@media (
+  max-width: 1000px
+) {
+
+  .pathways-hero {
+    --hero-gutter:
+      34px;
+  }
+
+
+  .pathways-hero__content {
+    width:
+      calc(
+        100% -
+        68px
+      );
+  }
+
+
+  .pathways-hero__title {
+    max-width:
+      900px;
+
+
+    font-size:
+      clamp(
+        50px,
+        7.5vw,
+        78px
+      );
+  }
+
+
+  .pathways-hero__intro {
+    max-width:
+      560px;
+
+
+    margin-top:
+      26px;
+
+
+    font-size:
+      16px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+
+   SAME AS HOME HERO:
+   40PX -> 54PX
+========================================================= */
+
+@media (
+  max-width: 768px
+) {
+
+  .pathways-hero {
+    --hero-gutter:
+      20px;
+
+
+    height:
+      100svh;
+
+
+    min-height:
+      620px;
+  }
+
+
+  /* =====================================================
+     IMAGE
+  ===================================================== */
+
+  .pathways-hero__media {
+    top:
+      0;
+
+
+    left:
+      0;
+
+
+    width:
+      100%;
+
+
+    height:
+      100%;
+
+
+    /*
+      On portrait screens we shift slightly right
+      so the students remain visible.
+    */
+
+    object-position:
+      56%
+      center;
+
+
+    transform:
+      none;
+  }
+
+
+  /* =====================================================
+     MOBILE OVERLAY
+  ===================================================== */
+
+  .pathways-hero::after {
+    background:
+      linear-gradient(
+        180deg,
+
+        rgba(
+          0,
+          0,
+          0,
+          0.06
+        )
+        0%,
+
+        rgba(
+          0,
+          0,
+          0,
+          0.13
+        )
+        35%,
+
+        rgba(
+          0,
+          0,
+          0,
+          0.72
+        )
+        100%
+      );
+  }
+
+
+  .pathways-hero::before {
+    background:
+      linear-gradient(
+        90deg,
+
+        rgba(
+          0,
+          0,
+          0,
+          0.22
+        )
+        0%,
+
+        rgba(
+          0,
+          0,
+          0,
+          0.04
+        )
+        100%
+      );
+  }
+
+
+  /* =====================================================
+     CONTENT
+  ===================================================== */
+
+  .pathways-hero__content {
+    justify-content:
+      flex-end;
+
+
+    width:
+      calc(
+        100% -
+        40px
+      );
+
+
+    min-height:
+      100svh;
+
+
+    margin-left:
+      20px;
+
+
+    padding-top:
+      100px;
+
+
+    padding-bottom:
+      54px;
+  }
+
+
+  /* =====================================================
+     TITLE
+  ===================================================== */
+
+  .pathways-hero__title {
+    max-width:
+      560px;
+
+
+    font-size:
+      clamp(
+        40px,
+        10vw,
+        54px
+      );
+
+
+    font-weight:
+      600;
+
+
+    line-height:
+      0.95;
+
+
+    letter-spacing:
+      -0.055em;
+  }
+
+
+  .pathways-hero__line {
+    color:
+      #ffffff;
+  }
+
+
+  .pathways-hero__accent {
+    color:
+      #8fe3b4;
+  }
+
+
+  /* =====================================================
+     DESCRIPTION
+  ===================================================== */
+
+  .pathways-hero__intro {
+    width:
+      100%;
+
+
+    max-width:
+      430px;
+
+
+    margin-top:
+      22px;
+
+
+    font-size:
+      15px;
+
+
+    line-height:
+      1.52;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+
+   SAME AS HOME:
+   36PX -> 44PX
+========================================================= */
+
+@media (
+  max-width: 480px
+) {
+
+  .pathways-hero {
+    --hero-gutter:
+      18px;
+  }
+
+
+  .pathways-hero__content {
+    width:
+      calc(
+        100% -
+        36px
+      );
+
+
+    margin-left:
+      18px;
+
+
+    padding-bottom:
+      48px;
+  }
+
+
+  .pathways-hero__media {
+    object-position:
+      57%
+      center;
+  }
+
+
+  .pathways-hero__title {
+    max-width:
+      100%;
+
+
+    font-size:
+      clamp(
+        36px,
+        9.6vw,
+        44px
+      );
+
+
+    line-height:
+      0.96;
+
+
+    letter-spacing:
+      -0.05em;
+  }
+
+
+  .pathways-hero__intro {
+    max-width:
+      320px;
+
+
+    margin-top:
+      18px;
+
+
+    font-size:
+      14px;
+
+
+    line-height:
+      1.5;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+
+   SAME AS HOME:
+   34PX
+========================================================= */
+
+@media (
+  max-width: 360px
+) {
+
+  .pathways-hero__content {
+    width:
+      calc(
+        100% -
+        30px
+      );
+
+
+    margin-left:
+      15px;
+
+
+    padding-bottom:
+      40px;
+  }
+
+
+  .pathways-hero__media {
+    object-position:
+      59%
+      center;
+  }
+
+
+  .pathways-hero__title {
+    font-size:
+      34px;
+  }
+
+
+  .pathways-hero__intro {
+    max-width:
+      290px;
+
+
+    font-size:
+      13px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE LANDSCAPE
+========================================================= */
+
+@media
+(
+  max-width: 900px
+)
+and
+(
+  max-height: 520px
+)
+and
+(
+  orientation: landscape
+) {
+
+  .pathways-hero,
+  .pathways-hero__content {
+    min-height:
+      100svh;
+  }
+
+
+  .pathways-hero__media {
+    object-position:
+      center
+      45%;
+  }
+
+
+  .pathways-hero__content {
+    justify-content:
+      flex-end;
+
+
+    width:
+      min(
+        650px,
+        calc(
+          100% -
+          48px
+        )
+      );
+
+
+    margin-left:
+      24px;
+
+
+    padding-top:
+      80px;
+
+
+    padding-bottom:
+      24px;
+  }
+
+
+  .pathways-hero__title {
+    font-size:
+      clamp(
+        32px,
+        5vw,
+        44px
+      );
+
+
+    line-height:
+      0.95;
+  }
+
+
+  .pathways-hero__intro {
+    max-width:
+      430px;
+
+
+    margin-top:
+      14px;
+
+
+    font-size:
+      12px;
+
+
+    line-height:
+      1.4;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
+
+  .pathways-hero__media,
+  .pathways-hero__content {
+    transform:
+      none !important;
+
+
+    opacity:
+      1 !important;
+  }
+
+}

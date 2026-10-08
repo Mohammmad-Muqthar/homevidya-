@@ -3,6 +3,9 @@
 ========================================================= */
 
 .quick-facts {
+  --container: 1320px;
+  --page-padding: 24px;
+
   position: relative;
 
   width: 100%;
@@ -12,23 +15,19 @@
   background: #0b563b;
 
   padding:
-    clamp(
-      48px,
-      4.5vw,
-      68px
-    )
+    clamp(48px, 4.5vw, 68px)
     0
-    clamp(
-      78px,
-      7vw,
-      105px
-    );
+    clamp(78px, 7vw, 105px);
 
   font-family:
     "Manrope",
     sans-serif;
 }
 
+
+/* =========================================================
+   GLOBAL
+========================================================= */
 
 .quick-facts,
 .quick-facts *,
@@ -72,7 +71,6 @@
 
 /* =========================================================
    HEADING
-   SAME AS LIFE AT SCHOOL
 ========================================================= */
 
 .quick-facts-heading {
@@ -109,7 +107,6 @@
 .quick-facts-heading-main {
   color: #ffffff;
 }
-
 
 .quick-facts-heading-soft {
   color:
@@ -151,9 +148,6 @@
 
 /* =========================================================
    ROW
-
-   NO SIDE BLUR
-   NO SIDE GRADIENT
 ========================================================= */
 
 .quick-marquee-row {
@@ -165,7 +159,6 @@
 
   opacity: 1;
 }
-
 
 .quick-marquee-row::before,
 .quick-marquee-row::after {
@@ -305,8 +298,6 @@
 
 /* =========================================================
    LIGHT GRAY HOVER OVERLAY
-
-   HIDDEN NORMALLY
 ========================================================= */
 
 .quick-marquee-card::before {
@@ -343,10 +334,7 @@
 
 
 /* =========================================================
-   VERY SUBTLE BOTTOM DEPTH
-
-   STILL TRANSPARENT
-   NOT A COLOR PANEL
+   BOTTOM DEPTH
 ========================================================= */
 
 .quick-marquee-card::after {
@@ -363,7 +351,6 @@
   background:
     linear-gradient(
       180deg,
-
       rgba(
         0,
         0,
@@ -400,9 +387,6 @@
 
 /* =========================================================
    CONTENT
-
-   WHITE
-   HIDDEN NORMALLY
 ========================================================= */
 
 .quick-marquee-content {
@@ -469,8 +453,6 @@
 
 /* =========================================================
    VALUE
-
-   WHITE
 ========================================================= */
 
 .quick-marquee-value {
@@ -501,12 +483,9 @@
 
 /* =========================================================
    TITLE
-
-   WHITE
 ========================================================= */
 
-.quick-marquee-content
-h3 {
+.quick-marquee-content h3 {
   max-width: 330px;
 
   margin: 0;
@@ -570,12 +549,9 @@ h3 {
 
 /* =========================================================
    DESCRIPTION
-
-   WHITE
 ========================================================= */
 
-.quick-marquee-description-wrap
-p {
+.quick-marquee-description-wrap p {
   min-height: 0;
 
   max-width: 320px;
@@ -605,45 +581,30 @@ p {
 ========================================================= */
 
 @media (hover: hover) {
-
-  /* LIGHT GRAY OVERLAY */
-
   .quick-marquee-card:hover::before {
     opacity: 1;
   }
-
-
-  /* SUBTLE DEPTH */
 
   .quick-marquee-card:hover::after {
     opacity: 1;
   }
 
-
-  /* IMAGE ZOOM */
-
   .quick-marquee-card:hover
-  .quick-marquee-image {
+    .quick-marquee-image {
     transform:
       scale(1.045);
   }
 
-
-  /* SHOW ALL TEXT */
-
   .quick-marquee-card:hover
-  .quick-marquee-content {
+    .quick-marquee-content {
     opacity: 1;
 
     transform:
       translateY(0);
   }
 
-
-  /* SHOW DESCRIPTION */
-
   .quick-marquee-card:hover
-  .quick-marquee-description-wrap {
+    .quick-marquee-description-wrap {
     grid-template-rows:
       1fr;
 
@@ -651,7 +612,6 @@ p {
 
     opacity: 1;
   }
-
 }
 
 
@@ -663,23 +623,20 @@ p {
   opacity: 1;
 }
 
-
 .quick-marquee-card:focus-within::after {
   opacity: 1;
 }
 
-
 .quick-marquee-card:focus-within
-.quick-marquee-content {
+  .quick-marquee-content {
   opacity: 1;
 
   transform:
     translateY(0);
 }
 
-
 .quick-marquee-card:focus-within
-.quick-marquee-description-wrap {
+  .quick-marquee-description-wrap {
   grid-template-rows:
     1fr;
 
@@ -701,23 +658,19 @@ and
 (
   min-width: 769px
 ) {
-
   .quick-facts {
     padding-top: 52px;
   }
 
-
   .quick-marquee-wall {
     gap: 26px;
   }
-
 
   .quick-marquee-group {
     gap: 14px;
 
     padding-right: 14px;
   }
-
 
   .quick-marquee-card {
     flex-basis: 355px;
@@ -727,17 +680,14 @@ and
     height: 240px;
   }
 
-
   .quick-marquee-value {
     font-size: 43px;
   }
 
-
   .quick-marquee-content
-  h3 {
+    h3 {
     font-size: 23px;
   }
-
 }
 
 
@@ -746,11 +696,6 @@ and
 ========================================================= */
 
 @media (max-width: 768px) {
-
-  /* =====================================================
-     SECTION
-  ===================================================== */
-
   .quick-facts {
     padding:
       44px
@@ -774,7 +719,6 @@ and
       auto
       26px;
   }
-
 
   .quick-facts-heading {
     max-width: 520px;
@@ -803,7 +747,6 @@ and
     transform:
       none !important;
   }
-
 
   .quick-facts-heading-main,
   .quick-facts-heading-soft {
@@ -875,11 +818,9 @@ and
     will-change: auto;
   }
 
-
   .quick-marquee-row::-webkit-scrollbar {
     display: none;
   }
-
 
   .quick-marquee-row::before,
   .quick-marquee-row::after {
@@ -1016,10 +957,7 @@ and
 
 
   /* =====================================================
-     MOBILE GRAY OVERLAY
-
-     MOBILE HAS NO HOVER,
-     SO KEEP A LIGHT OVERLAY VISIBLE
+     MOBILE OVERLAY
   ===================================================== */
 
   .quick-marquee-card::before {
@@ -1038,7 +976,6 @@ and
     opacity: 1;
   }
 
-
   .quick-marquee-card::after {
     opacity: 1;
   }
@@ -1046,9 +983,6 @@ and
 
   /* =====================================================
      MOBILE CONTENT
-
-     ALWAYS VISIBLE
-     WHITE
   ===================================================== */
 
   .quick-marquee-content {
@@ -1076,7 +1010,6 @@ and
       );
   }
 
-
   .quick-marquee-value {
     margin-bottom: 6px;
 
@@ -1090,9 +1023,8 @@ and
       );
   }
 
-
   .quick-marquee-content
-  h3 {
+    h3 {
     max-width: 300px;
 
     color: #ffffff;
@@ -1115,7 +1047,6 @@ and
   .quick-marquee-description-wrap {
     display: none;
   }
-
 }
 
 
@@ -1124,14 +1055,12 @@ and
 ========================================================= */
 
 @media (max-width: 480px) {
-
   .quick-facts {
     padding:
       40px
       0
       62px;
   }
-
 
   .quick-facts-header {
     width:
@@ -1142,7 +1071,6 @@ and
     margin-bottom: 23px;
   }
 
-
   .quick-facts-heading {
     font-size:
       clamp(
@@ -1151,7 +1079,6 @@ and
         44px
       );
   }
-
 
   .quick-marquee-wall {
     gap: 16px;
@@ -1253,23 +1180,20 @@ and
     transform: none;
   }
 
-
   .quick-marquee-value {
     color: #ffffff;
 
     font-size: 36px;
   }
 
-
   .quick-marquee-content
-  h3 {
+    h3 {
     max-width: 260px;
 
     color: #ffffff;
 
     font-size: 21px;
   }
-
 }
 
 
@@ -1278,11 +1202,9 @@ and
 ========================================================= */
 
 @media (max-width: 360px) {
-
   .quick-facts {
     padding-top: 36px;
   }
-
 
   .quick-facts-header {
     width:
@@ -1290,7 +1212,6 @@ and
         100% - 30px
       );
   }
-
 
   .quick-marquee-row {
     scroll-padding-left:
@@ -1300,7 +1221,6 @@ and
       15px;
   }
 
-
   .quick-marquee-track {
     padding-left:
       15px;
@@ -1309,11 +1229,9 @@ and
       15px;
   }
 
-
   .quick-marquee-group {
     gap: 9px;
   }
-
 
   .quick-marquee-card {
     flex-basis:
@@ -1329,21 +1247,18 @@ and
     height: 205px;
   }
 
-
   .quick-marquee-value {
     color: #ffffff;
 
     font-size: 33px;
   }
 
-
   .quick-marquee-content
-  h3 {
+    h3 {
     color: #ffffff;
 
     font-size: 19px;
   }
-
 }
 
 
@@ -1355,7 +1270,6 @@ and
   prefers-reduced-motion:
     reduce
 ) {
-
   .quick-facts-heading,
   .quick-marquee-row,
   .quick-marquee-card,
@@ -1370,10 +1284,8 @@ and
       none !important;
   }
 
-
   .quick-marquee-track {
     animation:
       none !important;
   }
-
 }

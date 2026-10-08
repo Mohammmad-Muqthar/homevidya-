@@ -8,51 +8,56 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./AboutHero.css";
 
-gsap.registerPlugin(ScrollTrigger);
+
+gsap.registerPlugin(
+  ScrollTrigger
+);
 
 
 /* =========================================================
    IMAGES
-
-   DESKTOP:
-   01 / 02 / 03 / 04
-
-   MOBILE:
-   01 / 03 / 04
-
-   IMAGE 03 = FOCUS IMAGE
 ========================================================= */
 
 const aboutImages = [
   {
     id: "01",
+
     src:
       "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2200&q=92",
+
     alt:
       "Learning at Vidya Academy",
   },
 
   {
     id: "02",
+
     src:
       "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=2200&q=92",
+
     alt:
       "Students learning together",
   },
 
   {
     id: "03",
+
     src:
       "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2800&q=94",
+
     alt:
       "Students together at Vidya Academy",
-    focus: true,
+
+    focus:
+      true,
   },
 
   {
     id: "04",
+
     src:
       "https://images.unsplash.com/photo-1504151932400-72d4384f04b3?auto=format&fit=crop&w=2200&q=92",
+
     alt:
       "School community at Vidya Academy",
   },
@@ -78,7 +83,7 @@ const AboutHero = () => {
 
 
   /* =========================================================
-     GSAP
+     DESKTOP SCROLL ANIMATION
   ========================================================= */
 
   useLayoutEffect(() => {
@@ -107,79 +112,97 @@ const AboutHero = () => {
 
     const ctx =
       gsap.context(() => {
-        const card01 =
-          cardRefs.current[0];
-
-        const card02 =
-          cardRefs.current[1];
-
-        const card03 =
-          cardRefs.current[2];
-
-        const card04 =
-          cardRefs.current[3];
-
-
-        if (!card03) {
-          return;
-        }
-
 
         /* =====================================================
-           INDIVIDUAL CENTER POSITION
-
-           Every image can have a different height.
-
-           This places each image neatly around
-           the middle of the viewport.
+           DESKTOP ONLY
         ===================================================== */
 
-        const getCardCenterY =
-          (
-            card,
-            offset = 0
-          ) => {
+        mm.add(
+          "(min-width: 769px)",
 
-            if (!card) {
-              return 0;
+          () => {
+            const card01 =
+              cardRefs.current[0];
+
+            const card02 =
+              cardRefs.current[1];
+
+            const card03 =
+              cardRefs.current[2];
+
+            const card04 =
+              cardRefs.current[3];
+
+
+            if (!card03) {
+              return undefined;
             }
 
 
-            const stageCenter =
-              stage.clientHeight /
-              2;
+            /* =================================================
+               TARGET Y
+            ================================================= */
+
+            const getTargetY = (
+              card,
+              targetTopRatio
+            ) => {
+              if (!card) {
+                return 0;
+              }
 
 
-            const cardCenter =
-              card.offsetTop +
-              card.offsetHeight /
-              2;
+              const targetTop =
+                stage.clientHeight *
+                targetTopRatio;
 
 
-            return (
-              stageCenter -
-              cardCenter +
-              offset
-            );
-          };
+              return (
+                targetTop -
+                card.offsetTop
+              );
+            };
 
 
-        /* =====================================================
-           BUILD ANIMATION
-        ===================================================== */
+            const getDesktopY01 =
+              () =>
+                getTargetY(
+                  card01,
+                  0.18
+                );
 
-        const buildAnimation =
-          (
-            isMobile
-          ) => {
+
+            const getDesktopY02 =
+              () =>
+                getTargetY(
+                  card02,
+                  0.21
+                );
+
+
+            const getDesktopY03 =
+              () =>
+                getTargetY(
+                  card03,
+                  0.14
+                );
+
+
+            const getDesktopY04 =
+              () =>
+                getTargetY(
+                  card04,
+                  0.18
+                );
+
 
             /* =================================================
-               REMOVE POSSIBLE INLINE FULLSCREEN VALUES
-               BEFORE BUILDING TIMELINE
+               RESET
             ================================================= */
 
             gsap.set(
               card03,
+
               {
                 clearProps:
                   "left,right,top,bottom,width,height",
@@ -187,27 +210,24 @@ const AboutHero = () => {
             );
 
 
-            /* =================================================
-               RESET TEXT
-            ================================================= */
-
             gsap.set(
               copy,
+
               {
-                x: 0,
+                x:
+                  0,
 
-                y: 0,
+                y:
+                  0,
 
-                opacity: 1,
+                opacity:
+                  1,
 
-                force3D: true,
+                force3D:
+                  true,
               }
             );
 
-
-            /* =================================================
-               RESET ALL CARDS
-            ================================================= */
 
             gsap.set(
               [
@@ -216,16 +236,22 @@ const AboutHero = () => {
                 card03,
                 card04,
               ].filter(Boolean),
+
               {
-                x: 0,
+                x:
+                  0,
 
-                y: 0,
+                y:
+                  0,
 
-                scale: 1,
+                scale:
+                  1,
 
-                opacity: 1,
+                opacity:
+                  1,
 
-                force3D: true,
+                force3D:
+                  true,
               }
             );
 
@@ -236,13 +262,13 @@ const AboutHero = () => {
 
             gsap.set(
               card03,
+
               {
-                zIndex: 100,
+                zIndex:
+                  100,
 
                 transformOrigin:
                   "0% 0%",
-
-                force3D: true,
               }
             );
 
@@ -250,11 +276,10 @@ const AboutHero = () => {
             if (card01) {
               gsap.set(
                 card01,
-                {
-                  zIndex: 10,
 
-                  transformOrigin:
-                    "50% 50%",
+                {
+                  zIndex:
+                    10,
                 }
               );
             }
@@ -263,11 +288,10 @@ const AboutHero = () => {
             if (card02) {
               gsap.set(
                 card02,
-                {
-                  zIndex: 20,
 
-                  transformOrigin:
-                    "50% 50%",
+                {
+                  zIndex:
+                    20,
                 }
               );
             }
@@ -276,34 +300,25 @@ const AboutHero = () => {
             if (card04) {
               gsap.set(
                 card04,
-                {
-                  zIndex: 20,
 
-                  transformOrigin:
-                    "50% 50%",
+                {
+                  zIndex:
+                    20,
                 }
               );
             }
 
 
             /* =================================================
-               SCROLL LENGTH
+               TIMELINE
             ================================================= */
 
-            const getScrollDistance =
-              () =>
-                stage.clientHeight *
-                (
-                  isMobile
-                    ? 3.05
-                    : 3.4
-                );
-
-
-            const tl =
+            const timeline =
               gsap.timeline({
+
                 defaults: {
-                  ease: "none",
+                  ease:
+                    "none",
                 },
 
                 scrollTrigger: {
@@ -315,12 +330,13 @@ const AboutHero = () => {
 
                   end:
                     () =>
-                      `+=${getScrollDistance()}`,
+                      `+=${
+                        stage.clientHeight *
+                        3.4
+                      }`,
 
                   scrub:
-                    isMobile
-                      ? 0.9
-                      : 1,
+                    1,
 
                   pin:
                     true,
@@ -333,42 +349,32 @@ const AboutHero = () => {
 
                   invalidateOnRefresh:
                     true,
-
-                  fastScrollEnd:
-                    false,
                 },
               });
 
 
             /* =================================================
-               MOVE TO CENTER
+               MOVE UP
             ================================================= */
 
-            tl.addLabel(
-              "moveToCenter",
+            timeline.addLabel(
+              "moveUp",
               0
             );
 
 
-            /* =================================================
-               TEXT MOVES UP
+            /* TEXT PHYSICALLY MOVES UP */
 
-               No fade while scrolling.
-            ================================================= */
-
-            tl.to(
+            timeline.to(
               copy,
+
               {
                 y:
                   () =>
                     -(
                       copy.offsetTop +
                       copy.offsetHeight +
-                      (
-                        isMobile
-                          ? 24
-                          : 38
-                      )
+                      38
                     ),
 
                 duration:
@@ -378,24 +384,18 @@ const AboutHero = () => {
                   "power1.inOut",
               },
 
-              "moveToCenter"
+              "moveUp"
             );
 
 
-            /* =================================================
-               IMAGE 01
-            ================================================= */
-
             if (card01) {
-              tl.to(
+              timeline.to(
                 card01,
+
                 {
                   y:
                     () =>
-                      getCardCenterY(
-                        card01,
-                        5
-                      ),
+                      getDesktopY01(),
 
                   duration:
                     0.84,
@@ -404,30 +404,19 @@ const AboutHero = () => {
                     "power1.inOut",
                 },
 
-                "moveToCenter"
+                "moveUp"
               );
             }
 
 
-            /* =================================================
-               IMAGE 02
-
-               DESKTOP ONLY
-            ================================================= */
-
-            if (
-              card02 &&
-              !isMobile
-            ) {
-              tl.to(
+            if (card02) {
+              timeline.to(
                 card02,
+
                 {
                   y:
                     () =>
-                      getCardCenterY(
-                        card02,
-                        12
-                      ),
+                      getDesktopY02(),
 
                   duration:
                     0.84,
@@ -436,30 +425,18 @@ const AboutHero = () => {
                     "power1.inOut",
                 },
 
-                "moveToCenter"
+                "moveUp"
               );
             }
 
 
-            /* =================================================
-               IMAGE 03
-
-               Taller focus image.
-
-               Slightly higher than others.
-            ================================================= */
-
-            tl.to(
+            timeline.to(
               card03,
+
               {
                 y:
                   () =>
-                    getCardCenterY(
-                      card03,
-                      isMobile
-                        ? -12
-                        : -22
-                    ),
+                    getDesktopY03(),
 
                 duration:
                   0.84,
@@ -468,24 +445,18 @@ const AboutHero = () => {
                   "power1.inOut",
               },
 
-              "moveToCenter"
+              "moveUp"
             );
 
 
-            /* =================================================
-               IMAGE 04
-            ================================================= */
-
             if (card04) {
-              tl.to(
+              timeline.to(
                 card04,
+
                 {
                   y:
                     () =>
-                      getCardCenterY(
-                        card04,
-                        5
-                      ),
+                      getDesktopY04(),
 
                   duration:
                     0.84,
@@ -494,24 +465,18 @@ const AboutHero = () => {
                     "power1.inOut",
                 },
 
-                "moveToCenter"
+                "moveUp"
               );
             }
 
 
             /* =================================================
-               HOLD AT MIDDLE
-
-               ZOOM HAS NOT STARTED YET.
+               HOLD
             ================================================= */
 
-            tl.addLabel(
-              "center"
-            );
-
-
-            tl.to(
+            timeline.to(
               {},
+
               {
                 duration:
                   0.2,
@@ -520,37 +485,29 @@ const AboutHero = () => {
 
 
             /* =================================================
-               ZOOM START
+               ZOOM
             ================================================= */
 
-            tl.addLabel(
+            timeline.addLabel(
               "zoom"
             );
 
 
-            /* =================================================
-               IMAGE 01 -> LEFT
-            ================================================= */
-
             if (card01) {
-              tl.to(
+              timeline.to(
                 card01,
+
                 {
                   x:
                     () =>
                       -stage.clientWidth *
-                      (
-                        isMobile
-                          ? 0.42
-                          : 0.31
-                      ),
+                      0.31,
 
                   y:
                     () =>
-                      getCardCenterY(
-                        card01,
-                        -8
-                      ),
+                      getDesktopY01() -
+                      stage.clientHeight *
+                      0.025,
 
                   opacity:
                     0,
@@ -570,18 +527,10 @@ const AboutHero = () => {
             }
 
 
-            /* =================================================
-               IMAGE 02 -> LEFT
-
-               DESKTOP ONLY
-            ================================================= */
-
-            if (
-              card02 &&
-              !isMobile
-            ) {
-              tl.to(
+            if (card02) {
+              timeline.to(
                 card02,
+
                 {
                   x:
                     () =>
@@ -590,10 +539,7 @@ const AboutHero = () => {
 
                   y:
                     () =>
-                      getCardCenterY(
-                        card02,
-                        0
-                      ),
+                      getDesktopY02(),
 
                   opacity:
                     0,
@@ -613,29 +559,21 @@ const AboutHero = () => {
             }
 
 
-            /* =================================================
-               IMAGE 04 -> RIGHT
-            ================================================= */
-
             if (card04) {
-              tl.to(
+              timeline.to(
                 card04,
+
                 {
                   x:
                     () =>
                       stage.clientWidth *
-                      (
-                        isMobile
-                          ? 0.42
-                          : 0.30
-                      ),
+                      0.3,
 
                   y:
                     () =>
-                      getCardCenterY(
-                        card04,
-                        -5
-                      ),
+                      getDesktopY04() -
+                      stage.clientHeight *
+                      0.02,
 
                   opacity:
                     0,
@@ -656,32 +594,12 @@ const AboutHero = () => {
 
 
             /* =================================================
-               IMAGE 03 -> TRUE FULLSCREEN
-
-               THIS IS THE IMPORTANT FIX.
-
-               Before:
-               width / height changed while the old negative
-               bottom value remained active.
-
-               That caused Image 03 to finish shifted upward
-               and leave empty space underneath.
-
-               Now we animate:
-
-               left   -> 0
-               bottom -> 0
-               width  -> viewport width
-               height -> viewport height
-               x      -> 0
-               y      -> 0
-
-               Final result:
-               EXACT 100% viewport coverage.
+               FOCUS IMAGE FULLSCREEN
             ================================================= */
 
-            tl.to(
+            timeline.to(
               card03,
+
               {
                 x:
                   0,
@@ -718,72 +636,26 @@ const AboutHero = () => {
 
 
             /* =================================================
-               FINAL FULLSCREEN HOLD
+               FINAL HOLD
             ================================================= */
 
-            tl.addLabel(
-              "fullscreen"
-            );
-
-
-            tl.to(
+            timeline.to(
               {},
+
               {
                 duration:
-                  0.22,
+                  0.2,
               }
             );
 
 
-            return tl;
-          };
-
-
-        /* =====================================================
-           DESKTOP
-        ===================================================== */
-
-        mm.add(
-          "(min-width: 769px)",
-          () => {
-
-            const animation =
-              buildAnimation(
-                false
-              );
-
-
             return () => {
-              animation
+              timeline
                 .scrollTrigger
                 ?.kill();
 
-              animation.kill();
-            };
-          }
-        );
 
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        mm.add(
-          "(max-width: 768px)",
-          () => {
-
-            const animation =
-              buildAnimation(
-                true
-              );
-
-
-            return () => {
-              animation
-                .scrollTrigger
-                ?.kill();
-
-              animation.kill();
+              timeline.kill();
             };
           }
         );
@@ -792,10 +664,11 @@ const AboutHero = () => {
 
 
     /* =====================================================
-       REFRESH
+       RESIZE / REFRESH
     ===================================================== */
 
     let resizeTimer;
+
 
     let previousWidth =
       window.innerWidth;
@@ -812,10 +685,6 @@ const AboutHero = () => {
         const width =
           window.innerWidth;
 
-
-        /*
-          Ignore browser toolbar height-only changes.
-        */
 
         if (
           Math.abs(
@@ -845,7 +714,7 @@ const AboutHero = () => {
 
 
     /* =====================================================
-       WAIT FOR IMAGES
+       IMAGES READY
     ===================================================== */
 
     const images =
@@ -858,10 +727,7 @@ const AboutHero = () => {
 
     Promise.all(
       images.map(
-        (
-          image
-        ) => {
-
+        (image) => {
           if (
             image.complete
           ) {
@@ -870,21 +736,18 @@ const AboutHero = () => {
 
 
           return new Promise(
-            (
-              resolve
-            ) => {
-
+            (resolve) => {
               const done =
-                () => {
+                () =>
                   resolve();
-                };
 
 
               image.addEventListener(
                 "load",
                 done,
                 {
-                  once: true,
+                  once:
+                    true,
                 }
               );
 
@@ -893,13 +756,12 @@ const AboutHero = () => {
                 "error",
                 done,
                 {
-                  once: true,
+                  once:
+                    true,
                 }
               );
-
             }
           );
-
         }
       )
     ).then(
@@ -918,18 +780,17 @@ const AboutHero = () => {
       "resize",
       handleResize,
       {
-        passive: true,
+        passive:
+          true,
       }
     );
 
 
     requestAnimationFrame(
       () => {
-
         requestAnimationFrame(
           refresh
         );
-
       }
     );
 
@@ -974,19 +835,14 @@ const AboutHero = () => {
         className="about-hero-stage"
       >
 
-        {/* =================================================
-            TEXT
-        ================================================= */}
+        {/* =========================================
+            HERO TEXT
+        ========================================= */}
 
         <div
           ref={copyRef}
           className="about-hero-copy"
         >
-
-          <span className="about-hero-eyebrow">
-            THE REASON WE EXIST
-          </span>
-
 
           <h1 className="about-hero-title">
 
@@ -1015,9 +871,9 @@ const AboutHero = () => {
         </div>
 
 
-        {/* =================================================
-            IMAGE COLLAGE
-        ================================================= */}
+        {/* =========================================
+            IMAGE GALLERY
+        ========================================= */}
 
         <div className="about-hero-gallery">
 
@@ -1026,7 +882,6 @@ const AboutHero = () => {
               image,
               index
             ) => {
-
               const isFocus =
                 image.focus;
 
@@ -1040,12 +895,10 @@ const AboutHero = () => {
                   ref={(
                     element
                   ) => {
-
                     cardRefs.current[
                       index
                     ] =
                       element;
-
                   }}
 
                   className={`
@@ -1083,7 +936,6 @@ const AboutHero = () => {
 
                 </figure>
               );
-
             }
           )}
 

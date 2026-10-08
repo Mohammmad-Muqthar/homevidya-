@@ -1,15 +1,10 @@
-import {
-  useLayoutEffect,
-  useRef,
-} from "react";
-
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./About.css";
 
 gsap.registerPlugin(ScrollTrigger);
-
 
 /* =========================================================
    GALLERY DATA
@@ -19,40 +14,39 @@ const galleryImages = [
   {
     id: "01",
     badge: "LEARN",
-
     image:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=90",
-
+      "https://volzero.com/volzero/public/img/article/102576_44670.jpg",
+    fallback:
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "Students learning at Vidya Academy",
+      "Indian school open veranda and corridor overlooking a landscaped courtyard",
   },
 
   {
     id: "02",
     badge: "EXPLORE",
-
     image:
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=90",
-
+      "https://vivekanandschooldharuhera.com/upload/gallery_images/697b375d83c61-1aeeb0ee-bf26-45ba-bd0e-5166197a1be7.jpg",
+    fallback:
+      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "Students learning together",
+      "Indian school covered veranda opening into a green landscaped courtyard",
   },
 
   {
     id: "03",
     badge: "GROW",
-
     image:
-      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2000&q=90",
-
+      "https://static.wixstatic.com/media/78b34a_a65467ed0859454ab347cb9e98d774f0~mv2.jpg/v1/fill/w_1200%2Ch_746%2Cq_90/78b34a_a65467ed0859454ab347cb9e98d774f0~mv2.jpg",
+    fallback:
+      "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=1800&q=90",
     alt:
-      "Students experiencing school life",
+      "Indian school campus corridor with columns, courtyard and greenery",
   },
 ];
 
-
 /* =========================================================
-   COMPLETE REVERSE-U CURVES
+   CURVES
 ========================================================= */
 
 const curveLevels = [
@@ -85,51 +79,21 @@ const curveLevels = [
   { inset: 678, apex: 722 },
 ];
 
+const buildReverseUPath = (inset, apex) => {
+  const left = inset;
+  const right = 1600 - inset;
+  const center = 800;
+  const bottom = 1000;
 
-/* =========================================================
-   BUILD COMPLETE ∩ PATH
-========================================================= */
+  const shoulder = Math.min(
+    850,
+    Math.max(apex + 185, 220)
+  );
 
-const buildReverseUPath = (
-  inset,
-  apex
-) => {
-
-  const left =
-    inset;
-
-  const right =
-    1600 - inset;
-
-  const center =
-    800;
-
-  const bottom =
-    1000;
-
-
-  /*
-    Shoulder determines how vertically
-    the sides rise before rounding
-    into the top of the arch.
-  */
-
-  const shoulder =
-    Math.min(
-      850,
-      Math.max(
-        apex + 185,
-        220
-      )
-    );
-
-
-  const innerControl =
-    Math.max(
-      80,
-      (right - left) * 0.19
-    );
-
+  const innerControl = Math.max(
+    80,
+    (right - left) * 0.19
+  );
 
   return `
     M ${left} ${bottom}
@@ -154,860 +118,381 @@ const buildReverseUPath = (
       ${right}
       ${bottom}
   `;
-
 };
 
+const secondaryCurveLevels = curveLevels
+  .slice(0, -1)
+  .map((current, index) => {
+    const next = curveLevels[index + 1];
+
+    return {
+      inset:
+        (current.inset + next.inset) / 2,
+
+      apex:
+        (current.apex + next.apex) / 2,
+    };
+  });
 
 /* =========================================================
-   SECONDARY CURVES
-
-   Insert a line between every
-   two main lines.
+   CURVE COMPONENT
 ========================================================= */
 
-const secondaryCurveLevels =
-  curveLevels
-    .slice(
-      0,
-      -1
-    )
-    .map(
-      (
-        current,
-        index
-      ) => {
-
-        const next =
-          curveLevels[
-            index + 1
-          ];
-
-
-        return {
-          inset:
-            (
-              current.inset +
-              next.inset
-            ) / 2,
-
-          apex:
-            (
-              current.apex +
-              next.apex
-            ) / 2,
-        };
-
-      }
-    );
-
-
-/* =========================================================
-   CURVE SVG
-========================================================= */
-
-function AboutCurveLines({
-  className = "",
-}) {
-
+function AboutCurveLines() {
   return (
-
     <svg
-      className={`
-        vidya-about-curves
-        ${className}
-      `}
+      className="vidya-about-curves"
       viewBox="0 0 1600 1000"
       preserveAspectRatio="none"
       aria-hidden="true"
     >
-
-      {/* MAIN LINES */}
-
       <g className="vidya-about-curves-main">
-
-        {curveLevels.map(
-          (
-            curve,
-            index
-          ) => (
-
-            <path
-              key={
-                `main-${index}`
-              }
-              d={
-                buildReverseUPath(
-                  curve.inset,
-                  curve.apex
-                )
-              }
-            />
-
-          )
-        )}
-
+        {curveLevels.map((curve, index) => (
+          <path
+            key={`main-${index}`}
+            d={buildReverseUPath(
+              curve.inset,
+              curve.apex
+            )}
+          />
+        ))}
       </g>
-
-
-      {/* EXTRA LINES */}
 
       <g className="vidya-about-curves-secondary">
-
         {secondaryCurveLevels.map(
-          (
-            curve,
-            index
-          ) => (
-
+          (curve, index) => (
             <path
-              key={
-                `secondary-${index}`
-              }
-              d={
-                buildReverseUPath(
-                  curve.inset,
-                  curve.apex
-                )
-              }
+              key={`secondary-${index}`}
+              d={buildReverseUPath(
+                curve.inset,
+                curve.apex
+              )}
             />
-
           )
         )}
-
       </g>
-
     </svg>
-
   );
-
 }
-
 
 /* =========================================================
    ABOUT
 ========================================================= */
 
 const About = () => {
-
-  const sectionRef =
-    useRef(null);
-
-  const stageRef =
-    useRef(null);
-
-  const greenRef =
-    useRef(null);
-
-  const storyRef =
-    useRef(null);
-
-
-  /* =========================================================
-     SCROLL ANIMATION
-  ========================================================= */
+  const sectionRef = useRef(null);
+  const storyRef = useRef(null);
 
   useLayoutEffect(() => {
-
-    const section =
-      sectionRef.current;
-
-    const stage =
-      stageRef.current;
-
-    const green =
-      greenRef.current;
-
-    const story =
-      storyRef.current;
-
-
-    if (
-      !section ||
-      !stage ||
-      !green ||
-      !story
-    ) {
-
-      return;
-
-    }
-
-
-    const mm =
-      gsap.matchMedia();
-
-
-    const ctx =
-      gsap.context(
-        () => {
-
-          /* =================================================
-             LARGE DESKTOP
-          ================================================= */
-
-          mm.add(
-            "(min-width: 1201px)",
-
-            () => {
-
-              const introItems =
-                section.querySelectorAll(
-                  [
-                    ".vidya-about-intro-title",
-                    ".vidya-about-intro-divider",
-                    ".vidya-about-intro-copy",
-                    ".vidya-about-intro-values",
-                  ].join(",")
-                );
-
-
-              /* =============================================
-                 INTRO
-              ============================================= */
-
-              const introTimeline =
-                gsap.timeline({
-
-                  scrollTrigger: {
-
-                    trigger:
-                      section,
-
-                    start:
-                      "top 90%",
-
-                    end:
-                      "top 22%",
-
-                    scrub:
-                      0.9,
-
-                    invalidateOnRefresh:
-                      true,
-
-                  },
-
-                });
-
-
-              introTimeline.fromTo(
-                introItems,
-
-                {
-                  y:
-                    34,
-
-                  opacity:
-                    0,
-                },
-
-                {
-                  y:
-                    0,
-
-                  opacity:
-                    1,
-
-                  stagger:
-                    0.055,
-
-                  ease:
-                    "none",
-                }
-              );
-
-
-              /* =============================================
-                 START POSITIONS
-              ============================================= */
-
-              gsap.set(
-                green,
-
-                {
-                  y: () =>
-                    stage.offsetHeight *
-                    0.86,
-
-                  force3D:
-                    true,
-                }
-              );
-
-
-              gsap.set(
-                story,
-
-                {
-                  y: () =>
-                    stage.offsetHeight *
-                    0.9,
-
-                  force3D:
-                    true,
-                }
-              );
-
-
-              /* =============================================
-                 MAIN SMOOTH SLIDE
-              ============================================= */
-
-              const timeline =
-                gsap.timeline({
-
-                  scrollTrigger: {
-
-                    trigger:
-                      section,
-
-                    start:
-                      "top top",
-
-                    end: () =>
-                      `+=${
-                        stage.offsetHeight *
-                        1.05
-                      }`,
-
-                    scrub:
-                      1.15,
-
-                    pin:
-                      stage,
-
-                    pinSpacing:
-                      true,
-
-                    anticipatePin:
-                      1,
-
-                    invalidateOnRefresh:
-                      true,
-
-                  },
-
-                });
-
-
-              timeline.to(
-                {},
-                {
-                  duration:
-                    0.07,
-                }
-              );
-
-
-              timeline.to(
-                green,
-
-                {
-                  y: () =>
-                    -stage.offsetHeight *
-                    0.06,
-
-                  duration:
-                    0.96,
-
-                  ease:
-                    "none",
-                },
-
-                0.07
-              );
-
-
-              timeline.to(
-                story,
-
-                {
-                  y:
-                    0,
-
-                  duration:
-                    0.92,
-
-                  ease:
-                    "none",
-                },
-
-                0.13
-              );
-
-
-              return () => {
-
-                introTimeline.kill();
-
-                timeline.kill();
-
-              };
-
-            }
-          );
-
-
-          /* =================================================
-             LAPTOP
-          ================================================= */
-
-          mm.add(
-            "(min-width: 769px) and (max-width: 1200px)",
-
-            () => {
-
-              const introItems =
-                section.querySelectorAll(
-                  [
-                    ".vidya-about-intro-title",
-                    ".vidya-about-intro-divider",
-                    ".vidya-about-intro-copy",
-                    ".vidya-about-intro-values",
-                  ].join(",")
-                );
-
-
-              const introTimeline =
-                gsap.timeline({
-
-                  scrollTrigger: {
-
-                    trigger:
-                      section,
-
-                    start:
-                      "top 90%",
-
-                    end:
-                      "top 22%",
-
-                    scrub:
-                      0.85,
-
-                    invalidateOnRefresh:
-                      true,
-
-                  },
-
-                });
-
-
-              introTimeline.fromTo(
-                introItems,
-
-                {
-                  y:
-                    32,
-
-                  opacity:
-                    0,
-                },
-
-                {
-                  y:
-                    0,
-
-                  opacity:
-                    1,
-
-                  stagger:
-                    0.05,
-
-                  ease:
-                    "none",
-                }
-              );
-
-
-              gsap.set(
-                green,
-
-                {
-                  y: () =>
-                    stage.offsetHeight *
-                    0.9,
-
-                  force3D:
-                    true,
-                }
-              );
-
-
-              gsap.set(
-                story,
-
-                {
-                  y: () =>
-                    stage.offsetHeight *
-                    0.93,
-
-                  force3D:
-                    true,
-                }
-              );
-
-
-              const timeline =
-                gsap.timeline({
-
-                  scrollTrigger: {
-
-                    trigger:
-                      section,
-
-                    start:
-                      "top top",
-
-                    end: () =>
-                      `+=${
-                        stage.offsetHeight *
-                        1
-                      }`,
-
-                    scrub:
-                      1.05,
-
-                    pin:
-                      stage,
-
-                    pinSpacing:
-                      true,
-
-                    anticipatePin:
-                      1,
-
-                    invalidateOnRefresh:
-                      true,
-
-                  },
-
-                });
-
-
-              timeline.to(
-                {},
-                {
-                  duration:
-                    0.07,
-                }
-              );
-
-
-              timeline.to(
-                green,
-
-                {
-                  y: () =>
-                    -stage.offsetHeight *
-                    0.055,
-
-                  duration:
-                    0.96,
-
-                  ease:
-                    "none",
-                },
-
-                0.07
-              );
-
-
-              timeline.to(
-                story,
-
-                {
-                  y:
-                    0,
-
-                  duration:
-                    0.92,
-
-                  ease:
-                    "none",
-                },
-
-                0.13
-              );
-
-
-              return () => {
-
-                introTimeline.kill();
-
-                timeline.kill();
-
-              };
-
-            }
-          );
-
-
-          /* =================================================
-             MOBILE
-          ================================================= */
-
-          mm.add(
-            "(max-width: 768px)",
-
-            () => {
-
-              gsap.set(
-                green,
-
-                {
-                  clearProps:
-                    "all",
-                }
-              );
-
-
-              gsap.set(
-                story,
-
-                {
-                  clearProps:
-                    "all",
-                }
-              );
-
-
-              return () => {};
-
-            }
-          );
-
-        },
-
-        section
-      );
-
-
-    /* =========================================================
-       REFRESH
-    ========================================================= */
-
-    let resizeTimer;
-
-
-    const refresh =
-      () => {
-
-        ScrollTrigger.refresh();
-
-      };
-
-
-    const handleResize =
-      () => {
-
-        clearTimeout(
-          resizeTimer
+    const section = sectionRef.current;
+    const story = storyRef.current;
+
+    if (!section || !story) return;
+
+    const ctx = gsap.context(() => {
+      /* =====================================================
+         INTRO CONTENT REVEAL
+      ===================================================== */
+
+      const introItems =
+        section.querySelectorAll(
+          [
+            ".vidya-about-intro-title",
+            ".vidya-about-intro-divider",
+            ".vidya-about-intro-copy",
+            ".vidya-about-intro-values",
+          ].join(",")
         );
 
+      gsap.fromTo(
+        introItems,
+        {
+          y: 35,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.08,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 78%",
+            once: true,
+          },
+        }
+      );
 
-        resizeTimer =
-          window.setTimeout(
-            refresh,
-            120
+      /* =====================================================
+         GALLERY SLIDE OVER EFFECT
+         
+         The GREEN gallery block rises over the cream
+         philosophy section.
+      ===================================================== */
+
+      gsap.fromTo(
+        story,
+        {
+          y: 130,
+        },
+        {
+          y: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: story,
+            start: "top bottom",
+            end: "top 55%",
+            scrub: 1,
+          },
+        }
+      );
+
+      /* =====================================================
+         IMAGE PARALLAX
+
+         IMPORTANT:
+         Only the IMAGE moves.
+         The card does NOT move.
+
+         Small movement prevents the image from disappearing.
+      ===================================================== */
+
+      const cards =
+        story.querySelectorAll(
+          ".vidya-about-gallery-card"
+        );
+
+      cards.forEach((card) => {
+        const image =
+          card.querySelector(
+            ".vidya-about-gallery-image"
           );
 
-      };
+        const badge =
+          card.querySelector(
+            ".vidya-about-gallery-badge"
+          );
 
+        if (!image) return;
 
-    requestAnimationFrame(
-      refresh
-    );
+        gsap.fromTo(
+          image,
+          {
+            yPercent: -5,
+            scale: 1.055,
+          },
+          {
+            yPercent: 5,
+            scale: 1.035,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.4,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
 
+        /* Badge has a very small independent movement */
+
+        if (badge) {
+          gsap.fromTo(
+            badge,
+            {
+              y: -6,
+            },
+            {
+              y: 8,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.3,
+                invalidateOnRefresh: true,
+              },
+            }
+          );
+        }
+      });
+
+      /* =====================================================
+         CURVE PARALLAX
+      ===================================================== */
+
+      const curves =
+        story.querySelector(
+          ".vidya-about-curves"
+        );
+
+      if (curves) {
+        gsap.fromTo(
+          curves,
+          {
+            yPercent: 3,
+          },
+          {
+            yPercent: -3,
+            ease: "none",
+            scrollTrigger: {
+              trigger: story,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.2,
+            },
+          }
+        );
+      }
+    }, section);
+
+    const refresh = () => {
+      ScrollTrigger.refresh();
+    };
 
     window.addEventListener(
       "resize",
-      handleResize
+      refresh
     );
 
+    requestAnimationFrame(refresh);
 
     return () => {
-
-      clearTimeout(
-        resizeTimer
-      );
-
-
       window.removeEventListener(
         "resize",
-        handleResize
+        refresh
       );
 
-
-      mm.revert();
-
       ctx.revert();
-
     };
-
   }, []);
 
-
   /* =========================================================
-     RETURN
+     IMAGE FALLBACK
   ========================================================= */
 
-  return (
+  const handleImageError = (
+    event,
+    fallback
+  ) => {
+    const image = event.currentTarget;
 
+    if (
+      image.dataset.fallbackUsed === "true"
+    ) {
+      image.style.display = "none";
+      return;
+    }
+
+    image.dataset.fallbackUsed = "true";
+
+    image.src = fallback;
+  };
+
+  return (
     <section
       ref={sectionRef}
       className="vidya-about"
       id="about"
     >
-
-      <div
-        ref={stageRef}
-        className="vidya-about-stage"
-      >
+      <div className="vidya-about-stage">
 
         {/* =================================================
-            INTRO
+            PHILOSOPHY
         ================================================= */}
 
         <div className="vidya-about-intro">
 
           <div className="vidya-about-intro-inner">
 
-            <h2 className="vidya-about-intro-title">
+            {/* LEFT */}
+            <div className="vidya-about-intro-heading">
 
-              <span className="vidya-about-title-dark">
-                Our Learning
-              </span>
+              <h2 className="vidya-about-intro-title">
 
-              {" "}
+                <span className="vidya-about-title-dark">
+                  Our Learning
+                </span>
 
-              <span className="vidya-about-title-light">
-                Philosophy.
-              </span>
+                <span className="vidya-about-title-light">
+                  Philosophy.
+                </span>
 
-            </h2>
+              </h2>
 
-
-            <div
-              className="vidya-about-intro-divider"
-            />
-
-
-            <div className="vidya-about-intro-copy">
-
-              <p className="vidya-about-copy-lead">
-
-                At Vidya Academy, learning goes beyond
-                the classroom. Every child is encouraged
-                to explore ideas with curiosity and
-                confidence through meaningful discussions,
-                practical activities, creative experiences
-                and collaborative learning.
-
-              </p>
-
-
-              <p className="vidya-about-intro-extra vidya-about-intro-extra--1">
-
-                We believe children learn best when they
-                are actively involved in the process.
-                Our learning environment encourages
-                students to ask questions, communicate
-                their ideas, work with others and discover
-                different ways of approaching a challenge.
-
-              </p>
-
-
-              <p className="vidya-about-intro-extra vidya-about-intro-extra--2">
-
-                Alongside academic learning, students are
-                encouraged to become thoughtful,
-                independent and confident learners.
-                Each experience helps them connect
-                knowledge with everyday life, develop
-                their own perspective and continue
-                growing with purpose.
-
-              </p>
-
-
-              <p className="vidya-about-desktop-extra">
-
-                Our approach also creates opportunities for
-                children to reflect on what they learn,
-                understand their individual strengths and
-                apply their knowledge with confidence.
-                Through consistent guidance and purposeful
-                experiences, students develop the habits,
-                resilience and awareness needed to become
-                capable learners prepared for the world
-                beyond the classroom.
- Our approach also creates opportunities for
-                children to reflect on what they learn,
-                understand their individual strengths and
-                apply their knowledge with confidence.
-                Through consistent guidance and purposeful
-                experiences, students develop the habits,
-                resilience and awareness needed to become
-                capable learners prepared for the world
-                beyond the classroom.
-
-              </p>
+              <div className="vidya-about-intro-divider" />
 
             </div>
 
+            {/* RIGHT */}
+            <div className="vidya-about-intro-content">
 
-            <div className="vidya-about-intro-values">
+              <div className="vidya-about-intro-copy">
 
-              <span>
-                LEARN
-              </span>
+                <p className="vidya-about-copy-lead">
+                  At Vidya Academy, learning goes beyond
+                  the classroom. Every child is encouraged
+                  to explore ideas with curiosity and
+                  confidence through meaningful discussions,
+                  practical activities, creative experiences
+                  and collaborative learning.
+                </p>
 
-              <i />
+                <p className="vidya-about-intro-extra">
+                  We believe children learn best when they
+                  are actively involved in the process.
+                  Our learning environment encourages
+                  students to ask questions, communicate
+                  their ideas, work with others and discover
+                  different ways of approaching a challenge.
+                </p>
 
-              <span>
-                EXPLORE
-              </span>
+                <p className="vidya-about-intro-extra">
+                  Alongside academic learning, students are
+                  encouraged to become thoughtful,
+                  independent and confident learners.
+                  Each experience helps them connect
+                  knowledge with everyday life, develop
+                  their own perspective and continue
+                  growing with purpose.
+                </p>
 
-              <i />
+                <p className="vidya-about-desktop-extra">
+                  Our approach also creates opportunities for
+                  children to reflect on what they learn,
+                  understand their individual strengths and
+                  apply their knowledge with confidence.
+                  Through consistent guidance and purposeful
+                  experiences, students develop the habits,
+                  resilience and awareness needed to become
+                  capable learners prepared for the world
+                  beyond the classroom.
+                </p>
 
-              <span>
-                GROW
-              </span>
+              </div>
+
+              <div className="vidya-about-intro-values">
+
+                <span>LEARN</span>
+
+                <i />
+
+                <span>EXPLORE</span>
+
+                <i />
+
+                <span>GROW</span>
+
+              </div>
 
             </div>
-
           </div>
-
         </div>
 
-
         {/* =================================================
-            GREEN CURVED TRANSITION
-
-            SAME LINE SYSTEM AS STORY BELOW
-        ================================================= */}
-
-        <div
-          ref={greenRef}
-          className="vidya-about-green"
-          aria-hidden="true"
-        >
-
-          <div className="vidya-about-transition-line-window">
-
-            <AboutCurveLines
-              className="vidya-about-transition-curves"
-            />
-
-          </div>
-
-        </div>
-
-
-        {/* =================================================
-            GREEN STORY / IMAGES
+            GALLERY THAT SLIDES OVER THE ABOVE SECTION
         ================================================= */}
 
         <div
@@ -1015,79 +500,65 @@ const About = () => {
           className="vidya-about-story"
         >
 
-          {/* ===============================================
-              ENTIRE GREEN BACKGROUND LINES
-          =============================================== */}
-
           <div
             className="vidya-about-green-lines"
             aria-hidden="true"
           >
-
             <AboutCurveLines />
-
           </div>
-
-
-          {/* ===============================================
-              IMAGES
-          =============================================== */}
 
           <div className="vidya-about-gallery">
 
             {galleryImages.map(
-              (
-                item,
-                index
-              ) => (
-
+              (item, index) => (
                 <article
                   key={item.id}
-
                   className={`
                     vidya-about-gallery-card
-                    vidya-about-gallery-card--${
-                      index + 1
-                    }
+                    vidya-about-gallery-card--${index + 1}
                   `}
                 >
 
-                  <img
-                    src={item.image}
-                    alt={item.alt}
-                    loading="eager"
-                  />
+                  <div className="vidya-about-gallery-image-wrap">
 
-
-                  <div
-                    className="vidya-about-gallery-overlay"
-                  />
-
-
-                  <div className="vidya-about-gallery-badge">
-
-                    <span>
-                      {item.badge}
-                    </span>
+                    <img
+                      className="vidya-about-gallery-image"
+                      src={item.image}
+                      alt={item.alt}
+                      loading={
+                        index === 0
+                          ? "eager"
+                          : "lazy"
+                      }
+                      decoding="async"
+                      onError={(event) =>
+                        handleImageError(
+                          event,
+                          item.fallback
+                        )
+                      }
+                    />
 
                   </div>
 
-                </article>
+                  <div className="vidya-about-gallery-overlay" />
 
+                  <div className="vidya-about-gallery-badge">
+                    <span>
+                      {item.badge}
+                    </span>
+                  </div>
+
+                </article>
               )
             )}
 
           </div>
-
         </div>
 
       </div>
-
     </section>
-
   );
-
 };
-
 
 export default About;

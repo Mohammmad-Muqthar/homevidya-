@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;550;600;700;800&display=swap");
+
+.pathways-page {
+  --academic-green: #0b563b;
+  --academic-green-dark: #073f32;
+  --academic-black: #1d1d1d;
+  --academic-cream: #f2efea;
+  --academic-cream-2: #e8e3dd;
+  --academic-rose: #bba8a0;
+  --academic-rose-soft: #c9b8b1;
+
+  --pyp: #d9a500;
+  --myp: #d9544d;
+  --dp: #5672d4;
+
+  --page-gutter: clamp(28px, 5vw, 88px);
+
+  position: relative;
+  width: 100%;
+  overflow: clip;
+  background: var(--academic-cream);
+  color: var(--academic-black);
+  font-family: "Manrope", sans-serif;
+}
+
+.pathways-page,
+.pathways-page *,
+.pathways-page *::before,
+.pathways-page *::after {
+  box-sizing: border-box;
+}
+
+.pathways-page img {
+  display: block;
+  max-width: 100%;
+}
+
+.pathways-reveal {
+  will-change: transform, opacity;
+}
+
+.pathways-kicker {
+  margin: 0 0 26px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.pathways-display {
+  margin: 0;
+  font-size: clamp(48px, 5.1vw, 84px);
+  font-weight: 550;
+  line-height: 0.95;
+  letter-spacing: -0.064em;
+}
+
+.pathways-section-title {
+  margin: 0;
+  font-size: clamp(39px, 3.6vw, 64px);
+  font-weight: 550;
+  line-height: 0.98;
+  letter-spacing: -0.054em;
+}
+
+.pathways-body {
+  font-size: clamp(16px, 1.12vw, 20px);
+  line-height: 1.55;
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 768px) {
+  .pathways-page {
+    --page-gutter: 20px;
+  }
+
+  .pathways-kicker {
+    margin-bottom: 18px;
+    font-size: 9px;
+  }
+
+  .pathways-display {
+    font-size: clamp(43px, 12.2vw, 62px);
+    line-height: 0.96;
+  }
+
+  .pathways-section-title {
+    font-size: clamp(35px, 9.8vw, 48px);
+  }
+
+  .pathways-body {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+}

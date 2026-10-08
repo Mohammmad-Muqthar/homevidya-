@@ -8,119 +8,157 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "./CampusBuildings.css";
 
-gsap.registerPlugin(ScrollTrigger);
+
+gsap.registerPlugin(
+  ScrollTrigger
+);
+
+
+/* =========================================================
+   FALLBACK
+
+   Used automatically if any remote image fails.
+========================================================= */
+
+const FALLBACK_BUILDING_IMAGE =
+  "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2200&q=92";
 
 
 /* =========================================================
    BUILDING MARQUEE IMAGES
+
+   01 — SCHOOL BUILDING
+   02 — INDIAN SCHOOL VERANDA
+   03 — SCHOOL AUDITORIUM
+   04 — ACADEMIC BUILDING
 ========================================================= */
 
 const buildingMarqueeImages = [
-  "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=90",
+  "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1400&q=90",
 
-  "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=1200&q=90",
+  "https://images.unsplash.com/photo-1722853827087-f6fc4d977d25?auto=format&fit=crop&w=1400&q=90",
 
-  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=90",
+  "https://images.unsplash.com/photo-1702763529935-f4f7b4df3380?auto=format&fit=crop&w=1400&q=90",
 
-  "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=90",
+  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=90",
 ];
 
 
 /* =========================================================
-   BUILDING IMAGES
+   BUILDING PHOTO GRID
+
+   01 — SCHOOL FRONT / MAIN BLOCK
+   02 — INDIAN VERANDA / CORRIDOR
+   03 — SCHOOL AUDITORIUM
+   04 — SCHOOL HALLWAY
+   05 — CAMPUS COURTYARD / BUILDING
+   06 — ACADEMIC BLOCK
+   07 — INDIAN SCHOOL AUDITORIUM
 ========================================================= */
 
 const buildingImages = [
   {
-    id: "01",
+    id:
+      "01",
 
     src:
-      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "Modern school building",
+      "Modern school building exterior",
 
     className:
       "building-photo--01",
   },
 
+
   {
-    id: "02",
+    id:
+      "02",
 
     src:
-      "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1722853827087-f6fc4d977d25?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "Contemporary educational architecture",
+      "Indian school veranda and corridor",
 
     className:
       "building-photo--02",
   },
 
+
   {
-    id: "03",
+    id:
+      "03",
 
     src:
-      "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1702763529935-f4f7b4df3380?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "Academic building exterior",
+      "School auditorium with stage and seating",
 
     className:
       "building-photo--03",
   },
 
+
   {
-    id: "04",
+    id:
+      "04",
 
     src:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1560948192-2249a51756ad?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "Open campus architecture",
+      "School hallway and corridor",
 
     className:
       "building-photo--04",
   },
 
+
   {
-    id: "05",
+    id:
+      "05",
 
     src:
-      "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "School interior",
+      "Open school courtyard and academic building",
 
     className:
       "building-photo--05",
   },
 
+
   {
-    id: "06",
+    id:
+      "06",
 
     src:
-      "https://images.unsplash.com/photo-1560582861-45078880e48e?auto=format&fit=crop&w=2000&q=90",
+      "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=2200&q=92",
 
     alt:
-      "Modern school architecture",
+      "School academic block architecture",
 
     className:
       "building-photo--06",
   },
 
-  {
-    id: "07",
 
-    src:
-      "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=2000&q=90",
+{
+  id: "07",
 
-    alt:
-      "Educational building",
+  src:
+    "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=2200&q=92",
 
-    className:
-      "building-photo--07",
-  },
+  alt:
+    "School building and academic architecture",
+
+  className:
+    "building-photo--07",
+},
 ];
 
 
@@ -143,6 +181,37 @@ const CampusBuildings = () => {
 
 
   /* =========================================================
+     IMAGE FALLBACK
+  ========================================================= */
+
+  const handleImageError =
+    (
+      event
+    ) => {
+      const image =
+        event.currentTarget;
+
+
+      if (
+        image.dataset
+          .fallbackApplied ===
+        "true"
+      ) {
+        return;
+      }
+
+
+      image.dataset
+        .fallbackApplied =
+        "true";
+
+
+      image.src =
+        FALLBACK_BUILDING_IMAGE;
+    };
+
+
+  /* =========================================================
      ANIMATIONS
   ========================================================= */
 
@@ -161,7 +230,7 @@ const CampusBuildings = () => {
       !section ||
       !marqueeTrack
     ) {
-      return;
+      return undefined;
     }
 
 
@@ -236,6 +305,9 @@ const CampusBuildings = () => {
 
                 scrub:
                   1,
+
+                invalidateOnRefresh:
+                  true,
               },
             }
           );
@@ -282,6 +354,9 @@ const CampusBuildings = () => {
 
                 scrub:
                   0.5,
+
+                invalidateOnRefresh:
+                  true,
               },
             }
           );
@@ -313,6 +388,10 @@ const CampusBuildings = () => {
                   );
 
 
+                /* =============================================
+                   CARD REVEAL
+                ============================================= */
+
                 gsap.fromTo(
                   card,
 
@@ -326,7 +405,7 @@ const CampusBuildings = () => {
                         index %
                         3
                       ) *
-                        7,
+                      7,
                   },
 
                   {
@@ -351,10 +430,17 @@ const CampusBuildings = () => {
 
                       scrub:
                         0.65,
+
+                      invalidateOnRefresh:
+                        true,
                     },
                   }
                 );
 
+
+                /* =============================================
+                   IMAGE PARALLAX
+                ============================================= */
 
                 if (
                   image
@@ -392,6 +478,9 @@ const CampusBuildings = () => {
 
                         scrub:
                           0.72,
+
+                        invalidateOnRefresh:
+                          true,
                       },
                     }
                   );
@@ -427,6 +516,10 @@ const CampusBuildings = () => {
                   );
 
 
+                /* =============================================
+                   MOBILE CARD REVEAL
+                ============================================= */
+
                 gsap.fromTo(
                   card,
 
@@ -440,7 +533,7 @@ const CampusBuildings = () => {
                         index %
                         2
                       ) *
-                        4,
+                      4,
                   },
 
                   {
@@ -469,6 +562,10 @@ const CampusBuildings = () => {
                   }
                 );
 
+
+                /* =============================================
+                   MOBILE IMAGE PARALLAX
+                ============================================= */
 
                 if (
                   image
@@ -500,6 +597,9 @@ const CampusBuildings = () => {
 
                         scrub:
                           0.4,
+
+                        invalidateOnRefresh:
+                          true,
                       },
                     }
                   );
@@ -522,6 +622,7 @@ const CampusBuildings = () => {
     ===================================================== */
 
     let resizeTimer;
+
 
     let previousWidth =
       window.innerWidth;
@@ -565,6 +666,10 @@ const CampusBuildings = () => {
           );
       };
 
+
+    /* =====================================================
+       IMAGE LOAD REFRESH
+    ===================================================== */
 
     const images =
       section.querySelectorAll(
@@ -674,16 +779,27 @@ const CampusBuildings = () => {
 
             <div
               key={`${prefix}-${index}`}
-
               className="campus-buildings-marquee-item"
             >
 
               <div className="campus-buildings-thumb">
 
                 <img
-                  src={image}
+                  src={
+                    image
+                  }
+
                   alt=""
+
+                  loading="lazy"
+
+                  decoding="async"
+
                   draggable="false"
+
+                  onError={
+                    handleImageError
+                  }
                 />
 
               </div>
@@ -710,7 +826,6 @@ const CampusBuildings = () => {
   return (
     <section
       ref={sectionRef}
-
       className="campus-buildings"
     >
 
@@ -724,7 +839,6 @@ const CampusBuildings = () => {
 
           <div
             ref={marqueeTrackRef}
-
             className="campus-buildings-marquee-track"
           >
 
@@ -751,7 +865,6 @@ const CampusBuildings = () => {
 
       <div
         ref={captionRef}
-
         className="campus-buildings-caption"
       >
 
@@ -785,10 +898,14 @@ const CampusBuildings = () => {
           ) => (
 
             <figure
-              key={image.id}
+              key={
+                image.id
+              }
 
               ref={
-                (element) => {
+                (
+                  element
+                ) => {
                   photoRefs.current[
                     index
                   ] =
@@ -803,19 +920,34 @@ const CampusBuildings = () => {
             >
 
               <img
-                src={image.src}
+                src={
+                  image.src
+                }
 
-                alt={image.alt}
+                alt={
+                  image.alt
+                }
 
                 loading={
-                  index < 3
+                  index <
+                  3
                     ? "eager"
                     : "lazy"
+                }
+
+                fetchPriority={
+                  index === 0
+                    ? "high"
+                    : "auto"
                 }
 
                 decoding="async"
 
                 draggable="false"
+
+                onError={
+                  handleImageError
+                }
               />
 
             </figure>
