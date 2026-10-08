@@ -62,7 +62,7 @@ const buildingImages = [
       "01",
 
     src:
-      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2200&q=92",
+      "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGNhbXB1c3xlbnwwfHwwfHx8MA%3D%3D",
 
     alt:
       "Modern school building exterior",
@@ -77,7 +77,7 @@ const buildingImages = [
       "02",
 
     src:
-      "https://images.unsplash.com/photo-1722853827087-f6fc4d977d25?auto=format&fit=crop&w=2200&q=92",
+      "https://images.unsplash.com/photo-1519452575417-564c1401ecc0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNhbXB1c3xlbnwwfHwwfHx8MA%3D%3D",
 
     alt:
       "Indian school veranda and corridor",
@@ -92,7 +92,7 @@ const buildingImages = [
       "03",
 
     src:
-      "https://images.unsplash.com/photo-1702763529935-f4f7b4df3380?auto=format&fit=crop&w=2200&q=92",
+      "https://images.unsplash.com/photo-1559135197-8a45ea74d367?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGNhbXB1c3xlbnwwfHwwfHx8MA%3D%3D",
 
     alt:
       "School auditorium with stage and seating",

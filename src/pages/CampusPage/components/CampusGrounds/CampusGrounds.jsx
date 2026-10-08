@@ -62,7 +62,7 @@ const campusImages = [
     id: "01",
 
     src:
-      "https://images.unsplash.com/photo-1771909712619-54b241d2f8ff?auto=format&fit=crop&w=2200&q=92",
+      "https://images.unsplash.com/photo-1711369093144-2ada6e035a84?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGxheSUyMGdyb3VuZHN8ZW58MHx8MHx8fDA%3D",
 
     alt:
       "Indian school cricket ground with school buildings",
@@ -76,7 +76,7 @@ const campusImages = [
     id: "02",
 
     src:
-      "https://images.unsplash.com/photo-1771909713995-d793a0c93660?auto=format&fit=crop&w=2200&q=92",
+      "https://images.unsplash.com/photo-1674573228894-3d8c97e9a394?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fHBsYXklMjBncm91bmRzfGVufDB8fDB8fHww",
 
     alt:
       "Students on an Indian school sports ground",
@@ -104,7 +104,7 @@ const campusImages = [
     id: "04",
 
     src:
-      "https://images.unsplash.com/photo-1710845423770-dafc183dbc4b?auto=format&fit=crop&w=2200&q=92",
+      "https://plus.unsplash.com/premium_photo-1723575635498-f56e800c595e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTQ1fHxwbGF5JTIwZ3JvdW5kc3xlbnwwfHwwfHx8MA%3D%3D",
 
     alt:
       "Indian school football ground and school building",
@@ -118,7 +118,7 @@ const campusImages = [
     id: "05",
 
     src:
-      "https://images.unsplash.com/photo-1566938089211-5821c49b3548?auto=format&fit=crop&w=2200&q=92",
+      "https://images.unsplash.com/photo-1657977727664-43b1260cff11?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fHBsYXklMjBncm91bmRzfGVufDB8fDB8fHww",
 
     alt:
       "Indian school children enjoying the playground",
